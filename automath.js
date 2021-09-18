@@ -45,36 +45,48 @@ function clearElement(...elements) {
 }
 
 function makeNumberInput() {
+  //----------------------------------------------------//
+  //Makes and returns a div element with a number pad   //
+  //  inside of it                                      //
+  //----------------------------------------------------//
+  //return(element): HTML element                       //
+  //----------------------------------------------------//
+
   let numberInput = makeElement("div", "numberInput");
 
-    let button = makeButton("1", null, "button1");
+    let button = makeButton("1", function() {inputNumber(1)}, "button1");
     numberInput.appendChild(button);
-    button = makeButton("2", null, "button1");
+    button = makeButton("2", function() {inputNumber(2)}, "button2");
     numberInput.appendChild(button);
-    button = makeButton("3", null, "button1");
+    button = makeButton("3", function() {inputNumber(3)}, "button3");
     numberInput.appendChild(button);
-    button = makeButton("4", null, "button1");
+    button = makeButton("←", function() {inputNumber(-1)}, "buttonBack");
     numberInput.appendChild(button);
-    button = makeButton("5", null, "button1");
+    button = makeButton("4", function() {inputNumber(4)}, "button4");
     numberInput.appendChild(button);
-    button = makeButton("6", null, "button1");
+    button = makeButton("5", function() {inputNumber(5)}, "button5");
     numberInput.appendChild(button);
-    button = makeButton("7", null, "button1");
+    button = makeButton("6", function() {inputNumber(6)}, "button6");
     numberInput.appendChild(button);
-    button = makeButton("8", null, "button1");
+    button = makeButton("7", function() {inputNumber(7)}, "button7");
     numberInput.appendChild(button);
-    button = makeButton("9", null, "button1");
+    button = makeButton("8", function() {inputNumber(8)}, "button8");
     numberInput.appendChild(button);
-    button = makeButton("0", null, "button1");
+    button = makeButton("9", function() {inputNumber(9)}, "button9");
     numberInput.appendChild(button);
-    button = makeButton(".", null, "button1");
+    button = makeButton("Submit", function() {inputNumber(10)}, "buttonSubmit");
     numberInput.appendChild(button);
-    button = makeButton("←", null, "button1");
+    button = makeButton("0", function() {inputNumber(0)}, "button0");
     numberInput.appendChild(button);
-    button = makeButton("Submit", null, "button1");
+    button = makeButton(".", function() {inputNumber(".")}, "buttonDecimal");
     numberInput.appendChild(button);
 
   return numberInput;
+}
+
+function inputNumber(num) {
+  let disp = document.getElementById("solutionDisplay");
+  disp.innerHTML += num;
 }
 
 function makeSignInScreen() {
@@ -82,7 +94,7 @@ function makeSignInScreen() {
 
   //root.style.setProperty("--bg-color", "hsla(0, 100%, 50%, 1)");
 
-  let signInScreen = makeElement("div", "signInScreen");
+  let signInScreen = makeElement("div", "signInScreen", "screen");
 
     let titleDiv = makeElement("div", "titleDiv");
       titleDiv.innerHTML = "AutoMath";
@@ -101,7 +113,15 @@ function makeSignInScreen() {
 function makeProblemScreen() {
   clearElement(document.body);
 
-  let problemScreen = makeElement("div", "problemScreen");
+  let problemScreen = makeElement("div", "problemScreen", "screen");
+
+    let problemDisplay = makeElement("div", "problemDisplay");
+      problemDisplay.innerHTML = "100 + 100 = ?";
+    problemScreen.appendChild(problemDisplay);
+
+    let solutionDisplay = makeElement("div", "solutionDisplay");
+      //solutionDisplay.innerHTML = "2";
+    problemScreen.appendChild(solutionDisplay);
 
     let numberInput = makeNumberInput()
     problemScreen.appendChild(numberInput);
