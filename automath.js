@@ -16,11 +16,12 @@ function makeElement(type, id, ...classes) {
   return element;
 }
 
-function makeButton(name, id, ...classes) {
+function makeButton(name, touch, id, ...classes) {
   //----------------------------------------------------//
   //Returns an HTML button element                      //
   //----------------------------------------------------//
   //name(string): text on the button                    //
+  //touch(function): onclick function of button         //
   //id(string): id of the element                       //
   //classes(string): classes to add to the element      //
   //----------------------------------------------------//
@@ -29,6 +30,7 @@ function makeButton(name, id, ...classes) {
 
   let button = makeElement("button", id, ...classes);
   button.innerHTML = name;
+  button.onclick = touch;
   return button;
 }
 
@@ -42,6 +44,39 @@ function clearElement(...elements) {
   elements.forEach(x => x.innerHTML = "");
 }
 
+function makeNumberInput() {
+  let numberInput = makeElement("div", "numberInput");
+
+    let button = makeButton("1", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton("2", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton("3", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton("4", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton("5", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton("6", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton("7", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton("8", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton("9", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton("0", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton(".", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton("←", null, "button1");
+    numberInput.appendChild(button);
+    button = makeButton("Submit", null, "button1");
+    numberInput.appendChild(button);
+
+  return numberInput;
+}
+
 function makeSignInScreen() {
   clearElement(document.body);
 
@@ -53,11 +88,10 @@ function makeSignInScreen() {
       titleDiv.innerHTML = "AutoMath";
     signInScreen.appendChild(titleDiv);
 
-    let signInButton = makeButton("Sign In", "signInButton");
-      signInButton.onclick = makeProblemScreen;
+    let signInButton = makeButton("Sign In", makeProblemScreen, "signInButton");
     signInScreen.appendChild(signInButton);
 
-    let registerButton = makeButton("Register", "registerButton");
+    let registerButton = makeButton("Register", makeProblemScreen, "registerButton");
     signInScreen.appendChild(registerButton);
 
 
@@ -69,7 +103,7 @@ function makeProblemScreen() {
 
   let problemScreen = makeElement("div", "problemScreen");
 
-    let numberInput = makeElement("div", "numberInput");
+    let numberInput = makeNumberInput()
     problemScreen.appendChild(numberInput);
 
   document.body.appendChild(problemScreen);

@@ -9,6 +9,13 @@ body {
   background-color: var(--bg-color);
 }
 
+/*
+  Sign In/Register Screen
+*/
+
+/*
+  Wrapper for the elements
+*/
 #signInScreen {
   display: flex;
   flex-direction: column;
@@ -19,12 +26,18 @@ body {
   color: var(--main-color);
 }
 
+/*
+  The name of the program
+*/
 #titleDiv {
   margin: 3rem;
   font-family: sans-serif;
   font-size: 3rem;
 }
 
+/*
+  The buttons to sign in and register
+*/
 #signInScreen > button {
   margin: 1rem;
   padding: .5rem;
