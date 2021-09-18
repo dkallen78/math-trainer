@@ -1,0 +1,46 @@
+:root {
+  --bg-color: hsla(0, 0%, 100%, 1);
+  --main-color: hsla(0, 0%, 0%, 1);
+  --transparent: hsla(0, 0%, 0%, 0);
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+}
+
+#signInScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 75vh;
+  width: 100vw;
+  text-align: center;
+  color: var(--main-color);
+}
+
+#titleDiv {
+  margin: 3rem;
+  font-family: sans-serif;
+  font-size: 3rem;
+}
+
+#signInScreen > button {
+  margin: 1rem;
+  padding: .5rem;
+  font-size: 2rem;
+  font-family: sans-serif;
+  background-color: var(--transparent);
+  border: .2rem solid var(--main-color);
+  border-radius: 1rem;
+}
+
+#problemScreen {
+
+}
+
+#numberInput {
+  height: 95vw;
+  width: 95vw;
+  border: .1rem solid var(--main-color);
+}
