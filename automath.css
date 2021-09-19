@@ -75,8 +75,9 @@ body {
 #problemScreen {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 25% 25% 50%;
+  grid-template-rows: 3rem 25% 50%;
   justify-content: center;
+  align-content: end;
   height: 100vh;
   width: 100vw;
   text-align: center;
@@ -85,13 +86,11 @@ body {
 #problemDisplay {
   display: flex;
   justify-content: center;
-  align-items: end;
-  padding-bottom: 1rem;
+  align-items: center;
   font-size: 2rem;
 }
 
 #readyButton {
-  margin: 1rem;
   padding: .5rem;
   font-size: 2rem;
   font-family: sans-serif;
@@ -102,7 +101,6 @@ body {
 }
 
 .countDown {
-  display: table;
   font-size: 4.8rem;
   color: var(--main-color);
   transition: all 750ms;

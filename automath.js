@@ -107,43 +107,76 @@ function fadeOutElement(callback, ...elements) {
 }
 
 function makeNumberInput() {
-  //----------------------------------------------------//
+  /*
   //Makes and returns a div element with a number pad   //
   //  inside of it                                      //
   //----------------------------------------------------//
   //return(element): HTML element                       //
-  //----------------------------------------------------//
+  */
 
   let numberInput = makeElement("div", "numberInput");
 
-    let button = makeButton("1", function() {inputNumber("1")}, "button1");
+    //let button = makeButton("1", function() {}, "button1");
+    //numberInput.appendChild(button);
+    numberInput.appendChild(makeButton("1", function() {}, "button1"));
+    button = makeButton("2", function() {}, "button2");
     numberInput.appendChild(button);
-    button = makeButton("2", function() {inputNumber("2")}, "button2");
+    button = makeButton("3", function() {}, "button3");
     numberInput.appendChild(button);
-    button = makeButton("3", function() {inputNumber("3")}, "button3");
+    button = makeButton("←", function() {}, "buttonBack");
     numberInput.appendChild(button);
-    button = makeButton("←", function() {inputNumber("-1")}, "buttonBack");
+    button = makeButton("4", function() {}, "button4");
     numberInput.appendChild(button);
-    button = makeButton("4", function() {inputNumber("4")}, "button4");
+    button = makeButton("5", function() {}, "button5");
     numberInput.appendChild(button);
-    button = makeButton("5", function() {inputNumber("5")}, "button5");
+    button = makeButton("6", function() {}, "button6");
     numberInput.appendChild(button);
-    button = makeButton("6", function() {inputNumber("6")}, "button6");
+    button = makeButton("7", function() {}, "button7");
     numberInput.appendChild(button);
-    button = makeButton("7", function() {inputNumber("7")}, "button7");
+    button = makeButton("8", function() {}, "button8");
     numberInput.appendChild(button);
-    button = makeButton("8", function() {inputNumber("8")}, "button8");
+    button = makeButton("9", function() {}, "button9");
     numberInput.appendChild(button);
-    button = makeButton("9", function() {inputNumber("9")}, "button9");
+    button = makeButton("Submit", function() {}, "buttonSubmit");
     numberInput.appendChild(button);
-    button = makeButton("Submit", function() {inputNumber("10")}, "buttonSubmit");
+    button = makeButton("0", function() {}, "button0");
     numberInput.appendChild(button);
-    button = makeButton("0", function() {inputNumber("0")}, "button0");
-    numberInput.appendChild(button);
-    button = makeButton(".", function() {inputNumber(".")}, "buttonDecimal");
+    button = makeButton(".", function() {}, "buttonDecimal");
     numberInput.appendChild(button);
 
   return numberInput;
+}
+
+function numPadOn() {
+  document.getElementById("button1").onclick = function() {inputNumber("1")};
+  document.getElementById("button2").onclick = function() {inputNumber("2")};
+  document.getElementById("button3").onclick = function() {inputNumber("3")};
+  document.getElementById("button4").onclick = function() {inputNumber("4")};
+  document.getElementById("button5").onclick = function() {inputNumber("5")};
+  document.getElementById("button6").onclick = function() {inputNumber("6")};
+  document.getElementById("button7").onclick = function() {inputNumber("7")};
+  document.getElementById("button8").onclick = function() {inputNumber("8")};
+  document.getElementById("button9").onclick = function() {inputNumber("9")};
+  document.getElementById("button0").onclick = function() {inputNumber("0")};
+  document.getElementById("buttonBack").onclick = function() {inputNumber("-1")};
+  document.getElementById("buttonDecimal").onclick = function() {inputNumber(".")};
+  //document.getElementById("1").onclick = function() {inputNumber(1)};
+}
+
+function numPadOff() {
+  document.getElementById("button1").onclick = "";
+  document.getElementById("button2").onclick = "";
+  document.getElementById("button3").onclick = "";
+  document.getElementById("button4").onclick = "";
+  document.getElementById("button5").onclick = "";
+  document.getElementById("button6").onclick = "";
+  document.getElementById("button7").onclick = "";
+  document.getElementById("button8").onclick = "";
+  document.getElementById("button9").onclick = "";
+  document.getElementById("button0").onclick = "";
+  document.getElementById("buttonBack").onclick = "";
+  document.getElementById("buttonDecimal").onclick = "";
+  document.getElementById("buttonSubmit").onclick = "";
 }
 
 function inputNumber(num) {
@@ -160,9 +193,9 @@ function inputNumber(num) {
 
   if (num === "-1") {
     /*
-    //Removes the last input number. If the last input    //
-    //  number was preceded by a decimal point, the       //
-    //  decimal point is removed as well.                 //
+      Removes the last input number. If the last input
+        number was preceded by a decimal point, the
+        decimal point is removed as well.
     */
 
     let current = display.innerHTML;
@@ -179,7 +212,39 @@ function inputNumber(num) {
 
 }
 
+function getProblem() {
+  let problem = mixedOps(1, 10, 0, 10);
+  return problem;
+}
+
+function checkAnswer(answer, submission) {
+  if (answer === submission) {
+    console.log("good");
+  } else {
+    console.log("bad");
+  }
+}
+
+function displayProblem() {
+  let problemDisplay = document.getElementById("problemDisplay");
+  let solution = document.getElementById("solutionDisplay");
+
+  let problem = getProblem();
+  problemDisplay.innerHTML = problem[1];
+
+  numPadOn();
+  document.getElementById("buttonSubmit").onclick = function() {
+    checkAnswer(problem[0], parseFloat(solution.innerHTML, 10));
+  }
+
+}
+
 function makeSignInScreen() {
+  /*
+  //Makes the screen that will display the sign in
+  //  and register options
+  */
+
   clearElement(document.body);
 
   let signInScreen = makeElement("div", "signInScreen", "screen");
@@ -199,6 +264,11 @@ function makeSignInScreen() {
 }
 
 function makeModeSelectScreen() {
+  /*
+  //Makes the screen that will display the different
+  //  available modes
+  */
+
   clearElement(document.body);
 
   let modeSelectScreen = makeElement("div", "modeSelectScreen", "screen");
@@ -210,50 +280,51 @@ function makeModeSelectScreen() {
 }
 
 function makeProblemScreen() {
+  /*
+  //Makes the screen that will display the math problems
+  */
 
-  function countDown(target, callback) {
+  function countdown(target, num, callback) {
+    /*
+    //Makes a countdown from a specified number, shrinking//
+    //  and fading out the numbers as it counts down      //
+    //----------------------------------------------------//
+    //target(DOM element): the element in which the       //
+    //  will be counted down                              //
+    //num(integer): the number to count down from         //
+    //callback(function): the function called when the    //
+    //  numbers have finished counting down               //
+    */
 
-    function fadeNumber (element) {
-      //----------------------------------------------------//
-      //Transitions of the number element                   //
-      //----------------------------------------------------//
+    let number = makeElement("div", num, "countDown");
+      /*
+    //puts the current number on the screen
+    */
+      number.innerHTML = num;
+    target.appendChild(number);
 
-      element.style.filter = "opacity(0%)";
-      element.style.fontSize = "0rem";
-    }
-
-    let three = makeElement("div", "three", "countDown");
-      three.innerHTML = "3";
-    target.appendChild(three);
     setTimeout(function() {
-      fadeNumber(three);
-    }, 20);
+      /*
+        Reduces the size and opacity of the countdown numbers
+      */
+      number.style.filter = "opacity(0%)";
+      number.style.fontSize = "0rem";
+    }, 10);
 
     setTimeout(function() {
-      removeElement(three);
-      let two = makeElement("div", "two", "countDown");
-        two.innerHTML = "2";
-      target.appendChild(two);
-      setTimeout(function() {
-        fadeNumber(two);
-      }, 20);
+      /*
+        Removes the element with the number from the
+          screen and either reccursively calls the next
+          lower number, or the callback if there is no
+          lower number
+      */
+      removeElement(number);
+      if (num > 1) {
+        countdown(target, num - 1, callback);
+      } else {
+        callback();
+      }
     }, 1200);
-
-    setTimeout(function() {
-      removeElement(two);
-      let one = makeElement("div", "one", "countDown");
-        one.innerHTML = "1";
-      target.appendChild(one);
-      setTimeout(function() {
-        fadeNumber(one);
-      }, 20);
-    }, 2400);
-
-    /*setTimeout(function() {
-      clearElement(target);
-      //startButton.style.display = "table";
-      callback();
-    }, 3400);*/
   }
 
   clearElement(document.body);
@@ -263,9 +334,8 @@ function makeProblemScreen() {
     let problemDisplay = makeElement("div", "problemDisplay");
       let readyButton = makeButton("Ready?", function() {
         fadeOutElement(function() {
-          countDown(problemDisplay, null);
-        },
-        readyButton);
+          countdown(problemDisplay, 3, displayProblem);
+        }, readyButton);
       }, "readyButton");
       problemDisplay.appendChild(readyButton);
     problemScreen.appendChild(problemDisplay);
