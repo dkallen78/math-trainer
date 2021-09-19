@@ -98,7 +98,9 @@ function inputNumber(num) {
 
   if (num === "-1") {
     //----------------------------------------------------//
-    //Adds a number to the solutionDisplay element        //
+    //Removes the last input number. If the last input    //
+    //  number was preceded by a decimal point, the       //
+    //  decimal point is removed as well.                 //
     //----------------------------------------------------//
 
     let current = display.innerHTML;

@@ -92,7 +92,7 @@ body {
   font-family: sans-serif;
   background-color: var(--transparent);
   border: .1em solid var(--main-color);
-  box-shadow: inset .25rem .25rem 1rem hsla(0, 100%, 0%, .125);
+  box-shadow: inset .25rem .25rem 1rem hsla(0, 100%, 0%, .0625);
 }
 
 #button1 {
