@@ -225,13 +225,22 @@ function getProblem() {
 
 function checkAnswer(answer, submission) {
 
+  let problemDisplay = document.getElementById("problemDisplay");
   let solutionDisplay = document.getElementById("solutionDisplay");
+
   clearElement(solutionDisplay);
 
   if (answer === submission) {
-    console.log("good");
     getProblem();
   } else {
+    let interval = 50;
+    problemDisplay.style.padding = "0 .5rem .5rem 0";
+    setTimeout(function() {
+      problemDisplay.style.padding = ".5rem 0 0 .5rem";
+    }, interval);
+    setTimeout(function() {
+      problemDisplay.style.padding = "";
+    }, (interval * 2));
     console.log("bad");
   }
 }
