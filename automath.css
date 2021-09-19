@@ -53,19 +53,27 @@ body {
 }
 
 #problemScreen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 25% 25% 50%;
+  justify-content: center;
   height: 100vh;
   width: 100vw;
   text-align: center;
 }
 
 #problemDisplay {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  padding-bottom: 1rem;
   font-size: 2rem;
 }
 
 #solutionDisplay {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
   font-size: 2rem;
 }
 
@@ -75,6 +83,7 @@ body {
   height: 95vw;
   width: 95vw;
   border: .1rem solid var(--main-color);
+  border-radius: 1rem;
 }
 
 #numberInput > button {
@@ -83,19 +92,27 @@ body {
   font-family: sans-serif;
   background-color: var(--transparent);
   border: .1em solid var(--main-color);
+  box-shadow: inset .25rem .25rem 1rem hsla(0, 100%, 0%, .125);
+}
+
+#button1 {
+  border-top-left-radius: .8rem;
 }
 
 #buttonBack {
   grid-column: 4 / 5;
   grid-row: 1 / 3;
+  border-top-right-radius: .8rem;
 }
 
 #buttonSubmit {
   grid-column: 4 / 5;
   grid-row: 3 / 5;
+  border-bottom-right-radius: .8rem;
 }
 
 #button0 {
   grid-column: 1 / 3;
   grid-row: 4 / 5;
+  border-bottom-left-radius: .8rem;
 }

@@ -54,29 +54,29 @@ function makeNumberInput() {
 
   let numberInput = makeElement("div", "numberInput");
 
-    let button = makeButton("1", function() {inputNumber(1)}, "button1");
+    let button = makeButton("1", function() {inputNumber("1")}, "button1");
     numberInput.appendChild(button);
-    button = makeButton("2", function() {inputNumber(2)}, "button2");
+    button = makeButton("2", function() {inputNumber("2")}, "button2");
     numberInput.appendChild(button);
-    button = makeButton("3", function() {inputNumber(3)}, "button3");
+    button = makeButton("3", function() {inputNumber("3")}, "button3");
     numberInput.appendChild(button);
-    button = makeButton("←", function() {inputNumber(-1)}, "buttonBack");
+    button = makeButton("←", function() {inputNumber("-1")}, "buttonBack");
     numberInput.appendChild(button);
-    button = makeButton("4", function() {inputNumber(4)}, "button4");
+    button = makeButton("4", function() {inputNumber("4")}, "button4");
     numberInput.appendChild(button);
-    button = makeButton("5", function() {inputNumber(5)}, "button5");
+    button = makeButton("5", function() {inputNumber("5")}, "button5");
     numberInput.appendChild(button);
-    button = makeButton("6", function() {inputNumber(6)}, "button6");
+    button = makeButton("6", function() {inputNumber("6")}, "button6");
     numberInput.appendChild(button);
-    button = makeButton("7", function() {inputNumber(7)}, "button7");
+    button = makeButton("7", function() {inputNumber("7")}, "button7");
     numberInput.appendChild(button);
-    button = makeButton("8", function() {inputNumber(8)}, "button8");
+    button = makeButton("8", function() {inputNumber("8")}, "button8");
     numberInput.appendChild(button);
-    button = makeButton("9", function() {inputNumber(9)}, "button9");
+    button = makeButton("9", function() {inputNumber("9")}, "button9");
     numberInput.appendChild(button);
-    button = makeButton("Submit", function() {inputNumber(10)}, "buttonSubmit");
+    button = makeButton("Submit", function() {inputNumber("10")}, "buttonSubmit");
     numberInput.appendChild(button);
-    button = makeButton("0", function() {inputNumber(0)}, "button0");
+    button = makeButton("0", function() {inputNumber("0")}, "button0");
     numberInput.appendChild(button);
     button = makeButton(".", function() {inputNumber(".")}, "buttonDecimal");
     numberInput.appendChild(button);
@@ -85,8 +85,34 @@ function makeNumberInput() {
 }
 
 function inputNumber(num) {
-  let disp = document.getElementById("solutionDisplay");
-  disp.innerHTML += num;
+  //----------------------------------------------------//
+  //Adds a number to the solutionDisplay element        //
+  //----------------------------------------------------//
+  //num(string): either a number/symbol to display or a //
+  //  numeric code                                      //
+  //  -1: backspace                                     //
+  //  10: submit answer                                 //
+  //----------------------------------------------------//
+
+  let display = document.getElementById("solutionDisplay");
+
+  if (num === "-1") {
+    //----------------------------------------------------//
+    //Adds a number to the solutionDisplay element        //
+    //----------------------------------------------------//
+
+    let current = display.innerHTML;
+    if (current[current.length - 2] === ".") {
+      display.innerHTML = current.slice(0, -2);
+    } else {
+      display.innerHTML = current.slice(0, -1);
+    }
+  } else if (num === "10") {
+
+  } else {
+    display.innerHTML += num;
+  }
+
 }
 
 function makeSignInScreen() {
