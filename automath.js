@@ -212,20 +212,44 @@ function inputNumber(num) {
 
 }
 
-function getProblem() {
+/*function getProblem() {
   let problem = mixedOps(1, 10, 0, 10);
   return problem;
+}*/
+
+function getProblem() {
+  let problem = mixedOps(1, 10, 0, 10);
+
+  displayProblem(problem);
 }
 
 function checkAnswer(answer, submission) {
+
+  let solutionDisplay = document.getElementById("solutionDisplay");
+  clearElement(solutionDisplay);
+
   if (answer === submission) {
     console.log("good");
+    getProblem();
   } else {
     console.log("bad");
   }
 }
 
-function displayProblem() {
+function displayProblem(problem) {
+  let problemDisplay = document.getElementById("problemDisplay");
+  let solutionDisplay = document.getElementById("solutionDisplay");
+
+  problemDisplay.innerHTML = problem[1];
+
+  numPadOn();
+  document.getElementById("buttonSubmit").onclick = function() {
+    checkAnswer(problem[0], parseFloat(solutionDisplay.innerHTML, 10));
+  }
+
+}
+
+/*function displayProblem() {
   let problemDisplay = document.getElementById("problemDisplay");
   let solution = document.getElementById("solutionDisplay");
 
@@ -237,7 +261,7 @@ function displayProblem() {
     checkAnswer(problem[0], parseFloat(solution.innerHTML, 10));
   }
 
-}
+}*/
 
 function makeSignInScreen() {
   /*
@@ -334,7 +358,7 @@ function makeProblemScreen() {
     let problemDisplay = makeElement("div", "problemDisplay");
       let readyButton = makeButton("Ready?", function() {
         fadeOutElement(function() {
-          countdown(problemDisplay, 3, displayProblem);
+          countdown(problemDisplay, 3, getProblem);
         }, readyButton);
       }, "readyButton");
       problemDisplay.appendChild(readyButton);
