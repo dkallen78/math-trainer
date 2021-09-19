@@ -52,6 +52,26 @@ body {
   border-radius: 1rem;
 }
 
+#modeSelectScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 75vh;
+  width: 100vw;
+  text-align: center;
+  color: var(--main-color);
+}
+
+#modeSelectScreen > button {
+  margin: 1rem;
+  padding: .5rem;
+  font-size: 2rem;
+  font-family: sans-serif;
+  background-color: var(--transparent);
+  border: .2rem solid var(--main-color);
+  border-radius: 1rem;
+}
+
 #problemScreen {
   display: grid;
   grid-template-columns: auto;
@@ -68,6 +88,16 @@ body {
   align-items: end;
   padding-bottom: 1rem;
   font-size: 2rem;
+}
+
+#readyButton {
+  margin: 1rem;
+  padding: .5rem;
+  font-size: 2rem;
+  font-family: sans-serif;
+  background-color: var(--transparent);
+  border: .2rem solid var(--main-color);
+  border-radius: 1rem;
 }
 
 #solutionDisplay {

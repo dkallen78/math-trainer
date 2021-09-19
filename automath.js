@@ -1,6 +1,39 @@
+function rnd(floor, ceiling) {
+  //----------------------------------------------------//
+  //Generates a random number within a range of numbers //
+  //----------------------------------------------------//
+  //floor(integer): lower bound of the random number    //
+  //ceiling(integer): upper bound of the random number  //
+  //----------------------------------------------------//
+  //return(integer): random number w/in the range       //
+  //----------------------------------------------------//
+
+  let range = (ceiling - floor) + 1;
+  return Math.floor((Math.random() * range) + floor);
+}
+
+function mixedOps(aLow, aHigh, bLow, bHigh) {
+  let a = rnd(aLow, aHigh);
+  let b = rnd(bLow, bHigh);
+  let answer = 0;
+  let equation = "";
+
+  if (rnd(1, 50) % 2 === 0) {
+    answer = a + b;
+    equation = `${a} + ${b} = ?`;
+  } else {
+    if (a < b) {
+      [a, b] = [b, a];
+    }
+    answer = a - b;
+    equation = `${a} - ${b} = ?`;
+  }
+
+  return [answer, equation];
+}
 
 function makeElement(type, id, ...classes) {
-  //----------------------------------------------------//
+  /*
   //Returns an HTML element                             //
   //----------------------------------------------------//
   //type(string): type of HTML element to create        //
@@ -8,7 +41,7 @@ function makeElement(type, id, ...classes) {
   //classes(string): classes to add to the element      //
   //----------------------------------------------------//
   //return(element): HTML element                       //
-  //----------------------------------------------------//
+  */
 
   let element = document.createElement(type);
   if (typeof id === "string") {element.id = id}
@@ -85,23 +118,23 @@ function makeNumberInput() {
 }
 
 function inputNumber(num) {
-  //----------------------------------------------------//
+  /*
   //Adds a number to the solutionDisplay element        //
   //----------------------------------------------------//
   //num(string): either a number/symbol to display or a //
   //  numeric code                                      //
   //  -1: backspace                                     //
   //  10: submit answer                                 //
-  //----------------------------------------------------//
+  */
 
   let display = document.getElementById("solutionDisplay");
 
   if (num === "-1") {
-    //----------------------------------------------------//
+    /*
     //Removes the last input number. If the last input    //
     //  number was preceded by a decimal point, the       //
     //  decimal point is removed as well.                 //
-    //----------------------------------------------------//
+    */
 
     let current = display.innerHTML;
     if (current[current.length - 2] === ".") {
@@ -120,15 +153,13 @@ function inputNumber(num) {
 function makeSignInScreen() {
   clearElement(document.body);
 
-  //root.style.setProperty("--bg-color", "hsla(0, 100%, 50%, 1)");
-
   let signInScreen = makeElement("div", "signInScreen", "screen");
 
     let titleDiv = makeElement("div", "titleDiv");
       titleDiv.innerHTML = "AutoMath";
     signInScreen.appendChild(titleDiv);
 
-    let signInButton = makeButton("Sign In", makeProblemScreen, "signInButton");
+    let signInButton = makeButton("Sign In", makeModeSelectScreen, "signInButton");
     signInScreen.appendChild(signInButton);
 
     let registerButton = makeButton("Register", makeProblemScreen, "registerButton");
@@ -138,17 +169,28 @@ function makeSignInScreen() {
   document.body.appendChild(signInScreen);
 }
 
+function makeModeSelectScreen() {
+  clearElement(document.body);
+
+  let modeSelectScreen = makeElement("div", "modeSelectScreen", "screen");
+
+    let letsGoButton = makeButton("Let's Go!", makeProblemScreen, "letsGoButton");
+    modeSelectScreen.appendChild(letsGoButton);
+
+  document.body.appendChild(modeSelectScreen);
+}
+
 function makeProblemScreen() {
   clearElement(document.body);
 
   let problemScreen = makeElement("div", "problemScreen", "screen");
 
     let problemDisplay = makeElement("div", "problemDisplay");
-      problemDisplay.innerHTML = "100 + 100 = ?";
+      let readyButton = makeButton("Ready?", null, "readyButton");
+      problemDisplay.appendChild(readyButton);
     problemScreen.appendChild(problemDisplay);
 
     let solutionDisplay = makeElement("div", "solutionDisplay");
-      //solutionDisplay.innerHTML = "2";
     problemScreen.appendChild(solutionDisplay);
 
     let numberInput = makeNumberInput()
