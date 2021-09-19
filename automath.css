@@ -102,6 +102,7 @@ body {
 }
 
 .countDown {
+  display: table;
   font-size: 4.8rem;
   color: var(--main-color);
   transition: all 750ms;
