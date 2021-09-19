@@ -12,9 +12,46 @@ function rnd(floor, ceiling) {
   return Math.floor((Math.random() * range) + floor);
 }
 
-function mixedOps(aLow, aHigh, bLow, bHigh) {
-  let a = rnd(aLow, aHigh);
-  let b = rnd(bLow, bHigh);
+function addition(aLow, aHigh, aMod, bLow, bHigh, bMod) {
+  /*
+  //Creates an addition problem                         //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the first term     //
+  //aHigh(integer): highest number for the first term   //
+  //aMod(integer):
+  //bLow(integer): lowest number for the second term    //
+  //bHigh(integer): highest number for the second term  //
+  //bMod(integer):
+  //----------------------------------------------------//
+  //return(array[integer, string]): the answer to the   //
+  //  equation and a string representation of it        //
+  */
+
+  let a = rnd(aLow, aHigh) * aMod;
+  let b = rnd(bLow, bHigh) * bMod;
+  let answer = a + b;
+  let equation = `${a} + ${b} = ?`;
+
+  return [answer, equation];
+}
+
+function mixedOps(aLow, aHigh, aMod, bLow, bHigh, bMod) {
+  /*
+  //Creates an addition or subtraction problem          //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the first term     //
+  //aHigh(integer): highest number for the first term   //
+  //aMod(integer):
+  //bLow(integer): lowest number for the second term    //
+  //bHigh(integer): highest number for the second term  //
+  //bMod(integer):
+  //----------------------------------------------------//
+  //return(array[integer, string]): the answer to the   //
+  //  equation and a string representation of it        //
+  */
+
+  let a = rnd(aLow, aHigh) * aMod;
+  let b = rnd(bLow, bHigh) * bMod;
   let answer = 0;
   let equation = "";
 
@@ -28,6 +65,27 @@ function mixedOps(aLow, aHigh, bLow, bHigh) {
     answer = a - b;
     equation = `${a} - ${b} = ?`;
   }
+
+  return [answer, equation];
+}
+
+function nearDoubles(aLow, aHigh, range) {
+  /*
+  //Creates an near doubles addition problem            //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the term           //
+  //aHigh(integer): highest number for the term         //
+  //range(integer): the difference between the near     //
+  //  double pair
+  //----------------------------------------------------//
+  //return(array[integer, string]): the answer to the   //
+  //  equation and a string representation of it        //
+  */
+
+  let a = rnd(aLow, aHigh);
+  let gap = rnd(1, range);
+  let answer = a + (a + gap);
+  let equation = `${a} + ${a + gap} = ?`;
 
   return [answer, equation];
 }
@@ -106,7 +164,7 @@ function fadeOutElement(callback, ...elements) {
   });
 }
 
-function makeNumberInput() {
+function makeNumberPad() {
   /*
   //Makes and returns a div element with a number pad   //
   //  inside of it                                      //
@@ -114,37 +172,23 @@ function makeNumberInput() {
   //return(element): HTML element                       //
   */
 
-  let numberInput = makeElement("div", "numberInput");
+  let numberPad = makeElement("div", "numberPad");
 
-    //let button = makeButton("1", function() {}, "button1");
-    //numberInput.appendChild(button);
-    numberInput.appendChild(makeButton("1", function() {}, "button1"));
-    button = makeButton("2", function() {}, "button2");
-    numberInput.appendChild(button);
-    button = makeButton("3", function() {}, "button3");
-    numberInput.appendChild(button);
-    button = makeButton("←", function() {}, "buttonBack");
-    numberInput.appendChild(button);
-    button = makeButton("4", function() {}, "button4");
-    numberInput.appendChild(button);
-    button = makeButton("5", function() {}, "button5");
-    numberInput.appendChild(button);
-    button = makeButton("6", function() {}, "button6");
-    numberInput.appendChild(button);
-    button = makeButton("7", function() {}, "button7");
-    numberInput.appendChild(button);
-    button = makeButton("8", function() {}, "button8");
-    numberInput.appendChild(button);
-    button = makeButton("9", function() {}, "button9");
-    numberInput.appendChild(button);
-    button = makeButton("Submit", function() {}, "buttonSubmit");
-    numberInput.appendChild(button);
-    button = makeButton("0", function() {}, "button0");
-    numberInput.appendChild(button);
-    button = makeButton(".", function() {}, "buttonDecimal");
-    numberInput.appendChild(button);
+    numberPad.appendChild(makeButton("1", function() {}, "button1"));
+    numberPad.appendChild(makeButton("2", function() {}, "button2"));
+    numberPad.appendChild(makeButton("3", function() {}, "button3"));
+    numberPad.appendChild(makeButton("←", function() {}, "buttonBack"));
+    numberPad.appendChild(makeButton("4", function() {}, "button4"));
+    numberPad.appendChild(makeButton("5", function() {}, "button5"));
+    numberPad.appendChild(makeButton("6", function() {}, "button6"));
+    numberPad.appendChild(makeButton("7", function() {}, "button7"));
+    numberPad.appendChild(makeButton("8", function() {}, "button8"));
+    numberPad.appendChild(makeButton("9", function() {}, "button9"));
+    numberPad.appendChild(makeButton("Submit", function() {}, "buttonSubmit"));
+    numberPad.appendChild(makeButton("0", function() {}, "button0"));
+    numberPad.appendChild(makeButton(".", function() {}, "buttonDecimal"));
 
-  return numberInput;
+  return numberPad;
 }
 
 function numPadOn() {
@@ -212,14 +256,9 @@ function inputNumber(num) {
 
 }
 
-/*function getProblem() {
-  let problem = mixedOps(1, 10, 0, 10);
-  return problem;
-}*/
-
 function getProblem() {
-  let problem = mixedOps(1, 10, 0, 10);
 
+  let problem = level1[rnd(0, 4)]();
   displayProblem(problem);
 }
 
@@ -241,28 +280,13 @@ function checkAnswer(answer, submission) {
     setTimeout(function() {
       problemDisplay.style.padding = "";
     }, (interval * 2));
-    console.log("bad");
   }
 }
 
 function displayProblem(problem) {
   let problemDisplay = document.getElementById("problemDisplay");
-  let solutionDisplay = document.getElementById("solutionDisplay");
-
-  problemDisplay.innerHTML = problem[1];
-
-  numPadOn();
-  document.getElementById("buttonSubmit").onclick = function() {
-    checkAnswer(problem[0], parseFloat(solutionDisplay.innerHTML, 10));
-  }
-
-}
-
-/*function displayProblem() {
-  let problemDisplay = document.getElementById("problemDisplay");
   let solution = document.getElementById("solutionDisplay");
 
-  let problem = getProblem();
   problemDisplay.innerHTML = problem[1];
 
   numPadOn();
@@ -270,7 +294,7 @@ function displayProblem(problem) {
     checkAnswer(problem[0], parseFloat(solution.innerHTML, 10));
   }
 
-}*/
+}
 
 function makeSignInScreen() {
   /*
@@ -376,10 +400,18 @@ function makeProblemScreen() {
     let solutionDisplay = makeElement("div", "solutionDisplay");
     problemScreen.appendChild(solutionDisplay);
 
-    let numberInput = makeNumberInput()
-    problemScreen.appendChild(numberInput);
+    let numberPad = makeNumberPad()
+    problemScreen.appendChild(numberPad);
 
   document.body.appendChild(problemScreen);
 }
 
 const root = document.documentElement;
+
+let level1 = [
+  () => mixedOps(1, 10, 1, 0, 10, 1),
+  () => mixedOps(13, 19, 1, 0, 9, 1),
+  () => mixedOps(10, 10, 1, 0, 9, 1),
+  () => addition(1, 9, 1, 1, 9, 10),
+  () => nearDoubles(1, 9, 1)
+];

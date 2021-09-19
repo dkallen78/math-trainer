@@ -116,7 +116,7 @@ body {
   font-size: 2rem;
 }
 
-#numberInput {
+#numberPad {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   height: 95vw;
@@ -125,7 +125,7 @@ body {
   border-radius: 1rem;
 }
 
-#numberInput > button {
+#numberPad > button {
   font-size: 1rem;
   font-weight: bold;
   font-family: sans-serif;
