@@ -1,12 +1,12 @@
 function rnd(floor, ceiling) {
-  //----------------------------------------------------//
+  /*
   //Generates a random number within a range of numbers //
   //----------------------------------------------------//
   //floor(integer): lower bound of the random number    //
   //ceiling(integer): upper bound of the random number  //
   //----------------------------------------------------//
   //return(integer): random number w/in the range       //
-  //----------------------------------------------------//
+  */
 
   let range = (ceiling - floor) + 1;
   return Math.floor((Math.random() * range) + floor);
@@ -18,12 +18,14 @@ function addition(aLow, aHigh, aMod, bLow, bHigh, bMod) {
   //----------------------------------------------------//
   //aLow(integer): lowest number for the first term     //
   //aHigh(integer): highest number for the first term   //
-  //aMod(integer):
+  //aMod(integer): multiplicative modifier for the      //
+  //  first term                                        //
   //bLow(integer): lowest number for the second term    //
   //bHigh(integer): highest number for the second term  //
-  //bMod(integer):
+  //bMod(integer): multiplicative modifier for the      //
+  //  second term                                       //
   //----------------------------------------------------//
-  //return(array[integer, string]): the answer to the   //
+  //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
   */
 
@@ -41,12 +43,14 @@ function mixedOps(aLow, aHigh, aMod, bLow, bHigh, bMod) {
   //----------------------------------------------------//
   //aLow(integer): lowest number for the first term     //
   //aHigh(integer): highest number for the first term   //
-  //aMod(integer):
+  //aMod(integer): multiplicative modifier for the      //
+  //  first term                                        //
   //bLow(integer): lowest number for the second term    //
   //bHigh(integer): highest number for the second term  //
-  //bMod(integer):
+  //bMod(integer): multiplicative modifier for the      //
+  //  second term                                       //
   //----------------------------------------------------//
-  //return(array[integer, string]): the answer to the   //
+  //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
   */
 
@@ -69,21 +73,23 @@ function mixedOps(aLow, aHigh, aMod, bLow, bHigh, bMod) {
   return [answer, equation];
 }
 
-function nearDoubles(aLow, aHigh, range) {
+function doubles(aLow, aHigh, rangeLow, rangeHigh) {
   /*
   //Creates an near doubles addition problem            //
   //----------------------------------------------------//
   //aLow(integer): lowest number for the term           //
   //aHigh(integer): highest number for the term         //
-  //range(integer): the difference between the near     //
-  //  double pair
+  //rangeLow(integer): the low end of the potential     //
+  //  difference between the double pair                //
+  //rangeHigh(integer): the high end of the potential   //
+  //  difference between the double pair                //
   //----------------------------------------------------//
-  //return(array[integer, string]): the answer to the   //
+  //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
   */
 
   let a = rnd(aLow, aHigh);
-  let gap = rnd(1, range);
+  let gap = rnd(rangeLow, rangeHigh);
   let answer = a + (a + gap);
   let equation = `${a} + ${a + gap} = ?`;
 
@@ -192,6 +198,10 @@ function makeNumberPad() {
 }
 
 function numPadOn() {
+  /*
+  //Enables the onclick functions of the number pad
+  */
+
   document.getElementById("button1").onclick = function() {inputNumber("1")};
   document.getElementById("button2").onclick = function() {inputNumber("2")};
   document.getElementById("button3").onclick = function() {inputNumber("3")};
@@ -204,10 +214,13 @@ function numPadOn() {
   document.getElementById("button0").onclick = function() {inputNumber("0")};
   document.getElementById("buttonBack").onclick = function() {inputNumber("-1")};
   document.getElementById("buttonDecimal").onclick = function() {inputNumber(".")};
-  //document.getElementById("1").onclick = function() {inputNumber(1)};
 }
 
 function numPadOff() {
+  /*
+  //Disables the onclick functions of the number pad
+  */
+
   document.getElementById("button1").onclick = "";
   document.getElementById("button2").onclick = "";
   document.getElementById("button3").onclick = "";
@@ -257,12 +270,21 @@ function inputNumber(num) {
 }
 
 function getProblem() {
+  /*
+  //Gets a problem to display based on the user's level
+  */
 
   let problem = level1[rnd(0, 4)]();
   displayProblem(problem);
 }
 
 function checkAnswer(answer, submission) {
+  /*
+  //Checks to see if the user's answer is correct       //
+  //----------------------------------------------------//
+  //answer(float): the correct answer to the problem    //
+  //submission(float): the user's answer to the problem //
+  */
 
   let problemDisplay = document.getElementById("problemDisplay");
   let solutionDisplay = document.getElementById("solutionDisplay");
@@ -284,6 +306,13 @@ function checkAnswer(answer, submission) {
 }
 
 function displayProblem(problem) {
+  /*
+  //Displays a problem on the screen                    //
+  //----------------------------------------------------//
+  //problem(array[float, string]): the solution to the  //
+  //  equation and a string representation of it        //
+  */
+
   let problemDisplay = document.getElementById("problemDisplay");
   let solution = document.getElementById("solutionDisplay");
 
@@ -413,5 +442,5 @@ let level1 = [
   () => mixedOps(13, 19, 1, 0, 9, 1),
   () => mixedOps(10, 10, 1, 0, 9, 1),
   () => addition(1, 9, 1, 1, 9, 10),
-  () => nearDoubles(1, 9, 1)
+  () => doubles(1, 9, 1, 1)
 ];
