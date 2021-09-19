@@ -98,6 +98,15 @@ body {
   background-color: var(--transparent);
   border: .2rem solid var(--main-color);
   border-radius: 1rem;
+  transition: filter 500ms;
+}
+
+.countDown {
+  font-size: 4.8rem;
+  color: var(--main-color);
+  transition: all 750ms;
+  transition-timing-function: ease-in;
+  transition-delay: 200ms;
 }
 
 #solutionDisplay {

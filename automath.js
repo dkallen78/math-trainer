@@ -50,7 +50,7 @@ function makeElement(type, id, ...classes) {
 }
 
 function makeButton(name, touch, id, ...classes) {
-  //----------------------------------------------------//
+  /*
   //Returns an HTML button element                      //
   //----------------------------------------------------//
   //name(string): text on the button                    //
@@ -59,7 +59,7 @@ function makeButton(name, touch, id, ...classes) {
   //classes(string): classes to add to the element      //
   //----------------------------------------------------//
   //return(element): HTML button element                //
-  //----------------------------------------------------//
+  */
 
   let button = makeElement("button", id, ...classes);
   button.innerHTML = name;
@@ -68,13 +68,42 @@ function makeButton(name, touch, id, ...classes) {
 }
 
 function clearElement(...elements) {
-  //----------------------------------------------------//
+  /*
   //Clears the innerHTML of any number of elements      //
   //----------------------------------------------------//
   //elements(DOM element): elements to be cleared       //
-  //----------------------------------------------------//
+  */
 
   elements.forEach(x => x.innerHTML = "");
+}
+
+function removeElement(...elements) {
+  /*
+  //Removes elements from the DOM                       //
+  //----------------------------------------------------//
+  //elements(DOM element): elements to be removed      //
+  */
+
+  elements.forEach(x => x.parentNode.removeChild(x));
+}
+
+function fadeOutElement(callback, ...elements) {
+  /*
+  //Takes a number of elements, fades them to 0%        //
+  //  opacity, then removes them from the DOM           //
+  //----------------------------------------------------//
+  //elements(DOM element): elements to be faded         //
+  */
+
+  elements.forEach(function(x) {
+    x.style.filter = "opacity(0%)";
+
+    x.addEventListener("transitionend", function(e) {
+      x.parentNode.removeChild(x);
+      e.stopImmediatePropagation();
+      callback();
+    });
+  });
 }
 
 function makeNumberInput() {
@@ -181,12 +210,63 @@ function makeModeSelectScreen() {
 }
 
 function makeProblemScreen() {
+
+  function countDown(target, callback) {
+
+    function fadeNumber (element) {
+      //----------------------------------------------------//
+      //Transitions of the number element                   //
+      //----------------------------------------------------//
+
+      element.style.filter = "opacity(0%)";
+      element.style.fontSize = "0rem";
+    }
+
+    let three = makeElement("div", "three", "countDown");
+      three.innerHTML = "3";
+    target.appendChild(three);
+    setTimeout(function() {
+      fadeNumber(three);
+    }, 20);
+
+    setTimeout(function() {
+      removeElement(three);
+      let two = makeElement("div", "two", "countDown");
+        two.innerHTML = "2";
+      target.appendChild(two);
+      setTimeout(function() {
+        fadeNumber(two);
+      }, 20);
+    }, 1200);
+
+    setTimeout(function() {
+      removeElement(two);
+      let one = makeElement("div", "one", "countDown");
+        one.innerHTML = "1";
+      target.appendChild(one);
+      setTimeout(function() {
+        fadeNumber(one);
+      }, 20);
+    }, 2400);
+
+    /*setTimeout(function() {
+      clearElement(target);
+      //startButton.style.display = "table";
+      callback();
+    }, 3400);*/
+  }
+
   clearElement(document.body);
 
   let problemScreen = makeElement("div", "problemScreen", "screen");
 
     let problemDisplay = makeElement("div", "problemDisplay");
-      let readyButton = makeButton("Ready?", null, "readyButton");
+      let readyButton = makeButton("Ready?", function() {
+        fadeOutElement(function() {
+          countDown(problemDisplay, null);
+        },
+        readyButton);
+      }, "readyButton");
       problemDisplay.appendChild(readyButton);
     problemScreen.appendChild(problemDisplay);
 
