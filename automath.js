@@ -46,6 +46,21 @@ function addition(aLow, aHigh, aMod, bLow, bHigh, bMod) {
 }
 
 function subtract(aLow, aHigh, aMod, bLow, bHigh, bMod) {
+  /*
+  //Creates a subtraction problem                       //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the first term     //
+  //aHigh(integer): highest number for the first term   //
+  //aMod(integer): multiplicative modifier for the      //
+  //  first term                                        //
+  //bLow(integer): lowest number for the second term    //
+  //bHigh(integer): highest number for the second term  //
+  //bMod(integer): multiplicative modifier for the      //
+  //  second term                                       //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
 
   let a = rnd(aLow, aHigh) * aMod;
   let b = rnd(bLow, bHigh) * bMod;
@@ -124,6 +139,19 @@ function mixedOps(aLow, aHigh, aMod, bLow, bHigh, bMod) {
 }
 
 function mixedThrees(aLow, aHigh, bLow, bHigh, cLow, cHigh) {
+  /*
+  //Creates a mixed addition and subtraction problem    //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the first term     //
+  //aHigh(integer): highest number for the first term   //
+  //bLow(integer): lowest number for the second term    //
+  //bHigh(integer): highest number for the second term  //
+  //cLow(integer): lowest number for the third term     //
+  //cHigh(integer): highest number for the third term   //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
 
   let a = rnd(aLow, aHigh);
   let b = 0;
@@ -202,6 +230,18 @@ function upTo(aLow, aHigh, cap) {
 }
 
 function nextMultiple(aLow, aHigh, aMod, multiple) {
+  /*
+  //Creates an addition problem that sums to a set      //
+  //  multiple of the multiple parameter                //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the first term     //
+  //aHigh(integer): highest number for the first term   //
+  //aMod(integer): multiplicative modifier              //
+  //multiple(integer): multiple to add up to            //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
 
   let a = rnd(aLow, aHigh) * aMod;
   while (a % 10 === 0) {
@@ -333,6 +373,8 @@ function numPadOn() {
   document.getElementById("button0").onclick = function() {inputNumber("0")};
   document.getElementById("buttonBack").onclick = function() {inputNumber("-1")};
   document.getElementById("buttonDecimal").onclick = function() {inputNumber(".")};
+
+  return null;
 }
 
 function numPadOff() {
@@ -388,7 +430,8 @@ function inputNumber(num) {
 
 }
 
-function getProblem() {
+
+/*function getProblem() {
   /*
   //Gets a problem to display based on the user's level
   */
@@ -411,7 +454,7 @@ function getProblem() {
       checkAnswer(problem[0], parseFloat(solution.innerHTML, 10));
     }
 
-  }*/
+  }
 
   console.trace();
   let problem;
@@ -421,9 +464,8 @@ function getProblem() {
     problem = levels[user.activeLevel][rnd(0, (levels[user.activeLevel].length - 1))]();
   }
 
-  setTimeout(() => displayProblem(problem), 10);
-  //displayProblem(problem);
-}
+  displayProblem(problem);
+}*/
 
 function checkAnswer(answer, submission) {
   /*
@@ -452,19 +494,30 @@ function checkAnswer(answer, submission) {
   }
 }
 
-function displayProblem(problem) {
-  /*
-  //Displays a problem on the screen                    //
-  //----------------------------------------------------//
-  //problem(array[float, string]): the solution to the  //
-  //  equation and a string representation of it        //
-  */
 
-  let problemDisplay = document.getElementById("problemDisplay");
+function testSkills() {
+
+  function getProblem() {
+    /*
+    //Gets a problem to display based on the user's level
+    */
+
+    let problem;
+
+    if (user.activeLevel === 0) {
+      problem = tests[user.testLevel][rnd(0, (tests[user.testLevel].length - 1))]();
+    } else {
+      problem = levels[user.activeLevel][rnd(0, (levels[user.activeLevel].length - 1))]();
+    }
+
+    return problem;
+  }
+
+  console.trace();
   let solution = document.getElementById("solutionDisplay");
 
-  problemDisplay.innerHTML = problem[1];
-
+  let problem = getProblem();
+  document.getElementById("problemDisplay").innerHTML = problem[1];
   numPadOn();
   document.getElementById("buttonSubmit").onclick = function() {
     checkAnswer(problem[0], parseFloat(solution.innerHTML, 10));
@@ -531,13 +584,13 @@ function makeLevelSelectScreen() {
         buttText = `Level ${i}`;
         buttFunc = function() {
           user.activeLevel = i;
-          makeProblemScreen();
+          makeReadyScreen();
         };
       } else if (user.testLevel === i) {
         buttText = `Unlock Level ${i}`;
         buttFunc = function() {
           user.activeLevel = 0;
-          makeProblemScreen();
+          makeReadyScreen();
         };
       } else {
         buttText = "Locked";
@@ -551,7 +604,7 @@ function makeLevelSelectScreen() {
   document.body.appendChild(levelSelectScreen);
 }
 
-function makeProblemScreen() {
+function makeReadyScreen() {
   /*
   //Makes the screen that will display the math problems
   */
@@ -601,24 +654,39 @@ function makeProblemScreen() {
 
   clearElement(document.body);
 
-  let problemScreen = makeElement("div", "problemScreen", "screen");
+  let readyScreen = makeElement("div", "readyScreen", "screen");
 
-    let problemDisplay = makeElement("div", "problemDisplay");
+    let readyDisplay = makeElement("div", "readyDisplay");
       let readyButton = makeButton("Ready?", function() {
         fadeOutElement(function() {
-          countdown(problemDisplay, 3, getProblem);
+          countdown(problemDisplay, 3, makePracticeScreen);
         }, readyButton);
       }, "readyButton");
-      problemDisplay.appendChild(readyButton);
-    problemScreen.appendChild(problemDisplay);
+      readyDisplay.appendChild(readyButton);
+    readyScreen.appendChild(readyDisplay);
+
+
+  document.body.appendChild(readyScreen);
+}
+
+function makePracticeScreen() {
+
+  clearElement(document.body);
+
+  console.trace();
+
+  let practiceScreen = makeelement("div", "practiceScreen", "screen");
+
+    let problemDisplay = makeElement("div", "problemDisplay");
+    practiceScreen.appendChild(problemDisplay)
 
     let solutionDisplay = makeElement("div", "solutionDisplay");
-    problemScreen.appendChild(solutionDisplay);
+    practiceScreen.appendChild(solutionDisplay);
 
     let numberPad = makeNumberPad()
-    problemScreen.appendChild(numberPad);
+    practiceScreen.appendChild(numberPad);
 
-  document.body.appendChild(problemScreen);
+  document.body.appendChild(practiceScreen);
 }
 
 const root = document.documentElement;

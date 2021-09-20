@@ -92,7 +92,7 @@ body {
   border-radius: 1rem;
 }
 
-#problemScreen {
+#readyScreen {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 3rem 25% 50%;
@@ -101,6 +101,10 @@ body {
   height: 100vh;
   width: 100vw;
   text-align: center;
+}
+
+#readyDisplay {
+
 }
 
 #problemDisplay {
