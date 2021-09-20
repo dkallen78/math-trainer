@@ -511,6 +511,9 @@ const root = document.documentElement;
 
 
 let user = {
+  /*
+    Data about the user
+  */
   level: 1,
   testLevel: 2,
   activeLevel: 0
