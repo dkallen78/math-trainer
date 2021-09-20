@@ -89,9 +89,36 @@ function doubles(aLow, aHigh, rangeLow, rangeHigh) {
   */
 
   let a = rnd(aLow, aHigh);
-  let gap = rnd(rangeLow, rangeHigh);
-  let answer = a + (a + gap);
-  let equation = `${a} + ${a + gap} = ?`;
+  let drift = rnd(rangeLow, rangeHigh);
+  let answer = a + (a + drift);
+  let equation = `${a} + ${a + drift} = ?`;
+
+  return [answer, equation];
+}
+
+function upTo(aLow, aHigh, cap) {
+  /*
+  //Creates an addition problem that sums to a cap      //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the first term     //
+  //aHigh(integer): highest number for the first term   //
+  //cap(integer): the number to add up to               //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
+
+  let a = rnd(aLow, aHigh);
+  let answer = 0;
+  let equation = "";
+
+  if (rnd(1, 50) % 2 === 0) {
+    answer = 10;
+    equation = `${a} + ${10 - a} = ?`;
+  } else {
+    answer = 10 - a;
+    equation = `${a} + ? = 10`;
+  }
 
   return [answer, equation];
 }
@@ -274,7 +301,7 @@ function getProblem() {
   //Gets a problem to display based on the user's level
   */
 
-  let problem = level1[rnd(0, 4)]();
+  let problem = levels[user.userLevel][rnd(0, 4)]();
   displayProblem(problem);
 }
 
@@ -365,6 +392,33 @@ function makeModeSelectScreen() {
   document.body.appendChild(modeSelectScreen);
 }
 
+function makeLevelSelectScreen() {
+
+  clearElement(document.body);
+
+  let levelSelectScreen = makeElement("div", "levelSelectScreen", "screen");
+
+    for (let i = 1; i <= 6; i++) {
+      let buttText = "";
+      let buttFunc;
+      if (user.level >= i) {
+        buttText = `Level ${i}`;
+        buttFunc = makeProblemScreen;
+      } else if (user.testLevel === i) {
+        buttText = `Unlock Level ${i}`;
+        buttFunc = makeProblemScreen;
+      } else {
+        buttText = "Locked";
+        buttFunc = "";
+      }
+
+      let button = makeButton(buttText, buttFunc, `level${i}Button`, "levelButtons");
+      levelSelectScreen.appendChild(button);
+    }
+
+  document.body.appendChild(levelSelectScreen);
+}
+
 function makeProblemScreen() {
   /*
   //Makes the screen that will display the math problems
@@ -437,10 +491,27 @@ function makeProblemScreen() {
 
 const root = document.documentElement;
 
-let level1 = [
-  () => mixedOps(1, 10, 1, 0, 10, 1),
-  () => mixedOps(13, 19, 1, 0, 9, 1),
-  () => mixedOps(10, 10, 1, 0, 9, 1),
-  () => addition(1, 9, 1, 1, 9, 10),
-  () => doubles(1, 9, 1, 1)
-];
+
+let user = {
+  level: 0,
+  testLevel: 1,
+  activeLevel: 0
+}
+
+let levels = {
+  "1": [
+    () => mixedOps(1, 10, 1, 0, 10, 1),
+    () => mixedOps(13, 19, 1, 0, 9, 1),
+    () => mixedOps(10, 10, 1, 0, 9, 1),
+    () => addition(1, 9, 1, 1, 9, 10),
+    () => doubles(1, 9, 1, 1)
+  ]
+}
+
+let tests = {
+  "1": [
+    () => upTo(0, 9, 10),
+    () => addition(2, 5, 1, 3, 5, 1),
+    () => doubles(1, 9, 0, 0)
+  ]
+}
