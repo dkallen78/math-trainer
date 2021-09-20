@@ -333,6 +333,7 @@ function numPadOn() {
   document.getElementById("button0").onclick = function() {inputNumber("0")};
   document.getElementById("buttonBack").onclick = function() {inputNumber("-1")};
   document.getElementById("buttonDecimal").onclick = function() {inputNumber(".")};
+  document.getElementById("buttonSubmit").onclick = (a, s) => checkAnswer(a, s);
 }
 
 function numPadOff() {
@@ -393,6 +394,27 @@ function getProblem() {
   //Gets a problem to display based on the user's level
   */
 
+  function displayProblem(problem) {
+    /*
+    //Displays a problem on the screen                    //
+    //----------------------------------------------------//
+    //problem(array[float, string]): the solution to the  //
+    //  equation and a string representation of it        //
+    */
+
+    let problemDisplay = document.getElementById("problemDisplay");
+    let solution = document.getElementById("solutionDisplay");
+
+    problemDisplay.innerHTML = problem[1];
+
+    numPadOn();
+    /*document.getElementById("buttonSubmit").onclick = function() {
+      checkAnswer(problem[0], parseFloat(solution.innerHTML, 10));
+    }*/
+
+  }
+
+  console.trace();
   let problem;
   if (user.activeLevel === 0) {
     problem = tests[user.testLevel][rnd(0, (tests[user.testLevel].length - 1))]();
@@ -430,7 +452,7 @@ function checkAnswer(answer, submission) {
   }
 }
 
-function displayProblem(problem) {
+/*function displayProblem(problem) {
   /*
   //Displays a problem on the screen                    //
   //----------------------------------------------------//
@@ -438,7 +460,7 @@ function displayProblem(problem) {
   //  equation and a string representation of it        //
   */
 
-  let problemDisplay = document.getElementById("problemDisplay");
+  /*let problemDisplay = document.getElementById("problemDisplay");
   let solution = document.getElementById("solutionDisplay");
 
   problemDisplay.innerHTML = problem[1];
@@ -448,7 +470,7 @@ function displayProblem(problem) {
     checkAnswer(problem[0], parseFloat(solution.innerHTML, 10));
   }
 
-}
+}*/
 
 function makeSignInScreen() {
   /*
@@ -606,8 +628,8 @@ let user = {
   /*
     Data about the user
   */
-  level: 1,
-  testLevel: 2,
+  level: 3,
+  testLevel: 3,
   activeLevel: 0
 };
 
