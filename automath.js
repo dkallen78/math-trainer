@@ -31,8 +31,43 @@ function addition(aLow, aHigh, aMod, bLow, bHigh, bMod) {
 
   let a = rnd(aLow, aHigh) * aMod;
   let b = rnd(bLow, bHigh) * bMod;
-  let answer = a + b;
-  let equation = `${a} + ${b} = ?`;
+  let answer = 0;
+  let equation = "";
+
+  if (rnd(1, 50) % 2 === 0) {
+    answer = a + b;
+    equation = `${a} + ${b} = ?`;
+  } else {
+    answer = b;
+    equation = `${a} + ? = ${a + b}`;
+  }
+
+  return [answer, equation];
+}
+
+function maxSum(max, maxMod = 1) {
+  /*
+  //Creates an addition problem with a maximum sum      //
+  //----------------------------------------------------//
+  //max(integer): maximum sum                           //
+  //maxMod(integer): multiplicative modifier            //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
+
+  let a = rnd(1, max - 1) * maxMod;
+  let b = rnd(1, max - (a / maxMod)) * maxMod;
+  let answer = 0;
+  let equation = "";
+
+  if (rnd(1, 50) % 2 === 0) {
+    answer = a + b;
+    equation = `${a} + ${b} = ?`;
+  } else {
+    answer = b;
+    equation = `${a} + ? = ${a + b}`;
+  }
 
   return [answer, equation];
 }
@@ -73,12 +108,14 @@ function mixedOps(aLow, aHigh, aMod, bLow, bHigh, bMod) {
   return [answer, equation];
 }
 
-function doubles(aLow, aHigh, rangeLow, rangeHigh) {
+function doubles(aLow, aHigh, aMod, rangeLow, rangeHigh) {
   /*
   //Creates an near doubles addition problem            //
   //----------------------------------------------------//
   //aLow(integer): lowest number for the term           //
   //aHigh(integer): highest number for the term         //
+  //aMod(integer): multiplicative modifier for the      //
+  //  doubles                                           //
   //rangeLow(integer): the low end of the potential     //
   //  difference between the double pair                //
   //rangeHigh(integer): the high end of the potential   //
@@ -88,7 +125,7 @@ function doubles(aLow, aHigh, rangeLow, rangeHigh) {
   //  equation and a string representation of it        //
   */
 
-  let a = rnd(aLow, aHigh);
+  let a = rnd(aLow, aHigh) * aMod;
   let drift = rnd(rangeLow, rangeHigh);
   let answer = a + (a + drift);
   let equation = `${a} + ${a + drift} = ?`;
@@ -119,6 +156,20 @@ function upTo(aLow, aHigh, cap) {
     answer = 10 - a;
     equation = `${a} + ? = 10`;
   }
+
+  return [answer, equation];
+}
+
+function nextMultiple(aLow, aHigh, aMod, multiple) {
+
+  let a = rnd(aLow, aHigh) * aMod;
+  while (a % 10 === 0) {
+    a = rnd(aLow, aHigh);
+  }
+  let c = (Math.floor(a / multiple) + 1) * multiple;
+
+  let answer = c - a;
+  let equation = `${a} + ? = ${c}`;
 
   return [answer, equation];
 }
@@ -302,7 +353,7 @@ function getProblem() {
   */
 
   let problem;
-  if (user.testLevel === 0) {
+  if (user.activeLevel === 0) {
     problem = tests[user.testLevel][rnd(0, (tests[user.testLevel].length - 1))]();
   } else {
     problem = levels[user.activeLevel][rnd(0, (levels[user.activeLevel].length - 1))]();
@@ -525,7 +576,7 @@ let levels = {
     () => mixedOps(13, 19, 1, 0, 9, 1),
     () => mixedOps(10, 10, 1, 0, 9, 1),
     () => addition(1, 9, 1, 1, 9, 10),
-    () => doubles(1, 9, 1, 1)
+    () => doubles(1, 9, 1, 1, 1)
   ]
 };
 
@@ -533,6 +584,14 @@ let tests = {
   "1": [
     () => upTo(0, 9, 10),
     () => addition(2, 5, 1, 3, 5, 1),
-    () => doubles(1, 9, 0, 0)
+    () => doubles(1, 9, 1, 0, 0)
+  ],
+  "2": [
+    () => mixedOps(1, 10, 1, 0, 10, 1),
+    () => maxSum(20, 1),
+    () => maxSum(10, 10),
+    () => nextMultiple(11, 89, 1, 10),
+    () => doubles(1, 20, 1, 0, 0),
+    () => doubles(1, 5, 10, 0, 0)
   ]
 };
