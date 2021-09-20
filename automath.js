@@ -301,7 +301,13 @@ function getProblem() {
   //Gets a problem to display based on the user's level
   */
 
-  let problem = levels[user.userLevel][rnd(0, 4)]();
+  let problem;
+  if (user.testLevel === 0) {
+    problem = tests[user.testLevel][rnd(0, (tests[user.testLevel].length - 1))]();
+  } else {
+    problem = levels[user.activeLevel][rnd(0, (levels[user.activeLevel].length - 1))]();
+  }
+
   displayProblem(problem);
 }
 
@@ -393,20 +399,32 @@ function makeModeSelectScreen() {
 }
 
 function makeLevelSelectScreen() {
+  /*
+  //Makes the screen that will display the available levels
+  */
 
   clearElement(document.body);
 
   let levelSelectScreen = makeElement("div", "levelSelectScreen", "screen");
 
     for (let i = 1; i <= 6; i++) {
+      /*
+        Makes the buttons for the levels of mastery
+      */
       let buttText = "";
       let buttFunc;
       if (user.level >= i) {
         buttText = `Level ${i}`;
-        buttFunc = makeProblemScreen;
+        buttFunc = function() {
+          user.activeLevel = i;
+          makeProblemScreen();
+        };
       } else if (user.testLevel === i) {
         buttText = `Unlock Level ${i}`;
-        buttFunc = makeProblemScreen;
+        buttFunc = function() {
+          user.activeLevel = 0;
+          makeProblemScreen();
+        };
       } else {
         buttText = "Locked";
         buttFunc = "";
@@ -493,10 +511,10 @@ const root = document.documentElement;
 
 
 let user = {
-  level: 0,
-  testLevel: 1,
+  level: 1,
+  testLevel: 2,
   activeLevel: 0
-}
+};
 
 let levels = {
   "1": [
@@ -506,7 +524,7 @@ let levels = {
     () => addition(1, 9, 1, 1, 9, 10),
     () => doubles(1, 9, 1, 1)
   ]
-}
+};
 
 let tests = {
   "1": [
@@ -514,4 +532,4 @@ let tests = {
     () => addition(2, 5, 1, 3, 5, 1),
     () => doubles(1, 9, 0, 0)
   ]
-}
+};
