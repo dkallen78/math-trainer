@@ -333,7 +333,6 @@ function numPadOn() {
   document.getElementById("button0").onclick = function() {inputNumber("0")};
   document.getElementById("buttonBack").onclick = function() {inputNumber("-1")};
   document.getElementById("buttonDecimal").onclick = function() {inputNumber(".")};
-  document.getElementById("buttonSubmit").onclick = (a, s) => checkAnswer(a, s);
 }
 
 function numPadOff() {
@@ -394,7 +393,7 @@ function getProblem() {
   //Gets a problem to display based on the user's level
   */
 
-  function displayProblem(problem) {
+  /*function displayProblem(problem) {
     /*
     //Displays a problem on the screen                    //
     //----------------------------------------------------//
@@ -402,17 +401,17 @@ function getProblem() {
     //  equation and a string representation of it        //
     */
 
-    let problemDisplay = document.getElementById("problemDisplay");
+    /*let problemDisplay = document.getElementById("problemDisplay");
     let solution = document.getElementById("solutionDisplay");
 
     problemDisplay.innerHTML = problem[1];
 
     numPadOn();
-    /*document.getElementById("buttonSubmit").onclick = function() {
+    document.getElementById("buttonSubmit").onclick = function() {
       checkAnswer(problem[0], parseFloat(solution.innerHTML, 10));
-    }*/
+    }
 
-  }
+  }*/
 
   console.trace();
   let problem;
@@ -422,7 +421,8 @@ function getProblem() {
     problem = levels[user.activeLevel][rnd(0, (levels[user.activeLevel].length - 1))]();
   }
 
-  displayProblem(problem);
+  setTimeout(() => displayProblem(problem), 10);
+  //displayProblem(problem);
 }
 
 function checkAnswer(answer, submission) {
@@ -452,7 +452,7 @@ function checkAnswer(answer, submission) {
   }
 }
 
-/*function displayProblem(problem) {
+function displayProblem(problem) {
   /*
   //Displays a problem on the screen                    //
   //----------------------------------------------------//
@@ -460,7 +460,7 @@ function checkAnswer(answer, submission) {
   //  equation and a string representation of it        //
   */
 
-  /*let problemDisplay = document.getElementById("problemDisplay");
+  let problemDisplay = document.getElementById("problemDisplay");
   let solution = document.getElementById("solutionDisplay");
 
   problemDisplay.innerHTML = problem[1];
@@ -470,7 +470,7 @@ function checkAnswer(answer, submission) {
     checkAnswer(problem[0], parseFloat(solution.innerHTML, 10));
   }
 
-}*/
+}
 
 function makeSignInScreen() {
   /*
