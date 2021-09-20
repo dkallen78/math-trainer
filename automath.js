@@ -45,6 +45,21 @@ function addition(aLow, aHigh, aMod, bLow, bHigh, bMod) {
   return [answer, equation];
 }
 
+function subtract(aLow, aHigh, aMod, bLow, bHigh, bMod) {
+
+  let a = rnd(aLow, aHigh) * aMod;
+  let b = rnd(bLow, bHigh) * bMod;
+
+  if (b > a) {
+    [a, b] = [b, a];
+  }
+
+  let answer = a - b;
+  let equation = `${a} - ${b} = ?`;
+
+  return [answer, equation];
+}
+
 function maxSum(max, maxMod = 1) {
   /*
   //Creates an addition problem with a maximum sum      //
@@ -98,8 +113,8 @@ function mixedOps(aLow, aHigh, aMod, bLow, bHigh, bMod) {
     answer = a + b;
     equation = `${a} + ${b} = ?`;
   } else {
-    if (a < b) {
-      [a, b] = [b, a];
+    while (a < b) {
+      b = rnd(bLow, bHigh) * bMod;
     }
     answer = a - b;
     equation = `${a} - ${b} = ?`;
@@ -577,6 +592,15 @@ let levels = {
     () => mixedOps(10, 10, 1, 0, 9, 1),
     () => addition(1, 9, 1, 1, 9, 10),
     () => doubles(1, 9, 1, 1, 1)
+  ],
+  "2": [
+    () => mixedOps(1, 10, 1, 1, 10, 1),
+    () => addition(1, 9, 1, 1, 9, 10),
+    () => subtract(1, 9, 10, 1, 9, 1),
+    () => mixedOps(11, 99, 1, 1, 9, 1),
+    () => mixedOps(11, 99, 1, 1, 9, 10),
+    () => doubles(11, 30, 1, 1, 1),
+    () => doubles(1, 6, 10, 1, 1)
   ]
 };
 
