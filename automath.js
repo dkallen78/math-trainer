@@ -165,11 +165,11 @@ function upTo(aLow, aHigh, cap) {
   let equation = "";
 
   if (rnd(1, 50) % 2 === 0) {
-    answer = 10;
-    equation = `${a} + ${10 - a} = ?`;
+    answer = cap;
+    equation = `${a} + ${cap - a} = ?`;
   } else {
-    answer = 10 - a;
-    equation = `${a} + ? = 10`;
+    answer = cap - a;
+    equation = `${a} + ? = ${cap}`;
   }
 
   return [answer, equation];
@@ -606,7 +606,7 @@ let levels = {
 
 let tests = {
   "1": [
-    () => upTo(0, 9, 10),
+    () => upTo(1, 9, 10),
     () => addition(2, 5, 1, 3, 5, 1),
     () => doubles(1, 9, 1, 0, 0)
   ],
@@ -617,5 +617,12 @@ let tests = {
     () => nextMultiple(11, 89, 1, 10),
     () => doubles(1, 20, 1, 0, 0),
     () => doubles(1, 5, 10, 0, 0)
+  ],
+  "3": [
+    () => addition(4, 9, 1, 4, 9, 1),
+    () => subtract(10, 20, 1, 1, 19),
+    () => mixedOps(1, 15, 10, 1, 10, 10),
+    () => upTo(11, 89, 100),
+    () => doubles(1, 10, 10, 0, 0)
   ]
 };
