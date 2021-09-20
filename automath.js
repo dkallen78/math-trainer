@@ -123,6 +123,32 @@ function mixedOps(aLow, aHigh, aMod, bLow, bHigh, bMod) {
   return [answer, equation];
 }
 
+function mixedThrees(aLow, aHigh, bLow, bHigh, cLow, cHigh) {
+
+  let a = rnd(aLow, aHigh);
+  let b = 0;
+  let c = 0;
+  let answer = 0;
+  let equation = "";
+
+  if (rnd(1, 50) % 2 === 0) {
+    b = rnd(bLow, bHigh);
+    c = rnd(cLow, cHigh);
+    while (c < (a + b)) {
+      c = rnd(cLow, cHigh);
+    }
+    answer = (a + b) - c;
+    equation = `${a} + ${b} - ${c} = ?`;
+  } else {
+    b = rnd(bLow, a);
+    c = rnd(cLow, cHigh);
+    answer = (a - b) + c;
+    equation = `${a} - ${b} + ${c} = ?`;
+  }
+
+  return [answer, equation];
+}
+
 function doubles(aLow, aHigh, aMod, rangeLow, rangeHigh) {
   /*
   //Creates an near doubles addition problem            //
@@ -601,6 +627,13 @@ let levels = {
     () => mixedOps(11, 99, 1, 1, 9, 10),
     () => doubles(11, 30, 1, 1, 1),
     () => doubles(1, 6, 10, 1, 1)
+  ],
+  "3": [
+    () => mixedThrees(1, 5, 1, 5, 1, 5),
+    () => mixedOps(1, 10, 10, 11, 99, 1),
+    () => mixedOps(11, 99, 1, 11, 99, 1),
+    () => doubles(11, 30, 1, 1, 2),
+    () => doubles(1, 9, 10, 10, 10)
   ]
 };
 
