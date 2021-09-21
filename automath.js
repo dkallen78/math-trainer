@@ -430,44 +430,7 @@ function inputNumber(num) {
 
 }
 
-
-/*function getProblem() {
-  /*
-  //Gets a problem to display based on the user's level
-  */
-
-  /*function displayProblem(problem) {
-    /*
-    //Displays a problem on the screen                    //
-    //----------------------------------------------------//
-    //problem(array[float, string]): the solution to the  //
-    //  equation and a string representation of it        //
-    */
-
-    /*let problemDisplay = document.getElementById("problemDisplay");
-    let solution = document.getElementById("solutionDisplay");
-
-    problemDisplay.innerHTML = problem[1];
-
-    numPadOn();
-    document.getElementById("buttonSubmit").onclick = function() {
-      checkAnswer(problem[0], parseFloat(solution.innerHTML, 10));
-    }
-
-  }
-
-  console.trace();
-  let problem;
-  if (user.activeLevel === 0) {
-    problem = tests[user.testLevel][rnd(0, (tests[user.testLevel].length - 1))]();
-  } else {
-    problem = levels[user.activeLevel][rnd(0, (levels[user.activeLevel].length - 1))]();
-  }
-
-  displayProblem(problem);
-}*/
-
-function checkAnswer(answer, submission) {
+function checkAnswer(problem, submission) {
   /*
   //Checks to see if the user's answer is correct       //
   //----------------------------------------------------//
@@ -480,8 +443,8 @@ function checkAnswer(answer, submission) {
 
   clearElement(solutionDisplay);
 
-  if (answer === submission) {
-    getProblem();
+  if (problem.answer === submission) {
+    newProblem();
   } else {
     let interval = 50;
     problemDisplay.style.padding = "0 .5rem .5rem 0";
@@ -494,33 +457,44 @@ function checkAnswer(answer, submission) {
   }
 }
 
+function getProblem() {
+  /*
+  //Gets a problem to display based on the user's level
+  */
 
-function testSkills() {
+  let problem = {
+    answer: 0,
+    equation: "",
+    test: true,
+    level: 0,
+    skill: 0,
+    attempts: 0
+  };
 
-  function getProblem() {
-    /*
-    //Gets a problem to display based on the user's level
-    */
-
-    let problem;
-
-    if (user.activeLevel === 0) {
-      problem = tests[user.testLevel][rnd(0, (tests[user.testLevel].length - 1))]();
-    } else {
-      problem = levels[user.activeLevel][rnd(0, (levels[user.activeLevel].length - 1))]();
-    }
-
-    return problem;
+  if (user.activeLevel === 0) {
+    problem.level = user.testLevel;
+    problem.skill = rnd(0, (tests[user.testLevel].length - 1));
+    [problem.answer, problem.equation] = tests[user.testLevel][problem.skill]();
+  } else {
+    problem.test = false;
+    problem.level = user.activeLevel;
+    problem.skill = rnd(0, (levels[user.activeLevel].length - 1));
+    [problem.answer, problem.equation] = levels[user.activeLevel][problem.skill]();
   }
+
+  return problem;
+}
+
+function newProblem() {
 
   console.trace();
   let solution = document.getElementById("solutionDisplay");
 
   let problem = getProblem();
-  document.getElementById("problemDisplay").innerHTML = problem[1];
+  document.getElementById("problemDisplay").innerHTML = problem.equation;
   numPadOn();
   document.getElementById("buttonSubmit").onclick = function() {
-    checkAnswer(problem[0], parseFloat(solution.innerHTML, 10));
+    checkAnswer(problem, parseFloat(solution.innerHTML, 10));
   }
 
 }
@@ -659,7 +633,7 @@ function makeReadyScreen() {
     let readyDisplay = makeElement("div", "readyDisplay");
       let readyButton = makeButton("Ready?", function() {
         fadeOutElement(function() {
-          countdown(problemDisplay, 3, makePracticeScreen);
+          countdown(readyDisplay, 3, makePracticeScreen);
         }, readyButton);
       }, "readyButton");
       readyDisplay.appendChild(readyButton);
@@ -673,9 +647,7 @@ function makePracticeScreen() {
 
   clearElement(document.body);
 
-  console.trace();
-
-  let practiceScreen = makeelement("div", "practiceScreen", "screen");
+  let practiceScreen = makeElement("div", "practiceScreen", "screen");
 
     let problemDisplay = makeElement("div", "problemDisplay");
     practiceScreen.appendChild(problemDisplay)
@@ -687,6 +659,8 @@ function makePracticeScreen() {
     practiceScreen.appendChild(numberPad);
 
   document.body.appendChild(practiceScreen);
+
+  newProblem();
 }
 
 const root = document.documentElement;

@@ -92,7 +92,7 @@ body {
   border-radius: 1rem;
 }
 
-#readyScreen {
+#readyScreen, #practiceScreen {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 3rem 25% 50%;
