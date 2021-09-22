@@ -499,6 +499,10 @@ function newProblem() {
 
 }
 
+function practiceLoop() {
+
+}
+
 function makeSignInScreen() {
   /*
   //Makes the screen that will display the sign in
