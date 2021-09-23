@@ -444,7 +444,8 @@ function checkAnswer(problem, submission) {
   clearElement(solutionDisplay);
 
   if (problem.answer === submission) {
-    newProblem();
+    return true;
+    //newProblem();
   } else {
     let interval = 50;
     problemDisplay.style.padding = "0 .5rem .5rem 0";
@@ -454,6 +455,7 @@ function checkAnswer(problem, submission) {
     setTimeout(function() {
       problemDisplay.style.padding = "";
     }, (interval * 2));
+    return false;
   }
 }
 
@@ -489,13 +491,22 @@ function newProblem() {
 
   console.trace();
   let solution = document.getElementById("solutionDisplay");
-
-  let problem = getProblem();
+  let answer = true;
+  while (answer) {
+    let problem = getProblem();
+    document.getElementById("problemDisplay").innerHTML = problem.equation;
+    numPadOn();
+    document.getElementById("buttonSubmit").onclick = function() {
+      answer = checkAnswer(problem, parseFloat(solution.innerHTML, 10));
+    }
+  }
+  console.log("false");
+  /*let problem = getProblem();
   document.getElementById("problemDisplay").innerHTML = problem.equation;
   numPadOn();
   document.getElementById("buttonSubmit").onclick = function() {
-    checkAnswer(problem, parseFloat(solution.innerHTML, 10));
-  }
+    answer = checkAnswer(problem, parseFloat(solution.innerHTML, 10));
+  }*/
 
 }
 
