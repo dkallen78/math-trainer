@@ -438,13 +438,27 @@ function checkAnswer(problem, submission) {
   //submission(float): the user's answer to the problem //
   */
 
-  let problemDisplay = document.getElementById("problemDisplay");
+  return new Promise ((resolve, reject) => {
+    let problemDisplay = document.getElementById("problemDisplay");
+    let solutionDisplay = document.getElementById("solutionDisplay");
+
+    clearElement(solutionDisplay);
+
+    if (problem.answer === submission) {
+      resolve();
+    } else {
+      reject();
+    }
+  });
+
+  /*let problemDisplay = document.getElementById("problemDisplay");
   let solutionDisplay = document.getElementById("solutionDisplay");
 
   clearElement(solutionDisplay);
 
   if (problem.answer === submission) {
-    newProblem();
+    //newProblem();
+    return true;
   } else {
     let interval = 50;
     problemDisplay.style.padding = "0 .5rem .5rem 0";
@@ -454,7 +468,26 @@ function checkAnswer(problem, submission) {
     setTimeout(function() {
       problemDisplay.style.padding = "";
     }, (interval * 2));
-  }
+  }*/
+}
+
+function forAnswer(problem) {
+  return new Promise((resolve, reject) => {
+
+    document.getElementById("buttonSubmit").onclick = () => {
+
+      let solutionDisplay = document.getElementById("solutionDisplay");
+      let solution = parseFloat(solutionDisplay.innerHTML, 10)
+
+      clearElement(solutionDisplay);
+
+      if (problem.answer === solution) {
+        resolve();
+      } else {
+        reject();
+      }
+    }
+  });
 }
 
 function getProblem() {
@@ -499,8 +532,87 @@ function newProblem() {
 
 }
 
-function practiceLoop() {
+async function practiceLoop() {
 
+  let quit = 0;
+  let getNewProblem = true;
+  let problem;
+
+  while (quit < 100) {
+    console.trace();
+
+    if (getNewProblem) {
+      problem = getProblem();
+    }
+
+    let solution = document.getElementById("solutionDisplay");
+
+    document.getElementById("problemDisplay").innerHTML = problem.equation;
+    numPadOn();
+
+    await forAnswer(problem)
+      .then(() => {
+        getNewProblem = true;
+      })
+      .catch(() => {
+        getNewProblem = false;
+        let interval = 50;
+        problemDisplay.style.padding = "0 .5rem .5rem 0";
+        setTimeout(function() {
+          problemDisplay.style.padding = ".5rem 0 0 .5rem";
+        }, interval);
+        setTimeout(function() {
+          problemDisplay.style.padding = "";
+        }, (interval * 2));
+      })
+
+    /*document.getElementById("buttonSubmit").onclick = async function() {
+      console.log("a waiting");
+      await checkAnswer(problem, parseFloat(solution.innerHTML, 10))
+        .then(() => {})
+        .catch(() => {
+          let interval = 50;
+          problemDisplay.style.padding = "0 .5rem .5rem 0";
+          setTimeout(function() {
+            problemDisplay.style.padding = ".5rem 0 0 .5rem";
+          }, interval);
+          setTimeout(function() {
+            problemDisplay.style.padding = "";
+          }, (interval * 2));
+        })
+    }*/
+    quit++;
+  }
+
+  /*let problem = getProblem();
+  let solution = document.getElementById("solutionDisplay");
+  let answer = false;
+
+  document.getElementById("problemDisplay").innerHTML = problem.equation;
+  numPadOn();
+  document.getElementById("buttonSubmit").onclick = function() {
+    answer = checkAnswer(problem, parseFloat(solution.innerHTML, 10));
+  }
+  while (!answer) {
+
+  }*/
+}
+
+function fadeElement(...elements) {
+  return new Promise((resolve, reject) => {
+
+    elements.forEach(function(x) {
+      x.style.filter = "opacity(0%)";
+
+      x.addEventListener("transitionend", function(e) {
+        x.parentNode.removeChild(x);
+        e.stopImmediatePropagation();
+        resolve();
+      });
+
+    });
+
+  });
 }
 
 function makeSignInScreen() {
@@ -636,9 +748,8 @@ function makeReadyScreen() {
 
     let readyDisplay = makeElement("div", "readyDisplay");
       let readyButton = makeButton("Ready?", function() {
-        fadeOutElement(function() {
-          countdown(readyDisplay, 3, makePracticeScreen);
-        }, readyButton);
+        fadeElement(readyButton)
+          .then(() => {countdown(readyDisplay, 3, makePracticeScreen);})
       }, "readyButton");
       readyDisplay.appendChild(readyButton);
     readyScreen.appendChild(readyDisplay);
@@ -664,7 +775,7 @@ function makePracticeScreen() {
 
   document.body.appendChild(practiceScreen);
 
-  newProblem();
+  practiceLoop();
 }
 
 const root = document.documentElement;
