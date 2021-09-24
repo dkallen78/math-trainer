@@ -339,19 +339,20 @@ function makeNumberPad() {
 
   let numberPad = makeElement("div", "numberPad");
 
-    numberPad.appendChild(makeButton("1", function() {}, "button1"));
-    numberPad.appendChild(makeButton("2", function() {}, "button2"));
-    numberPad.appendChild(makeButton("3", function() {}, "button3"));
-    numberPad.appendChild(makeButton("←", function() {}, "buttonBack"));
-    numberPad.appendChild(makeButton("4", function() {}, "button4"));
-    numberPad.appendChild(makeButton("5", function() {}, "button5"));
-    numberPad.appendChild(makeButton("6", function() {}, "button6"));
-    numberPad.appendChild(makeButton("7", function() {}, "button7"));
-    numberPad.appendChild(makeButton("8", function() {}, "button8"));
-    numberPad.appendChild(makeButton("9", function() {}, "button9"));
-    numberPad.appendChild(makeButton("Submit", function() {}, "buttonSubmit"));
-    numberPad.appendChild(makeButton("0", function() {}, "button0"));
-    numberPad.appendChild(makeButton(".", function() {}, "buttonDecimal"));
+    numberPad.appendChild(makeButton("1", () => {}, "button1"));
+    numberPad.appendChild(makeButton("2", () => {}, "button2"));
+    numberPad.appendChild(makeButton("3", () => {}, "button3"));
+    numberPad.appendChild(makeButton("←", () => {}, "buttonBack"));
+    numberPad.appendChild(makeButton("4", () => {}, "button4"));
+    numberPad.appendChild(makeButton("5", () => {}, "button5"));
+    numberPad.appendChild(makeButton("6", () => {}, "button6"));
+    numberPad.appendChild(makeButton("7", () => {}, "button7"));
+    numberPad.appendChild(makeButton("8", () => {}, "button8"));
+    numberPad.appendChild(makeButton("9", () => {}, "button9"));
+    numberPad.appendChild(makeButton("Submit", () => {}, "buttonSubmit"));
+    numberPad.appendChild(makeButton("0", () => {}, "button0"));
+    numberPad.appendChild(makeButton(".", () => {}, "buttonDecimal"));
+    numberPad.appendChild(makeButton("Quit", () => {}, "buttonQuit"));
 
   return numberPad;
 }
@@ -430,49 +431,24 @@ function inputNumber(num) {
 
 }
 
-function checkAnswer(problem, submission) {
+const forAnswer = (problem) => {
   /*
-  //Checks to see if the user's answer is correct       //
+  //Evaluates whether the user's response to a problem  //
+  //  is correct                                        //
   //----------------------------------------------------//
-  //answer(float): the correct answer to the problem    //
-  //submission(float): the user's answer to the problem //
+  //problem(object): the problem object which contains  //
+  //  the answer to evaluate against the user's response//
+  //----------------------------------------------------//
+  //return(promise[resolve]): when the answer is correct//
+  //return(promise[reject]): either when the answer is  //
+  //  incorrect or when the user quits                  //
   */
 
-  return new Promise ((resolve, reject) => {
-    let problemDisplay = document.getElementById("problemDisplay");
-    let solutionDisplay = document.getElementById("solutionDisplay");
-
-    clearElement(solutionDisplay);
-
-    if (problem.answer === submission) {
-      resolve();
-    } else {
-      reject();
-    }
-  });
-
-  /*let problemDisplay = document.getElementById("problemDisplay");
-  let solutionDisplay = document.getElementById("solutionDisplay");
-
-  clearElement(solutionDisplay);
-
-  if (problem.answer === submission) {
-    //newProblem();
-    return true;
-  } else {
-    let interval = 50;
-    problemDisplay.style.padding = "0 .5rem .5rem 0";
-    setTimeout(function() {
-      problemDisplay.style.padding = ".5rem 0 0 .5rem";
-    }, interval);
-    setTimeout(function() {
-      problemDisplay.style.padding = "";
-    }, (interval * 2));
-  }*/
-}
-
-function forAnswer(problem) {
   return new Promise((resolve, reject) => {
+
+    document.getElementById("buttonQuit").onclick = () => {
+      reject(true);
+    }
 
     document.getElementById("buttonSubmit").onclick = () => {
 
@@ -484,7 +460,7 @@ function forAnswer(problem) {
       if (problem.answer === solution) {
         resolve();
       } else {
-        reject();
+        reject(false);
       }
     }
   });
@@ -518,59 +494,35 @@ function getProblem() {
   return problem;
 }
 
-function newProblem() {
-
-  console.trace();
-  let solution = document.getElementById("solutionDisplay");
-
-  let problem = getProblem();
-  document.getElementById("problemDisplay").innerHTML = problem.equation;
-  numPadOn();
-  document.getElementById("buttonSubmit").onclick = function() {
-    checkAnswer(problem, parseFloat(solution.innerHTML, 10));
-  }
-
-}
-
 async function practiceLoop() {
+  /*
+  //The loop where the user receives problems           //
+  */
 
-  let quit = 0;
+  let quit = false;
   let getNewProblem = true;
   let problem;
+  let problemDisplay = document.getElementById("problemDisplay").innerHTML;
 
-  while (quit < 100) {
+  while (!quit) {
     console.trace();
 
     if (getNewProblem) {
       problem = getProblem();
     }
 
-    let solution = document.getElementById("solutionDisplay");
-
-    document.getElementById("problemDisplay").innerHTML = problem.equation;
+    problemDisplay = problem.equation;
     numPadOn();
 
     await forAnswer(problem)
       .then(() => {
         getNewProblem = true;
       })
-      .catch(() => {
-        getNewProblem = false;
-        let interval = 50;
-        problemDisplay.style.padding = "0 .5rem .5rem 0";
-        setTimeout(function() {
-          problemDisplay.style.padding = ".5rem 0 0 .5rem";
-        }, interval);
-        setTimeout(function() {
-          problemDisplay.style.padding = "";
-        }, (interval * 2));
-      })
-
-    /*document.getElementById("buttonSubmit").onclick = async function() {
-      console.log("a waiting");
-      await checkAnswer(problem, parseFloat(solution.innerHTML, 10))
-        .then(() => {})
-        .catch(() => {
+      .catch((end) => {
+        if (end) {
+          quit = true;
+        } else {
+          getNewProblem = false;
           let interval = 50;
           problemDisplay.style.padding = "0 .5rem .5rem 0";
           setTimeout(function() {
@@ -579,23 +531,20 @@ async function practiceLoop() {
           setTimeout(function() {
             problemDisplay.style.padding = "";
           }, (interval * 2));
-        })
-    }*/
-    quit++;
+        }
+        /*getNewProblem = false;
+        let interval = 50;
+        problemDisplay.style.padding = "0 .5rem .5rem 0";
+        setTimeout(function() {
+          problemDisplay.style.padding = ".5rem 0 0 .5rem";
+        }, interval);
+        setTimeout(function() {
+          problemDisplay.style.padding = "";
+        }, (interval * 2));*/
+      })
   }
 
-  /*let problem = getProblem();
-  let solution = document.getElementById("solutionDisplay");
-  let answer = false;
-
-  document.getElementById("problemDisplay").innerHTML = problem.equation;
-  numPadOn();
-  document.getElementById("buttonSubmit").onclick = function() {
-    answer = checkAnswer(problem, parseFloat(solution.innerHTML, 10));
-  }
-  while (!answer) {
-
-  }*/
+  console.log("loop over");
 }
 
 function fadeElement(...elements) {
