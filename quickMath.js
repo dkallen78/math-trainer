@@ -43,47 +43,70 @@ function clearElement(...elements) {
   elements.forEach(x => x.innerHTML = "");
 }
 
-function makeMenuScreen(screen) {
+function makeTitleScreen() {
+  /*
+  //Makes the screen that will display the sign in
+  //  and register options
+  */
 
-  function makeSignInScreen() {
-    /*
-    //Makes the screen that will display the sign in
-    //  and register options
-    */
+  clearElement(document.body);
 
-    clearElement(document.body);
+  let titleScreen = makeElement("div", "titleScreen", "screen");
 
-    let signInScreen = makeElement("div", "signInScreen", "screen");
+    let titleDiv = makeElement("div", "titleDiv");
+      titleDiv.innerHTML = "QuickMath";
+    titleScreen.appendChild(titleDiv);
 
-      let titleDiv = makeElement("div", "titleDiv");
-        titleDiv.innerHTML = "QuickMath";
-      signInScreen.appendChild(titleDiv);
+    let letsGoButton = makeButton("Let's Go!", makeLevelSelectScreen, "letsGoButton");
+    titleScreen.appendChild(letsGoButton);
 
-      let signInButton = makeButton("Sign In", makeModeSelectScreen, "signInButton");
-      signInScreen.appendChild(signInButton);
-
-      let registerButton = makeButton("Register", null, "registerButton");
-      signInScreen.appendChild(registerButton);
-
-    return signInScreen;
-  }
-
-  function makeModeSelectScreen() {
-    /*
-    //Makes the screen that will display the different
-    //  available modes
-    */
-
-    clearElement(document.body);
-
-    let modeSelectScreen = makeElement("div", "modeSelectScreen", "screen");
-
-      let letsGoButton = makeButton("Let's Go!", null, "letsGoButton");
-      modeSelectScreen.appendChild(letsGoButton);
-
-    console.trace();
-    document.body.appendChild(modeSelectScreen);
-  }
-
-  document.body.appendChild(makeSignInScreen());
+  document.body.appendChild(titleScreen);
 }
+
+function makeLevelSelectScreen() {
+  /*
+  //Makes the screen that will display the available levels
+  */
+
+  clearElement(document.body);
+
+  let levelSelectScreen = makeElement("div", "levelSelectScreen", "screen");
+
+    for (let i = 1; i <= 6; i++) {
+      /*
+        Makes the buttons for the levels of mastery
+      */
+      let buttText = "";
+      let buttFunc;
+      if (user.level >= i) {
+        buttText = `Level ${i}`;
+        buttFunc = function() {
+          //user.activeLevel = i;
+          //makeReadyScreen();
+        };
+      } else if (user.testLevel === i) {
+        buttText = `Unlock Level ${i}`;
+        buttFunc = function() {
+          //user.activeLevel = 0;
+          //makeReadyScreen();
+        };
+      } else {
+        buttText = "Locked";
+        buttFunc = "";
+      }
+
+      let button = makeButton(buttText, buttFunc, `level${i}Button`, "levelButtons");
+      levelSelectScreen.appendChild(button);
+    }
+
+  document.body.appendChild(levelSelectScreen);
+}
+
+let user = {
+  /*
+    Data about the user
+  */
+  level: 3,
+  testLevel: 3,
+  activeLevel: 0
+};
