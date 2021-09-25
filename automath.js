@@ -502,16 +502,18 @@ async function practiceLoop() {
   let quit = false;
   let getNewProblem = true;
   let problem;
-  let problemDisplay = document.getElementById("problemDisplay").innerHTML;
+  let problemDisplay = document.getElementById("problemDisplay");
 
   while (!quit) {
     console.trace();
 
     if (getNewProblem) {
+      console.log("getting problem...");
       problem = getProblem();
+      console.log(problem);
     }
 
-    problemDisplay = problem.equation;
+    problemDisplay.innerHTML = problem.equation;
     numPadOn();
 
     await forAnswer(problem)
@@ -532,19 +534,13 @@ async function practiceLoop() {
             problemDisplay.style.padding = "";
           }, (interval * 2));
         }
-        /*getNewProblem = false;
-        let interval = 50;
-        problemDisplay.style.padding = "0 .5rem .5rem 0";
-        setTimeout(function() {
-          problemDisplay.style.padding = ".5rem 0 0 .5rem";
-        }, interval);
-        setTimeout(function() {
-          problemDisplay.style.padding = "";
-        }, (interval * 2));*/
+
       })
   }
 
   console.log("loop over");
+  return true;
+
 }
 
 function fadeElement(...elements) {
@@ -707,7 +703,7 @@ function makeReadyScreen() {
   document.body.appendChild(readyScreen);
 }
 
-function makePracticeScreen() {
+async function makePracticeScreen() {
 
   clearElement(document.body);
 
@@ -724,7 +720,13 @@ function makePracticeScreen() {
 
   document.body.appendChild(practiceScreen);
 
-  practiceLoop();
+  let quit = false;
+  while (!quit) {
+    console.log("practice loop coming up...");
+    await practiceLoop()
+      .then((val) => {quit = val})
+  }
+  console.log("next loop over");
 }
 
 const root = document.documentElement;
