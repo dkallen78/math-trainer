@@ -508,9 +508,7 @@ async function practiceLoop() {
     console.trace();
 
     if (getNewProblem) {
-      console.log("getting problem...");
       problem = getProblem();
-      console.log(problem);
     }
 
     problemDisplay.innerHTML = problem.equation;
@@ -727,6 +725,7 @@ async function makePracticeScreen() {
       .then((val) => {quit = val})
   }
   console.log("next loop over");
+  return true;
 }
 
 const root = document.documentElement;
