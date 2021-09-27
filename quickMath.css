@@ -35,6 +35,8 @@ body {
   The name of the program
 */
 #titleDiv {
+  display: flex;
+  justify-content: center;
   margin: 3rem;
   font-size: 3rem;
 }
@@ -185,4 +187,16 @@ body {
 #buttonQuit {
   border-radius: 0 0 .8rem .8rem;
   grid-column: 1 / 5;
+}
+
+@media screen and (orientation:landscape) {
+
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  .screen {
+    width: 25vw !important;
+  }
 }
