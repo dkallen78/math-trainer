@@ -626,9 +626,39 @@ async function makeLevelSelectScreen() {
 
 async function makePracticeScreen() {
 
+  function getReady() {
+
+    console.log("in getReady()");
+
+    let readyButton = makeButton("Ready?", null, "readyButton");
+    practiceScreen.appendChild(readyButton);
+    console.log(practiceScreen);
+    console.log(readyButton);
+
+    return new Promise ((resolve, reject) => {
+
+      console.log("promise made");
+
+        readyButton.onclick = () => {
+          readyButton.style.filter = "opacity(0%)";
+
+          readyButton.addEventListener("transitionend", function(e) {
+            readyButton.parentNode.removeChild(readyButton);
+            e.stopImmediatePropagation();
+            resolve();
+          });
+        }
+
+    })
+  }
+
   clearElement(document.body);
 
   let practiceScreen = makeElement("div", "practiceScreen", "screen");
+
+  document.body.appendChild(practiceScreen);
+
+    await getReady();
 
     let problemDisplay = makeElement("div", "problemDisplay");
     practiceScreen.appendChild(problemDisplay)
@@ -639,7 +669,7 @@ async function makePracticeScreen() {
     let numberPad = makeNumberPad()
     practiceScreen.appendChild(numberPad);
 
-  document.body.appendChild(practiceScreen);
+  //document.body.appendChild(practiceScreen);
 
   let quit = false;
   while (!quit) {

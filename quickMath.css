@@ -116,7 +116,7 @@ body {
 }
 
 #readyButton {
-  padding: .5rem;
+  padding: .5rem .5rem 2.5rem .5rem;
   font-size: 2rem;
   font-family: sans-serif;
   background-color: var(--transparent);
