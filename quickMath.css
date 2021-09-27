@@ -85,9 +85,9 @@ body {
 }
 
 #levelSelectScreen > button {
-  margin: .5rem;
-  padding: .5rem;
-  font-size: 2rem;
+  margin: .5vh;
+  padding: .5vh;
+  font-size: 5vh;
   font-family: sans-serif;
   background-color: var(--transparent);
   border: .2rem solid var(--main-color);
