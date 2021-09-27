@@ -116,7 +116,9 @@ body {
 }
 
 #readyButton {
-  padding: .5rem .5rem 2.5rem .5rem;
+  display: flex;
+  align-items: center;
+  padding: .5rem;
   font-size: 2rem;
   font-family: sans-serif;
   background-color: var(--transparent);
@@ -125,7 +127,9 @@ body {
   transition: filter 500ms;
 }
 
-.countDown {
+.countdown {
+  display: flex;
+  align-items: center;
   font-size: 4.8rem;
   color: var(--main-color);
   transition: all 750ms;

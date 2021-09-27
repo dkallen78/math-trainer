@@ -628,37 +628,61 @@ async function makePracticeScreen() {
 
   function getReady() {
 
-    console.log("in getReady()");
-
     let readyButton = makeButton("Ready?", null, "readyButton");
     practiceScreen.appendChild(readyButton);
-    console.log(practiceScreen);
-    console.log(readyButton);
 
     return new Promise ((resolve, reject) => {
+      readyButton.onclick = () => {
+        readyButton.style.filter = "opacity(0%)";
 
-      console.log("promise made");
+        readyButton.addEventListener("transitionend", function(e) {
+          readyButton.parentNode.removeChild(readyButton);
+          e.stopImmediatePropagation();
+          resolve();
+        });
+      }
+    });
+  }
 
-        readyButton.onclick = () => {
-          readyButton.style.filter = "opacity(0%)";
+  async function countdown(num) {
 
-          readyButton.addEventListener("transitionend", function(e) {
-            readyButton.parentNode.removeChild(readyButton);
+    function fadeNumber(num) {
+      return new Promise ((resolve, reject) => {
+
+        setTimeout(() => {
+          num.style.filter = "opacity(0%)";
+          num.style.fontSize = "0rem";
+        }, 0);
+
+        num.addEventListener("transitionend", function(e) {
+          if (e.propertyName === "filter") {
+            num.parentNode.removeChild(num);
             e.stopImmediatePropagation();
             resolve();
-          });
-        }
+          }
+        });
+      })
+    }
 
-    })
+    for (let i = num; i > 0; i--) {
+      let number = makeElement("div", null, "countdown");
+        number.innerHTML = i;
+      practiceScreen.appendChild(number);
+
+      await fadeNumber(number);
+    }
+
+    return true;
   }
 
   clearElement(document.body);
 
   let practiceScreen = makeElement("div", "practiceScreen", "screen");
-
   document.body.appendChild(practiceScreen);
 
     await getReady();
+
+    await countdown(3);
 
     let problemDisplay = makeElement("div", "problemDisplay");
     practiceScreen.appendChild(problemDisplay)
@@ -684,7 +708,7 @@ let user = {
     Data about the user
   */
   level: 3,
-  testLevel: 4,
+  testLevel: 3,
   activeLevel: 0
 };
 
