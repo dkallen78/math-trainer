@@ -558,30 +558,6 @@ function fadeElement(...elements) {
   });
 }
 
-function makeSignInScreen() {
-  /*
-  //Makes the screen that will display the sign in
-  //  and register options
-  */
-
-  clearElement(document.body);
-
-  let signInScreen = makeElement("div", "signInScreen", "screen");
-
-    let titleDiv = makeElement("div", "titleDiv");
-      titleDiv.innerHTML = "AutoMath";
-    signInScreen.appendChild(titleDiv);
-
-    let signInButton = makeButton("Sign In", makeModeSelectScreen, "signInButton");
-    signInScreen.appendChild(signInButton);
-
-    let registerButton = makeButton("Register", makeProblemScreen, "registerButton");
-    signInScreen.appendChild(registerButton);
-
-
-  document.body.appendChild(signInScreen);
-}
-
 function makeModeSelectScreen() {
   /*
   //Makes the screen that will display the different
@@ -592,7 +568,7 @@ function makeModeSelectScreen() {
 
   let modeSelectScreen = makeElement("div", "modeSelectScreen", "screen");
 
-    let letsGoButton = makeButton("Let's Go!", makeProblemScreen, "letsGoButton");
+    let letsGoButton = makeButton("Let's Go!", makeLevelSelectScreen, "letsGoButton");
     modeSelectScreen.appendChild(letsGoButton);
 
   document.body.appendChild(modeSelectScreen);

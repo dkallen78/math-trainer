@@ -63,12 +63,75 @@ function makeTitleScreen() {
   document.body.appendChild(titleScreen);
 }
 
-function makeLevelSelectScreen() {
+async function makeLevelSelectScreen() {
   /*
   //Makes the screen that will display the available levels
   */
 
-  clearElement(document.body);
+  function waitForButton() {
+    console.log("waiting");
+    return new Promise((resolve, reject) => {
+
+      for (let i = 1; i <= 6; i++) {
+        /*
+          Makes the buttons for the levels of mastery
+        */
+        let button = document.getElementById(`level${i}Button`);
+        if (user.level >= i) {
+          button.onclick = () => {
+            user.activeLevel = i;
+            resolve(i);
+            //makeReadyScreen();
+          }
+        } else if (user.testLevel === i) {
+          button.onclick = () => {
+            user.activeLevel = 0;
+            resolve("test");
+            //makeReadyScreen();
+          }
+        }
+      }
+    });
+
+  }
+
+  let quit = false;
+  let count = 0;
+
+  while (!quit) {
+    count++;
+    clearElement(document.body);
+
+    let levelSelectScreen = makeElement("div", "levelSelectScreen", "screen");
+
+    for (let i = 1; i <= 6; i++) {
+      /*
+        Makes the buttons for the levels of mastery
+      */
+      let buttText = "";
+      let buttFunc;
+      if (user.level >= i) {
+        buttText = `Level ${i}`;
+      } else if (user.testLevel === i) {
+        buttText = `Unlock Level ${i}`;
+      } else {
+        buttText = "Locked";
+      }
+
+      let button = makeButton(buttText, null, `level${i}Button`, "levelButtons");
+      levelSelectScreen.appendChild(button);
+    }
+
+    document.body.appendChild(levelSelectScreen);
+
+    console.log(`about to await, round ${count}`);
+    await waitForButton()
+      .then((butt) => {
+        console.log(`Button ${butt}`)
+      })
+
+  }
+  /*clearElement(document.body);
 
   let levelSelectScreen = makeElement("div", "levelSelectScreen", "screen");
 
@@ -76,7 +139,7 @@ function makeLevelSelectScreen() {
       /*
         Makes the buttons for the levels of mastery
       */
-      let buttText = "";
+      /*let buttText = "";
       let buttFunc;
       if (user.level >= i) {
         buttText = `Level ${i}`;
@@ -99,7 +162,7 @@ function makeLevelSelectScreen() {
       levelSelectScreen.appendChild(button);
     }
 
-  document.body.appendChild(levelSelectScreen);
+  document.body.appendChild(levelSelectScreen);*/
 }
 
 let user = {
@@ -107,6 +170,6 @@ let user = {
     Data about the user
   */
   level: 3,
-  testLevel: 3,
+  testLevel: 4,
   activeLevel: 0
 };
