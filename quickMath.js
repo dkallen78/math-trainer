@@ -354,6 +354,21 @@ function makeNumberPad() {
     numberPad.appendChild(makeButton(".", () => {}, "buttonDecimal"));
     numberPad.appendChild(makeButton("Quit", () => {}, "buttonQuit"));
 
+    for (let i = 0; i < numberPad.children.length; i++) {
+      numberPad.children[i].addEventListener("touchstart", () => {
+        numberPad.children[i].style.backgroundColor = "hsla(0, 100%, 0%, .125)";
+      });
+      numberPad.children[i].addEventListener("touchend", () => {
+        numberPad.children[i].style.backgroundColor = "var(--transparent)";
+      });
+      numberPad.children[i].addEventListener("mousedown", () => {
+        numberPad.children[i].style.backgroundColor = "hsla(0, 100%, 0%, .125)";
+      });
+      numberPad.children[i].addEventListener("mouseup", () => {
+        numberPad.children[i].style.backgroundColor = "var(--transparent)";
+      });
+    }
+
   return numberPad;
 }
 

@@ -162,6 +162,7 @@ body {
   background-color: var(--transparent);
   border: .1em solid var(--main-color);
   box-shadow: inset .25rem .25rem 1rem hsla(0, 100%, 0%, .0625);
+  transition: background-color 100ms;
 }
 
 #button1 {
