@@ -332,7 +332,8 @@ function fadeOutElement(callback, ...elements) {
 function makeNumberPad() {
   /*
   //Makes and returns a div element with a number pad   //
-  //  inside of it                                      //
+  //  inside of it. Additionally, it defines the        //
+  //  behavior for touch and mouse events               //
   //----------------------------------------------------//
   //return(element): HTML element                       //
   */
@@ -446,7 +447,7 @@ function inputNumber(num) {
 
 }
 
-const forAnswer = (problem) => {
+function waitForAnswer(problem) {
   /*
   //Evaluates whether the user's response to a problem  //
   //  is correct                                        //
@@ -529,7 +530,7 @@ async function practiceLoop() {
     problemDisplay.innerHTML = problem.equation;
     numPadOn();
 
-    await forAnswer(problem)
+    await waitForAnswer(problem)
       .then(() => {
         getNewProblem = true;
       })
@@ -581,6 +582,12 @@ async function makeLevelSelectScreen() {
   */
 
   async function waitForButton() {
+    /*
+    //Assigns functions to the level select buttons       //
+    //----------------------------------------------------//
+    //resolve(): when the button is pressed               //
+    */
+
     return new Promise((resolve, reject) => {
 
       for (let i = 1; i <= 6; i++) {
@@ -603,7 +610,6 @@ async function makeLevelSelectScreen() {
         }
       }
     });
-
   }
 
   let quit = false;
@@ -640,8 +646,20 @@ async function makeLevelSelectScreen() {
 }
 
 async function makePracticeScreen() {
+  /*
+  //Makes the screen that displays problems and accepts //
+  //  input for answers                                 //
+  //----------------------------------------------------//
+  //return(boolean)                                     //
+  */
 
   function getReady() {
+    /*
+    //Puts a button on the screen and fades it out when   //
+    //  it's pressed                                      //
+    //----------------------------------------------------//
+    //resolve(): when the button is pressed
+    */
 
     let readyButton = makeButton("Ready?", null, "readyButton");
     practiceScreen.appendChild(readyButton);
@@ -660,8 +678,24 @@ async function makePracticeScreen() {
   }
 
   async function countdown(num) {
+    /*
+    //Displays a countdown from a given argument          //
+    //----------------------------------------------------//
+    //num(integer): the number from which to countdown    //
+    //----------------------------------------------------//
+    //return(boolean)                                     //
+    */
 
     function fadeNumber(num) {
+      /*
+      //Fades out and removes a number from the countdown   //
+      //----------------------------------------------------//
+      //num(DOM element): div element containing the number //
+      //  to be removed                                     //
+      //----------------------------------------------------//
+      //return(promise[resolve]): when the number is faded  //
+      */
+
       return new Promise ((resolve, reject) => {
 
         setTimeout(() => {
