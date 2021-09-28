@@ -162,7 +162,7 @@ function mixedThrees(aLow, aHigh, bLow, bHigh, cLow, cHigh) {
   if (rnd(1, 50) % 2 === 0) {
     b = rnd(bLow, bHigh);
     c = rnd(cLow, cHigh);
-    while (c < (a + b)) {
+    while (c > (a + b)) {
       c = rnd(cLow, cHigh);
     }
     answer = (a + b) - c;
