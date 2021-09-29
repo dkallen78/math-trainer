@@ -106,16 +106,16 @@ According to the Wikipedia article on [systematic desensitization](https://en.wi
 
 1. **Establish anxiety stimulus hierarchy.** Identify the source of the anxiety in other words.
 
-  Since we're talking about math anxiety this step seems trivial.
+   Since we're talking about math anxiety this step seems trivial.
 
 2. **Learn the mechanism response.**  Develop a coping strategy.
 
-  I'm not sure how I could design a coping mechanism into this program. Maybe I should
+   I'm not sure how I could design a coping mechanism into this program. Maybe I should
 delve into the world of self-described "relaxing" games?
 
 3. **Connect stimulus to the coping method by counter conditioning.** Exposure to
 the anxiety followed by the coping method.
 
-  If I can get number 2 figured out, then I can handle this one.
+   If I can get number 2 figured out, then I can handle this one.
 
 #### How to train working memory?
