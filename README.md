@@ -89,8 +89,13 @@ Another interesting finding of this review was that the negative performance ass
 with math anxiety primarily manifests with more complicated problems such as those
 involving "mixed fractions, percentages, equations with unknowns, and factoring."
 
+---
+
 
 
 #### How to Reduce Math Anxiety
+
+One of the most effective methods of reducing math anxiety is a technique called
+systemic desensitization, or graduated exposure therapy ([Hembree, 1990](https://www.jstor.org/stable/749455)). Hembree doesn't go into the details of how this was applied, however.
 
 #### How to train working memory?
