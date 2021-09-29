@@ -42,6 +42,16 @@ before the untimed test. In other words, if you want to mitigate the negative pe
 results of timed tests, you should administer it after an untimed one. The researchers
 attribute this effect to practice and familiarity ameliorating the negative effect.
 
+---
+
+Pearson did a study ([Pearson, 2004](http://images.pearsonassessments.com/images/tmrs/tmrs_rg/TimedUntimed.pdf)) that looked at timed versus untimed administrations of the Stanford
+10 test and (despite their interest in timed tests) found mixed results. They found
+that an untimed test was a benefit to students with disabilities and primary school
+students but also that secondary school students who took an untimed test performed
+worse.
+
+
+
 ### Effect of Math Anxiety on Performance
 
 Despite what [Tsui & Mazzocco (2007)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2806671/)
@@ -49,7 +59,7 @@ found in the study mentioned above (the study was conducted on a group of mathem
 gifted 6th graders), in general students with higher levels of math anxiety performed
 poorer on assessments than their less anxious counterparts. According to [Ashcraft & Kirk (2001)](https://www.academia.edu/download/27137080/xge1302224.pdf) this anxiety doesn't manifest
 with simple arithmetic operations (ie, operations involving single digits), rather
-it manifests with relatively more complex operations like those between two 2-digit 
+it manifests with relatively more complex operations like those between two 2-digit
 numbers, especially when "carrying" is involved in the operation.
 
 Ashcraft & Kirk also theorize that working memory is a major contributor to arithmetic
@@ -58,12 +68,28 @@ the observed declines in performance. The idea is that harboring an anxiety over
 math problem takes up one of the items in our working memory, rendering our mental
 computations less efficient.
 
+> This suggests to me the importance of automaticity in math education. High levels
+of automaticity would decrease the student's working memory load.
+
 They note that math anxiety tends to be a self-perpetuating phenomenon. Anxiety leads
 to worse performance which leads to increased anxiety which deteriorates performance
 further. They also note that students with math anxiety tend to not only perform
-worse on arethmetic assessments, but they are less likely to engage in mathematics
+worse on arithmetic assessments, but they are less likely to engage in mathematics
 later on in their academic careers (eg, high school and university course work, and
 STEM careers), performing worse in those endeavors when they do.
+
+---
+
+One thing to keep in mind with math anxiety is that it has no relationship to intelligence.
+According to [Ashcraft (2002)](www.mccc.edu/~jenningh/Courses/documents/math_anxiety.pdf)
+the small correlation that does exist (r = -.17) is likely due to questions involving
+quantitative processes on the IQ test.
+
+Another interesting finding of this review was that the negative performance associated
+with math anxiety primarily manifests with more complicated problems such as those
+involving "mixed fractions, percentages, equations with unknowns, and factoring."
+
+
 
 #### How to Reduce Math Anxiety
 
