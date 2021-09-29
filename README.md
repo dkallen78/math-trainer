@@ -45,9 +45,26 @@ attribute this effect to practice and familiarity ameliorating the negative effe
 ### Effect of Math Anxiety on Performance
 
 Despite what [Tsui & Mazzocco (2007)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2806671/)
-found (the study was conducted on a group of mathematically gifted 6th graders),
-in general students with higher levels of math anxiety performed poorer on assessments
-than their less anxious counterparts. According to [Ashcraft & Kirk (2001)](https://www.academia.edu/download/27137080/xge1302224.pdf) this anxiety doesn't manifest
+found in the study mentioned above (the study was conducted on a group of mathematically
+gifted 6th graders), in general students with higher levels of math anxiety performed
+poorer on assessments than their less anxious counterparts. According to [Ashcraft & Kirk (2001)](https://www.academia.edu/download/27137080/xge1302224.pdf) this anxiety doesn't manifest
 with simple arithmetic operations (ie, operations involving single digits), rather
 it manifests with relatively more complex operations like those between two 2-digit 
 numbers, especially when "carrying" is involved in the operation.
+
+Ashcraft & Kirk also theorize that working memory is a major contributor to arithmetic
+performance and that math anxiety acts as a detriment to working memory, leading to
+the observed declines in performance. The idea is that harboring an anxiety over a
+math problem takes up one of the items in our working memory, rendering our mental
+computations less efficient.
+
+They note that math anxiety tends to be a self-perpetuating phenomenon. Anxiety leads
+to worse performance which leads to increased anxiety which deteriorates performance
+further. They also note that students with math anxiety tend to not only perform
+worse on arethmetic assessments, but they are less likely to engage in mathematics
+later on in their academic careers (eg, high school and university course work, and
+STEM careers), performing worse in those endeavors when they do.
+
+#### How to Reduce Math Anxiety
+
+#### How to train working memory?
