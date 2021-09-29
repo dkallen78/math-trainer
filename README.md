@@ -95,7 +95,27 @@ involving "mixed fractions, percentages, equations with unknowns, and factoring.
 
 #### How to Reduce Math Anxiety
 
+##### Systemic Desensitization
+
 One of the most effective methods of reducing math anxiety is a technique called
 systemic desensitization, or graduated exposure therapy ([Hembree, 1990](https://www.jstor.org/stable/749455)). Hembree doesn't go into the details of how this was applied, however.
+
+---
+
+According to the Wikipedia article on [systematic desensitization](https://en.wikipedia.org/wiki/Systematic_desensitization), the process involves three steps:
+
+1. **Establish anxiety stimulus hierarchy.** Identify the source of the anxiety in other words.
+
+Since we're talking about math anxiety this step seems trivial.
+
+2. **Learn the mechanism response.**  Develop a coping strategy.
+
+I'm not sure how I could design a coping mechanism into this program. Maybe I should
+delve into the world of self-described "relaxing" games?
+
+3. **Connect stimulus to the coping method by counter conditioning.** Exposure to
+the anxiety followed by the coping method.
+
+If I can get number 2 figured out, then I can handle this one.
 
 #### How to train working memory?
