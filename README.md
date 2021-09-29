@@ -21,11 +21,25 @@ a level select menu, and the ability to practice three levels of mental math ski
 
 - [ ] Determine best method of assessment
 
+   * For the core program I feel like the only assessment is the number of correct
+   answers. I had originally thought that time would be a metric of "mastery" but I'm
+   leaning towards it being a data point and not a determiner.
+
 - [ ] Keep track of user data
 
 - [ ] Different modes
 
+   * Speed mode (automaticity trainer)
+
+   * Rename number (eg, 5 = 2 + 3 = 1 + 1 + 3 = ... [number sense])
+
 ## Lines of Investigation
+
+### The Role of Positive and Negative Feedback in Learning
+
+### How to Measure Mastery?
+
+stealth assessment
 
 ### Timed versus Untimed Assessment
 
@@ -50,7 +64,15 @@ that an untimed test was a benefit to students with disabilities and primary sch
 students but also that secondary school students who took an untimed test performed
 worse.
 
+> It's pretty clear that untimed assessments are the way to go for most math. I'm
+wondering now if having a countdown before the math problems start conjures a shadow
+of that anxiety. Alternatively, I put it in because I wanted a predictable ease in
+to the problems.
 
+> A line of argument I see a lot is that students need to be exposed to timed tests
+because it prepares them for high-stakes tests in the future (eg, SAT and ACT). Although
+I believe there is some merit to that sentiment, I don't think the overt use of a
+timer has a place in the core functionality of this program.
 
 ### Effect of Math Anxiety on Performance
 
