@@ -29,9 +29,8 @@ a level select menu, and the ability to practice three levels of mental math ski
 
 ### Timed versus Untimed Assessment
 
-I'm looking at the effects of timed assessment on mathematical performance. Most research
-indicates (unsurprisingly) that students perform worse on timed assessments rather
-than untimed ones, but I was surprised to read one study ([Tsui & Mazzocco, 2007](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2806671/)) that found a negative
+Most research indicates (unsurprisingly) that students perform worse on timed assessments
+rather than untimed ones, but I was surprised to read one study ([Tsui & Mazzocco, 2007](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2806671/)) that found a negative
 correlation between math anxiety and the difference in performance between timed and
 untimed tests. In other words, in this study, students with more math anxiety performed
 better at the timed tests than the students w/ less anxiety. The caveat to this factoid
@@ -42,3 +41,13 @@ untimed test. Students scored lower on the timed test only when it was administe
 before the untimed test. In other words, if you want to mitigate the negative performance
 results of timed tests, you should administer it after an untimed one. The researchers
 attribute this effect to practice and familiarity ameliorating the negative effect.
+
+### Effect of Math Anxiety on Performance
+
+Despite what [Tsui & Mazzocco (2007)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2806671/)
+found (the study was conducted on a group of mathematically gifted 6th graders),
+in general students with higher levels of math anxiety performed poorer on assessments
+than their less anxious counterparts. According to [Ashcraft & Kirk (2001)](https://www.academia.edu/download/27137080/xge1302224.pdf) this anxiety doesn't manifest
+with simple arithmetic operations (ie, operations involving single digits), rather
+it manifests with relatively more complex operations like those between two 2-digit 
+numbers, especially when "carrying" is involved in the operation.
