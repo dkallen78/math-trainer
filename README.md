@@ -11,8 +11,6 @@ a level select menu, and the ability to practice three levels of mental math ski
 
 ## Things to Add
 
-- [ ] Ability to change color palettes
-
 - [x] Button feedback
 
 - [ ] Keyboard interface
@@ -34,6 +32,16 @@ a level select menu, and the ability to practice three levels of mental math ski
    * Rename number (eg, 5 = 2 + 3 = 1 + 1 + 3 = ... [number sense])
 
    * Sequences (count bys)
+
+- [ ] Setup menu
+
+   * Change color palette
+
+   * Change sound options
+
+   * Import data
+
+   * Reset progress
 
 ## Lines of Investigation
 
@@ -151,12 +159,23 @@ the anxiety followed by the coping method.
 One source of anxiety seems to be lack of control and the teacher/student dichotomy
 ([Finlayson, 2014](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.951.7508&rep=rep1&type=pdf)). I think this program addresses that
 by putting all the control in the user's hands.
-> This does call into question something
-I had planned to do: making a mode that was the completion of an instructor task or
-skill.
+
+> This does call into question something I had planned to do: making a mode that
+was the completion of an instructor task or skill.
+
+One of the coping strategies put forward in this paper was practice. I agree this is
+part of the puzzle as practice increases competence which increases confidence. It
+also ties back into the [Tsui & Mazzocco (2007)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2806671/) paper that found students performed better on timed tests after having
+taken an untimed test beforehand.
+
+---
+
+The abstract of a paper by [Feng, et al (2014)](https://onlinelibrary.wiley.com/doi/abs/10.1002/mar.20710) suggests that slow-tempo classical music relieves math anxiety. I have
+mixed feelings about putting music in any program but it doesn't really make a difference
+if the user can turn it off easily.
 
 
-#### How to train working memory?
+### How to Train Working Memory?
 
 ### Historical Research
 
