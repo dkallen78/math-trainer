@@ -33,6 +33,8 @@ a level select menu, and the ability to practice three levels of mental math ski
 
    * Rename number (eg, 5 = 2 + 3 = 1 + 1 + 3 = ... [number sense])
 
+   * Sequences (count bys)
+
 ## Lines of Investigation
 
 ### The Role of Positive and Negative Feedback in Learning
@@ -40,6 +42,10 @@ a level select menu, and the ability to practice three levels of mental math ski
 ### How to Measure Mastery?
 
 stealth assessment
+
+Involve students in assessment (show how the sausage is made)
+
+### Is it Better to Practice One Skill at a Time or to Mix Them up by Skill Level?
 
 ### Timed versus Untimed Assessment
 
@@ -140,4 +146,32 @@ the anxiety followed by the coping method.
 
    If I can get number 2 figured out, then I can handle this one.
 
+---
+
+One source of anxiety seems to be lack of control and the teacher/student dichotomy
+([Finlayson, 2014](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.951.7508&rep=rep1&type=pdf)). I think this program addresses that
+by putting all the control in the user's hands.
+> This does call into question something
+I had planned to do: making a mode that was the completion of an instructor task or
+skill.
+
+
 #### How to train working memory?
+
+### Historical Research
+
+I'm reading through some 19th century articles right now and it's striking how passionate
+the writers are in their advocacy for mental math. I feel like these advocates are
+the source for the timed multiplication table tests I had to take in the 4th grade.
+Although none of the authors I've read so far have called for timed testing, their
+means for improving mental calculation are left unsaid.
+
+> Apparently the timed tests to which I (and many others) was subjected were not a
+direct result of the 19th century educational fad of mental math. Many schools switched
+to a program of oral math. There was a backlash to this that lasted until the middle
+of the 20th century when there was a revival in interest. And here we are again.
+"Everything old is new again."
+
+The exception is [Haskins, (1887)](https://www.jstor.org/stable/44464091) who gives
+examples that would be familiar to teachers today, such as counting by 2s up and down
+the number line.
