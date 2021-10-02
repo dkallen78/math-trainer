@@ -2,7 +2,7 @@
 
 ## Purpose
 
-To create a free platform for practicing and developing arithmetical skills.
+To create a free platform for practicing and developing mental arithmetic skills.
 
 ## Current State of the Program
 
@@ -43,9 +43,39 @@ a level select menu, and the ability to practice three levels of mental math ski
 
    * Reset progress
 
-## Lines of Investigation
+- [ ] Achievements
 
-### The Role of Positive and Negative Feedback in Learning
+## Tentative Scaffold
+
+* Title Screen
+
+   * Mode Select
+
+      * Standard
+
+         * Level select
+
+      * Speed
+
+      * Rename Number
+
+      * Sequences
+
+      * Practice Strategy
+
+   * Options
+
+      * Change color palette
+
+      * Change sound options
+
+      * Import data
+
+      * Export data
+
+      * Reset progress
+
+## Lines of Investigation
 
 ### How to Measure Mastery?
 
@@ -127,8 +157,6 @@ involving "mixed fractions, percentages, equations with unknowns, and factoring.
 
 ---
 
-
-
 #### How to Reduce Math Anxiety
 
 ##### Systemic Desensitization
@@ -154,7 +182,7 @@ the anxiety followed by the coping method.
 
    If I can get number 2 figured out, then I can handle this one.
 
----
+##### Power Imbalance
 
 One source of anxiety seems to be lack of control and the teacher/student dichotomy
 ([Finlayson, 2014](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.951.7508&rep=rep1&type=pdf)). I think this program addresses that
@@ -162,6 +190,8 @@ by putting all the control in the user's hands.
 
 > This does call into question something I had planned to do: making a mode that
 was the completion of an instructor task or skill.
+
+##### Practice
 
 One of the coping strategies put forward in this paper was practice. I agree this is
 part of the puzzle as practice increases competence which increases confidence. It
@@ -183,12 +213,12 @@ working memory. [Clark, et al (2017)](https://www.ncbi.nlm.nih.gov/pmc/articles/
 found that after 6 weeks of WM training, participants got better at the WM tasks
 but there wasn't a "transfer" to other abilities (eg, arithmetic), nor was there
 an increase in WM capacity. The caveat to this study is that it was conducted on
-adults aged 18-40 and the authors acknowledge the lack of scientific consensus on 
+adults aged 18-40 and the authors acknowledge the lack of scientific consensus on
 the utility of WM training.
 
 ---
 
-In [Nelson Cowan's (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4207727/)
+In [Cowan's (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4207727/)
 review of the history and current state of WM, he points out that there are different
 aspects of WM:
 
@@ -202,6 +232,16 @@ aspects of WM:
 
 This could shed light on the findings of Clark's team that WM training doesn't transfer,
 possibly because familiarity with a task or subject is needed to augment WM.
+
+Also of interest in Cowan's paper is the idea that a lack of ability to maintain one's
+attention (executive function) is a hinderance to WM since one can neither control
+what is retained nor what is lost.
+
+---
+
+> I believe that incorporating a WM trainer into this program is beyond what is possible.
+Even if I put a memory mode into the program, the weight of scientific evidence indicates
+that it will a negligible effect on mental math performance.
 
 ### Historical Research
 
