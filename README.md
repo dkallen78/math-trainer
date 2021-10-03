@@ -2,7 +2,7 @@
 
 ## Purpose
 
-To create a free platform for practicing and developing mental arithmetic skills.
+To create a free platform for practicing and developing arithmetical skills.
 
 ## Current State of the Program
 
@@ -33,6 +33,8 @@ a level select menu, and the ability to practice three levels of mental math ski
 
    * Sequences (count bys)
 
+   * Mental strategy practice
+
 - [ ] Setup menu
 
    * Change color palette
@@ -43,39 +45,68 @@ a level select menu, and the ability to practice three levels of mental math ski
 
    * Reset progress
 
-- [ ] Achievements
-
-## Tentative Scaffold
-
-* Title Screen
-
-   * Mode Select
-
-      * Standard
-
-         * Level select
-
-      * Speed
-
-      * Rename Number
-
-      * Sequences
-
-      * Practice Strategy
-
-   * Options
-
-      * Change color palette
-
-      * Change sound options
-
-      * Import data
-
-      * Export data
-
-      * Reset progress
-
 ## Lines of Investigation
+
+### Compulsion Loops
+
+According to [Wikipedia](https://en.wikipedia.org/wiki/Compulsion_loop), compulsion
+loops consist of three parts:
+
+1. Anticipation
+
+2. Challenge
+
+3. Reward
+
+They work in a cycle to incentivize users to continue completing a task. Anticipation
+is first because
+
+---
+
+Blogger and game developer [Sebastien Samson (2017)](https://www.gamedeveloper.com/design/compulsion-loops-dopamine-in-games-and-gamification) says that it's vital to establish
+extrinsic and intrinsic rewards for users but cautions that a designer shouldn't
+give extrinsic rewards for tasks that users would do for their intrinsic value, because
+it's nearly impossible to replace an extrinsic reward for an intrinsic one and keep
+the user motivated. This is related to the [overjustification effect](https://en.wikipedia.org/wiki/Overjustification_effect).
+
+intrinsic vs extrinsic motivation
+
+### Behavioral Psychology
+
+From [John Hopson (2001)](https://www.gamedeveloper.com/design/behavioral-game-design),
+in Gamasutra:
+
+* Reinforcer: a reward to be given
+
+* Contingency: the conditions for receiving the reward
+
+* Response: what the user/subject does to achieve the contingency
+
+The response I want is for my users to continue practicing math. The only rewards
+I have to offer are either achievements or intrinsic rewards. My contingencies are
+many. I want to reward every correct answer. I want to reward achievement of mastery
+of a skill. I want to reward near answers in some cases.
+
+The other piece of behavioral psychology that Hopson talks about is intervals and
+ratios. These are the spaces between the rewards, the contingencies. Intervals are
+gaps of time between rewards and ratios are number of tasks between rewards.
+
+Intervals work at motivating behavior but not consistent behavior. Users wait until
+the reward is imminent to engage with the desired behavior and find something else
+to do until then.
+
+A fixed ratio system can work but there can be task avoidance to start the process
+to achieve the fixed number of tasks. The most consistent in producing the desired
+behavior is a variable ratio system where the user doesn't know precisely when they
+will be rewarded.
+
+### Interleaving
+
+ 
+
+### Gameplay/UX
+
+Clearly defined objectives
 
 ### How to Measure Mastery?
 
@@ -157,6 +188,8 @@ involving "mixed fractions, percentages, equations with unknowns, and factoring.
 
 ---
 
+
+
 #### How to Reduce Math Anxiety
 
 ##### Systemic Desensitization
@@ -182,7 +215,7 @@ the anxiety followed by the coping method.
 
    If I can get number 2 figured out, then I can handle this one.
 
-##### Power Imbalance
+---
 
 One source of anxiety seems to be lack of control and the teacher/student dichotomy
 ([Finlayson, 2014](https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.951.7508&rep=rep1&type=pdf)). I think this program addresses that
@@ -190,8 +223,6 @@ by putting all the control in the user's hands.
 
 > This does call into question something I had planned to do: making a mode that
 was the completion of an instructor task or skill.
-
-##### Practice
 
 One of the coping strategies put forward in this paper was practice. I agree this is
 part of the puzzle as practice increases competence which increases confidence. It
@@ -218,7 +249,7 @@ the utility of WM training.
 
 ---
 
-In [Cowan's (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4207727/)
+In [Nelson Cowan's (2014)](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4207727/)
 review of the history and current state of WM, he points out that there are different
 aspects of WM:
 
@@ -232,16 +263,6 @@ aspects of WM:
 
 This could shed light on the findings of Clark's team that WM training doesn't transfer,
 possibly because familiarity with a task or subject is needed to augment WM.
-
-Also of interest in Cowan's paper is the idea that a lack of ability to maintain one's
-attention (executive function) is a hinderance to WM since one can neither control
-what is retained nor what is lost.
-
----
-
-> I believe that incorporating a WM trainer into this program is beyond what is possible.
-Even if I put a memory mode into the program, the weight of scientific evidence indicates
-that it will a negligible effect on mental math performance.
 
 ### Historical Research
 
