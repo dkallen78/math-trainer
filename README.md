@@ -41,6 +41,8 @@ a level select menu, and the ability to practice three levels of mental math ski
 
    * Change sound options
 
+   * Change language
+
    * Import data
 
    * Reset progress
@@ -100,9 +102,51 @@ to achieve the fixed number of tasks. The most consistent in producing the desir
 behavior is a variable ratio system where the user doesn't know precisely when they
 will be rewarded.
 
+### Self-Determination Theory (SDT)
+
+From the [Wikipedia page](https://en.wikipedia.org/wiki/Self-determination_theory):
+
+SDT is a theory of motivation that grew out of studies studying extrinsic and intrinsic
+motivations. SDT posits that intrinsic motives are the primary psychological motivations
+in all individuals.
+
+* Intrinsic motives are internal rewards; things that are done for the pleasure of
+doing them.
+
+* Extrinsic motives are outside rewards that motivate our behavior.
+
+SDT says that there are three basic psychological needs that inform our intrinsic
+motivation:
+
+1. **Autonomy.** Self determination. Agency. To be in control of one's own life.
+Psychological liberty. Freedom of internal will. Deadlines are a restriction of autonomy
+because they remove control from the individual, reducing their intrinsic motivation.
+Choice (and the illusion of it?) increases one's sense of autonomy.
+
+2. **Competence.** A *feeling* of mastery. This is where positive feedback comes into
+play. Praising someone for accomplishing a task increases their feelings of competence
+which feeds their intrinsic motivation.
+
+3. **Relatedness.** Connection to others. Desire to interact with others.
+
 ### Interleaving
 
- 
+ According to [Ostrow, et al (2015)](https://www.researchgate.net/profile/Neil-Heffernan/publication/300790208_Blocking_Vs_Interleaving_Examining_Single-Session_Effects_Within_Middle_School_Math_Homework/links/5e36ff61458515072d7a0301/Blocking-Vs-Interleaving-Examining-Single-Session-Effects-Within-Middle-School-Math-Homework.pdf),
+ interleaving (the practice of switching topics of study throughout a practice session)
+ has a significant positive effect on learning outcomes in mathematics practice.
+ Their study specifically focused on 7th grade math students. Students were divided
+ into two groups. One group took a 12 question practice assignment with the types
+ of problems mixed up. Another group took the same practice assignment with the problems
+ organized by type. Later they were given a 3-question follow up assessment to determine
+ how effective the practice assignment was.
+
+ The study (which was a replication of a previous study) found that among high-skilled
+ students there was little positive effect of interleaving but there was a significant
+ benefit for the low-skilled students.
+
+ > I was questioning whether it was better to present problems by subject or randomly.
+ This leads me to believe that random problems are better and would benefit a greater
+ number of users.
 
 ### Gameplay/UX
 
@@ -113,8 +157,6 @@ Clearly defined objectives
 stealth assessment
 
 Involve students in assessment (show how the sausage is made)
-
-### Is it Better to Practice One Skill at a Time or to Mix Them up by Skill Level?
 
 ### Timed versus Untimed Assessment
 
@@ -188,11 +230,7 @@ involving "mixed fractions, percentages, equations with unknowns, and factoring.
 
 ---
 
-
-
 #### How to Reduce Math Anxiety
-
-##### Systemic Desensitization
 
 One of the most effective methods of reducing math anxiety is a technique called
 systemic desensitization, or graduated exposure therapy ([Hembree, 1990](https://www.jstor.org/stable/749455)). Hembree doesn't go into the details of how this was applied, however.
