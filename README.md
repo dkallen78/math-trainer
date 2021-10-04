@@ -47,6 +47,10 @@ a level select menu, and the ability to practice three levels of mental math ski
 
    * Reset progress
 
+## Experts to Seek Out
+
+Doug Rohrer, interleaving - drohrer@usf.edu
+
 ## Lines of Investigation
 
 ### Compulsion Loops
@@ -147,6 +151,14 @@ which feeds their intrinsic motivation.
  > I was questioning whether it was better to present problems by subject or randomly.
  This leads me to believe that random problems are better and would benefit a greater
  number of users.
+
+ ---
+
+ [Foster, et al (2019)](https://link.springer.com/article/10.3758/s13421-019-00918-4)
+ looked at whether interleaving was more effective with multiple problems of a similar
+ type or with more dissimilar problems. Their findings support the distributed-practice
+ hypothesis which says the beneficial effect of interleaving is due to spaced repetition
+ of the problems, that is giving the learner time between types of problems
 
 ### Gameplay/UX
 
