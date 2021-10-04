@@ -158,11 +158,13 @@ which feeds their intrinsic motivation.
  looked at whether interleaving was more effective with multiple problems of a similar
  type or with more dissimilar problems. Their findings support the distributed-practice
  hypothesis which says the beneficial effect of interleaving is due to spaced repetition
- of the problems, that is giving the learner time between types of problems
+ of the problems, that is, giving the learner time between types of problems
 
 ### Gameplay/UX
 
 Clearly defined objectives
+
+What is my core loop?
 
 ### How to Measure Mastery?
 
