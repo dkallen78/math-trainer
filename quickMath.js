@@ -462,14 +462,35 @@ function waitForAnswer(problem) {
 
   return new Promise((resolve, reject) => {
 
+    let solutionDisplay = document.getElementById("solutionDisplay");
+
+    document.onkeydown = event => {
+      let key = parseInt(event.key, 10);
+      if ((key >= 0 && key <= 9 || event.key === ".")) {
+        inputNumber(event.key);
+      } else if (event.key === "Backspace") {
+        inputNumber("-1");
+      } else if (event.key === "Escape") {
+        reject(true);
+      } else if (event.key === "Enter") {
+        let solution = parseFloat(solutionDisplay.innerHTML, 10);
+        clearElement(solutionDisplay);
+
+        if (problem.answer === solution) {
+          resolve();
+        } else {
+          reject(false);
+        }
+      }
+    };
+
     document.getElementById("buttonQuit").onclick = () => {
       reject(true);
     }
 
     document.getElementById("buttonSubmit").onclick = () => {
 
-      let solutionDisplay = document.getElementById("solutionDisplay");
-      let solution = parseFloat(solutionDisplay.innerHTML, 10)
+      let solution = parseFloat(solutionDisplay.innerHTML, 10);
 
       clearElement(solutionDisplay);
 
@@ -521,7 +542,6 @@ async function practiceLoop() {
   let problemDisplay = document.getElementById("problemDisplay");
 
   while (!quit) {
-    console.trace();
 
     if (getNewProblem) {
       problem = getProblem();
@@ -530,6 +550,7 @@ async function practiceLoop() {
     problemDisplay.innerHTML = problem.equation;
     numPadOn();
 
+    document.onkeydown = "";
     await waitForAnswer(problem)
       .then(() => {
         getNewProblem = true;
@@ -653,7 +674,7 @@ async function makePracticeScreen() {
   //return(boolean)                                     //
   */
 
-  function getReady() {
+  async function getReady() {
     /*
     //Puts a button on the screen and fades it out when   //
     //  it's pressed                                      //
@@ -661,11 +682,8 @@ async function makePracticeScreen() {
     //resolve(): when the button is pressed
     */
 
-    let readyButton = makeButton("Ready?", null, "readyButton");
-    practiceScreen.appendChild(readyButton);
-
-    return new Promise ((resolve, reject) => {
-      readyButton.onclick = () => {
+    function fade() {
+      return new Promise ((resolve, reject) => {
         readyButton.style.filter = "opacity(0%)";
 
         readyButton.addEventListener("transitionend", function(e) {
@@ -673,6 +691,25 @@ async function makePracticeScreen() {
           e.stopImmediatePropagation();
           resolve();
         });
+      });
+    }
+
+    let readyButton = makeButton("Ready?", null, "readyButton");
+    practiceScreen.appendChild(readyButton);
+
+    return new Promise ((resolve, reject) => {
+
+      document.onkeydown = async (event) => {
+        if (event.key === "Enter") {
+          document.onkeyDown = "";
+          await fade()
+            .then(resolve);
+        }
+      }
+
+      readyButton.onclick = async () => {
+        await fade()
+          .then(resolve);
       }
     });
   }
@@ -742,7 +779,6 @@ async function makePracticeScreen() {
     let numberPad = makeNumberPad()
     practiceScreen.appendChild(numberPad);
 
-  //document.body.appendChild(practiceScreen);
 
   let quit = false;
   while (!quit) {
@@ -807,5 +843,12 @@ let tests = {
     () => mixedOps(1, 15, 10, 1, 10, 10),
     () => upTo(11, 89, 100),
     () => doubles(1, 10, 10, 0, 0)
+  ],
+  "4": [
+    () => mixedOps(1, 9, 10, 1, 9, 10),
+    () => mixedOps(1, 9, 100, 1, 9, 100),
+    () => mixedOps(1, 9, 1000, 1, 9, 1000),
+    () => doubles(1, 100, 1, 0, 0),
+    () => nextMultiple(101, 999, 1, 1000),
   ]
 };
