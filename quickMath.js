@@ -550,7 +550,6 @@ async function practiceLoop() {
     problemDisplay.innerHTML = problem.equation;
     numPadOn();
 
-    document.onkeydown = "";
     await waitForAnswer(problem)
       .then(() => {
         getNewProblem = true;
@@ -571,6 +570,7 @@ async function practiceLoop() {
         }
 
       })
+    document.onkeydown = "";
   }
 
   return true;

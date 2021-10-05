@@ -13,9 +13,9 @@ a level select menu, and the ability to practice three levels of mental math ski
 
 - [x] Button feedback
 
-- [ ] Keyboard interface
+- [ ] Keyboard interface (in progress)
 
-- [ ] Desktop layout (in progress)
+- [x] Desktop layout (tentative)
 
 - [ ] Determine best method of assessment
 
