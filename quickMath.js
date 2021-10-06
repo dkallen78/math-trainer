@@ -202,6 +202,17 @@ function doubles(aLow, aHigh, aMod, rLow, rHigh) {
   return [answer, equation];
 }
 
+function halves(aLow, aHigh, aMod) {
+  let a = rnd(aLow, aHigh) * aMod;
+  if (a % 2 === 1) {
+    a--;
+  }
+  let answer = a / 2;
+  let equation = `What is half of ${a}?`;
+
+  return [answer, equation];
+}
+
 function upTo(aLow, aHigh, cap) {
   /*
   //Creates an addition problem that sums to a cap      //
@@ -484,10 +495,6 @@ function waitForAnswer(problem) {
   //return(promise[reject]): either when the answer is  //
   //  incorrect or when the user quits                  //
   */
-
-  function shake() {
-
-  }
 
   return new Promise((resolve, reject) => {
 
@@ -866,7 +873,7 @@ let user = {
   /*
     Data about the user
   */
-  level: 3,
+  level: 4,
   testLevel: 4,
   activeLevel: 0
 };
@@ -900,6 +907,9 @@ let levels = {
     () => nearMultiple(1, 99, 1, 9, 10, 1, 2),
     () => doubles(11, 99, 1, 1, 2),
     () => mixedOps(1, 99, 10, 1, 99, 10)
+  ],
+  "5": [
+
   ]
 };
 
@@ -929,6 +939,10 @@ let tests = {
     () => mixedOps(1, 9, 100, 1, 9, 100),
     () => mixedOps(1, 9, 1000, 1, 9, 1000),
     () => doubles(1, 100, 1, 0, 0),
+    () => halves(2, 100, 1),
     () => nextMultiple(101, 999, 1, 1000),
+  ],
+  "5": [
+    
   ]
 };
