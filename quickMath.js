@@ -128,13 +128,50 @@ function mixedOps(aLow, aHigh, aMod, bLow, bHigh, bMod) {
     answer = a + b;
     equation = `${a} + ${b} = ?`;
   } else {
-    while (a < b) {
+    while (a <= b) {
       b = rnd(bLow, bHigh) * bMod;
     }
     answer = a - b;
     equation = `${a} - ${b} = ?`;
   }
 
+  return [answer, equation];
+}
+
+function mixedOpsDec(aLow, aHigh, aMod, bLow, bHigh, bMod) {
+
+  function cleanDec(number, dec) {
+
+    let length = Math.floor(number).toString(10).length;
+    return parseFloat(number.toPrecision(length + dec));
+  }
+
+  let aDec = rnd(rLow, rHigh);
+  let a = rnd(aLow, aHigh) * 10**(aDec * -1);
+  let bDec = rnd(rLow, rHigh);
+  let b = rnd(bLow, bHigh) * 10**(bDec * -1);
+  a = cleanDec(a, aDec);
+  b = cleanDec(b, bDec);
+  console.log(a, b);
+  let answer;
+  let equation;
+
+  if (rnd(1, 50) % 2 === 0) {
+    answer = cleanDec((a + b), (aDec > bDec ? aDec : bDec));
+    equation = `${a} + ${b} = ?`;
+  } else {
+    while(b >= a) {
+      if (bDec > aDec) {
+        [bDec, aDec] = [aDec, bDec];
+      }
+      console.log(a, b);
+      b = rnd(bLow, bHigh) * 10**(bDec * -1);
+      b = cleanDec(b, bDec);
+    }
+    answer = cleanDec((a - b), (aDec > bDec ? aDec : bDec));
+    equation = `${a} - ${b} = ?`;
+  }
+  console.log(answer, equation);
   return [answer, equation];
 }
 
@@ -944,10 +981,10 @@ let tests = {
     () => nextMultiple(101, 999, 1, 100),
   ],
   "5": [
-    () => mixedOps(11, 99, .1, 11, 99, .1),
-    () => doubles(11, 99, .1, 0, 0),
-    () => halves(12, 100, .1),
-    () => nextMultiple(1001, 9999, 1, 1000),
-    () => nextMultiple(11, 99, .1, 1)
+    () => mixedOpsDec(11, 99, 11, 99, 1, 2),
+    //() => doubles(11, 99, .1, 0, 0),
+    //() => halves(12, 100, .1),
+    //() => nextMultiple(1001, 9999, 1, 1000),
+    //() => nextMultiple(11, 99, .1, 1)
   ]
 };
