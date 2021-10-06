@@ -266,6 +266,27 @@ function halves(aLow, aHigh, aMod) {
   return [answer, equation];
 }
 
+function halvesDec(aLow, aHigh, aMod) {
+
+  function cleanDec(number, dec) {
+
+    let length = Math.floor(number).toString(10).length;
+    return parseFloat(number.toPrecision(length + dec));
+  }
+
+  let a = rnd(aLow, aHigh);
+  if (a % 2 === 1) {
+    a--;
+  }
+  a *= 10**(aMod * -1);
+  a = cleanDec(a, aMod);
+  let answer = a / 2;
+  answer = cleanDec(answer, aMod);
+  let equation = `What is half of ${a}?`;
+
+  return [answer, equation];
+}
+
 function upTo(aLow, aHigh, cap) {
   /*
   //Creates an addition problem that sums to a cap      //
@@ -997,8 +1018,8 @@ let tests = {
   ],
   "5": [
     //() => mixedOpsDec(11, 99, 11, 99, 1, 2),
-    () => doublesDec(11, 99, 1, 0, 0),
-    //() => halves(12, 100, .1),
+    //() => doublesDec(11, 99, 1, 0, 0),
+    () => halvesDec(12, 100, 1),
     //() => nextMultiple(1001, 9999, 1, 1000),
     //() => nextMultiple(11, 99, .1, 1)
   ]
