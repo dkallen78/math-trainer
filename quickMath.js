@@ -203,10 +203,11 @@ function doubles(aLow, aHigh, aMod, rLow, rHigh) {
 }
 
 function halves(aLow, aHigh, aMod) {
-  let a = rnd(aLow, aHigh) * aMod;
+  let a = rnd(aLow, aHigh);
   if (a % 2 === 1) {
     a--;
   }
+  a *= aMod;
   let answer = a / 2;
   let equation = `What is half of ${a}?`;
 
@@ -874,7 +875,7 @@ let user = {
     Data about the user
   */
   level: 4,
-  testLevel: 4,
+  testLevel: 5,
   activeLevel: 0
 };
 
@@ -940,9 +941,13 @@ let tests = {
     () => mixedOps(1, 9, 1000, 1, 9, 1000),
     () => doubles(1, 100, 1, 0, 0),
     () => halves(2, 100, 1),
-    () => nextMultiple(101, 999, 1, 1000),
+    () => nextMultiple(101, 999, 1, 100),
   ],
   "5": [
-    
+    () => mixedOps(11, 99, .1, 11, 99, .1),
+    () => doubles(11, 99, .1, 0, 0),
+    () => halves(12, 100, .1),
+    () => nextMultiple(1001, 9999, 1, 1000),
+    () => nextMultiple(11, 99, .1, 1)
   ]
 };
