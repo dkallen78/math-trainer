@@ -177,7 +177,7 @@ function mixedThrees(aLow, aHigh, bLow, bHigh, cLow, cHigh) {
   return [answer, equation];
 }
 
-function doubles(aLow, aHigh, aMod, rangeLow, rangeHigh) {
+function doubles(aLow, aHigh, aMod, rLow, rHigh) {
   /*
   //Creates an near doubles addition problem            //
   //----------------------------------------------------//
@@ -185,9 +185,9 @@ function doubles(aLow, aHigh, aMod, rangeLow, rangeHigh) {
   //aHigh(integer): highest number for the term         //
   //aMod(integer): multiplicative modifier for the      //
   //  doubles                                           //
-  //rangeLow(integer): the low end of the potential     //
+  //rLow(integer): the low end of the potential         //
   //  difference between the double pair                //
-  //rangeHigh(integer): the high end of the potential   //
+  //rHigh(integer): the high end of the potential       //
   //  difference between the double pair                //
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
@@ -195,7 +195,7 @@ function doubles(aLow, aHigh, aMod, rangeLow, rangeHigh) {
   */
 
   let a = rnd(aLow, aHigh) * aMod;
-  let drift = rnd(rangeLow, rangeHigh);
+  let drift = rnd(rLow, rHigh);
   let answer = a + (a + drift);
   let equation = `${a} + ${a + drift} = ?`;
 
@@ -255,6 +255,30 @@ function nextMultiple(aLow, aHigh, aMod, multiple) {
   return [answer, equation];
 }
 
+function nearMultiple(aLow, aHigh, bLow, bHigh, bMod, rLow, rHigh) {
+  let a = rnd(aLow, aHigh);
+  let b = rnd(bLow, bHigh) * bMod;
+  let drift = rnd(rLow, rHigh);
+  let answer;
+  let equation;
+  if (rnd(1, 50) % 2 === 0) {
+    drift = drift * -1;
+  }
+  b += drift;
+  if (rnd(1, 50) % 2 === 0) {
+    answer = a + b;
+    equation = `${a} + ${b} = ?`;
+  } else {
+    while (b >= a) {
+      b = rnd(bLow, bHigh) + drift;
+    }
+    answer = a - b;
+    equation = `${a} - ${b} = ?`;
+  }
+
+  return [answer, equation];
+}
+
 function makeElement(type, id, ...classes) {
   /*
   //Returns an HTML element                             //
@@ -287,6 +311,7 @@ function makeButton(name, touch, id, ...classes) {
   let button = makeElement("button", id, ...classes);
   button.innerHTML = name;
   button.onclick = touch;
+  button.type = "button";
   return button;
 }
 
@@ -460,6 +485,10 @@ function waitForAnswer(problem) {
   //  incorrect or when the user quits                  //
   */
 
+  function shake() {
+
+  }
+
   return new Promise((resolve, reject) => {
 
     let solutionDisplay = document.getElementById("solutionDisplay");
@@ -482,6 +511,7 @@ function waitForAnswer(problem) {
           reject(false);
         }
       }
+      event.preventDefault();
     };
 
     document.getElementById("buttonQuit").onclick = () => {
@@ -591,10 +621,43 @@ function makeTitleScreen() {
       titleDiv.innerHTML = "QuickMath";
     titleScreen.appendChild(titleDiv);
 
-    let letsGoButton = makeButton("Let's Go!", makeLevelSelectScreen, "letsGoButton");
+    let letsGoButton = makeButton("Let's Go!", makeModeSelectScreen, "letsGoButton");
     titleScreen.appendChild(letsGoButton);
 
   document.body.appendChild(titleScreen);
+}
+
+async function makeModeSelectScreen() {
+
+  async function waitForButton() {
+
+    return new Promise((resolve, reject) => {
+      let practiceButton = document.getElementById("practiceButton");
+      practiceButton.onclick = async () => {
+        await makeLevelSelectScreen();
+        resolve();
+      }
+    });
+  }
+
+  let quit = false;
+
+  while (!quit) {
+    clearElement(document.body);
+
+    let modeSelectScreen = makeElement("div", "modeSelectScreen", "screen");
+
+      let button = makeButton("Practice", null, "practiceButton", "modeButtons");
+      modeSelectScreen.appendChild(button);
+
+      button = makeButton("Speed", null, "speedButton", "modeButtons");
+      modeSelectScreen.appendChild(button);
+
+    document.body.appendChild(modeSelectScreen);
+
+    await waitForButton();
+
+  }
 }
 
 async function makeLevelSelectScreen() {
@@ -620,15 +683,20 @@ async function makeLevelSelectScreen() {
           button.onclick = async () => {
             user.activeLevel = i;
             await makePracticeScreen();
-            resolve();
+            resolve(false);
           }
         } else if (user.testLevel === i) {
           button.onclick = async () => {
             user.activeLevel = 0;
             await makePracticeScreen();
-            resolve();
+            resolve(false);
           }
         }
+      }
+
+      let button = document.getElementById("backButton");
+      button.onclick = async () => {
+        resolve(true);
       }
     });
   }
@@ -658,12 +726,18 @@ async function makeLevelSelectScreen() {
         levelSelectScreen.appendChild(button);
       }
 
+      let button = makeButton("Back", null, "backButton", "levelButtons");
+      levelSelectScreen.appendChild(button);
+
     document.body.appendChild(levelSelectScreen);
 
     await waitForButton()
-      //.then((butt) => {
-      //})
+      .then((butt) => {
+        console.log("quitting");
+        quit = butt;
+      })
   }
+  console.log("quited");
 }
 
 async function makePracticeScreen() {
@@ -793,7 +867,7 @@ let user = {
     Data about the user
   */
   level: 3,
-  testLevel: 3,
+  testLevel: 4,
   activeLevel: 0
 };
 
@@ -820,6 +894,12 @@ let levels = {
     () => mixedOps(11, 99, 1, 11, 99, 1),
     () => doubles(11, 30, 1, 1, 2),
     () => doubles(1, 9, 10, 10, 10)
+  ],
+  "4": [
+    () => mixedOps(10, 99, 1, 10, 99, 1),
+    () => nearMultiple(1, 99, 1, 9, 10, 1, 2),
+    () => doubles(11, 99, 1, 1, 2),
+    () => mixedOps(1, 99, 10, 1, 99, 10)
   ]
 };
 
