@@ -340,6 +340,31 @@ function nextMultiple(aLow, aHigh, aMod, multiple) {
   return [answer, equation];
 }
 
+function nextMultipleDec(aLow, aHigh, aMod, multiple) {
+
+  function cleanDec(number, dec) {
+
+    let length = Math.floor(number).toString(10).length;
+    return parseFloat(number.toPrecision(length + dec));
+  }
+
+  let a = rnd(aLow, aHigh);
+  while (a % 10 === 0) {
+    a = rnd(aLow, aHigh);
+  }
+  a *= 10**(aMod * -1);
+  a = cleanDec(a, aMod);
+
+  let c = (Math.floor(a / multiple) + 1) * multiple;
+
+  let answer = c - a;
+  answer = cleanDec(answer, aMod);
+  let equation = `${a} + ? = ${c}`;
+
+  console.log(answer, equation);
+  return [answer, equation];
+}
+
 function nearMultiple(aLow, aHigh, bLow, bHigh, bMod, rLow, rHigh) {
   let a = rnd(aLow, aHigh);
   let b = rnd(bLow, bHigh) * bMod;
@@ -1019,8 +1044,8 @@ let tests = {
   "5": [
     //() => mixedOpsDec(11, 99, 11, 99, 1, 2),
     //() => doublesDec(11, 99, 1, 0, 0),
-    () => halvesDec(12, 100, 1),
+    //() => halvesDec(12, 100, 1),
     //() => nextMultiple(1001, 9999, 1, 1000),
-    //() => nextMultiple(11, 99, .1, 1)
+    () => nextMultipleDec(11, 99, 1, 1)
   ]
 };
