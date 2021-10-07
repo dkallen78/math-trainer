@@ -139,12 +139,22 @@ function mixedOps(aLow, aHigh, aMod, bLow, bHigh, bMod) {
 }
 
 function mixedOpsDec(aLow, aHigh, aMod, bLow, bHigh, bMod) {
-
-  function cleanDec(number, dec) {
-
-    let length = Math.floor(number).toString(10).length;
-    return parseFloat(number.toPrecision(length + dec));
-  }
+  /*
+  //Creates an addition or subtraction problem with     //
+  //  decimal terms                                     //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the first term     //
+  //aHigh(integer): highest number for the first term   //
+  //aMod(integer): multiplicative modifier for the      //
+  //  first term                                        //
+  //bLow(integer): lowest number for the second term    //
+  //bHigh(integer): highest number for the second term  //
+  //bMod(integer): multiplicative modifier for the      //
+  //  second term                                       //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
 
   let aDec = rnd(rLow, rHigh);
   let a = rnd(aLow, aHigh) * 10**(aDec * -1);
@@ -254,12 +264,6 @@ function doublesDec(aLow, aHigh, aMod, rLow, rHigh) {
   //  equation and a string representation of it        //
   */
 
-  function cleanDec(number, dec) {
-
-    let length = Math.floor(number).toString(10).length;
-    return parseFloat(number.toPrecision(length + dec));
-  }
-
   let a = rnd(aLow, aHigh) * 10**(aMod * -1);
   a = cleanDec(a, aMod);
   let drift = rnd(rLow, rHigh);
@@ -295,7 +299,7 @@ function halves(aLow, aHigh, aMod) {
 }
 
 function halvesDec(aLow, aHigh, aMod) {
-  *
+  /*
   //Creates a "find the half" problem with decimals     //
   //----------------------------------------------------//
   //aLow(integer): lowest number for the term           //
@@ -306,12 +310,6 @@ function halvesDec(aLow, aHigh, aMod) {
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
   */
-
-  function cleanDec(number, dec) {
-
-    let length = Math.floor(number).toString(10).length;
-    return parseFloat(number.toPrecision(length + dec));
-  }
 
   let a = rnd(aLow, aHigh);
   if (a % 2 === 1) {
@@ -393,12 +391,6 @@ function nextMultipleDec(aLow, aHigh, aMod, multiple) {
   //  equation and a string representation of it        //
   */
 
-  function cleanDec(number, dec) {
-
-    let length = Math.floor(number).toString(10).length;
-    return parseFloat(number.toPrecision(length + dec));
-  }
-
   let a = rnd(aLow, aHigh);
   while (a % 10 === 0) {
     a = rnd(aLow, aHigh);
@@ -459,6 +451,20 @@ function nearMultiple(aLow, aHigh, bLow, bHigh, bMod, rLow, rHigh) {
   }
 
   return [answer, equation];
+}
+
+function cleanDec(number, dec) {
+  /*
+  //Cleans up the weird decimals                        //
+  //----------------------------------------------------//
+  //number(float): number to be cleaned up              //
+  //dec(integer): number of decimal places to include   //
+  //----------------------------------------------------//
+  //return(float): cleaned up number                    //
+  */
+
+  let length = Math.floor(number).toString(10).length;
+  return parseFloat(number.toPrecision(length + dec));
 }
 
 function makeElement(type, id, ...classes) {
