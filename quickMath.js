@@ -372,7 +372,7 @@ function nearMultiple(aLow, aHigh, bLow, bHigh, bMod, rLow, rHigh) {
   let answer;
   let equation;
   if (rnd(1, 50) % 2 === 0) {
-    drift = drift * -1;
+    drift *= -1;
   }
   b += drift;
   if (rnd(1, 50) % 2 === 0) {
@@ -380,7 +380,7 @@ function nearMultiple(aLow, aHigh, bLow, bHigh, bMod, rLow, rHigh) {
     equation = `${a} + ${b} = ?`;
   } else {
     while (b >= a) {
-      b = rnd(bLow, bHigh) + drift;
+      b = (rnd(bLow, bHigh) * bMod) + drift;
     }
     answer = a - b;
     equation = `${a} - ${b} = ?`;
@@ -596,6 +596,8 @@ function waitForAnswer(problem) {
   */
 
   return new Promise((resolve, reject) => {
+
+    console.log(problem.answer);
 
     let solutionDisplay = document.getElementById("solutionDisplay");
 
@@ -972,7 +974,7 @@ let user = {
   /*
     Data about the user
   */
-  level: 4,
+  level: 5,
   testLevel: 5,
   activeLevel: 0
 };
@@ -1008,7 +1010,10 @@ let levels = {
     () => mixedOps(1, 99, 10, 1, 99, 10)
   ],
   "5": [
-
+    //() => mixedOps(11, 99, 1, 11, 99, 1),
+    //() => mixedOps(11, 99, 10, 11, 99, 10),
+    () => nearMultiple(11, 99, 1, 9, 10, 1, 2),
+    () => nearMultiple(101, 999, 1, 9, 100, 1, 2)
   ]
 };
 
@@ -1042,10 +1047,10 @@ let tests = {
     () => nextMultiple(101, 999, 1, 100),
   ],
   "5": [
-    //() => mixedOpsDec(11, 99, 11, 99, 1, 2),
-    //() => doublesDec(11, 99, 1, 0, 0),
-    //() => halvesDec(12, 100, 1),
-    //() => nextMultiple(1001, 9999, 1, 1000),
+    () => mixedOpsDec(11, 99, 11, 99, 1, 2),
+    () => doublesDec(11, 99, 1, 0, 0),
+    () => halvesDec(12, 100, 1),
+    () => nextMultiple(1001, 9999, 1, 1000),
     () => nextMultipleDec(11, 99, 1, 1)
   ]
 };
