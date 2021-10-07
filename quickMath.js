@@ -237,6 +237,22 @@ function doubles(aLow, aHigh, aMod, rLow, rHigh) {
 }
 
 function doublesDec(aLow, aHigh, aMod, rLow, rHigh) {
+  /*
+  //Creates an near doubles addition problem involving  //
+  //  decimal terms                                     //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the term           //
+  //aHigh(integer): highest number for the term         //
+  //aMod(integer): multiplicative modifier for the      //
+  //  doubles                                           //
+  //rLow(integer): the low end of the potential         //
+  //  difference between the double pair                //
+  //rHigh(integer): the high end of the potential       //
+  //  difference between the double pair                //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
 
   function cleanDec(number, dec) {
 
@@ -255,6 +271,18 @@ function doublesDec(aLow, aHigh, aMod, rLow, rHigh) {
 }
 
 function halves(aLow, aHigh, aMod) {
+  /*
+  //Creates a "find the half" problem                   //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the term           //
+  //aHigh(integer): highest number for the term         //
+  //aMod(integer): multiplicative modifier for the      //
+  //  doubles                                           //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
+
   let a = rnd(aLow, aHigh);
   if (a % 2 === 1) {
     a--;
@@ -267,6 +295,17 @@ function halves(aLow, aHigh, aMod) {
 }
 
 function halvesDec(aLow, aHigh, aMod) {
+  *
+  //Creates a "find the half" problem with decimals     //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the term           //
+  //aHigh(integer): highest number for the term         //
+  //aMod(integer): multiplicative modifier for the      //
+  //  doubles                                           //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
 
   function cleanDec(number, dec) {
 
@@ -341,6 +380,18 @@ function nextMultiple(aLow, aHigh, aMod, multiple) {
 }
 
 function nextMultipleDec(aLow, aHigh, aMod, multiple) {
+  /*
+  //Creates an decimal addition problem that sums to a  //
+  //  set multiple of the multiple parameter            //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the first term     //
+  //aHigh(integer): highest number for the first term   //
+  //aMod(integer): multiplicative modifier              //
+  //multiple(integer): multiple to add up to            //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
 
   function cleanDec(number, dec) {
 
@@ -366,6 +417,27 @@ function nextMultipleDec(aLow, aHigh, aMod, multiple) {
 }
 
 function nearMultiple(aLow, aHigh, bLow, bHigh, bMod, rLow, rHigh) {
+  /*
+  //Creates an addition or subtraction problem where one//
+  //  of the terms is a near multiple of number         //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the first term     //
+  //aHigh(integer): highest number for the first term   //
+  //bLow(integer): lowest base number for the second    //
+  //  term                                              //
+  //bHigh(integer): highest base number for the second  //
+  //  term                                              //
+  //bMod(integer): multiplicative modifier for the      //
+  //  second term                                       //
+  //rLow(integer): low end of the potential offset from //
+  //  the multiple                                      //
+  //rHigh(integer): high end of the potential offset    //
+  //  from the multiple                                 //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
+
   let a = rnd(aLow, aHigh);
   let b = rnd(bLow, bHigh) * bMod;
   let drift = rnd(rLow, rHigh);
