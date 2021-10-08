@@ -124,19 +124,19 @@ function mixedOps(aLow, aHigh, aMod, bLow, bHigh, bMod) {
   return [answer, equation];
 }
 
-function mixedOpsDec(aLow, aHigh, aMod, bLow, bHigh, bMod) {
+function mixedOpsDec(aLow, aHigh, bLow, bHigh, rLow, rHigh) {
   /*
   //Creates an addition or subtraction problem with     //
   //  decimal terms                                     //
   //----------------------------------------------------//
   //aLow(integer): lowest number for the first term     //
   //aHigh(integer): highest number for the first term   //
-  //aMod(integer): multiplicative modifier for the      //
-  //  first term                                        //
   //bLow(integer): lowest number for the second term    //
   //bHigh(integer): highest number for the second term  //
-  //bMod(integer): multiplicative modifier for the      //
-  //  second term                                       //
+  //rLow(integer): lowest possible number of decimal    //
+  //  units                                             //
+  //rHigh(integer): highest possible number of decimal  //
+  //  units                                             //
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
@@ -435,6 +435,42 @@ function nearMultiple(aLow, aHigh, bLow, bHigh, bMod, rLow, rHigh) {
     answer = a - b;
     equation = `${a} - ${b} = ?`;
   }
+
+  return [answer, equation];
+}
+
+function nearMultipleDif(aLow, aHigh, bLow, bHigh, rLow, rHigh, multiple) {
+  /*
+  //Creates a subtraction problem given two near        //
+  //  multiples of a set number                         //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the first term     //
+  //aHigh(integer): highest number for the first term   //
+  //bLow(integer): lowest base number for the second    //
+  //  term                                              //
+  //bHigh(integer): highest base number for the second  //
+  //  term                                              //
+  //rLow(integer): low end of the potential offset from //
+  //  the multiple                                      //
+  //rHigh(integer): high end of the potential offset    //
+  //  from the multiple                                 //
+  //multiple(integer): multiple to which the terms      //
+  //  belong                                            //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
+
+  let range1 = rnd(rLow, rHigh);
+  range1 = (rnd(1, 50) % 2 === 0) ? range1 : range1 * -1;
+  let range2 = rnd(rLow, rHigh);
+  range2 = (rnd(1, 50) % 2 === 0) ? range2 : range2 * -1;
+  let a = (rnd(aLow, aHigh) * multiple) + range1;
+  let b = (rnd(bLow, bHigh) * multiple) + range2;
+  [a, b] = (a < b) ? [b, a] : [a, b];
+
+  let answer = a - b;
+  let equation = `${a} - ${b} =?`;
 
   return [answer, equation];
 }

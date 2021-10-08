@@ -506,8 +506,8 @@ let user = {
   /*
     Data about the user
   */
-  level: 5,
-  testLevel: 5,
+  level: 0,
+  testLevel: 1,
   activeLevel: 0
 };
 
@@ -542,10 +542,13 @@ let levels = {
     () => mixedOps(1, 99, 10, 1, 99, 10)
   ],
   "5": [
-    //() => mixedOps(11, 99, 1, 11, 99, 1),
-    //() => mixedOps(11, 99, 10, 11, 99, 10),
+    () => mixedOps(11, 99, 1, 11, 99, 1),
+    () => mixedOps(11, 99, 10, 11, 99, 10),
     () => nearMultiple(11, 99, 1, 9, 10, 1, 2),
-    () => nearMultiple(101, 999, 1, 9, 100, 1, 2)
+    () => nearMultiple(101, 999, 1, 9, 100, 1, 2),
+    () => mixedOpsDec(11, 99, 11, 99, 1, 1),
+    () => nearMultipleDif(1, 9, 1, 9, 1, 12, 100),
+    () => nearMultipleDif(1, 9, 1, 9, 1, 30, 1000)
   ]
 };
 
@@ -579,7 +582,7 @@ let tests = {
     () => nextMultiple(101, 999, 1, 100),
   ],
   "5": [
-    () => mixedOpsDec(11, 99, 11, 99, 1, 2),
+    () => mixedOpsDec(11, 99, 11, 99, 1, 1),
     () => doublesDec(11, 99, 1, 0, 0),
     () => halvesDec(12, 100, 1),
     () => nextMultiple(1001, 9999, 1, 1000),
