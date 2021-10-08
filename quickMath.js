@@ -508,7 +508,14 @@ let user = {
   */
   level: 0,
   testLevel: 1,
-  activeLevel: 0
+  activeLevel: 0,
+  testData: {
+    "1": {
+      a: 0,
+      b: 0,
+      c: 0
+    }
+  }
 };
 
 let levels = {
