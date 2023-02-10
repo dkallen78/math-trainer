@@ -7,9 +7,15 @@ To create a free platform for practicing and developing arithmetical skills.
 ## Current State of the Program
 
 At the moment it has a rough functionality. There is a title screen (super important =P),
-a level select menu, and the ability to practice three levels of mental math skills.
+a level select menu, and the ability to practice five levels of mental math skills (it's currently hard-coded to level 0).
+
+The current intent is for the user to start at level 0 and unlock all 6 levels. To unlock a level, the user must pass an assessment. Performance in the level will eventually unlock another "test" which will unlock a level. The problems range from simple (max sum of 10) to difficult (doubling decimal numbers and finding the next multiple). Target users are anywhere between first and eigth grade depending on ability.
+
+Assessments and levels are made up of a set number of problem types that are randomly chosen and randomly created. 
 
 ## Things to Add
+
+- [ ] Weight the randomized problem selector so that mastered problem types are chosen less often, especially during unlock levels
 
 - [x] Button feedback
 
