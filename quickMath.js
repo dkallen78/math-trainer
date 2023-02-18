@@ -246,7 +246,7 @@ async function practiceLoop() {
         let avg = user[dest][problem.level][problem.skill];
         user[dest][problem.level][problem.skill] = getAverage(avg, totalTime);
         console.clear();
-        console.log(user[dest][problem.level][problem.skill]);
+        console.log(user[dest][problem.level]);
         
         getNewProblem = true;
       })
