@@ -213,22 +213,56 @@ async function practiceLoop() {
   let problem;
   let problemDisplay = document.getElementById("problemDisplay");
 
+  let startTime, totalTime;
+
   while (!quit) {
 
+    //If it's the first pass of the loop or the
+    //  user has entered a correct answer, we 
+    //  get a new problem
     if (getNewProblem) {
       problem = getProblem();
     }
 
     problemDisplay.innerHTML = problem.equation;
     numPadOn();
+    startTime = Date.now();
 
+    //After the problem is displayed, waitForAnswer() 
+    //  patiently waits for the user to enter a number
+    //  and submit it
     await waitForAnswer(problem)
+
+      //If the user submits a correct answer, waitForAnswer() 
+      //  resolves without error, and the loop repeats
       .then(() => {
+        totalTime = Date.now() - startTime;
+        let dest;
+        if (problem.test) {
+          dest = "testData";
+        } else {
+          dest = "levelData";
+        }
+        let avg = user[dest][problem.level][problem.skill];
+        user[dest][problem.level][problem.skill] = getAverage(avg, totalTime);
+        console.clear();
+        console.log(user[dest][problem.level][problem.skill]);
+        
         getNewProblem = true;
       })
+
+      //If the user submits an incorrect answer or decides 
+      //  to quit, waitForAnswer() throws an error. An incorrect
+      //  answer will restart the loop with the same problem. If 
+      //  they quit, the loop will be broken
       .catch((end) => {
+
+        //If the user quits
         if (end) {
           quit = true;
+
+        //If the user submits an incorrect answer, the problemDisplay
+        //  elements jiggles
         } else {
           getNewProblem = false;
           let interval = 50;
@@ -270,7 +304,11 @@ function makeTitleScreen() {
 }
 
 async function makeModeSelectScreen() {
-
+  /*
+  //The start of the "loop." From here the user can
+  //  select which type of practice they want. Currently
+  //  only one option available
+  */
   async function waitForButton() {
 
     return new Promise((resolve, reject) => {
@@ -502,7 +540,7 @@ async function makePracticeScreen() {
   return true;
 }
 
-let user = {
+const user = {
   /*
     Data about the user
   */
@@ -511,14 +549,84 @@ let user = {
   activeLevel: 0,
   testData: {
     "1": {
-      a: 0,
-      b: 0,
-      c: 0
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0]
+    },
+    "2": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0],
+      "5": [0, 0]
+    },
+    "3": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0]
+    },
+    "4": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0],
+      "5": [0, 0]
+    },
+    "5": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0]
+    }
+  },
+  levelData: {
+    "1": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0]
+    },
+    "2": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0],
+      "5": [0, 0],
+      "6": [0, 0]
+    },
+    "3": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0]
+    },
+    "4": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0]
+    },
+    "5": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0],
+      "5": [0, 0],
+      "6": [0, 0]
     }
   }
 };
 
-let levels = {
+const levels = {
   "1": [
     () => mixedOps(1, 10, 1, 0, 10, 1),
     () => mixedOps(13, 19, 1, 0, 9, 1),
@@ -559,7 +667,7 @@ let levels = {
   ]
 };
 
-let tests = {
+const tests = {
   "1": [
     () => upTo(1, 9, 10),
     () => addition(2, 5, 1, 3, 5, 1),
