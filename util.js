@@ -18,12 +18,12 @@ function getAverage(averageTime, newTime) {
   //  average (averageTime) and the new time (newTime)  //
   //----------------------------------------------------//
   //averageTime(array)                                  //
-  //  [0](integer): current average time                //
+  //  [0](float): current average time                  //
   //  [1](integer): total items being averaged          //
   //newTime(integer): new time to add to the average    //
   //----------------------------------------------------//
   //return(array)                                       //
-  //  [0](integer): new average time                    //
+  //  [0](float): new average time                      //
   //  [1](integer): new total of items                  //
   */
 
