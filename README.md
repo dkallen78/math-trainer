@@ -1,5 +1,9 @@
 # [Untitled Math Trainer](https://dkallen78.github.io/math-trainer/quickMath.html)
 
+## Update 2023-02-17
+
+It's been a while and I'm getting back into the swing of things. Today's update was tracking average time to answer a question. Next up I'm going to tweak it so it takes into account the size of the problem. 
+
 ## Purpose
 
 To create a free platform for practicing and developing arithmetical skills.
@@ -25,9 +29,11 @@ Assessments and levels are made up of a set number of problem types that are ran
 
 - [ ] Determine best method of assessment
 
-   * For the core program I feel like the only assessment is the number of correct
-   answers. I had originally thought that time would be a metric of "mastery" but I'm
-   leaning towards it being a data point and not a determiner.
+   * I've settled on using a combination of time and accuracy to determine when to progress the user 
+   to the next level. I still need to do more work to determine what that will look like, most likely 
+   the user will have to maintain an average time per question over a minimum number of questions. One 
+   metric I've read said that 80 correct digits over two minutes is a reliable measure of fluency/mastery. 
+   That comes out to 1 digit correct ever 1.5 seconds
 
 - [ ] Keep track of user data
 
