@@ -351,7 +351,7 @@ async function makeLevelSelectScreen() {
 
     return new Promise((resolve, reject) => {
 
-      for (let i = 1; i <= 6; i++) {
+      for (let i = 1; i <= 12; i++) {
         /*
           Makes the buttons for the levels of mastery
         */
@@ -385,7 +385,7 @@ async function makeLevelSelectScreen() {
 
     let levelSelectScreen = makeElement("div", "levelSelectScreen", "screen");
 
-      for (let i = 1; i <= 6; i++) {
+      for (let i = 1; i <= 12; i++) {
         /*
           Makes the buttons for the levels of mastery
         */

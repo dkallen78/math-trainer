@@ -75,9 +75,12 @@ body {
 }
 
 #levelSelectScreen {
-  display: flex;
+  /*display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center;*/
+  display: grid;
+  grid-template-columns: 50% 50%;
+  align-content: center;
   height: 100vh;
   width: 100vw;
   text-align: center;
@@ -87,11 +90,16 @@ body {
 #levelSelectScreen > button {
   margin: .5vh;
   padding: .5vh;
-  font-size: 5vh;
+  /*font-size: 5vh;*/
+  font-size: 3vh;
   font-family: sans-serif;
   background-color: var(--transparent);
   border: .2rem solid var(--main-color);
   border-radius: 1rem;
+}
+
+#backButton {
+  grid-column: 1 / 3;
 }
 
 #readyScreen, #practiceScreen {
@@ -200,7 +208,8 @@ body {
   }
 
   .screen {
-    width: 25vw !important;
+    /*width: 25vw !important;*/
+    width: 30vw !important;
   }
 
   #practiceScreen {
