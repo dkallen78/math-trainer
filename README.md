@@ -1,8 +1,19 @@
 # [Untitled Math Trainer](https://dkallen78.github.io/math-trainer/quickMath.html)
 
-## Update 2023-02-17
+## Update 2023-02-18
 
-It's been a while and I'm getting back into the swing of things. Today's update was tracking average time to answer a question. Next up I'm going to tweak it so it takes into account the size of the problem. 
+I tweaked the method of calculating the average so it calculates number of correct digits per millisecond. I've seen fluency calculated this way in a couple of papers, 
+notably [VanDerHeyden & Solomon (2023)](https://www.researchgate.net/publication/368242548_Valid_Outcomes_for_Screening_and_Progress-Monitoring_Fluency_is_Superior_to_Accuracy_in_Curriculum-Based_Measurement). I haven't read anything about the rigor 
+of that metric but it makes sense to accomodate more time for problems that have answers with more digits to compensate for the extra time to calculate a larger number.
+
+I also made it so my averages were integers just because those floats can get a little long after the decimal. 
+
+I fixed a bug where the timer would reset after every wrong answer instead of continuing to run until a correct answer was submitted.
+
+Finally, I removed the getAverage function from my util.js file and made it a method of my user object. It makes my code a bit uglier in some places, but more readable in others. 
+I'm not sure it's an improvement, but it doesn't take away from anything.
+
+Next up, I'm going to implement a way for the levels to progress.
 
 ## Purpose
 
@@ -345,3 +356,7 @@ of the 20th century when there was a revival in interest. And here we are again.
 The exception is [Haskins, (1887)](https://www.jstor.org/stable/44464091) who gives
 examples that would be familiar to teachers today, such as counting by 2s up and down
 the number line.
+
+## Update 2023-02-17
+
+It's been a while and I'm getting back into the swing of things. Today's update was tracking average time to answer a question. Next up I'm going to tweak it so it takes into account the size of the problem. 

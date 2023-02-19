@@ -12,26 +12,6 @@ function rnd(floor, ceiling) {
   return Math.floor((Math.random() * range) + floor);
 }
 
-function getAverage(averageTime, newTime) {
-  /*
-  //Calculates a new average time given the previous    //
-  //  average (averageTime) and the new time (newTime)  //
-  //----------------------------------------------------//
-  //averageTime(array)                                  //
-  //  [0](float): current average time                  //
-  //  [1](integer): total items being averaged          //
-  //newTime(integer): new time to add to the average    //
-  //----------------------------------------------------//
-  //return(array)                                       //
-  //  [0](float): new average time                      //
-  //  [1](integer): new total of items                  //
-  */
-
-  averageTime[0] = ((averageTime[0] * averageTime[1]) + newTime) / (averageTime[1] + 1);
-  averageTime[1]++;
-  return averageTime;
-}
-
 function makeElement(type, id, ...classes) {
   /*
   //Returns an HTML element                             //

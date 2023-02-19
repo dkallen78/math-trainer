@@ -186,17 +186,20 @@ function getProblem() {
     test: true,
     level: 0,
     skill: 0,
-    attempts: 0
+    attempts: 0,
+    destination: ""
   };
 
   if (user.activeLevel === 0) {
     problem.level = user.testLevel;
     problem.skill = rnd(0, (tests[user.testLevel].length - 1));
+    problem.destination = "testData";
     [problem.answer, problem.equation] = tests[user.testLevel][problem.skill]();
   } else {
     problem.test = false;
     problem.level = user.activeLevel;
     problem.skill = rnd(0, (levels[user.activeLevel].length - 1));
+    problem.destination = "levelData";
     [problem.answer, problem.equation] = levels[user.activeLevel][problem.skill]();
   }
 
@@ -222,11 +225,12 @@ async function practiceLoop() {
     //  get a new problem
     if (getNewProblem) {
       problem = getProblem();
+      startTime = Date.now();
     }
 
     problemDisplay.innerHTML = problem.equation;
     numPadOn();
-    startTime = Date.now();
+    
 
     //After the problem is displayed, waitForAnswer() 
     //  patiently waits for the user to enter a number
@@ -237,16 +241,9 @@ async function practiceLoop() {
       //  resolves without error, and the loop repeats
       .then(() => {
         totalTime = Date.now() - startTime;
-        let dest;
-        if (problem.test) {
-          dest = "testData";
-        } else {
-          dest = "levelData";
-        }
-        let avg = user[dest][problem.level][problem.skill];
-        user[dest][problem.level][problem.skill] = getAverage(avg, totalTime);
+        user.updateAverage(problem, totalTime);
         console.clear();
-        console.log(user[dest][problem.level]);
+        console.log(user[problem.destination][problem.level]);
         
         getNewProblem = true;
       })
@@ -623,6 +620,28 @@ const user = {
       "5": [0, 0],
       "6": [0, 0]
     }
+  },
+  updateAverage: function(problem, newTime) {
+    /*
+    //Calculates a new average time given the previous    //
+    //  average and the new time                          //
+    //----------------------------------------------------//
+    //problem(object): contains details about the problem //
+    //  .answer(float): answer to the problem             //
+    //  .destination(string): where to update the new avg //
+    //  .level(integer): difficulty level of the problem  //
+    //  .skill(integer): which skill record to update     //
+    //newTime(integer): new time to add to the running avg//
+    */
+
+    let newAvg;
+    let newDigits = problem.answer.toString(10).length;
+    let oldAvg = this[problem.destination][problem.level][problem.skill][0];
+    let oldDigits = this[problem.destination][problem.level][problem.skill][1];
+
+    newAvg = ((oldAvg * oldDigits) + newTime) / (oldDigits + newDigits);
+    newDigits += oldDigits;
+    this[problem.destination][problem.level][problem.skill] = [Math.round(newAvg), newDigits];
   }
 };
 
