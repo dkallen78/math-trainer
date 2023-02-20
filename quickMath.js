@@ -131,7 +131,7 @@ function waitForAnswer(problem) {
 
   return new Promise((resolve, reject) => {
 
-    console.log(problem.answer);
+    console.log(problem.answer, problem.skill);
 
     let solutionDisplay = document.getElementById("solutionDisplay");
 
@@ -175,7 +175,7 @@ function waitForAnswer(problem) {
   });
 }
 
-function getProblem() {
+function getProblem(weight) {
   /*
   //Gets a problem to display based on the user's level
   */
@@ -183,28 +183,30 @@ function getProblem() {
   let problem = {
     answer: 0,
     equation: "",
-    /*test: true,*/
     level: 0,
     skill: 0,
     attempts: 0,
-    /*destination: ""*/
   };
 
-  /*if (user.activeLevel === 0) {
-    problem.level = user.testLevel;
-    problem.skill = rnd(0, (tests[user.testLevel].length - 1));
-    problem.destination = "testData";
-    [problem.answer, problem.equation] = tests[user.testLevel][problem.skill]();
-  } else {
-    problem.test = false;
-    problem.level = user.activeLevel;
-    problem.skill = rnd(0, (levels[user.activeLevel].length - 1));
-    problem.destination = "levelData";
-    [problem.answer, problem.equation] = levels[user.activeLevel][problem.skill]();
-  }*/
+  let weightSum = 0;
+  let activeSkills = 1;
+  let activeWeight = [];
+  weight.forEach((element, index) => {
+    if (element > 0) {
+      activeWeight[index] = activeSkills * 10;
+      activeSkills++;
+      weightSum += 10;
+    }
+  });
+  
 
   problem.level = user.activeLevel;
-  problem.skill = rnd(0, (levels[user.activeLevel].length - 1));
+
+  let chance = rnd(1, weightSum);
+
+  problem.skill = activeWeight.findIndex((element) => chance <= element);
+  
+  //problem.skill = rnd(0, (levels[user.activeLevel].length - 1));
   [problem.answer, problem.equation] = levels[user.activeLevel][problem.skill]();
 
   return problem;
@@ -222,13 +224,15 @@ async function practiceLoop() {
 
   let startTime, totalTime;
 
+  let weight = new Array(levels[user.activeLevel].length).fill(10);
+
   while (!quit) {
 
     //If it's the first pass of the loop or the
     //  user has entered a correct answer, we 
     //  get a new problem
     if (getNewProblem) {
-      problem = getProblem();
+      problem = getProblem(weight);
       startTime = Date.now();
     }
 
@@ -246,8 +250,14 @@ async function practiceLoop() {
       .then(() => {
         totalTime = Date.now() - startTime;
         user.updateAverage(problem, totalTime);
-        console.clear();
-        console.log(user.levelData[problem.level]);
+
+        if (user.levelData[problem.level][problem.skill][0] < 2000 && 
+            user.levelData[problem.level][problem.skill][1] > 10) {
+              weight[problem.skill] = -1;
+              console.log(`Skill ${problem.skill} completed`);
+        }
+        //console.clear();
+        //console.log(user.levelData[problem.level]);
         
         getNewProblem = true;
       })
@@ -366,13 +376,13 @@ async function makeLevelSelectScreen() {
             await makePracticeScreen();
             resolve(false);
           }
-        } else if (user.testLevel === i) {
+        } /*else if (user.testLevel === i) {
           button.onclick = async () => {
             user.activeLevel = 0;
             await makePracticeScreen();
             resolve(false);
           }
-        }
+        }*/
       }
 
       let button = document.getElementById("backButton");
@@ -397,8 +407,6 @@ async function makeLevelSelectScreen() {
         let buttFunc;
         if (user.level >= i) {
           buttText = `Level ${i}`;
-        } else if (user.testLevel === i) {
-          buttText = `Unlock Level ${i}`;
         } else {
           buttText = "Locked";
         }
@@ -760,7 +768,7 @@ const levels = {
   ]
 };
 
-const tests = {
+/*const tests = {
   "1": [
     () => upTo(1, 9, 10),
     () => addition(2, 5, 1, 3, 5, 1),
@@ -796,4 +804,4 @@ const tests = {
     () => nextMultiple(1001, 9999, 1, 1000),
     () => nextMultipleDec(11, 99, 1, 1)
   ]
-};
+};*/

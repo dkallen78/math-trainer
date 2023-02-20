@@ -17,6 +17,12 @@ Now I need to decide what the metric for mastery is in a particular skill. My fi
 2000 ms but I worry that the means of number input can have a big effect on that time. I have great typing speed so my hands can keep up with the answers, but if a user is inputing 
 numbers on the number pad with a mouse, then it might be hard to achieve that time. I'll get something working before I worry about it much more.
 
+### 22:00
+
+I can now evaluate "mastery/fluency" based on correct digits per millisecond. Once a skill has been "mastered" it stops being selected by the getProblem function due to a new 
+weight system I added as well. As things are now, when the user masters all skills in a level, the app crashes =P My next task is to figure out what to do when the player has 
+conquered a skill. Should I have a progress bar? Should I fall back to the level menu when a level is mastered? Decisions, decisions...
+
 ## Purpose
 
 To create a free platform for practicing and developing arithmetical skills.
