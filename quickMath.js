@@ -183,14 +183,14 @@ function getProblem() {
   let problem = {
     answer: 0,
     equation: "",
-    test: true,
+    /*test: true,*/
     level: 0,
     skill: 0,
     attempts: 0,
-    destination: ""
+    /*destination: ""*/
   };
 
-  if (user.activeLevel === 0) {
+  /*if (user.activeLevel === 0) {
     problem.level = user.testLevel;
     problem.skill = rnd(0, (tests[user.testLevel].length - 1));
     problem.destination = "testData";
@@ -201,7 +201,11 @@ function getProblem() {
     problem.skill = rnd(0, (levels[user.activeLevel].length - 1));
     problem.destination = "levelData";
     [problem.answer, problem.equation] = levels[user.activeLevel][problem.skill]();
-  }
+  }*/
+
+  problem.level = user.activeLevel;
+  problem.skill = rnd(0, (levels[user.activeLevel].length - 1));
+  [problem.answer, problem.equation] = levels[user.activeLevel][problem.skill]();
 
   return problem;
 }
@@ -243,7 +247,7 @@ async function practiceLoop() {
         totalTime = Date.now() - startTime;
         user.updateAverage(problem, totalTime);
         console.clear();
-        console.log(user[problem.destination][problem.level]);
+        console.log(user.levelData[problem.level]);
         
         getNewProblem = true;
       })
@@ -541,10 +545,10 @@ const user = {
   /*
     Data about the user
   */
-  level: 0,
-  testLevel: 1,
+  level: 5,
+  /*testLevel: 1,*/
   activeLevel: 0,
-  testData: {
+  /*testData: {
     "1": {
       "0": [0, 0],
       "1": [0, 0],
@@ -580,16 +584,29 @@ const user = {
       "3": [0, 0],
       "4": [0, 0]
     }
-  },
+  },*/
   levelData: {
     "1": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0]
+    },
+    "2": {
       "0": [0, 0],
       "1": [0, 0],
       "2": [0, 0],
       "3": [0, 0],
       "4": [0, 0]
     },
-    "2": {
+    "3": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0],
+      "5": [0, 0]
+    },
+    "4": {
       "0": [0, 0],
       "1": [0, 0],
       "2": [0, 0],
@@ -598,20 +615,42 @@ const user = {
       "5": [0, 0],
       "6": [0, 0]
     },
-    "3": {
+    "5": {
       "0": [0, 0],
       "1": [0, 0],
       "2": [0, 0],
       "3": [0, 0],
       "4": [0, 0]
     },
-    "4": {
+    "6": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0]
+    },
+    "7": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0],
+      "5": [0, 0]
+    },
+    "8": {
       "0": [0, 0],
       "1": [0, 0],
       "2": [0, 0],
       "3": [0, 0]
     },
-    "5": {
+    "9": {
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0],
+      "4": [0, 0]
+    },
+    "10": {
       "0": [0, 0],
       "1": [0, 0],
       "2": [0, 0],
@@ -636,24 +675,37 @@ const user = {
 
     let newAvg;
     let newDigits = problem.answer.toString(10).length;
-    let oldAvg = this[problem.destination][problem.level][problem.skill][0];
-    let oldDigits = this[problem.destination][problem.level][problem.skill][1];
+    let oldAvg = this.levelData[problem.level][problem.skill][0];
+    let oldDigits = this.levelData[problem.level][problem.skill][1];
 
     newAvg = ((oldAvg * oldDigits) + newTime) / (oldDigits + newDigits);
     newDigits += oldDigits;
-    this[problem.destination][problem.level][problem.skill] = [Math.round(newAvg), newDigits];
+    this.levelData[problem.level][problem.skill] = [Math.round(newAvg), newDigits];
   }
 };
 
 const levels = {
   "1": [
+    () => upTo(1, 9, 10),
+    () => addition(2, 5, 1, 3, 5, 1),
+    () => doubles(1, 9, 1, 0, 0)
+  ],
+  "2": [
     () => mixedOps(1, 10, 1, 0, 10, 1),
     () => mixedOps(13, 19, 1, 0, 9, 1),
     () => mixedOps(10, 10, 1, 0, 9, 1),
     () => addition(1, 9, 1, 1, 9, 10),
     () => doubles(1, 9, 1, 1, 1)
   ],
-  "2": [
+  "3": [
+    () => mixedOps(1, 10, 1, 0, 10, 1),
+    () => maxSum(20, 1),
+    () => maxSum(10, 10),
+    () => nextMultiple(11, 89, 1, 10),
+    () => doubles(1, 20, 1, 0, 0),
+    () => doubles(1, 5, 10, 0, 0)
+  ],
+  "4": [
     () => mixedOps(1, 10, 1, 1, 10, 1),
     () => addition(1, 9, 1, 1, 9, 10),
     () => subtract(1, 9, 10, 1, 9, 1),
@@ -662,20 +714,42 @@ const levels = {
     () => doubles(11, 30, 1, 1, 1),
     () => doubles(1, 6, 10, 1, 1)
   ],
-  "3": [
+  "5": [
+    () => addition(4, 9, 1, 4, 9, 1),
+    () => subtract(10, 20, 1, 1, 19),
+    () => mixedOps(1, 15, 10, 1, 10, 10),
+    () => upTo(11, 89, 100),
+    () => doubles(1, 10, 10, 0, 0)
+  ],
+  "6": [
     () => mixedThrees(1, 5, 1, 5, 1, 5),
     () => mixedOps(1, 10, 10, 11, 99, 1),
     () => mixedOps(11, 99, 1, 11, 99, 1),
     () => doubles(11, 30, 1, 1, 2),
     () => doubles(1, 9, 10, 10, 10)
   ],
-  "4": [
+  "7": [
+    () => mixedOps(1, 9, 10, 1, 9, 10),
+    () => mixedOps(1, 9, 100, 1, 9, 100),
+    () => mixedOps(1, 9, 1000, 1, 9, 1000),
+    () => doubles(1, 100, 1, 0, 0),
+    () => halves(2, 100, 1),
+    () => nextMultiple(101, 999, 1, 100),
+  ],
+  "8": [
     () => mixedOps(10, 99, 1, 10, 99, 1),
     () => nearMultiple(1, 99, 1, 9, 10, 1, 2),
     () => doubles(11, 99, 1, 1, 2),
     () => mixedOps(1, 99, 10, 1, 99, 10)
   ],
-  "5": [
+  "9": [
+    () => mixedOpsDec(11, 99, 11, 99, 1, 1),
+    () => doublesDec(11, 99, 1, 0, 0),
+    () => halvesDec(12, 100, 1),
+    () => nextMultiple(1001, 9999, 1, 1000),
+    () => nextMultipleDec(11, 99, 1, 1)
+  ],
+  "10": [
     () => mixedOps(11, 99, 1, 11, 99, 1),
     () => mixedOps(11, 99, 10, 11, 99, 10),
     () => nearMultiple(11, 99, 1, 9, 10, 1, 2),

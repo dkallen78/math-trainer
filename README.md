@@ -9,6 +9,14 @@ no reason to force it to work. Instead I'm just going to have 12 levels (for now
 
 Having said that, I've just updated the interface for now and I'll be uploading the internal functionality later tonight I hope.
 
+### 18:20
+
+It works. The "test" levels are now just normal levels. 
+
+Now I need to decide what the metric for mastery is in a particular skill. My first instinct is at least 40 digits correct with an average correct response time per digit less than 
+2000 ms but I worry that the means of number input can have a big effect on that time. I have great typing speed so my hands can keep up with the answers, but if a user is inputing 
+numbers on the number pad with a mouse, then it might be hard to achieve that time. I'll get something working before I worry about it much more.
+
 ## Purpose
 
 To create a free platform for practicing and developing arithmetical skills.
