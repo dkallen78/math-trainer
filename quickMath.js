@@ -1,3 +1,38 @@
+//Enables the Web Audio API
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+let pent = [130.81, 146.83, 164.81, 196, 220];
+
+let japE4 = [164.81, 174.61, 220, 246.94, 261.63];
+
+function playKeySound() {
+  /*
+  //Generates the tone that plays when the player inputs  //
+  //   a number or other numberpad function               //
+  */
+
+  //determines the random tone to be played from a pentatonic scale
+  let note = rnd(0, 4);
+
+  //creates the oscillator node that generates the tone
+  const oscillator = audioCtx.createOscillator();
+  //creates the gain node that controls the volume of the tone
+  const gainNode = audioCtx.createGain();
+  //connects the oscillator to the gain which is connected to 
+  //  the audio output
+  oscillator.connect(gainNode).connect(audioCtx.destination);
+  //sets the type of wave form for the oscillator to generate
+  oscillator.type = 'sine';
+  //sets the frequency (note) of the oscillator and sets when 
+  //  to start the oscillator
+  oscillator.frequency.setValueAtTime(pent[note], audioCtx.currentTime); 
+  oscillator.start();
+  //fades out the oscillator over a set period of time
+  gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
+  //stops the oscillator once the gain has been reduced
+  oscillator.stop(audioCtx.currentTime + 0.25);
+}
+
 function makeNumberPad() {
   /*
   //Makes and returns a div element with a number pad   //
@@ -47,18 +82,54 @@ function numPadOn() {
   //Enables the onclick functions of the number pad
   */
 
-  document.getElementById("button1").onclick = function() {inputNumber("1")};
-  document.getElementById("button2").onclick = function() {inputNumber("2")};
-  document.getElementById("button3").onclick = function() {inputNumber("3")};
-  document.getElementById("button4").onclick = function() {inputNumber("4")};
-  document.getElementById("button5").onclick = function() {inputNumber("5")};
-  document.getElementById("button6").onclick = function() {inputNumber("6")};
-  document.getElementById("button7").onclick = function() {inputNumber("7")};
-  document.getElementById("button8").onclick = function() {inputNumber("8")};
-  document.getElementById("button9").onclick = function() {inputNumber("9")};
-  document.getElementById("button0").onclick = function() {inputNumber("0")};
-  document.getElementById("buttonBack").onclick = function() {inputNumber("-1")};
-  document.getElementById("buttonDecimal").onclick = function() {inputNumber(".")};
+  document.getElementById("button1").onclick = function() {
+    playKeySound();
+    inputNumber("1");
+  }
+  document.getElementById("button2").onclick = function() {
+    playKeySound();
+    inputNumber("2");
+  }
+  document.getElementById("button3").onclick = function() {
+    playKeySound();
+    inputNumber("3");
+  }
+  document.getElementById("button4").onclick = function() {
+    playKeySound();
+    inputNumber("4");
+  }
+  document.getElementById("button5").onclick = function() {
+    playKeySound();
+    inputNumber("5");
+  }
+  document.getElementById("button6").onclick = function() {
+    playKeySound();
+    inputNumber("6");
+  }
+  document.getElementById("button7").onclick = function() {
+    playKeySound();
+    inputNumber("7");
+  }
+  document.getElementById("button8").onclick = function() {
+    playKeySound();
+    inputNumber("8");
+  }
+  document.getElementById("button9").onclick = function() {
+    playKeySound();
+    inputNumber("9");
+  }
+  document.getElementById("button0").onclick = function() {
+    playKeySound();
+    inputNumber("0");
+  }
+  document.getElementById("buttonBack").onclick = function() {
+    playKeySound();
+    inputNumber("-1");
+  }
+  document.getElementById("buttonDecimal").onclick = function() {
+    playKeySound();
+    inputNumber(".");
+  }
 
   return null;
 }
@@ -138,16 +209,20 @@ function waitForAnswer(problem) {
     document.onkeydown = event => {
       let key = parseInt(event.key, 10);
       if ((key >= 0 && key <= 9 || event.key === ".")) {
+        playKeySound();
         inputNumber(event.key);
       } else if (event.key === "Backspace") {
+        playKeySound();
         inputNumber("-1");
       } else if (event.key === "Escape") {
         reject(true);
       } else if (event.key === "Enter") {
+        
         let solution = parseFloat(solutionDisplay.innerHTML, 10);
         clearElement(solutionDisplay);
 
         if (problem.answer === solution) {
+          playKeySound();
           resolve();
         } else {
           reject(false);
@@ -167,6 +242,7 @@ function waitForAnswer(problem) {
       clearElement(solutionDisplay);
 
       if (problem.answer === solution) {
+        playKeySound()
         resolve();
       } else {
         reject(false);

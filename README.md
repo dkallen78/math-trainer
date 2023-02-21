@@ -1,27 +1,13 @@
 # [Untitled Math Trainer](https://dkallen78.github.io/math-trainer/quickMath.html)
 
-## Update 2023-02-19
+## Update 2023-02-20
 
-### 16:00
+### 23:00
 
-I've changed the level paradigm. Previously I had regular levels and "test" levels that would unlock the regular level. That's too complicated. It can work, but there's 
-no reason to force it to work. Instead I'm just going to have 12 levels (for now) and when you achieve a certain degree of mastery, the next level will be made available. 
+I shifted gears a little bit today. I wanted to have some kind of sonic feedback when pressing the keys and I've been experimenting with the Web Audio API and having each key press 
+generate a random note on the pentatonic scale. It works and it doesn't sound too bad but something's off with it. You should be able to play with it to see where it's at right now. 
 
-Having said that, I've just updated the interface for now and I'll be uploading the internal functionality later tonight I hope.
-
-### 18:20
-
-It works. The "test" levels are now just normal levels. 
-
-Now I need to decide what the metric for mastery is in a particular skill. My first instinct is at least 40 digits correct with an average correct response time per digit less than 
-2000 ms but I worry that the means of number input can have a big effect on that time. I have great typing speed so my hands can keep up with the answers, but if a user is inputing 
-numbers on the number pad with a mouse, then it might be hard to achieve that time. I'll get something working before I worry about it much more.
-
-### 22:00
-
-I can now evaluate "mastery/fluency" based on correct digits per millisecond. Once a skill has been "mastered" it stops being selected by the getProblem function due to a new 
-weight system I added as well. As things are now, when the user masters all skills in a level, the app crashes =P My next task is to figure out what to do when the player has 
-conquered a skill. Should I have a progress bar? Should I fall back to the level menu when a level is mastered? Decisions, decisions...
+It's currently set to the pentatonic major scale in A. I'm thinking of having correct answers play a pleasing chord and incorrect answers play a dissonant chord. I've got a little practice program where I'm experimenting with the combinatiosn of sounds. Hopefully I can finalize something this week.
 
 ## Purpose
 
@@ -383,3 +369,26 @@ Finally, I removed the getAverage function from my util.js file and made it a me
 I'm not sure it's an improvement, but it doesn't take away from anything.
 
 Next up, I'm going to implement a way for the levels to progress.
+
+## Update 2023-02-19
+
+### 16:00
+
+I've changed the level paradigm. Previously I had regular levels and "test" levels that would unlock the regular level. That's too complicated. It can work, but there's 
+no reason to force it to work. Instead I'm just going to have 12 levels (for now) and when you achieve a certain degree of mastery, the next level will be made available. 
+
+Having said that, I've just updated the interface for now and I'll be uploading the internal functionality later tonight I hope.
+
+### 18:20
+
+It works. The "test" levels are now just normal levels. 
+
+Now I need to decide what the metric for mastery is in a particular skill. My first instinct is at least 40 digits correct with an average correct response time per digit less than 
+2000 ms but I worry that the means of number input can have a big effect on that time. I have great typing speed so my hands can keep up with the answers, but if a user is inputing 
+numbers on the number pad with a mouse, then it might be hard to achieve that time. I'll get something working before I worry about it much more.
+
+### 22:00
+
+I can now evaluate "mastery/fluency" based on correct digits per millisecond. Once a skill has been "mastered" it stops being selected by the getProblem function due to a new 
+weight system I added as well. As things are now, when the user masters all skills in a level, the app crashes =P My next task is to figure out what to do when the player has 
+conquered a skill. Should I have a progress bar? Should I fall back to the level menu when a level is mastered? Decisions, decisions...
