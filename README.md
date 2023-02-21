@@ -9,6 +9,10 @@ generate a random note on the pentatonic scale. It works and it doesn't sound to
 
 It's currently set to the pentatonic major scale in A. I'm thinking of having correct answers play a pleasing chord and incorrect answers play a dissonant chord. I've got a little practice program where I'm experimenting with the combinatiosn of sounds. Hopefully I can finalize something this week.
 
+### 23:30
+
+I'm going to bed, but before I do I'm putting the html file I'm using to fine tune everything up here as well, enjoy.
+
 ## Purpose
 
 To create a free platform for practicing and developing arithmetical skills.

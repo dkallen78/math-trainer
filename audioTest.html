@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Title
+    </title>
+    <!--
+      <link rel="stylesheet" href="stylesheet.css">
+      <link rel="stylesheet" href="stylesheet.css" media="print">
+    -->
+    <!--
+      web apps only
+      <meta name="application-name" content="Application Name">
+    -->
+    <meta name="description" content="description">
+
+    <meta property="og:title" content="Title">
+    <meta property="og:description" content="description">
+    <meta property="og:image" content="xxx.jpg">
+    <meta property="og:locale" content="en_US">
+    <!--es_MX-->
+    <meta property="og:type" content="website">
+    <!--
+      music.song/album/playlist/radio_station
+      video.movie/episode/tv_show/other
+      article
+      book
+      profile
+      website
+    -->
+    <meta property="og:url" content="https://www.site.com/page">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:creator" content="">
+
+    <!--
+      <script src="script.js">
+      </script>
+    -->
+    <style>
+    </style>
+  </head>
+  <body>
+    <label for="key">Choose key</label>
+    <select name="key" id="key">
+      <option value=24>A</option>
+      <option value=26>B</option>
+      <option value=27>C</option>
+      <option value=29>D</option>
+      <option value=31>E</option>
+      <option value=32>F</option>
+      <option value=34>G</option>
+    </select>
+
+    <label for=""scale">Choose scale</label>
+    <select name="scale" id="scale">
+      <option value="pentMaj">pentMaj</option>
+      <option value="pentMin">pentMin</option>
+      <option value="jap">jap</option>
+    </select>
+
+    <button type="button" onclick="set()">Set</button>
+    <br><br>
+    <button type="button" onclick="sound()">Random Tone</button>
+    <br>
+    <button type="button" onclick="doit()">Major Third</button>
+    <br>
+    <button type="button" onclick="tritone()">Tritone</button>
+ 
+  </body>
+  <script>
+
+function rnd(floor, ceiling) {
+  /*
+  //Generates a random number within a range of numbers //
+  //----------------------------------------------------//
+  //floor(integer): lower bound of the random number    //
+  //ceiling(integer): upper bound of the random number  //
+  //----------------------------------------------------//
+  //return(integer): random number w/in the range       //
+  */
+
+  let range = (ceiling - floor) + 1;
+  return Math.floor((Math.random() * range) + floor);
+}
+
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+
+let pent = [130.81, 146.83, 164.81, 196, 220];
+
+let scale, key;
+//let currentScale = new Array(5).fill(0);
+let currentScale = [];
+let scales = {
+  pentMaj: [0, 2, 4, 7, 9, 12],
+  pentMin: [0, 3, 5, 7, 10],
+  jap: [0, 2, 5, 7, 9]
+}
+
+let notes = [
+  110, 116.54, 123.47, 
+  130.81, 138.59, 146.83, 155.56, 164.81, 174.61, 185, 196, 207.65, 220, 233.08, 246.94,
+  261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392, 415.3, 440, 466.16, 493.88,
+  523.25, 554.37, 587.33, 622.25, 659.25, 698.46, 739.99, 783.99, 830.61, 880, 932.33, 987.77,
+  1046.5, 1108.73, 1174.66, 1244.51, 1318.51, 1396.91, 1479.98, 1567.98, 1661.22, 1670, 1864.66, 1975.53,
+  2093, 2217.46, 2349.32, 2489.02, 2637.02, 2793.83, 2959.96, 3135.96, 3322.44, 3520
+];
+
+/*let notes = {
+  A2: 110,
+  Bb2: 116.54,
+  B2: 123.47,
+  C3: 130.81,
+  Db3: 138.59,
+  D3: 146.83,
+  Eb3: 155.56,
+  E3: 164.81,
+  F3: 174.61,
+  Gb3: 185,
+  G3: 196,
+  Ab3: 207.65,
+  A3: 220,
+  Bb3: 233.08,
+  B3: 246.94,
+  C4: 261.63,
+  Db4: 277.18,
+  D4: 293.66,
+  Eb4: 311.13,
+  E4: 329.63,
+  F4: 349.23,
+  Gb4: 369.99,
+  G4: 392,
+  Ab4: 415.3,
+  A4: 440,
+  Bb4: 466.16,
+  B4: 493.88,
+  C5: 523.25,
+  Db5: 554.37,
+  D5: 587.33,
+  Eb5: 622.25,
+  E5: 659.25,
+  F5: 698.46,
+  Gb5: 739.99,
+  G5: 783.99,
+  Ab5: 830.61,
+  A5: 880,
+  Bb5: 932.33,
+  B5: 987.77,
+  C6: 1046.5,
+  Db6: 1108.73,
+  D6: 1174.66,
+  Eb6: 1244.51,
+  E6: 1318.51,
+  F6: 1396.91,
+  Gb6: 1479.98,
+  G6: 1567.98,
+  Ab6: 1661.22,
+  A6: 1670,
+  Bb6: 1864.66,
+  B6: 1975.53,
+  C7: 2093,
+  Db7: 2217.46,
+  D7: 2349.32,
+  Eb7: 2489.02,
+  E7: 2637.02,
+  F7: 2793.83,
+  Gb7: 2959.96,
+  G7: 3135.96,
+  Ab7: 3322.44,
+  A7: 3520
+}
+*/
+
+function set() {
+  scale = document.getElementById("scale").value;
+  key = parseInt(document.getElementById("key").value);
+
+  //let noteArray = Object.keys(notes);
+
+  //let tonic = noteArray.indexOf(key)
+  let tonic = key;
+
+  for (let i = 0; i < scales[scale].length; i++) {
+    currentScale[i] = notes[tonic + scales[scale][i]];
+  }
+
+  /*for (let i = 0; i < currentScale.length; i++) {
+    currentScale[i] = notes[noteArray[tonic + (scales[scale][i])]]
+  }*/
+}
+
+function tritone() {
+  let decay = 0.07;
+  const oscillator = audioCtx.createOscillator();
+
+  const gainNode = audioCtx.createGain();
+
+  oscillator.type = 'sine';
+  oscillator.frequency.setValueAtTime(notes[key + 1], audioCtx.currentTime); 
+  oscillator.connect(gainNode).connect(audioCtx.destination);
+  oscillator.start();
+
+  gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
+  oscillator.stop(audioCtx.currentTime + (decay * 5));
+
+  const oscillator2 = audioCtx.createOscillator();
+
+  const gainNode2 = audioCtx.createGain();
+
+  oscillator2.type = 'sine';
+  oscillator2.frequency.setValueAtTime(notes[key + 7], audioCtx.currentTime); 
+  oscillator2.connect(gainNode2).connect(audioCtx.destination);
+  oscillator2.start();
+
+  gainNode2.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
+  oscillator2.stop(audioCtx.currentTime + (decay * 5));
+}
+
+function doit() {
+  chord(key, (key + 4), (key + 7), (key + 12));
+}
+
+function chord(...chordParts) {
+  let decay = 0.07;
+
+  chordParts.forEach((x) => {
+    const oscillator = audioCtx.createOscillator();
+
+    const gainNode = audioCtx.createGain();
+
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(notes[x], audioCtx.currentTime); 
+    oscillator.connect(gainNode).connect(audioCtx.destination);
+    oscillator.start();
+
+    gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
+    oscillator.stop(audioCtx.currentTime + (decay * 5));
+  })
+}
+
+function majorThird() {
+  const oscillator = audioCtx.createOscillator();
+
+  const gainNode = audioCtx.createGain();
+
+  oscillator.type = 'sine';
+  oscillator.frequency.setValueAtTime(notes[key], audioCtx.currentTime); 
+  oscillator.connect(gainNode).connect(audioCtx.destination);
+  oscillator.start();
+
+  gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
+  oscillator.stop(audioCtx.currentTime + 0.25);
+
+  const oscillator2 = audioCtx.createOscillator();
+
+  const gainNode2 = audioCtx.createGain();
+
+  oscillator2.type = 'sine';
+  oscillator2.frequency.setValueAtTime(notes[key + 4], audioCtx.currentTime); 
+  oscillator2.connect(gainNode2).connect(audioCtx.destination);
+  oscillator2.start();
+
+  gainNode2.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
+  oscillator2.stop(audioCtx.currentTime + 0.25);
+
+  const oscillator3 = audioCtx.createOscillator();
+
+  const gainNode3 = audioCtx.createGain();
+
+  oscillator3.type = 'sine';
+  oscillator3.frequency.setValueAtTime(notes[key + 7], audioCtx.currentTime); 
+  oscillator3.connect(gainNode3).connect(audioCtx.destination);
+  oscillator3.start();
+
+  gainNode3.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
+  oscillator3.stop(audioCtx.currentTime + 0.25);
+
+  const oscillator4 = audioCtx.createOscillator();
+
+  const gainNode4 = audioCtx.createGain();
+
+  oscillator4.type = 'sine';
+  oscillator4.frequency.setValueAtTime(notes[key + 12], audioCtx.currentTime); 
+  oscillator4.connect(gainNode4).connect(audioCtx.destination);
+  oscillator4.start();
+
+  gainNode4.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
+  oscillator4.stop(audioCtx.currentTime + 0.25);
+
+  /*const oscillator2 = audioCtx.createOscillator();
+
+  const gainNode2 = audioCtx.createGain();
+
+  oscillator2.type = 'sine';
+  oscillator2.frequency.setValueAtTime(notes[key + 4], audioCtx.currentTime); 
+  oscillator2.connect(gainNode2).connect(audioCtx.destination);
+  oscillator2.start();
+
+  gainNode2.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
+  oscillator2.stop(audioCtx.currentTime + 0.25);*/
+}
+
+function sound() {
+    
+    let note1 = rnd(0, (currentScale.length - 1));
+
+    const oscillator = audioCtx.createOscillator();
+
+    const gainNode = audioCtx.createGain();
+
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(currentScale[note1], audioCtx.currentTime); // value in hertz
+    oscillator.connect(gainNode).connect(audioCtx.destination);
+    oscillator.start();
+
+    gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
+    oscillator.stop(audioCtx.currentTime + 0.25);    
+}
+
+
+  </script>
+</html>
