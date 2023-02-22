@@ -1,37 +1,3 @@
-//Enables the Web Audio API
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-let pent = [130.81, 146.83, 164.81, 196, 220];
-
-let japE4 = [164.81, 174.61, 220, 246.94, 261.63];
-
-function playKeySound() {
-  /*
-  //Generates the tone that plays when the player inputs  //
-  //   a number or other numberpad function               //
-  */
-
-  //determines the random tone to be played from a pentatonic scale
-  let note = rnd(0, 4);
-
-  //creates the oscillator node that generates the tone
-  const oscillator = audioCtx.createOscillator();
-  //creates the gain node that controls the volume of the tone
-  const gainNode = audioCtx.createGain();
-  //connects the oscillator to the gain which is connected to 
-  //  the audio output
-  oscillator.connect(gainNode).connect(audioCtx.destination);
-  //sets the type of wave form for the oscillator to generate
-  oscillator.type = 'sine';
-  //sets the frequency (note) of the oscillator and sets when 
-  //  to start the oscillator
-  oscillator.frequency.setValueAtTime(pent[note], audioCtx.currentTime); 
-  oscillator.start();
-  //fades out the oscillator over a set period of time
-  gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
-  //stops the oscillator once the gain has been reduced
-  oscillator.stop(audioCtx.currentTime + 0.25);
-}
 
 function makeNumberPad() {
   /*
@@ -82,54 +48,18 @@ function numPadOn() {
   //Enables the onclick functions of the number pad
   */
 
-  document.getElementById("button1").onclick = function() {
-    playKeySound();
-    inputNumber("1");
-  }
-  document.getElementById("button2").onclick = function() {
-    playKeySound();
-    inputNumber("2");
-  }
-  document.getElementById("button3").onclick = function() {
-    playKeySound();
-    inputNumber("3");
-  }
-  document.getElementById("button4").onclick = function() {
-    playKeySound();
-    inputNumber("4");
-  }
-  document.getElementById("button5").onclick = function() {
-    playKeySound();
-    inputNumber("5");
-  }
-  document.getElementById("button6").onclick = function() {
-    playKeySound();
-    inputNumber("6");
-  }
-  document.getElementById("button7").onclick = function() {
-    playKeySound();
-    inputNumber("7");
-  }
-  document.getElementById("button8").onclick = function() {
-    playKeySound();
-    inputNumber("8");
-  }
-  document.getElementById("button9").onclick = function() {
-    playKeySound();
-    inputNumber("9");
-  }
-  document.getElementById("button0").onclick = function() {
-    playKeySound();
-    inputNumber("0");
-  }
-  document.getElementById("buttonBack").onclick = function() {
-    playKeySound();
-    inputNumber("-1");
-  }
-  document.getElementById("buttonDecimal").onclick = function() {
-    playKeySound();
-    inputNumber(".");
-  }
+  document.getElementById("button1").onclick = function() {inputNumber("1")}
+  document.getElementById("button2").onclick = function() {inputNumber("2")}
+  document.getElementById("button3").onclick = function() {inputNumber("3")}
+  document.getElementById("button4").onclick = function() {inputNumber("4")}
+  document.getElementById("button5").onclick = function() {inputNumber("5")}
+  document.getElementById("button6").onclick = function() {inputNumber("6")}
+  document.getElementById("button7").onclick = function() {inputNumber("7")}
+  document.getElementById("button8").onclick = function() {inputNumber("8")}
+  document.getElementById("button9").onclick = function() {inputNumber("9")}
+  document.getElementById("button0").onclick = function() {inputNumber("0")}
+  document.getElementById("buttonBack").onclick = function() {inputNumber("-1")}
+  document.getElementById("buttonDecimal").onclick = function() {inputNumber(".")}
 
   return null;
 }
@@ -166,6 +96,8 @@ function inputNumber(num) {
 
   let display = document.getElementById("solutionDisplay");
 
+  let randomNote = notes[user.activeScale[rnd(0, (user.activeScale.length - 1))]];
+  playTone(randomNote);
   if (num === "-1") {
     /*
       Removes the last input number. If the last input
@@ -174,14 +106,17 @@ function inputNumber(num) {
     */
 
     let current = display.innerHTML;
+
     if (current[current.length - 2] === ".") {
       display.innerHTML = current.slice(0, -2);
     } else {
       display.innerHTML = current.slice(0, -1);
     }
+    //playTone(randomNote);
   } else if (num === "10") {
 
   } else {
+    //playTone(randomNote);
     display.innerHTML += num;
   }
 
@@ -209,10 +144,10 @@ function waitForAnswer(problem) {
     document.onkeydown = event => {
       let key = parseInt(event.key, 10);
       if ((key >= 0 && key <= 9 || event.key === ".")) {
-        playKeySound();
+        //playKeySound();
         inputNumber(event.key);
       } else if (event.key === "Backspace") {
-        playKeySound();
+        //playKeySound();
         inputNumber("-1");
       } else if (event.key === "Escape") {
         reject(true);
@@ -222,9 +157,11 @@ function waitForAnswer(problem) {
         clearElement(solutionDisplay);
 
         if (problem.answer === solution) {
-          playKeySound();
+
+          playChord(makeChord(chords.I, user.activeKey));
           resolve();
         } else {
+          playChord(makeChord(chords.TT, user.activeKey));
           reject(false);
         }
       }
@@ -242,9 +179,11 @@ function waitForAnswer(problem) {
       clearElement(solutionDisplay);
 
       if (problem.answer === solution) {
-        playKeySound()
+
+        playChord(makeChord(chords.I, user.activeKey));        
         resolve();
       } else {
+        playChord(makeChord(chords.TT, user.activeKey));
         reject(false);
       }
     }
@@ -327,9 +266,12 @@ async function practiceLoop() {
         totalTime = Date.now() - startTime;
         user.updateAverage(problem, totalTime);
 
+        //Determines if the user has "mastered" the current skill, 
+        //  and if so, removes that problem type from the random pool
         if (user.levelData[problem.level][problem.skill][0] < 2000 && 
             user.levelData[problem.level][problem.skill][1] > 10) {
               weight[problem.skill] = -1;
+              playArpeggio(makeChord(chords.I, user.activeKey));
               console.log(`Skill ${problem.skill} completed`);
         }
         //console.clear();
@@ -625,50 +567,37 @@ async function makePracticeScreen() {
   return true;
 }
 
+function makeChord(chordPack, key) {
+  /*
+  //Makes an array of frequencies that can be passed to //
+  //  the chord or arpeggio functions                   //
+  //----------------------------------------------------//
+  //chordPack(array[integer]): the intervals of the     //
+  //  in the chord                                      //
+  //key(integer): the position of the tonic note        //
+  //  frequency in the notes array                      //
+  //----------------------------------------------------//
+  //return(array[float]): the frequencies of the notes  //
+  //  to be played                                      //
+  */
+
+  let chord = [];
+
+  chordPack.forEach((x, i) => {
+    chord[i] = notes[x + key];
+  })
+
+  return chord;
+}
+
 const user = {
   /*
     Data about the user
   */
   level: 5,
-  /*testLevel: 1,*/
   activeLevel: 0,
-  /*testData: {
-    "1": {
-      "0": [0, 0],
-      "1": [0, 0],
-      "2": [0, 0]
-    },
-    "2": {
-      "0": [0, 0],
-      "1": [0, 0],
-      "2": [0, 0],
-      "3": [0, 0],
-      "4": [0, 0],
-      "5": [0, 0]
-    },
-    "3": {
-      "0": [0, 0],
-      "1": [0, 0],
-      "2": [0, 0],
-      "3": [0, 0],
-      "4": [0, 0]
-    },
-    "4": {
-      "0": [0, 0],
-      "1": [0, 0],
-      "2": [0, 0],
-      "3": [0, 0],
-      "4": [0, 0],
-      "5": [0, 0]
-    },
-    "5": {
-      "0": [0, 0],
-      "1": [0, 0],
-      "2": [0, 0],
-      "3": [0, 0],
-      "4": [0, 0]
-    }
-  },*/
+  activeScale: [14, 16, 18, 21, 23],
+  activeKey: 14,
   levelData: {
     "1": {
       "0": [0, 0],
@@ -844,40 +773,27 @@ const levels = {
   ]
 };
 
-/*const tests = {
-  "1": [
-    () => upTo(1, 9, 10),
-    () => addition(2, 5, 1, 3, 5, 1),
-    () => doubles(1, 9, 1, 0, 0)
-  ],
-  "2": [
-    () => mixedOps(1, 10, 1, 0, 10, 1),
-    () => maxSum(20, 1),
-    () => maxSum(10, 10),
-    () => nextMultiple(11, 89, 1, 10),
-    () => doubles(1, 20, 1, 0, 0),
-    () => doubles(1, 5, 10, 0, 0)
-  ],
-  "3": [
-    () => addition(4, 9, 1, 4, 9, 1),
-    () => subtract(10, 20, 1, 1, 19),
-    () => mixedOps(1, 15, 10, 1, 10, 10),
-    () => upTo(11, 89, 100),
-    () => doubles(1, 10, 10, 0, 0)
-  ],
-  "4": [
-    () => mixedOps(1, 9, 10, 1, 9, 10),
-    () => mixedOps(1, 9, 100, 1, 9, 100),
-    () => mixedOps(1, 9, 1000, 1, 9, 1000),
-    () => doubles(1, 100, 1, 0, 0),
-    () => halves(2, 100, 1),
-    () => nextMultiple(101, 999, 1, 100),
-  ],
-  "5": [
-    () => mixedOpsDec(11, 99, 11, 99, 1, 1),
-    () => doublesDec(11, 99, 1, 0, 0),
-    () => halvesDec(12, 100, 1),
-    () => nextMultiple(1001, 9999, 1, 1000),
-    () => nextMultipleDec(11, 99, 1, 1)
-  ]
-};*/
+const scales = {
+  pentMaj: [0, 2, 4, 7, 9],
+  pentMin: [0, 3, 5, 7, 10],
+  jap: [0, 2, 5, 7, 9]
+}
+
+const chords = {
+  I: [0, 4, 7, 12],
+  IV: [7, 11, 14, 19],
+  V: [9, 13, 16, 21],
+  TT: [0, 6, 12]
+  /*
+  */
+}
+
+//The notes A2 through A7, 61 in total
+const notes = [
+  110, 116.54, 123.47, 
+  130.81, 138.59, 146.83, 155.56, 164.81, 174.61, 185, 196, 207.65, 220, 233.08, 246.94,
+  261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392, 415.3, 440, 466.16, 493.88,
+  523.25, 554.37, 587.33, 622.25, 659.25, 698.46, 739.99, 783.99, 830.61, 880, 932.33, 987.77,
+  1046.5, 1108.73, 1174.66, 1244.51, 1318.51, 1396.91, 1479.98, 1567.98, 1661.22, 1670, 1864.66, 1975.53,
+  2093, 2217.46, 2349.32, 2489.02, 2637.02, 2793.83, 2959.96, 3135.96, 3322.44, 3520
+];

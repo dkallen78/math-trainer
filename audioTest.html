@@ -37,9 +37,10 @@
     <meta name="twitter:creator" content="">
 
     <!--
-      <script src="script.js">
+      <script src="sounds.js">
       </script>
     -->
+    <script src="sound.js"></script>
     <style>
     </style>
   </head>
@@ -64,11 +65,13 @@
 
     <button type="button" onclick="set()">Set</button>
     <br><br>
-    <button type="button" onclick="sound()">Random Tone</button>
+    <button type="button" onclick="doTone()">Random Tone</button>
     <br>
-    <button type="button" onclick="doit()">Major Third</button>
+    <button type="button" onclick="doChrd()">Chord</button>
     <br>
-    <button type="button" onclick="tritone()">Tritone</button>
+    <button type="button" onclick="doArp()">Arpeggio</button>
+    <br>
+    <button type="button" onclick="doTrit()">Tritone</button>
  
   </body>
   <script>
@@ -87,13 +90,8 @@ function rnd(floor, ceiling) {
   return Math.floor((Math.random() * range) + floor);
 }
 
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-
-let pent = [130.81, 146.83, 164.81, 196, 220];
 
 let scale, key;
-//let currentScale = new Array(5).fill(0);
 let currentScale = [];
 let scales = {
   pentMaj: [0, 2, 4, 7, 9, 12],
@@ -175,152 +173,24 @@ let notes = [
 }
 */
 
-function set() {
-  scale = document.getElementById("scale").value;
-  key = parseInt(document.getElementById("key").value);
 
-  //let noteArray = Object.keys(notes);
-
-  //let tonic = noteArray.indexOf(key)
-  let tonic = key;
-
-  for (let i = 0; i < scales[scale].length; i++) {
-    currentScale[i] = notes[tonic + scales[scale][i]];
-  }
-
-  /*for (let i = 0; i < currentScale.length; i++) {
-    currentScale[i] = notes[noteArray[tonic + (scales[scale][i])]]
-  }*/
+function doTone() {
+  tone(currentScale[rnd(0, (currentScale.length - 1))])
 }
 
-function tritone() {
-  let decay = 0.07;
-  const oscillator = audioCtx.createOscillator();
-
-  const gainNode = audioCtx.createGain();
-
-  oscillator.type = 'sine';
-  oscillator.frequency.setValueAtTime(notes[key + 1], audioCtx.currentTime); 
-  oscillator.connect(gainNode).connect(audioCtx.destination);
-  oscillator.start();
-
-  gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
-  oscillator.stop(audioCtx.currentTime + (decay * 5));
-
-  const oscillator2 = audioCtx.createOscillator();
-
-  const gainNode2 = audioCtx.createGain();
-
-  oscillator2.type = 'sine';
-  oscillator2.frequency.setValueAtTime(notes[key + 7], audioCtx.currentTime); 
-  oscillator2.connect(gainNode2).connect(audioCtx.destination);
-  oscillator2.start();
-
-  gainNode2.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
-  oscillator2.stop(audioCtx.currentTime + (decay * 5));
+function doArp() {
+  arpeggio(key, (key + 4), (key + 7), (key + 12));
+  //arpeggio(key, (key + 4), (key + 7), (key + 12));
+  //chord(key, (key + 4), (key + 7), (key + 12));
 }
 
-function doit() {
+function doTrit() {
+  chord(key, (key + 6), (key + 12));
+}
+
+function doChrd() {
   chord(key, (key + 4), (key + 7), (key + 12));
 }
-
-function chord(...chordParts) {
-  let decay = 0.07;
-
-  chordParts.forEach((x) => {
-    const oscillator = audioCtx.createOscillator();
-
-    const gainNode = audioCtx.createGain();
-
-    oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(notes[x], audioCtx.currentTime); 
-    oscillator.connect(gainNode).connect(audioCtx.destination);
-    oscillator.start();
-
-    gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
-    oscillator.stop(audioCtx.currentTime + (decay * 5));
-  })
-}
-
-function majorThird() {
-  const oscillator = audioCtx.createOscillator();
-
-  const gainNode = audioCtx.createGain();
-
-  oscillator.type = 'sine';
-  oscillator.frequency.setValueAtTime(notes[key], audioCtx.currentTime); 
-  oscillator.connect(gainNode).connect(audioCtx.destination);
-  oscillator.start();
-
-  gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
-  oscillator.stop(audioCtx.currentTime + 0.25);
-
-  const oscillator2 = audioCtx.createOscillator();
-
-  const gainNode2 = audioCtx.createGain();
-
-  oscillator2.type = 'sine';
-  oscillator2.frequency.setValueAtTime(notes[key + 4], audioCtx.currentTime); 
-  oscillator2.connect(gainNode2).connect(audioCtx.destination);
-  oscillator2.start();
-
-  gainNode2.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
-  oscillator2.stop(audioCtx.currentTime + 0.25);
-
-  const oscillator3 = audioCtx.createOscillator();
-
-  const gainNode3 = audioCtx.createGain();
-
-  oscillator3.type = 'sine';
-  oscillator3.frequency.setValueAtTime(notes[key + 7], audioCtx.currentTime); 
-  oscillator3.connect(gainNode3).connect(audioCtx.destination);
-  oscillator3.start();
-
-  gainNode3.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
-  oscillator3.stop(audioCtx.currentTime + 0.25);
-
-  const oscillator4 = audioCtx.createOscillator();
-
-  const gainNode4 = audioCtx.createGain();
-
-  oscillator4.type = 'sine';
-  oscillator4.frequency.setValueAtTime(notes[key + 12], audioCtx.currentTime); 
-  oscillator4.connect(gainNode4).connect(audioCtx.destination);
-  oscillator4.start();
-
-  gainNode4.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
-  oscillator4.stop(audioCtx.currentTime + 0.25);
-
-  /*const oscillator2 = audioCtx.createOscillator();
-
-  const gainNode2 = audioCtx.createGain();
-
-  oscillator2.type = 'sine';
-  oscillator2.frequency.setValueAtTime(notes[key + 4], audioCtx.currentTime); 
-  oscillator2.connect(gainNode2).connect(audioCtx.destination);
-  oscillator2.start();
-
-  gainNode2.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
-  oscillator2.stop(audioCtx.currentTime + 0.25);*/
-}
-
-function sound() {
-    
-    let note1 = rnd(0, (currentScale.length - 1));
-
-    const oscillator = audioCtx.createOscillator();
-
-    const gainNode = audioCtx.createGain();
-
-    oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(currentScale[note1], audioCtx.currentTime); // value in hertz
-    oscillator.connect(gainNode).connect(audioCtx.destination);
-    oscillator.start();
-
-    gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
-    oscillator.stop(audioCtx.currentTime + 0.25);    
-}
-
 
   </script>
 </html>

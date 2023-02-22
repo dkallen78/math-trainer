@@ -1,17 +1,15 @@
 # [Untitled Math Trainer](https://dkallen78.github.io/math-trainer/quickMath.html)
 
-## Update 2023-02-20
+## Update 2023-02-21
 
 ### 23:00
 
-I shifted gears a little bit today. I wanted to have some kind of sonic feedback when pressing the keys and I've been experimenting with the Web Audio API and having each key press 
-generate a random note on the pentatonic scale. It works and it doesn't sound too bad but something's off with it. You should be able to play with it to see where it's at right now. 
+I'm still making noise. I cleaned up the SFX code and implemented it in the main program. I put all the Web Audio API stuff into its own file in case I want to use it in something 
+else. 
 
-It's currently set to the pentatonic major scale in A. I'm thinking of having correct answers play a pleasing chord and incorrect answers play a dissonant chord. I've got a little practice program where I'm experimenting with the combinatiosn of sounds. Hopefully I can finalize something this week.
+When pressing the number keys, backspace, or decimal, the program generates a random tone in the C pentatonic scale. For a correct answer it plays a C Maj chord. For an incorrect answer it plays a C tritone. When the user completes a skill it plays a C Maj arpeggio. There's still some kinks to work out since I don't 100% like the resolution of the C Maj and the C Maj arpeggio is competing with the C Maj since they play at practically the same time.
 
-### 23:30
-
-I'm going to bed, but before I do I'm putting the html file I'm using to fine tune everything up here as well, enjoy.
+As far as handling progression, I'm trying to come up with a good visual gauge of skills passed but I'm not happy with any of my ideas. Maybe something will come to me before the weekend.
 
 ## Purpose
 
@@ -396,3 +394,16 @@ numbers on the number pad with a mouse, then it might be hard to achieve that ti
 I can now evaluate "mastery/fluency" based on correct digits per millisecond. Once a skill has been "mastered" it stops being selected by the getProblem function due to a new 
 weight system I added as well. As things are now, when the user masters all skills in a level, the app crashes =P My next task is to figure out what to do when the player has 
 conquered a skill. Should I have a progress bar? Should I fall back to the level menu when a level is mastered? Decisions, decisions...
+
+## Update 2023-02-20
+
+### 23:00
+
+I shifted gears a little bit today. I wanted to have some kind of sonic feedback when pressing the keys and I've been experimenting with the Web Audio API and having each key press 
+generate a random note on the pentatonic scale. It works and it doesn't sound too bad but something's off with it. You should be able to play with it to see where it's at right now. 
+
+It's currently set to the pentatonic major scale in A. I'm thinking of having correct answers play a pleasing chord and incorrect answers play a dissonant chord. I've got a little practice program where I'm experimenting with the combinatiosn of sounds. Hopefully I can finalize something this week.
+
+### 23:30
+
+I'm going to bed, but before I do I'm putting the html file I'm using to fine tune everything up here as well, enjoy.
