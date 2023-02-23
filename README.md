@@ -1,15 +1,13 @@
 # [Untitled Math Trainer](https://dkallen78.github.io/math-trainer/quickMath.html)
 
-## Update 2023-02-21
+## Update 2023-02-22
 
-### 23:00
+### 22:00
 
-I'm still making noise. I cleaned up the SFX code and implemented it in the main program. I put all the Web Audio API stuff into its own file in case I want to use it in something 
-else. 
+I'm still tinkering with the sfx because it's not quite right. I'm thinking of playing any note in the scale except the tonic so that when you get the correct answer it has 
+a sense of resolution/completeness. When the user completes a skill the arpeggio is the I, IV, and V chords, and it sounds much better, I'm keeping that. The game also pops back out to the level select menu when all the skills are completed instead of freezing. What it doesn't do yet, is actually progress the level >< We'll work on that bit tomorrow perhaps.
 
-When pressing the number keys, backspace, or decimal, the program generates a random tone in the C pentatonic scale. For a correct answer it plays a C Maj chord. For an incorrect answer it plays a C tritone. When the user completes a skill it plays a C Maj arpeggio. There's still some kinks to work out since I don't 100% like the resolution of the C Maj and the C Maj arpeggio is competing with the C Maj since they play at practically the same time.
-
-As far as handling progression, I'm trying to come up with a good visual gauge of skills passed but I'm not happy with any of my ideas. Maybe something will come to me before the weekend.
+The big thing I'm still pondering is how to show progression. Should I have a circle for each skill to fill that fill in as the user progresses? Should I have a meter bar that fills up as the user progresses? Maybe a moon that becomes full? I'm going to research that for the rest of my night instead of tinkering. 
 
 ## Purpose
 
@@ -407,3 +405,14 @@ It's currently set to the pentatonic major scale in A. I'm thinking of having co
 ### 23:30
 
 I'm going to bed, but before I do I'm putting the html file I'm using to fine tune everything up here as well, enjoy.
+
+## Update 2023-02-21
+
+### 23:00
+
+I'm still making noise. I cleaned up the SFX code and implemented it in the main program. I put all the Web Audio API stuff into its own file in case I want to use it in something 
+else. 
+
+When pressing the number keys, backspace, or decimal, the program generates a random tone in the C pentatonic scale. For a correct answer it plays a C Maj chord. For an incorrect answer it plays a C tritone. When the user completes a skill it plays a C Maj arpeggio. There's still some kinks to work out since I don't 100% like the resolution of the C Maj and the C Maj arpeggio is competing with the C Maj since they play at practically the same time.
+
+As far as handling progression, I'm trying to come up with a good visual gauge of skills passed but I'm not happy with any of my ideas. Maybe something will come to me before the weekend.

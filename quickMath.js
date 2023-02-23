@@ -112,11 +112,9 @@ function inputNumber(num) {
     } else {
       display.innerHTML = current.slice(0, -1);
     }
-    //playTone(randomNote);
   } else if (num === "10") {
 
   } else {
-    //playTone(randomNote);
     display.innerHTML += num;
   }
 
@@ -144,10 +142,8 @@ function waitForAnswer(problem) {
     document.onkeydown = event => {
       let key = parseInt(event.key, 10);
       if ((key >= 0 && key <= 9 || event.key === ".")) {
-        //playKeySound();
         inputNumber(event.key);
       } else if (event.key === "Backspace") {
-        //playKeySound();
         inputNumber("-1");
       } else if (event.key === "Escape") {
         reject(true);
@@ -157,11 +153,8 @@ function waitForAnswer(problem) {
         clearElement(solutionDisplay);
 
         if (problem.answer === solution) {
-
-          playChord(makeChord(chords.I, user.activeKey));
           resolve();
         } else {
-          playChord(makeChord(chords.TT, user.activeKey));
           reject(false);
         }
       }
@@ -179,11 +172,8 @@ function waitForAnswer(problem) {
       clearElement(solutionDisplay);
 
       if (problem.answer === solution) {
-
-        playChord(makeChord(chords.I, user.activeKey));        
         resolve();
       } else {
-        playChord(makeChord(chords.TT, user.activeKey));
         reject(false);
       }
     }
@@ -263,16 +253,21 @@ async function practiceLoop() {
       //If the user submits a correct answer, waitForAnswer() 
       //  resolves without error, and the loop repeats
       .then(() => {
+        
         totalTime = Date.now() - startTime;
         user.updateAverage(problem, totalTime);
 
         //Determines if the user has "mastered" the current skill, 
         //  and if so, removes that problem type from the random pool
-        if (user.levelData[problem.level][problem.skill][0] < 2000 && 
-            user.levelData[problem.level][problem.skill][1] > 10) {
+        if (user.levelData[problem.level][problem.skill][0] < 5000 && 
+            user.levelData[problem.level][problem.skill][1] > 5) {
               weight[problem.skill] = -1;
-              playArpeggio(makeChord(chords.I, user.activeKey));
+              playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
               console.log(`Skill ${problem.skill} completed`);
+              
+            if (weight.every((x) => {return x === -1})) {quit = true;}  
+        } else {
+          playChord(makeChord(chords.I, user.activeKey));
         }
         //console.clear();
         //console.log(user.levelData[problem.level]);
@@ -293,6 +288,7 @@ async function practiceLoop() {
         //If the user submits an incorrect answer, the problemDisplay
         //  elements jiggles
         } else {
+          playChord(makeChord(chords.TT, user.activeKey));
           getNewProblem = false;
           let interval = 50;
           problemDisplay.style.padding = "0 .5rem .5rem 0";
