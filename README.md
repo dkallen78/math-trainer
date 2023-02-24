@@ -24,7 +24,7 @@ Assessments and levels are made up of a set number of problem types that are ran
 
 ## Things to Add
 
-- [ ] Weight the randomized problem selector so that mastered problem types are chosen less often, especially during unlock levels
+- [x] Weight the randomized problem selector so that mastered problem types are chosen less often, especially during unlock levels
 
 - [x] Button feedback
 
@@ -32,7 +32,7 @@ Assessments and levels are made up of a set number of problem types that are ran
 
 - [x] Desktop layout (tentative)
 
-- [ ] Determine best method of assessment
+- [x] Determine best method of assessment
 
    * I've settled on using a combination of time and accuracy to determine when to progress the user 
    to the next level. I still need to do more work to determine what that will look like, most likely 
