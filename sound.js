@@ -1,5 +1,14 @@
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
+const compressor = audioCtx.createDynamicsCompressor();
+    compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
+    compressor.knee.setValueAtTime(40, audioCtx.currentTime);
+    compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
+    compressor.attack.setValueAtTime(0, audioCtx.currentTime);
+    compressor.release.setValueAtTime(1, audioCtx.currentTime);
+
+compressor.connect(audioCtx.destination);
+
 /*let notes = [
     110, 116.54, 123.47, 
     130.81, 138.59, 146.83, 155.56, 164.81, 174.61, 185, 196, 207.65, 220, 233.08, 246.94,
@@ -21,11 +30,12 @@ function playTone(frequency) {
 
     const oscillator = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain();
-    gainNode.gain.value = 0.25;
+    //oscillator.connect(gainNode).connect(audioCtx.destination);
+    oscillator.connect(gainNode).connect(compressor);
+
 
     oscillator.type = 'sine';
     oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime); 
-    oscillator.connect(gainNode).connect(audioCtx.destination);
     oscillator.start();
 
     gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
@@ -45,11 +55,22 @@ function playChord(chordNotes) {
       const oscillator = audioCtx.createOscillator();
   
       const gainNode = audioCtx.createGain();
-      gainNode.gain.value = 0.25;
+      
+      /*const compressor = audioCtx.createDynamicsCompressor();
+        compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
+        compressor.knee.setValueAtTime(40, audioCtx.currentTime);
+        compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
+        compressor.attack.setValueAtTime(0, audioCtx.currentTime);
+        compressor.release.setValueAtTime(0.25, audioCtx.currentTime);*/
+
+      //oscillator.connect(gainNode).connect(compressor).connect(audioCtx.destination);
+      //oscillator.connect(gainNode).connect(audioCtx.destination);
+      oscillator.connect(gainNode).connect(compressor);
+
   
       oscillator.type = 'sine';
       oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime); 
-      oscillator.connect(gainNode).connect(audioCtx.destination);
+
       oscillator.start();
   
       gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
@@ -70,10 +91,22 @@ function playArpeggio(arpNotes) {
     let currentNote = 0;
   
     let noteInterval = setInterval(() => {
-      let oscillator = audioCtx.createOscillator();
+      const oscillator = audioCtx.createOscillator();
+
       const gainNode = audioCtx.createGain();
-      gainNode.gain.value = 0.25;
-      oscillator.connect(gainNode).connect(audioCtx.destination);
+
+      /*const compressor = audioCtx.createDynamicsCompressor();
+        compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
+        compressor.knee.setValueAtTime(40, audioCtx.currentTime);
+        compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
+        compressor.attack.setValueAtTime(0, audioCtx.currentTime);
+        compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
+
+      oscillator.connect(gainNode).connect(compressor).connect(audioCtx.destination);*/
+      //oscillator.connect(gainNode).connect(audioCtx.destination);
+      oscillator.connect(gainNode).connect(compressor);
+
+
       oscillator.type = 'sine';
       oscillator.frequency.setValueAtTime(arpNotes[currentNote], audioCtx.currentTime); 
       oscillator.start();
