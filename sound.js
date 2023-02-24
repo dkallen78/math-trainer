@@ -21,6 +21,7 @@ function playTone(frequency) {
 
     const oscillator = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain();
+    gainNode.gain.value = 0.5;
 
     oscillator.type = 'sine';
     oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime); 
@@ -44,6 +45,7 @@ function playChord(chordNotes) {
       const oscillator = audioCtx.createOscillator();
   
       const gainNode = audioCtx.createGain();
+      gainNode.gain.value = 0.5;
   
       oscillator.type = 'sine';
       oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime); 
@@ -70,6 +72,7 @@ function playArpeggio(arpNotes) {
     let noteInterval = setInterval(() => {
       let oscillator = audioCtx.createOscillator();
       const gainNode = audioCtx.createGain();
+      gainNode.gain.value = 0.5;
       oscillator.connect(gainNode).connect(audioCtx.destination);
       oscillator.type = 'sine';
       oscillator.frequency.setValueAtTime(arpNotes[currentNote], audioCtx.currentTime); 

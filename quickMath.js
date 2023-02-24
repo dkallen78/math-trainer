@@ -260,7 +260,7 @@ async function practiceLoop() {
         //Determines if the user has "mastered" the current skill, 
         //  and if so, removes that problem type from the random pool
         if (user.levelData[problem.level][problem.skill][0] < 5000 && 
-            user.levelData[problem.level][problem.skill][1] > 5) {
+            user.levelData[problem.level][problem.skill][1] > 10) {
               weight[problem.skill] = -1;
               playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
               console.log(`Skill ${problem.skill} completed`);
@@ -269,8 +269,6 @@ async function practiceLoop() {
         } else {
           playChord(makeChord(chords.I, user.activeKey));
         }
-        //console.clear();
-        //console.log(user.levelData[problem.level]);
         
         getNewProblem = true;
       })
@@ -780,8 +778,6 @@ const chords = {
   IV: [7, 11, 14, 19],
   V: [9, 13, 16, 21],
   TT: [0, 6, 12]
-  /*
-  */
 }
 
 //The notes A2 through A7, 61 in total
