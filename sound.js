@@ -26,11 +26,10 @@ function playTone(frequency) {
     //----------------------------------------------------//
     */
     
-    let decay = 0.07;
+    let decay = 0.1;
 
     const oscillator = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain();
-    //oscillator.connect(gainNode).connect(audioCtx.destination);
     oscillator.connect(gainNode).connect(compressor);
 
 
@@ -49,32 +48,9 @@ function playChord(chordNotes) {
     //chordNotes(float): the frequency of the note to be  //
     //  played in the notes array                         //
     */
-    let decay = 0.07;
   
     chordNotes.forEach((frequency) => {
-      const oscillator = audioCtx.createOscillator();
-  
-      const gainNode = audioCtx.createGain();
-      
-      /*const compressor = audioCtx.createDynamicsCompressor();
-        compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
-        compressor.knee.setValueAtTime(40, audioCtx.currentTime);
-        compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
-        compressor.attack.setValueAtTime(0, audioCtx.currentTime);
-        compressor.release.setValueAtTime(0.25, audioCtx.currentTime);*/
-
-      //oscillator.connect(gainNode).connect(compressor).connect(audioCtx.destination);
-      //oscillator.connect(gainNode).connect(audioCtx.destination);
-      oscillator.connect(gainNode).connect(compressor);
-
-  
-      oscillator.type = 'sine';
-      oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime); 
-
-      oscillator.start();
-  
-      gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
-      oscillator.stop(audioCtx.currentTime + (decay * 5));
+        playTone(frequency);
     })
 }
 
@@ -86,34 +62,12 @@ function playArpeggio(arpNotes) {
     //  played in the notes array                         //
     */
 
-    let decay = 0.07;
     let timeInterval = 40;
     let currentNote = 0;
   
     let noteInterval = setInterval(() => {
-      const oscillator = audioCtx.createOscillator();
-
-      const gainNode = audioCtx.createGain();
-
-      /*const compressor = audioCtx.createDynamicsCompressor();
-        compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
-        compressor.knee.setValueAtTime(40, audioCtx.currentTime);
-        compressor.ratio.setValueAtTime(12, audioCtx.currentTime);
-        compressor.attack.setValueAtTime(0, audioCtx.currentTime);
-        compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
-
-      oscillator.connect(gainNode).connect(compressor).connect(audioCtx.destination);*/
-      //oscillator.connect(gainNode).connect(audioCtx.destination);
-      oscillator.connect(gainNode).connect(compressor);
-
-
-      oscillator.type = 'sine';
-      oscillator.frequency.setValueAtTime(arpNotes[currentNote], audioCtx.currentTime); 
-      oscillator.start();
-      gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
-      oscillator.stop(audioCtx.currentTime + (decay * 5));
-      currentNote++;
-      if (currentNote >= arpNotes.length) {clearInterval(noteInterval)}
+        playTone(arpNotes[currentNote]);      currentNote++;
+        if (currentNote >= arpNotes.length) {clearInterval(noteInterval)}
     }, timeInterval);
 }
 
