@@ -17,18 +17,16 @@ function addition(aLow, aHigh, aMod, bLow, bHigh, bMod) {
 
   let a = rnd(aLow, aHigh) * aMod;
   let b = rnd(bLow, bHigh) * bMod;
-  let answer = 0;
-  let equation = "";
 
-  if (rnd(1, 50) % 2 === 0) {
-    answer = a + b;
-    equation = `${a} + ${b} = ?`;
-  } else {
-    answer = b;
-    equation = `${a} + ? = ${a + b}`;
-  }
+  let solutions = [
+    [(a + b), `${a} + ${b} = ?`],
+    [a, `? + ${b} = ${a + b}`],
+    [a, `${b} + ? = ${a + b}`],
+    [b, `${a} + ? = ${a + b}`],
+    [b, `? + ${a} = ${a + b}`]
+  ]
 
-  return [answer, equation];
+  return solutions[rnd(0, solutions.length - 1)];
 }
 
 function subtract(aLow, aHigh, aMod, bLow, bHigh, bMod) {
@@ -359,7 +357,7 @@ function upTo(aLow, aHigh, cap) {
   */
 
   let a = rnd(aLow, aHigh);
-  let answer = 0;
+  /*let answer = 0;
   let equation = "";
 
   if (rnd(1, 50) % 2 === 0) {
@@ -368,9 +366,15 @@ function upTo(aLow, aHigh, cap) {
   } else {
     answer = cap - a;
     equation = `${a} + ? = ${cap}`;
-  }
+  }*/
 
-  return [answer, equation];
+  let solutions = [
+    [cap, `${a} + ${cap - a} = ?`],
+    [(cap - a), `? + ${a} = ${cap}`],
+    [(cap - a), `${a} + ? = ${cap}`]
+  ]
+
+  return solutions[rnd(0, solutions.length - 1)];
 }
 
 function nextMultiple(aLow, aHigh, aMod, multiple) {
