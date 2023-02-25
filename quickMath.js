@@ -96,8 +96,7 @@ function inputNumber(num) {
 
   let display = document.getElementById("solutionDisplay");
 
-  let randomNote = notes[user.activeScale[rnd(0, (user.activeScale.length - 1))]];
-  playTone(randomNote);
+  playTone(randomNote());
   if (num === "-1") {
     /*
       Removes the last input number. If the last input
@@ -260,12 +259,16 @@ async function practiceLoop() {
         //Determines if the user has "mastered" the current skill, 
         //  and if so, removes that problem type from the random pool
         if (user.levelData[problem.level][problem.skill][0] < 5000 && 
-            user.levelData[problem.level][problem.skill][1] > 5) {
+            user.levelData[problem.level][problem.skill][1] > 20) {
               weight[problem.skill] = -1;
               playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
               console.log(`Skill ${problem.skill} completed`);
               
-            if (weight.every((x) => {return x === -1})) {quit = true;}  
+            if (weight.every((x) => {return x === -1})) {
+              console.log("quitting from leveling");
+              if (user.activeLevel === user.level) {user.level++}
+              quit = true;
+            }  
         } else {
           playChord(makeChord(chords.I, user.activeKey));
         }
@@ -282,7 +285,6 @@ async function practiceLoop() {
         //If the user quits
         if (end) {
           quit = true;
-
         //If the user submits an incorrect answer, the problemDisplay
         //  elements jiggles
         } else {
@@ -320,7 +322,10 @@ function makeTitleScreen() {
       titleDiv.innerHTML = "QuickMath";
     titleScreen.appendChild(titleDiv);
 
-    let letsGoButton = makeButton("Let's Go!", makeModeSelectScreen, "letsGoButton");
+    let letsGoButton = makeButton("Let's Go!", () => {
+      makeModeSelectScreen();
+      playTone(randomNote());
+    }, "letsGoButton");
     titleScreen.appendChild(letsGoButton);
 
   document.body.appendChild(titleScreen);
@@ -337,6 +342,7 @@ async function makeModeSelectScreen() {
     return new Promise((resolve, reject) => {
       let practiceButton = document.getElementById("practiceButton");
       practiceButton.onclick = async () => {
+        playTone(randomNote());
         await makeLevelSelectScreen();
         resolve();
       }
@@ -384,21 +390,17 @@ async function makeLevelSelectScreen() {
         let button = document.getElementById(`level${i}Button`);
         if (user.level >= i) {
           button.onclick = async () => {
+            playTone(randomNote());
             user.activeLevel = i;
             await makePracticeScreen();
             resolve(false);
           }
-        } /*else if (user.testLevel === i) {
-          button.onclick = async () => {
-            user.activeLevel = 0;
-            await makePracticeScreen();
-            resolve(false);
-          }
-        }*/
+        } 
       }
 
       let button = document.getElementById("backButton");
       button.onclick = async () => {
+        playTone(randomNote());
         resolve(true);
       }
     });
@@ -475,12 +477,14 @@ async function makePracticeScreen() {
       document.onkeydown = async (event) => {
         if (event.key === "Enter") {
           document.onkeyDown = "";
+          //playTone(randomNote());
           await fade()
             .then(resolve);
         }
       }
 
       readyButton.onclick = async () => {
+        //playTone(randomNote());
         await fade()
           .then(resolve);
       }
@@ -525,8 +529,10 @@ async function makePracticeScreen() {
 
     for (let i = num; i > 0; i--) {
       let number = makeElement("div", null, "countdown");
-        number.innerHTML = i;
+      number.innerHTML = i;
       practiceScreen.appendChild(number);
+      //playTone(randomNote());
+      playTone(notes[user.activeKey + 12]);
 
       await fadeNumber(number);
     }
@@ -567,7 +573,7 @@ function makeChord(chordPack, key) {
   //  the chord or arpeggio functions                   //
   //----------------------------------------------------//
   //chordPack(array[integer]): the intervals of the     //
-  //  in the chord                                      //
+  //  notes in the chord in relation to the tonic       //
   //key(integer): the position of the tonic note        //
   //  frequency in the notes array                      //
   //----------------------------------------------------//
@@ -584,11 +590,22 @@ function makeChord(chordPack, key) {
   return chord;
 }
 
+function randomNote() {
+  /*
+  //Returns a random note from the current active scale   //
+  //------------------------------------------------------//
+  //return(float): the frequency of the randomly selected //
+  //  note                                                //
+  */
+
+  return notes[user.activeScale[rnd(0, (user.activeScale.length - 1))]];
+}
+
 const user = {
   /*
     Data about the user
   */
-  level: 5,
+  level: 11,
   activeLevel: 0,
   activeScale: [14, 16, 18, 21, 23],
   activeKey: 14,
@@ -665,6 +682,9 @@ const user = {
       "4": [0, 0],
       "5": [0, 0],
       "6": [0, 0]
+    },
+    "11": {
+      "0": [0, 0]
     }
   },
   updateAverage: function(problem, newTime) {
@@ -764,6 +784,9 @@ const levels = {
     () => mixedOpsDec(11, 99, 11, 99, 1, 1),
     () => nearMultipleDif(1, 9, 1, 9, 1, 12, 100),
     () => nearMultipleDif(1, 9, 1, 9, 1, 30, 1000)
+  ],
+  "11": [
+    () => mixedMax(1, 99, 1, 100, 10)
   ]
 };
 

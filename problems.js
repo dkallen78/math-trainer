@@ -124,6 +124,42 @@ function mixedOps(aLow, aHigh, aMod, bLow, bHigh, bMod) {
   return [answer, equation];
 }
 
+function mixedMax(aLow, aHigh, bLow, max, mod) {
+  /*
+  //Creates an addition or subtraction problem with a   //
+  //  maximum possible sum or minuend                   //
+  //----------------------------------------------------//
+  //aLow(integer): lowest number for the first term     //
+  //aHigh(integer): highest number for the first term   //
+  //bLow(integer): lowest number for the second term    //
+  //max(integer): the maximum value of either the sum   //
+  //  or minuend                                        //
+  //mod(integer): multiplicative modifier for all other //
+  //  parameters                                        //
+  //----------------------------------------------------//
+  //return(array[integer, string]): the solution to the //
+  //  equation and a string representation of it        //
+  */
+
+  let a = rnd(aLow, aHigh);
+  let b = rnd(bLow, (max - a));
+  a *= mod;
+  b *= mod;
+  let solutions = [
+    [(a + b), `${a} + ${b} = ?`],
+    [b, `${a} + ? = ${a + b}`],
+    [a, `? + ${b} = ${a + b}`],
+    [b, `${a + b} - ${a} = ?`],
+    [b, `${a + b} - ? = ${a}`],
+    [a, `${a + b} - ${b} = ?`],
+    [a, `${a + b} - ? = ${b}`],
+    [(a + b), `? - ${a} = ${b}`],
+    [(a + b), `? - ${b} = ${a}`]
+  ]
+
+  return solutions[rnd(0, solutions.length - 1)];
+}
+
 function mixedOpsDec(aLow, aHigh, bLow, bHigh, rLow, rHigh) {
   /*
   //Creates an addition or subtraction problem with     //
