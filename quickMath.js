@@ -289,6 +289,7 @@ async function practiceLoop() {
         //  elements jiggles
         } else {
           playChord(makeChord(chords.TT, user.activeKey));
+          problem.attempts++;
           getNewProblem = false;
           let interval = 50;
           problemDisplay.style.padding = "0 .5rem .5rem 0";
@@ -684,7 +685,10 @@ const user = {
       "6": [0, 0]
     },
     "11": {
-      "0": [0, 0]
+      "0": [0, 0],
+      "1": [0, 0],
+      "2": [0, 0],
+      "3": [0, 0]
     }
   },
   updateAverage: function(problem, newTime) {
@@ -786,7 +790,10 @@ const levels = {
     () => nearMultipleDif(1, 9, 1, 9, 1, 30, 1000)
   ],
   "11": [
-    () => mixedMax(1, 99, 1, 100, 10)
+    () => mixedMax(1, 99, 1, 100, 10),
+    () => mixedOpsDec(11, 99, 11, 99, 1, 1, false),
+    () => nextMultipleDec(11, 99, 1, 1),
+    () => nextMultipleDec(111, 999, 2, 1)
   ]
 };
 
