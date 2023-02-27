@@ -72,3 +72,30 @@ I'm still tinkering with the sfx because it's not quite right. I'm thinking of p
 it sounds much better, I'm keeping that. The game also pops back out to the level select menu when all the skills are completed instead of freezing. What it doesn't do yet, is actually progress the level >< We'll work on that bit tomorrow perhaps.
 
 The big thing I'm still pondering is how to show progression. Should I have a circle for each skill to fill that fill in as the user progresses? Should I have a meter bar that fills up as the user progresses? Maybe a moon that becomes full? I'm going to research that for the rest of my night instead of tinkering. 
+
+## Update 2023-02-23
+
+### 23:30
+
+I've actually got progression in the game! Now if you start at level 1 and you complete the level, you unlock level 2!
+
+Another big thing I did was add dynamic compression to my sfx because the four tones of my chords were making sound on my mobile sound like trash. There's still some weird 
+clicking going on that I need to figure out but I'm going to come back to that.
+
+I made a new problem type for level 11 but I'm stuck for the moment because I want to know how different missing-term problems are from "standard" problems. Should they be in the 
+same category or should they each have their own functions? It's a very specific question and I'm not sure I'll be able to find a good scholarly answer but I'll dig for a few days 
+before I settle on anything.
+
+## Update 2023-02-25
+
+### 22:00
+
+I've added a new level and one new problem type, as well as making a small change to another problem function that 
+gives it a bit more flexibility at the cost of another parameter. 
+
+I still haven't come up with a good way to visualize progression through a level but I want to completely overhaul 
+the math skill tree before I approach that again. I'd like each level to have the same number of skills/problem types before I put a ton of thought into it again.
+
+In addition to redoing the math skill tree, I want to start tackling user metrics and tracking student progress 
+over multiple sessions. I'm going to start working on that next while trying to figure out what data is most 
+valuable to educators and how I'm going to manage and present the data I do collect. 
