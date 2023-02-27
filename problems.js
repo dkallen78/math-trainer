@@ -158,7 +158,7 @@ function mixedMax(aLow, aHigh, bLow, max, mod) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
-function mixedOpsDec(aLow, aHigh, bLow, bHigh, rLow, rHigh) {
+function mixedOpsDec(aLow, aHigh, bLow, bHigh, rLow, rHigh, simple = true) {
   /*
   //Creates an addition or subtraction problem with     //
   //  decimal terms                                     //
@@ -171,6 +171,9 @@ function mixedOpsDec(aLow, aHigh, bLow, bHigh, rLow, rHigh) {
   //  units                                             //
   //rHigh(integer): highest possible number of decimal  //
   //  units                                             //
+  //simple(boolean): determines whether or not to return//
+  //  missing term problems along with the "standard"   //
+  //  equation                                          //
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
@@ -188,6 +191,15 @@ function mixedOpsDec(aLow, aHigh, bLow, bHigh, rLow, rHigh) {
   if (rnd(1, 50) % 2 === 0) {
     answer = cleanDec((a + b), (aDec > bDec ? aDec : bDec));
     equation = `${a} + ${b} = ?`;
+    if (simple) {return [answer, equation]}
+    else {
+      let solutions = [
+        [answer, equation],
+        [a, `? + ${b} = ${answer}`],
+        [b, `${a} + ? = ${answer}`]
+      ]
+      return(solutions[rnd(0, solutions.length - 1)]);
+    }
   } else {
     while(b >= a) {
       if (bDec > aDec) {
@@ -198,6 +210,15 @@ function mixedOpsDec(aLow, aHigh, bLow, bHigh, rLow, rHigh) {
     }
     answer = cleanDec((a - b), (aDec > bDec ? aDec : bDec));
     equation = `${a} - ${b} = ?`;
+    if (simple) {return([answer, equation])}
+    else {
+      let solutions = [
+        [answer, equation],
+        [a, `? - ${b} = ${answer}`],
+        [b, `${a} - ? = ${answer}`]
+      ]
+      return(solutions[rnd(0, solutions.length - 1)]);
+    }
   }
   return [answer, equation];
 }
@@ -418,7 +439,7 @@ function nextMultipleDec(aLow, aHigh, aMod, multiple) {
   */
 
   let a = rnd(aLow, aHigh);
-  while (a % 10 === 0) {
+  while (a % (10**aMod) === 0) {
     a = rnd(aLow, aHigh);
   }
   a *= 10**(aMod * -1);
