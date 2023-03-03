@@ -1,23 +1,30 @@
 # [Untitled Math Trainer](https://dkallen78.github.io/math-trainer/quickMath.html)
 
-## Update 2023-02-26
+## Update 2023-03-02
 
-### 22:30
+### 21:45
 
-No changes to the program today. Instead I've started a new .md file that will have the mental math progression listed out and I'm going to invite professionals 
-to comment on it and suggest changes. There's not rush on that. What I'm pouring my mental energy into now is a way to keep a record of the user's progress in web 
-storage. I want data!
+The program can now save data between sessions. As of not it's just the player's level but expanding that to include all of the player's stats is relatively trivial. I'm at the point 
+where I think I need to rebuild it. I am envisioning a new way of progressing through skills but I need to build a skill tree. of sorts. Instead of progressing through levels that 
+were based on grade-level skills outlined in the mentalStrategies.pdf, I'd like the user to be able to progress through skills more organically. Everyone starts off with the simple 
+addition and as the user shows proficiency then the skills expand and unlock. I'm not sure how I could integrate interleaving into a progression like that but it feels more natural 
+to me.
 
 ## Purpose
 
-To create a free platform for practicing and developing arithmetical skills.
+Working as a substitute teacher I saw an unmet need for mental math skills. There is a lot of good work being done on number fluency which is a foundational math skill, but mental 
+math and automaticity have received a bad name due to how tedious memorizing the multiplication tables can be. I'm trying to make a tool (not a game) for developing those skills 
+incorporating elements of game design and based on rigorous academic research into learning and mathematics. It's not flashy by design so as to foster an appreciation of math on an 
+intrinsic level.
 
 ## Current State of the Program
 
 At the moment it has a rough functionality. There is a title screen (super important =P),
 a level select menu, and the ability to practice five levels of mental math skills (it's currently hard-coded to level 0).
 
-The current intent is for the user to start at level 0 and unlock all 6 levels. To unlock a level, the user must pass an assessment. Performance in the level will eventually unlock another "test" which will unlock a level. The problems range from simple (max sum of 10) to difficult (doubling decimal numbers and finding the next multiple). Target users are anywhere between first and eigth grade depending on ability.
+The current intent is for the user to start at level 0 and unlock all 6 levels. To unlock a level, the user must pass an assessment. Performance in the level will eventually unlock 
+another "test" which will unlock a level. The problems range from simple (max sum of 10) to difficult (doubling decimal numbers and finding the next multiple). Target users are 
+anywhere between first and eigth grade depending on ability.
 
 Assessments and levels are made up of a set number of problem types that are randomly chosen and randomly created. 
 

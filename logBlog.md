@@ -99,3 +99,11 @@ the math skill tree before I approach that again. I'd like each level to have th
 In addition to redoing the math skill tree, I want to start tackling user metrics and tracking student progress 
 over multiple sessions. I'm going to start working on that next while trying to figure out what data is most 
 valuable to educators and how I'm going to manage and present the data I do collect. 
+
+## Update 2023-02-26
+
+### 22:30
+
+No changes to the program today. Instead I've started a new .md file that will have the mental math progression listed out and I'm going to invite professionals 
+to comment on it and suggest changes. There's not rush on that. What I'm pouring my mental energy into now is a way to keep a record of the user's progress in web 
+storage. I want data!

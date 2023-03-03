@@ -261,12 +261,10 @@ async function practiceLoop() {
         if (user.levelData[problem.level][problem.skill][0] < 5000 && 
             user.levelData[problem.level][problem.skill][1] > 20) {
               weight[problem.skill] = -1;
-              playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
-              console.log(`Skill ${problem.skill} completed`);
-              
+              playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));              
             if (weight.every((x) => {return x === -1})) {
-              console.log("quitting from leveling");
               if (user.activeLevel === user.level) {user.level++}
+              localStorage.setItem("userData", JSON.stringify(user));
               quit = true;
             }  
         } else {
@@ -347,8 +345,27 @@ async function makeModeSelectScreen() {
         await makeLevelSelectScreen();
         resolve();
       }
-    });
+
+      if (document.getElementById("resumeButton")) {
+        let resumeButton = document.getElementById("resumeButton");
+        resumeButton.onclick = async () => {
+          let loadUser = JSON.parse(localStorage.getItem("userData"));
+          user.level = loadUser.level;
+          playTone(randomNote());
+          await makeLevelSelectScreen();
+          resolve();
+        }
+
+        let clearDataButton = document.getElementById("clearDataButton");
+        clearDataButton.onclick = () => {
+          playTone(randomNote());
+          localStorage.clear();
+          resolve();
+        }
+      }
+    })
   }
+  
 
   let quit = false;
 
@@ -362,6 +379,15 @@ async function makeModeSelectScreen() {
 
       button = makeButton("Speed", null, "speedButton", "modeButtons");
       modeSelectScreen.appendChild(button);
+
+      if (localStorage.getItem("userData")) {
+        button = makeButton("Resume", null, "resumeButton", "modeButtons");
+        modeSelectScreen.appendChild(button);
+
+        button = makeButton("Clear Data", null, "clearDataButton", "modeButtons");
+        modeSelectScreen.appendChild(button);
+      }
+      
 
     document.body.appendChild(modeSelectScreen);
 
@@ -606,7 +632,7 @@ const user = {
   /*
     Data about the user
   */
-  level: 11,
+  level: 1,
   activeLevel: 0,
   activeScale: [14, 16, 18, 21, 23],
   activeKey: 14,
