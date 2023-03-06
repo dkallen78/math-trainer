@@ -1,14 +1,12 @@
-# [Untitled Math Trainer](https://dkallen78.github.io/math-trainer/quickMath.html)
+# [Untitled Math Trainer v0.2](https://dkallen78.github.io/math-trainer/v0.2/quickMath.html)
 
-## Update 2023-03-02
+## Update 2023-03-05
 
-### 21:45
+### 22:45
 
-The program can now save data between sessions. As of not it's just the player's level but expanding that to include all of the player's stats is relatively trivial. I'm at the point 
-where I think I need to rebuild it. I am envisioning a new way of progressing through skills but I need to build a skill tree. of sorts. Instead of progressing through levels that 
-were based on grade-level skills outlined in the mentalStrategies.pdf, I'd like the user to be able to progress through skills more organically. Everyone starts off with the simple 
-addition and as the user shows proficiency then the skills expand and unlock. I'm not sure how I could integrate interleaving into a progression like that but it feels more natural 
-to me.
+I have a better idea of the direction I want to take the program and how I want things to progress. I'm going to start from the beginning and cannibalize the parts that worked 
+from the previous version. I added two new functions to the utility library for fading in and fading out elements. They're asynchronous because I didn't want to worry about callback 
+functions and this way I can just call it with await then do the function I want after it's done running.
 
 ## Purpose
 

@@ -1,0 +1,99 @@
+:root {
+  --bg-color: hsla(0, 0%, 100%, 1);
+  --main-color: hsla(0, 0%, 0%, 1);
+  --inactive-color: hsla(0, 0%, 50%, 0.5);
+  --transparent: hsla(0, 0%, 0%, 0);
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  font-family: sans-serif;
+  transition: all 250ms;
+}
+
+.screen {
+
+}
+
+
+/*
+  Wrapper for the elements
+*/
+#titleScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 75vh;
+  width: 100vw;
+  text-align: center;
+  color: var(--main-color);
+}
+
+/*
+  The title of the program
+*/
+#titleDiv {
+  display: flex;
+  justify-content: center;
+  margin: 3rem;
+  font-size: 3rem;
+}
+
+/*
+  The buttons to sign in and register
+*/
+/*#titleScreen > button {
+  margin: 1rem;
+  padding: .5rem;
+  font-size: 2rem;
+  font-family: sans-serif;
+  background-color: var(--transparent);
+  border: .2rem solid var(--main-color);
+  border-radius: 1rem;
+}*/
+
+#modeSelectScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 75vh;
+  width: 100vw;
+  text-align: center;
+  color: var(--main-color);
+}
+
+/*#modeSelectScreen > button {
+  margin: 1rem;
+  padding: .5rem;
+  font-size: 2rem;
+  font-family: sans-serif;
+  background-color: var(--transparent);
+  border: .2rem solid var(--main-color);
+  border-radius: 1rem;
+}*/
+
+.bigButton {
+  margin: 1rem;
+  padding: .5rem;
+  font-size: 2rem;
+  font-family: sans-serif;
+  background-color: var(--transparent);
+  border: .2rem solid var(--main-color);
+  border-radius: 1rem;
+}
+
+
+@media screen and (orientation:landscape) {
+
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  .screen {
+    /*width: 25vw !important;*/
+    width: 30vw !important;
+  }
+
+}

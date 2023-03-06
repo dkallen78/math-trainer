@@ -107,3 +107,13 @@ valuable to educators and how I'm going to manage and present the data I do coll
 No changes to the program today. Instead I've started a new .md file that will have the mental math progression listed out and I'm going to invite professionals 
 to comment on it and suggest changes. There's not rush on that. What I'm pouring my mental energy into now is a way to keep a record of the user's progress in web 
 storage. I want data!
+
+## Update 2023-03-02
+
+### 21:45
+
+The program can now save data between sessions. As of not it's just the player's level but expanding that to include all of the player's stats is relatively trivial. I'm at the point 
+where I think I need to rebuild it. I am envisioning a new way of progressing through skills but I need to build a skill tree. of sorts. Instead of progressing through levels that 
+were based on grade-level skills outlined in the mentalStrategies.pdf, I'd like the user to be able to progress through skills more organically. Everyone starts off with the simple 
+addition and as the user shows proficiency then the skills expand and unlock. I'm not sure how I could integrate interleaving into a progression like that but it feels more natural 
+to me.
