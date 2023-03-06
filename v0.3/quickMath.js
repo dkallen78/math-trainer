@@ -1,6 +1,6 @@
 function makeTitleScreen() {
   /*
-  //Makes the title screen
+  //Makes the title screen                                //
   */
 
   clearElement(document.body);
@@ -22,10 +22,11 @@ function makeTitleScreen() {
 
 async function makeModeSelectScreen() {
   /*
-  //The start of the "loop." From here the user can
-  //  select which type of practice they want. Currently
-  //  only one option available
+  //Makes the mode select screen. This is also the base   //
+  //  to which the program returns when all other loops   //
+  //  have ended                                          //
   */
+
   async function waitForButton() {
     
     return new Promise((resolve, reject) => {
