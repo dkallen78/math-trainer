@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Problem Tester
+    </title>
+    <!--
+      <link rel="stylesheet" href="stylesheet.css">
+      <link rel="stylesheet" href="stylesheet.css" media="print">
+    -->
+    <!--
+      web apps only
+      <meta name="application-name" content="Application Name">
+    -->
+    <!--
+      <script src="script.js">
+      </script>
+    -->
+    <script src="util.js"></script>
+    <script src="problems.js"></script>
+    <style>
+    </style>
+  </head>
+  <body>
+    <button type="button" onclick="doIt()">Do it</button>
+  </body>
+  <script>
+
+    function doIt() {
+        let problem = doubles(1, 5, 10, 0, 0);
+        console.log(problem[1], problem[0]);
+    }
+  </script>
+</html>

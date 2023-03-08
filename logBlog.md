@@ -117,3 +117,11 @@ where I think I need to rebuild it. I am envisioning a new way of progressing th
 were based on grade-level skills outlined in the mentalStrategies.pdf, I'd like the user to be able to progress through skills more organically. Everyone starts off with the simple 
 addition and as the user shows proficiency then the skills expand and unlock. I'm not sure how I could integrate interleaving into a progression like that but it feels more natural 
 to me.
+
+## Update 2023-03-05
+
+### 22:45
+
+I have a better idea of the direction I want to take the program and how I want things to progress. I'm going to start from the beginning and cannibalize the parts that worked 
+from the previous version. I added two new functions to the utility library for fading in and fading out elements. They're asynchronous because I didn't want to worry about callback 
+functions and this way I can just call it with await then do the function I want after it's done running.

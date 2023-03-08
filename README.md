@@ -1,12 +1,13 @@
 # [Untitled Math Trainer v0.2](https://dkallen78.github.io/math-trainer/v0.2/quickMath.html)
 
-## Update 2023-03-05
+[v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-### 22:45
+## Update 2023-03-07
 
-I have a better idea of the direction I want to take the program and how I want things to progress. I'm going to start from the beginning and cannibalize the parts that worked 
-from the previous version. I added two new functions to the utility library for fading in and fading out elements. They're asynchronous because I didn't want to worry about callback 
-functions and this way I can just call it with await then do the function I want after it's done running.
+### 23:30
+
+I'm starting to put together the v0.3 into a usable program. It's not "functional" but there are some buttons you can press and you can start to get an idea of how it's going to 
+be different. The big thing is you'll only be working on three skills at a time instead of up to seven, so that should make the sessions shorter.
 
 ## Purpose
 

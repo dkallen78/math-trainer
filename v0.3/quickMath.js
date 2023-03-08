@@ -30,11 +30,12 @@ async function makeModeSelectScreen() {
   async function waitForButton() {
     
     return new Promise((resolve, reject) => {
-      let practiceButton = document.getElementById("practiceButton");
-      practiceButton.onclick = async () => {
+      let progressionButton = document.getElementById("progressionButton");
+      progressionButton.onclick = async () => {
         playTone(randomNote());
-        await makeLevelSelectScreen();
-        resolve();
+        await makeProgressionScreen();
+        console.log(hola);
+        //resolve();
       }
 
       if (document.getElementById("resumeButton")) {
@@ -60,12 +61,10 @@ async function makeModeSelectScreen() {
   let quit = false;
 
   while (!quit) {
-    await fadeOut(document.body);
-    clearElement(document.body);
 
     let modeSelectScreen = makeElement("div", "modeSelectScreen", "screen");
 
-      let button = makeButton("Practice", null, "practiceButton", "bigButton");
+      let button = makeButton("Progression", null, "progressionButton", "bigButton");
       modeSelectScreen.appendChild(button);
 
       /*if (localStorage.getItem("userData")) {
@@ -76,6 +75,8 @@ async function makeModeSelectScreen() {
         modeSelectScreen.appendChild(button);
       }*/
       
+    await fadeOut(document.body);
+    clearElement(document.body);  
     document.body.appendChild(modeSelectScreen);
     await fadeIn(document.body);
 
