@@ -2,12 +2,14 @@
 
 [v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-03-07
+## Update 2023-03-08
 
-### 23:30
+### 23:00
 
-I'm starting to put together the v0.3 into a usable program. It's not "functional" but there are some buttons you can press and you can start to get an idea of how it's going to 
-be different. The big thing is you'll only be working on three skills at a time instead of up to seven, so that should make the sessions shorter.
+Version 0.3 has a rough functionality. Since I had been away from this project for around a year before coming back, I'm trying to understand what I did before by putting the pieces 
+back together as I need them. That's making everything go slow. And what I have now is kind of janky and it needs some basic commenting which I'll do tomorrow. 
+
+[Previous updates](https://dkallen78.github.io/math-trainer/logBlog.md)
 
 ## Purpose
 

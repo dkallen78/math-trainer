@@ -33,9 +33,8 @@ async function makeModeSelectScreen() {
       let progressionButton = document.getElementById("progressionButton");
       progressionButton.onclick = async () => {
         playTone(randomNote());
-        await makeProgressionScreen();
-        console.log(hola);
-        //resolve();
+        await makeProgressionStartScreen();
+        resolve();
       }
 
       if (document.getElementById("resumeButton")) {
@@ -100,7 +99,12 @@ function randomNote() {
 }
 
 const user = {
-  activeScale: [14, 16, 18, 21, 23]
+  activeScale: [14, 16, 18, 21, 23],
+  skillLevel: {
+    mixedOps: 0,
+    upTo: 0,
+    doubles: 0
+  }
 }
 
 //The notes A2 through A7, 61 in total

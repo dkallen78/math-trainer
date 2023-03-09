@@ -1,3 +1,4 @@
+
 function doubles(aLow, aHigh, aMod, rLow, rHigh) {
   /*
   //Creates an near doubles addition problem            //
