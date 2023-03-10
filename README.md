@@ -2,12 +2,14 @@
 
 [v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-03-08
+## Update 2023-03-09
 
-### 23:00
+### 22:00
 
-Version 0.3 has a rough functionality. Since I had been away from this project for around a year before coming back, I'm trying to understand what I did before by putting the pieces 
-back together as I need them. That's making everything go slow. And what I have now is kind of janky and it needs some basic commenting which I'll do tomorrow. 
+Things are moving slowly but steadily. I addressed all the obvious bugs I had yesterday and even through some comments in. Now that answering questions and progressing through 
+the different parts of the application are coming together, I'm working on the actual act of progressing. One oversight I had from v0.2 is how I tallied the averages. In v0.3 I'm 
+still keeping track of the total average per skill over all, I'm now specifically keeping track of the average of the last 20 questions to determine progression so that each play 
+through will require 60 questions and I'm thinking of capping it at 100 questions per session. Maybe that's too much, I'll have to dig through Google Scholar some more I suppose.
 
 [Previous updates](https://dkallen78.github.io/math-trainer/logBlog.md)
 
