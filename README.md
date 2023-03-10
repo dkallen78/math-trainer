@@ -81,13 +81,13 @@ Zachary Hawes, spatial development
 
 ## Lines of Investigation
 
-### [Compulsion Loops](https://dkallen78.github.io/math-trainer/compulsionLoops.md)
+### [Compulsion Loops](https://dkallen78.github.io/math-trainer/research/compulsionLoops.md)
 
-### [Behavioral Psychology](https://dkallen78.github.io/math-trainer/behavioralPsych.md)
+### [Behavioral Psychology](https://dkallen78.github.io/math-trainer/research/behavioralPsych.md)
 
-### [Self-Determination Theory (SDT)](https://dkallen78.github.io/math-trainer/selfDeterminationTheory.md)
+### [Self-Determination Theory (SDT)](https://dkallen78.github.io/math-trainer/research/selfDeterminationTheory.md)
 
-### [Interleaving](https://dkallen78.github.io/math-trainer/interleaving.md)
+### [Interleaving](https://dkallen78.github.io/math-trainer/research/interleaving.md)
 
 ### Gameplay/UX
 
@@ -95,11 +95,11 @@ Clearly defined objectives
 
 What is my core loop?
 
-### [Timed versus Untimed Assessment](https://dkallen78.github.io/math-trainer/timedAssessment.md)
+### [Timed versus Untimed Assessment](https://dkallen78.github.io/math-trainer/research/timedAssessment.md)
 
-### [Effect of Math Anxiety on Performance](https://dkallen78.github.io/math-trainer/mathAnxiety.md)
+### [Effect of Math Anxiety on Performance](https://dkallen78.github.io/math-trainer/research/mathAnxiety.md)
 
-### [How to Train Working Memory (WM)?](https://dkallen78.github.io/math-trianer/workingMemory.md)
+### [How to Train Working Memory (WM)?](https://dkallen78.github.io/math-trianer/research/workingMemory.md)
 
 ### Historical Research
 
