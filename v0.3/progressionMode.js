@@ -162,51 +162,41 @@ async function makeProgressionStartScreen() {
     let skill3 = document.getElementById("skill3Button");
 
     let skillArray = Object.keys(prog);
-    let skill1key, skill2key, skill3key
 
-    let count1 = 0;
-    let count2 = 0;
-    let count3 = 0;
-    let skillInterval1 = setInterval(() => {
 
-      skill1key = rnd(0, skillArray.length - 1);
-      skill1.innerHTML = prog[skillArray[skill1key]].string;
-      count1++;
-      if (count1 > 1) {
-        currentProg.skill1 = skillArray[skill1key];
-        skillArray.splice(skill1key, 1);
-        clearInterval(skillInterval1);
-      }
-    }, 50);
+    let count = 0;
 
-    let skillInterval2 = setInterval(() => {
-
-      skill2key = rnd(0, skillArray.length - 1);
-      skill2.innerHTML = prog[skillArray[skill2key]].string;
-      count2++;
-      if (count2 > 2) {
-        currentProg.skill2 = skillArray[skill2key];
-        skillArray.splice(skill2key, 1);
-        clearInterval(skillInterval2);
-
-      }
-    }, 50);
-
-    let skillInterval3 = setInterval(() => {
+    let spinInterval = setInterval(() => {
       playTone(261.63, "sine", .05);
 
-      skill3key = rnd(0, skillArray.length - 1);
-      skill3.innerHTML = prog[skillArray[skill3key]].string;
-      count3++;
-      if (count3 > 3) {
-        currentProg.skill3 = skillArray[skill3key];
-        skillArray.splice(skill3key, 1);
-        clearInterval(skillInterval3);
-        }
-    }, 50);
-  }
+      skill1.innerHTML = prog[skillArray[count % 3]].string;
+      skill2.innerHTML = prog[skillArray[(count + 1) % 3]].string;
+      skill3.innerHTML = prog[skillArray[(count + 2) % 3]].string;
 
-    let quit = false;
+      count++;
+
+      if (count >= 10) {
+        let skillKey = rnd(0, skillArray.length - 1);
+        skill1.innerHTML = prog[skillArray[skillKey]].string;
+        currentProg.skill1 = skillArray[skillKey];
+        skillArray.splice(skillKey, 1);
+    
+        skillKey = rnd(0, skillArray.length - 1);
+        skill2.innerHTML = prog[skillArray[skillKey]].string;
+        currentProg.skill2 = skillArray[skillKey];
+        skillArray.splice(skillKey, 1);
+    
+        skillKey = rnd(0, skillArray.length - 1);
+        skill3.innerHTML = prog[skillArray[skillKey]].string;
+        currentProg.skill2 = skillArray[skillKey];
+    
+        clearInterval(spinInterval);
+      }
+    }, 50)
+
+  }
+  
+  let quit = false;
 
   while (!quit) {
     let progressionSelectScreen = makeElement("div", "progressionSelectScreen", "screen");

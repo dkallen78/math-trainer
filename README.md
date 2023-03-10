@@ -20,34 +20,9 @@ math and automaticity have received a bad name due to how tedious memorizing the
 incorporating elements of game design and based on rigorous academic research into learning and mathematics. It's not flashy by design so as to foster an appreciation of math on an 
 intrinsic level.
 
-## Current State of the Program
-
-At the moment it has a rough functionality. There is a title screen (super important =P),
-a level select menu, and the ability to practice five levels of mental math skills (it's currently hard-coded to level 0).
-
-The current intent is for the user to start at level 0 and unlock all 6 levels. To unlock a level, the user must pass an assessment. Performance in the level will eventually unlock 
-another "test" which will unlock a level. The problems range from simple (max sum of 10) to difficult (doubling decimal numbers and finding the next multiple). Target users are 
-anywhere between first and eigth grade depending on ability.
-
-Assessments and levels are made up of a set number of problem types that are randomly chosen and randomly created. 
-
 ## Things to Add
 
 - [ ] Weight the randomized problem selector so that mastered problem types are chosen less often, especially during unlock levels
-
-- [x] Button feedback
-
-- [x] Keyboard interface
-
-- [x] Desktop layout (tentative)
-
-- [x] Determine best method of assessment
-
-   * I've settled on using a combination of time and accuracy to determine when to progress the user 
-   to the next level. I still need to do more work to determine what that will look like, most likely 
-   the user will have to maintain an average time per question over a minimum number of questions. One 
-   metric I've read said that 80 correct digits over two minutes is a reliable measure of fluency/mastery. 
-   That comes out to 1 digit correct ever 1.5 seconds
 
 - [ ] Keep track of user data
 
