@@ -119,6 +119,15 @@ function inputNumber(num) {
 }
   
 function getProgressionProblem(skillSet) {
+  /*
+  //Creates a random arithmetic problem                 //
+  //----------------------------------------------------//
+  //skillSet(array[function]): an array of functions    //
+  //  that are randomly called to generate the problems //
+  //----------------------------------------------------//
+  //return(object): the object containing the problem   //
+  //  details                                           //
+  */
 
   let skill = rnd(0, skillSet.length - 1);
 
@@ -141,8 +150,17 @@ function getProgressionProblem(skillSet) {
 }
 
 async function makeProgressionStartScreen() {
+  /*
+  //Makes the starting screen for Progression Mode      //
+  */
+
 
   async function waitForButton() {
+    /*
+    //Assigns functions to the buttons and waits for
+    //  them to be pressed
+    */
+
     return new Promise((resolve, reject) => {
       let startButton = document.getElementById("progressionStartButton");
       startButton.onclick = async () => {
@@ -160,6 +178,11 @@ async function makeProgressionStartScreen() {
   }
 
   async function spinSkills() {
+    /*
+    //Assigns the three skill categories randomly and 
+    //  makes them "spin" by changing the category displayed
+    */
+
     let skill1 = document.getElementById("skill1Button");
     let skill2 = document.getElementById("skill2Button");
     let skill3 = document.getElementById("skill3Button");
@@ -238,10 +261,13 @@ async function makeProgressionStartScreen() {
       .then((exit) => {quit = exit});
 
   }
-  //return;
 }
 
 async function makeProgressionInputScreen() {
+  /*
+  //Makes the problem and solution output elements and 
+  //  the number input element (number pad)
+  */
 
   let progressionInputScreen = makeElement("div", "progressionInputScreen", "screen");
 
@@ -267,13 +293,16 @@ async function makeProgressionInputScreen() {
 }
 
 async function progressionLoop() {
+  /*
+  //The main logic loop of Progression Mode
+  */
 
   let quit = false;
   let getNewProblem = true;
   let problem;
   let problemDisplay = document.getElementById("problemDisplay");
 
-  let starttime, totalTime;
+  let startTime, totalTime;
 
   let skillSet = [
     prog[currentProg.skill1].set[user.skillLevel[currentProg.skill1]],
@@ -308,6 +337,10 @@ async function progressionLoop() {
         skillData[problem.skill].push([totalTime, digitCount(problem.answer)]);
 
         if (skillData[problem.skill].pass) {
+          /*
+          //What to do when the user achieves mastery in the current skill
+          */
+
           playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey)); 
           user.skillLevel[problem.skill]++;
           skillSet.splice(problem.skillNum, 1);
@@ -315,9 +348,8 @@ async function progressionLoop() {
           if (skillSet.length < 1) {quit = true}
         } else {
           playChord(makeChord(chords.I, user.activeKey));
-          getNewProblem = true;  
         }
-
+        getNewProblem = true;  
       })
       .catch((end) => {
         /*
@@ -346,6 +378,9 @@ async function progressionLoop() {
 }
 
 async function waitForAnswer(problem) {
+  /*
+  //Waits for user input after a problem has been displayed
+  */
 
   return new Promise((resolve, reject) => {
     let solutionDisplay = document.getElementById("solutionDisplay");
