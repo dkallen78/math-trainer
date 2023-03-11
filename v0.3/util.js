@@ -12,6 +12,20 @@ function rnd(floor, ceiling) {
   return Math.floor((Math.random() * range) + floor);
 }
 
+function digitCount(num) {
+  /*
+  //Finds the number of digits in a number              //
+  //----------------------------------------------------//
+  //num(integer/float) the number whose digits are to   //
+  //  be found                                          //
+  //----------------------------------------------------//
+  //return(integer): the number of digits               //
+  */
+
+  return num.toString(10).replace(".", "").length;
+}
+
+
 function makeElement(type, id, ...classes) {
   /*
   //Returns an HTML element                             //

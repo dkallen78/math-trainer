@@ -126,11 +126,14 @@ function getProgressionProblem(skillSet) {
     answer: 0,
     equation: "",
     skill: "",
+    skillNum: 0,
     level: 0,
     attempts: 0
   }
 
   problem.skill = currentProg[`skill${skill + 1}`];
+  problem.skillNum = skill;
+  problem.level = user.skillLevel[problem.skill];
 
   [problem.answer, problem.equation] = skillSet[skill]();
   
@@ -188,7 +191,7 @@ async function makeProgressionStartScreen() {
     
         skillKey = rnd(0, skillArray.length - 1);
         skill3.innerHTML = prog[skillArray[skillKey]].string;
-        currentProg.skill2 = skillArray[skillKey];
+        currentProg.skill3 = skillArray[skillKey];
     
         clearInterval(spinInterval);
       }
@@ -278,6 +281,12 @@ async function progressionLoop() {
     prog[currentProg.skill3].set[user.skillLevel[currentProg.skill3]]
   ];
 
+  let skillData = {
+    [currentProg.skill1]: new ProgressQueue(5),
+    [currentProg.skill2]: new ProgressQueue(5),
+    [currentProg.skill3]: new ProgressQueue(5)
+  }
+
   while (!quit) {
 
     if (getNewProblem) {
@@ -293,14 +302,28 @@ async function progressionLoop() {
         /*
         //What to do when the user enters a correct answer
         */
+
         totalTime = Date.now() - startTime;
-        playChord(makeChord(chords.I, user.activeKey));
-        getNewProblem = true;
+
+        skillData[problem.skill].push([totalTime, digitCount(problem.answer)]);
+
+        if (skillData[problem.skill].pass) {
+          playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey)); 
+          user.skillLevel[problem.skill]++;
+          skillSet.splice(problem.skillNum, 1);
+
+          if (skillSet.length < 1) {quit = true}
+        } else {
+          playChord(makeChord(chords.I, user.activeKey));
+          getNewProblem = true;  
+        }
+
       })
       .catch((end) => {
         /*
         //What to do when the user quits or enters an incorrect answer
         */
+
         if (end) {
           quit = true;
         } else {
@@ -324,82 +347,82 @@ async function progressionLoop() {
 
 async function waitForAnswer(problem) {
 
-    return new Promise((resolve, reject) => {
-        let solutionDisplay = document.getElementById("solutionDisplay");
+  return new Promise((resolve, reject) => {
+    let solutionDisplay = document.getElementById("solutionDisplay");
 
-        document.onkeydown = event => {
-            let key = parseInt(event.key, 10);
-            if ((key >= 0 && key <= 9 || event.key === ".")) {
-              inputNumber(event.key);
-            } else if (event.key === "Backspace") {
-              inputNumber("-1");
-            } else if (event.key === "Escape") {
-              reject(true);
-            } else if (event.key === "Enter") {
+    document.onkeydown = event => {
+      let key = parseInt(event.key, 10);
+      if ((key >= 0 && key <= 9 || event.key === ".")) {
+        inputNumber(event.key);
+      } else if (event.key === "Backspace") {
+        inputNumber("-1");
+      } else if (event.key === "Escape") {
+        reject(true);
+      } else if (event.key === "Enter") {
               
-              let solution = parseFloat(solutionDisplay.innerHTML, 10);
-              clearElement(solutionDisplay);
+        let solution = parseFloat(solutionDisplay.innerHTML, 10);
+        clearElement(solutionDisplay);
       
-              if (problem.answer === solution) {
-                resolve();
-              } else {
-                reject(false);
-              }
-            }
-            event.preventDefault();
-          }
+        if (problem.answer === solution) {
+          resolve();
+        } else {
+          reject(false);
+        }
+      }
+      event.preventDefault();
+    }
 
-          document.getElementById("buttonQuit").onclick = () => {
-            console.log("click quit");
-            reject(true);
-          }
+    document.getElementById("buttonQuit").onclick = () => {
+      console.log("click quit");
+      reject(true);
+    }
       
-          document.getElementById("buttonSubmit").onclick = () => {
+    document.getElementById("buttonSubmit").onclick = () => {
       
-            let solution = parseFloat(solutionDisplay.innerHTML, 10);
+      let solution = parseFloat(solutionDisplay.innerHTML, 10);
       
-            clearElement(solutionDisplay);
+      clearElement(solutionDisplay);
       
-            if (problem.answer === solution) {
-              resolve();
-            } else {
-              reject(false);
-            }
-          }      
-    })
+      if (problem.answer === solution) {
+        resolve();
+      } else {
+        reject(false);
+      }
+    }      
+  })
 }
 
 let currentProg = {
-    skill1: "",
-    skill2: "",
-    skill3: ""
+  skill1: "",
+  skill2: "",
+  skill3: ""
 }
 
 let prog = {
-    mixedOps: {
-        string: "+/-",
-        set: [
-            () => within(1, 5),
-            () => within(1, 10),
-            () => toOrFrom(1, 10)
-        ]
-    },
-    upTo: {
-        string: "Up To",
-        set: [
-            () => upTo(1, 10),
-            () => upTo(11, 20),
-            () => upTo(1, 20)
-        ]
-    },
-    doubles: {
-        string: "Doubles",
-        set: [
-            () => doubles(1, 10, 1, 0, 0),
-            () => doubles(1, 20, 1, 0, 0),
-            () => doubles(1, 5, 10, 0, 0)
-        ]
-    }
+  mixedOps: {
+    string: "+/-",
+    set: [
+      () => within(1, 5),
+      () => within(1, 10),
+      () => toOrFrom(1, 10)
+    ]
+  },
+  upTo: {
+    string: "Up To",
+    set: [
+      () => upTo(1, 10),
+      () => upTo(11, 20),
+      () => upTo(1, 20)
+    ]
+  },
+  doubles: {
+    string: "Doubles",
+    set: [
+      () => doubles(1, 10, 1, 0, 0),
+      () => doubles(1, 20, 1, 0, 0),
+      () => doubles(1, 5, 10, 0, 0)
+    ]
+  }
 }
 
 let progData = {
@@ -417,5 +440,35 @@ let progData = {
     0: [],
     1: [],
     2: []
+  }
+}
+
+class ProgressQueue {
+  constructor(size) {
+    this.size = size;
+    this.q = [];
+  }
+  get length() {
+    return this.q.length;
+  }
+  get avg() {
+    return Math.round(this.q.reduce((average, current) => {
+      let oldTotal = average[0] * average[1];
+      let newTotal = oldTotal + current[0];
+      let newCount = average[1] + current[1];
+      return [(newTotal / newCount), newCount];
+    }, [0, 0])[0]);
+  }
+  get pass() {
+    if (this.length < this.size || this.avg > 5000) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  push(x) {
+    if (this.q.push(x) > this.size) {
+      this.q.shift();
+    }
   }
 }
