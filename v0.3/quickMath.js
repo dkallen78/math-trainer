@@ -128,7 +128,8 @@ const user = {
   skillLevel: {
     mixedOps: 0,
     upTo: 0,
-    doubles: 0
+    doubles: 0,
+    nearDoubles: 0
   }
 }
 

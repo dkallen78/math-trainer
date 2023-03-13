@@ -192,6 +192,7 @@ body {
 
   .screen {
     width: 30vw !important;
+    min-width: 20rem;
   }
 
   #progressionInputScreen {

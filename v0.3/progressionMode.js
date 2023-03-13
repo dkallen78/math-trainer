@@ -457,6 +457,14 @@ let prog = {
       () => doubles(1, 20, 1, 0, 0),
       () => doubles(1, 5, 10, 0, 0)
     ]
+  },
+  nearDoubles: {
+    string: "Near Doubles",
+    set: [
+      () => doubles(1, 5, 1, 1, 1),
+      () => doubles(1, 10, 1, 1, 1),
+      () => doubles(11, 20, 1, 1, 1)
+    ]
   }
 }
 
