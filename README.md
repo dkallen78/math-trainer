@@ -2,25 +2,11 @@
 
 [v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-03-12
+## Update 2023-03-13
 
-### 22:15
+### 13:15
 
-The big thing I did this weekend was make a mini program to kind of check my problem functions. I've been using 
-a basic version to just check that the functions were outputting the right data but I had a feeling that at least 
-one of the ones I've been using was weighted to a particular answer. I'm not very good in statistics so I had 
-to kind of wing it. What I do, is run the function 20 times (maybe I should do 50...) and tally how many times each answer comes up and store that percentage in an array. Then I do that 1,000 times and get an average of all of those percentages to make it "fair." Then I get fancy. I take those broad averages and make an SVG chart to visualize the data and overlay it with a green SVG line to demarcate the average. It's kind of overkill but it lets me see right away if one answer is coming up a lot more than the average. 
-
-I'm glad I did this because one of them is throwing some answers more than others. I need to address this and 
-flatten the distribution curve.
-
-The small thing I did was add a new skill to see if my system could scale. It can!
-
-I also addressed some design stuff and made my responsive layout a bit nicer. I'm happy with my progress. 
-
-Next, I'm going to iron out that bump in my within() function. I'm going to try and improve my mental math skill 
-tree as well but I haven't gotten any meaningful input on that. I also have an idea on how to "level lock" certain skills so they only become available when the user has advanced a certain degree. I should probably put a link to 
-my mental math progression spread sheet. I'll do that lower in the readme.
+I fixed the errant function! It wasn't exactly broken, but I did iron out the answer distribution curve. The function isn't as small as it once was, but it gives reliable output.
 
 [Previous updates](https://dkallen78.github.io/math-trainer/logBlog.md)
 

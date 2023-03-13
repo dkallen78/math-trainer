@@ -453,6 +453,7 @@ let prog = {
   doubles: {
     string: "Doubles",
     set: [
+      () => doubles(1, 5, 1, 0, 0),
       () => doubles(1, 10, 1, 0, 0),
       () => doubles(1, 20, 1, 0, 0),
       () => doubles(1, 5, 10, 0, 0)

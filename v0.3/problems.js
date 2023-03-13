@@ -82,17 +82,32 @@ function within(aMin, aMax) {
   */
 
   let a = rnd(aMin, aMax);
-  let b = rnd(0, a - 1);
 
-  let solutions = [
-    [a, `${b} + ${a - b} = ?`],
-    [b, `? + ${a - b} = ${a}`],
-    [(a - b), `${b} + ? = ${a}`],
-    [a, `? - ${b} = ${a - b}`],
-    [b, `${a} - ? = ${a - b}`],
-    [(a - b), `${a} - ${b} = ?`]
-  ];
+  let b = 0;
+  let solutions = [];
+
+  let chance = rnd(1, 5);
+
+  
+  if (chance === 1) {
+    b = rnd(0, aMax - a);
+    solutions = [
+      [a, `${b} + ? = ${a + b}`],
+      [a, `? + ${b} = ${a + b}`],
+    ]
+  } else if (chance === 2) {
+    b = rnd(0, a);
+    solutions = [[a, `${b} + ${a - b} = ?`]];
+  } else if (chance === 3 || a >= aMax) {
+    b = rnd(0, a - 1);
+    solutions = [[a, `? - ${b} = ${a - b}`]];
+  } else if (chance === 4) {
+    b = rnd(a + 1, aMax);
+    solutions = [[a, `${b} - ? = ${b - a}`]];
+  } else {
+    b = rnd(a, aMax);
+    solutions = [[a, `${b} - ${b - a} = ?`]];
+  }
 
   return solutions[rnd(0, solutions.length - 1)];
 }
-
