@@ -148,3 +148,10 @@ Things are moving slowly but steadily. I addressed all the obvious bugs I had ye
 the different parts of the application are coming together, I'm working on the actual act of progressing. One oversight I had from v0.2 is how I tallied the averages. In v0.3 I'm 
 still keeping track of the total average per skill over all, I'm now specifically keeping track of the average of the last 20 questions to determine progression so that each play 
 through will require 60 questions and I'm thinking of capping it at 100 questions per session. Maybe that's too much, I'll have to dig through Google Scholar some more I suppose.
+
+## Update 2023-03-11
+
+### 11:30
+
+I've got basic progression! It took me a while to work out the best way to do it but what I've got should scale up 
+as I add more skills to the program. 
