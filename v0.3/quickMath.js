@@ -18,6 +18,13 @@ function makeTitleScreen() {
     titleScreen.appendChild(letsGoButton);
 
   document.body.appendChild(titleScreen);
+
+  document.onkeydown = (e) => {
+    if (e.key === "Enter") {
+      playTone(randomNote());
+      makeModeSelectScreen();
+    }
+  }
 }
 
 async function makeModeSelectScreen() {
@@ -54,6 +61,12 @@ async function makeModeSelectScreen() {
           resolve();
         }
       }
+
+      document.onkeydown = async function(e) {
+        playTone(randomNote());
+        await makeProgressionStartScreen();
+        resolve();
+      }
     })
   }
   
@@ -80,6 +93,8 @@ async function makeModeSelectScreen() {
     await fadeIn(document.body);
 
     await waitForButton();
+
+    document.onkeydown = "";
   }
 }
 

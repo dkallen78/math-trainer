@@ -174,6 +174,17 @@ async function makeProgressionStartScreen() {
         playTone(randomNote());
         resolve(true);
       }
+
+      document.onkeydown = async function(e) {
+        if (e.key === "Escape") {
+          playTone(randomNote());
+          resolve(true);
+        } else if (e.key === "Enter") {
+          playTone(randomNote());
+          await makeProgressionInputScreen();
+          resolve(false);
+        }
+      }
     })
   }
 
@@ -260,6 +271,7 @@ async function makeProgressionStartScreen() {
     await waitForButton()
       .then((exit) => {quit = exit});
 
+    document.onkeydown = "";
   }
 }
 
