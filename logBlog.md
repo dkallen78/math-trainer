@@ -175,3 +175,9 @@ I also addressed some design stuff and made my responsive layout a bit nicer. I'
 Next, I'm going to iron out that bump in my within() function. I'm going to try and improve my mental math skill 
 tree as well but I haven't gotten any meaningful input on that. I also have an idea on how to "level lock" certain skills so they only become available when the user has advanced a certain degree. I should probably put a link to 
 my mental math progression spread sheet. I'll do that lower in the readme.
+
+## Update 2023-03-13
+
+### 13:15
+
+I fixed the errant function! It wasn't exactly broken, but I did iron out the answer distribution curve. The function isn't as small as it once was, but it gives reliable output.

@@ -140,7 +140,6 @@ function getProgressionProblem(skillSet) {
     attempts: 0
   }
 
-  problem.skill = currentProg[`skill${skill + 1}`];
   problem.skillNum = skill;
   problem.level = user.skillLevel[problem.skill];
 
@@ -226,11 +225,12 @@ async function makeProgressionStartScreen() {
         skillKey = rnd(0, skillArray.length - 1);
         skill3.innerHTML = prog[skillArray[skillKey]].string;
         currentProg.skill3 = skillArray[skillKey];
+
+        console.log(currentProg.skill1, currentProg.skill2, currentProg.skill3);
     
         clearInterval(spinInterval);
       }
     }, 50)
-
   }
   
   let quit = false;
@@ -320,13 +320,19 @@ async function progressionLoop() {
     prog[currentProg.skill1].set[user.skillLevel[currentProg.skill1]],
     prog[currentProg.skill2].set[user.skillLevel[currentProg.skill2]],
     prog[currentProg.skill3].set[user.skillLevel[currentProg.skill3]]
-  ];
+  ]
 
   let skillData = {
-    [currentProg.skill1]: new ProgressQueue(5),
-    [currentProg.skill2]: new ProgressQueue(5),
-    [currentProg.skill3]: new ProgressQueue(5)
+    [currentProg.skill1]: new ProgressQueue(2),
+    [currentProg.skill2]: new ProgressQueue(2),
+    [currentProg.skill3]: new ProgressQueue(2)
   }
+
+  let currentSkills = [
+    currentProg.skill1,
+    currentProg.skill2,
+    currentProg.skill3
+  ]
 
   while (!quit) {
 
@@ -346,16 +352,20 @@ async function progressionLoop() {
 
         totalTime = Date.now() - startTime;
 
-        skillData[problem.skill].push([totalTime, digitCount(problem.answer)]);
+        skillData[currentSkills[problem.skillNum]].push([totalTime, digitCount(problem.answer)]);
 
-        if (skillData[problem.skill].pass) {
+        if (skillData[currentSkills[problem.skillNum]].pass) {
           /*
           //What to do when the user achieves mastery in the current skill
           */
 
           playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey)); 
-          user.skillLevel[problem.skill]++;
+          if (user.skillLevel[currentSkills[problem.skillNum]] < (prog[currentSkills[problem.skillNum]].set.length - 1)) {
+            user.skillLevel[currentSkills[problem.skillNum]]++;
+          }
+
           skillSet.splice(problem.skillNum, 1);
+          currentSkills.splice(problem.skillNum, 1);
 
           if (skillSet.length < 1) {quit = true}
         } else {
@@ -516,7 +526,7 @@ class ProgressQueue {
     }, [0, 0])[0]);
   }
   get pass() {
-    if (this.length < this.size || this.avg > 5000) {
+    if (this.length < this.size || this.avg > 15000) {
       return false;
     } else {
       return true;

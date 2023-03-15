@@ -1,12 +1,14 @@
-# [Untitled Math Trainer v0.2](https://dkallen78.github.io/math-trainer/v0.2/quickMath.html)
+#[Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-[v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
+## Update 2023-03-14
 
-## Update 2023-03-13
+### 23:00
 
-### 13:15
+Happy Pi Day! I found and fixed a bug that made the skill level up not work right. I think I've over complicated things and I'll have to take a look at what I've got at some point to see if there's any way to simplify it. I bet there is but I don't want to spend what limited time I have to work on this on that problem at the moment. 
 
-I fixed the errant function! It wasn't exactly broken, but I did iron out the answer distribution curve. The function isn't as small as it once was, but it gives reliable output.
+I've also made it so the program won't level you up if there aren't any functions for the next level so you can keep playing without crashing the game. 
+
+Aside from the number of problem types available to the user, v0.3 has the same functionality as v0.2 so I'm going to update the link at the top of my page. Woohoo!
 
 [Previous updates](https://dkallen78.github.io/math-trainer/logBlog.md)
 
@@ -60,6 +62,14 @@ Zachary Hawes, spatial development
 ### [Behavioral Psychology](https://dkallen78.github.io/math-trainer/research/behavioralPsych.md)
 
 ### [Self-Determination Theory (SDT)](https://dkallen78.github.io/math-trainer/research/selfDeterminationTheory.md)
+
+### Emotional Induction
+
+### Color
+
+I set out to make this program sparse. I had gone with the game aesthetic in the Mathemagicus game and I wanted this to be more utilitarian. But there is research that indicates that color is almost universally preferred to black and white. I still want to maintain the "clean" aesthetic of the program as it stands now, but I think it could benefit from limited color. One question is where and how to use it. Another is which colors to use. Pett & Wilson (1996, it's on JSTOR) mention that it can be used to draw attention to something, which I think would work really well in an otherwise color-sparse environment. They also mention that humans in general are really good at using colors for identifying things (like resistors). Maybe I could use color to subtly indicate which skill is being shown?
+
+I think it's important to acknowledge that, according to [Castell et al (2018)](https://dkallen78.github.io/math-trainer/Refs/Castell-et-al-2018.pdf) there doesn't seem to be an inherent connection between a specific color and either cognitive performance or emotional state. I had pondered using a pulse of green for correct answers and a pulse of red for a wrong one, but it might be better to let the user pick their preferred color for correct input and its color complement for incorrect input.
 
 ### [Interleaving](https://dkallen78.github.io/math-trainer/research/interleaving.md)
 
