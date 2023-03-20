@@ -1,8 +1,11 @@
 :root {
   --bg-color: hsla(0, 0%, 100%, 1);
   --main-color: hsla(0, 0%, 0%, 1);
+  --text-color: hsla(0, 0%, 0%, 1);
+  --border-color: hsla(0, 0%, 0%, 1);
   --inactive-color: hsla(0, 0%, 50%, 0.5);
   --transparent: hsla(0, 0%, 0%, 0);
+  --button-bg-color: hsla(0, 0%, 0%, 0);
 }
 
 body {
@@ -27,7 +30,7 @@ body {
   height: 75vh;
   width: 100vw;
   text-align: center;
-  color: var(--main-color);
+  color: var(--text-color);
 }
 
 /*
@@ -50,7 +53,7 @@ body {
   height: 75vh;
   width: 100vw;
   text-align: center;
-  color: var(--main-color);
+  color: var(--text-color);
 }
 
 /*#modeSelectScreen > button {
@@ -59,10 +62,11 @@ body {
 .bigButton {
   margin: 1rem;
   padding: .5rem;
+  color: var(--text-color);
   font-size: 2rem;
   font-family: sans-serif;
-  background-color: var(--transparent);
-  border: .2rem solid var(--main-color);
+  background-color: var(--button-bg-color);
+  border: .2rem solid var(--border-color);
   border-radius: 1rem;
 }
 
@@ -81,8 +85,8 @@ body {
   padding: .5rem;
   font-size: 2rem;
   font-family: sans-serif;
-  background-color: var(--transparent);
-  border: .2rem solid var(--main-color);
+  background-color: var(--button-bg-color);
+  border: .2rem solid var(--border-color);
   border-radius: 1rem;
 }
 
@@ -104,8 +108,8 @@ body {
   padding: .5rem;
   height: 4rem;
   font-size: 1rem;
-  background-color: var(--transparent);
-  border: .2rem solid var(--main-color);
+  background-color: var(--button-bg-color);
+  border: .2rem solid var(--border-color);
   border-radius: 1rem;
 }
 
@@ -142,7 +146,7 @@ body {
   grid-template-columns: 25% 25% 25% 25%;
   height: 95vw;
   width: 95vw;
-  border: .1rem solid var(--main-color);
+  border: .1rem solid var(--border-color);
   border-radius: 1rem;
 }
 
@@ -150,8 +154,8 @@ body {
   font-size: 1rem;
   font-weight: bold;
   font-family: sans-serif;
-  background-color: var(--transparent);
-  border: .1em solid var(--main-color);
+  background-color: var(--button-bg-color);
+  border: .1em solid var(--border-color);
   box-shadow: inset .25rem .25rem 1rem hsla(0, 100%, 0%, .0625);
   transition: background-color 100ms;
 }
@@ -181,6 +185,41 @@ body {
   grid-column: 1 / 5;
 }
 
+/*
+  Settings screen styles
+*/
+
+#settingsBaseScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 75vh;
+  width: 100vw;
+  text-align: center;
+  color: var(--text-color);
+}
+
+#themeSelectionScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 75vh;
+  width: 100vw;
+  text-align: center;
+  color: var(--text-color);
+}
+
+
+.themeButton {
+  margin: 1rem;
+  padding: .5rem;
+  color: var(--text-color);
+  font-size: 2rem;
+  font-family: sans-serif;
+  background-color: var(--button-bg-color);
+  border: .2rem solid var(--border-color);
+  border-radius: 1rem;
+}
 
 
 @media screen and (orientation:landscape) {

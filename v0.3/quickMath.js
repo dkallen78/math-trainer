@@ -44,6 +44,13 @@ async function makeModeSelectScreen() {
         resolve();
       }
 
+      let settingsButton = document.getElementById("settingsButton");
+      settingsButton.onclick = async () => {
+        playTone(randomNote());
+        await makeSettingsBaseScreen();
+        resolve();
+      }
+
       if (document.getElementById("resumeButton")) {
         let resumeButton = document.getElementById("resumeButton");
         resumeButton.onclick = async () => {
@@ -64,7 +71,7 @@ async function makeModeSelectScreen() {
 
       document.onkeydown = async function(e) {
         playTone(randomNote());
-        await makeProgressionStartScreen();
+        //await makeProgressionStartScreen();
         resolve();
       }
     })
@@ -77,6 +84,9 @@ async function makeModeSelectScreen() {
     let modeSelectScreen = makeElement("div", "modeSelectScreen", "screen");
 
       let button = makeButton("Progression", null, "progressionButton", "bigButton");
+      modeSelectScreen.appendChild(button);
+
+      button = makeButton("Settings", null, "settingsButton", "bigButton");
       modeSelectScreen.appendChild(button);
 
       /*if (localStorage.getItem("userData")) {
