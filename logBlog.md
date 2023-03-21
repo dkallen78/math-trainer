@@ -181,3 +181,13 @@ my mental math progression spread sheet. I'll do that lower in the readme.
 ### 13:15
 
 I fixed the errant function! It wasn't exactly broken, but I did iron out the answer distribution curve. The function isn't as small as it once was, but it gives reliable output.
+
+## Update 2023-03-14
+
+### 23:00
+
+Happy Pi Day! I found and fixed a bug that made the skill level up not work right. I think I've over complicated things and I'll have to take a look at what I've got at some point to see if there's any way to simplify it. I bet there is but I don't want to spend what limited time I have to work on this on that problem at the moment. 
+
+I've also made it so the program won't level you up if there aren't any functions for the next level so you can keep playing without crashing the game. 
+
+Aside from the number of problem types available to the user, v0.3 has the same functionality as v0.2 so I'm going to update the link at the top of my page. Woohoo!

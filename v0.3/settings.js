@@ -60,10 +60,20 @@ async function makeThemeScreen() {
                 playTone(randomNote());
                 root.style.setProperty("--text-color", "hsla(190, 100%, 50%, 1)");
                 root.style.setProperty("--bg-color", "hsla(0, 0%, 0%, 1)");
-                root.style.setProperty("--border-color", "hsla(280, 100%, 50%, 1)");
+                root.style.setProperty("--border-color", "hsla(300, 100%, 50%, 1)");
                 root.style.setProperty("--button-bg-color", "hsla(0, 0%, 0%, 0)");
             }
             themeSelectionScreen.appendChild(vaporWaveThemeButton);
+
+            let chalkThemeButton = makeButton("Chalk Board", null, "chalkThemeButton", "themeButton");
+            chalkThemeButton.onclick = () => {
+                playTone(randomNote());
+                root.style.setProperty("--text-color", "hsla(0, 0%, 100%, 1)");
+                root.style.setProperty("--bg-color", "hsla(100, 100%, 60%, 1)");
+                root.style.setProperty("--border-color", "hsla(0, 0%, 100%, 1)");
+                root.style.setProperty("--button-bg-color", "hsla(100, 100%, 60%, 1)");
+            }
+            themeSelectionScreen.appendChild(chalkThemeButton);
 
             let themeBackButton = makeButton("Back", null, "themeBackButton", "bigButton");
             themeBackButton.onclick = () => {

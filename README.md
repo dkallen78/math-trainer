@@ -1,14 +1,10 @@
 #[Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-03-14
+## Update 2023-03-20
 
-### 23:00
+### 22:15
 
-Happy Pi Day! I found and fixed a bug that made the skill level up not work right. I think I've over complicated things and I'll have to take a look at what I've got at some point to see if there's any way to simplify it. I bet there is but I don't want to spend what limited time I have to work on this on that problem at the moment. 
-
-I've also made it so the program won't level you up if there aren't any functions for the next level so you can keep playing without crashing the game. 
-
-Aside from the number of problem types available to the user, v0.3 has the same functionality as v0.2 so I'm going to update the link at the top of my page. Woohoo!
+I've felt kind of stuck on how I want to move forward with how problems are organized so I decided to do some work on other parts of the program. Users can now change the color theme of the program. Long-term, I want the different themes to be something that can be unlocked by the users but I'm going to leave them as they are for now.
 
 [Previous updates](https://dkallen78.github.io/math-trainer/logBlog.md)
 

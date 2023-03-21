@@ -1,10 +1,8 @@
 :root {
   --bg-color: hsla(0, 0%, 100%, 1);
-  --main-color: hsla(0, 0%, 0%, 1);
   --text-color: hsla(0, 0%, 0%, 1);
   --border-color: hsla(0, 0%, 0%, 1);
   --inactive-color: hsla(0, 0%, 50%, 0.5);
-  --transparent: hsla(0, 0%, 0%, 0);
   --button-bg-color: hsla(0, 0%, 0%, 0);
 }
 
@@ -12,6 +10,12 @@ body {
   margin: 0;
   background-color: var(--bg-color);
   font-family: sans-serif;
+  transition: all 250ms;
+}
+
+button {
+  color: var(--text-color);
+  background-color: var(--button-bg-color);
   transition: all 250ms;
 }
 
@@ -62,10 +66,8 @@ body {
 .bigButton {
   margin: 1rem;
   padding: .5rem;
-  color: var(--text-color);
   font-size: 2rem;
   font-family: sans-serif;
-  background-color: var(--button-bg-color);
   border: .2rem solid var(--border-color);
   border-radius: 1rem;
 }
@@ -95,6 +97,7 @@ body {
   justify-content: center;
   margin: 3rem 0 3rem 0;
   font-size: 2.5rem;
+  color: var(--text-color);
 }
 
 #activeSkills {
@@ -131,6 +134,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 2rem;
+  color: var(--text-color);
   transition: padding 50ms;
 }
 
@@ -139,6 +143,7 @@ body {
   justify-content: center;
   padding-top: 1rem;
   font-size: 2rem;
+  color: var(--text-color);
 }
 
 #numberPad {
