@@ -1,3 +1,23 @@
+function addWithin(aMin, aMax) {
+  let a = rnd(aMin, aMax);
+  let b = 0;
+  let solutions = [];
+  let chance = rnd(1, 2);
+
+  if (chance === 1 && a < aMax) {
+    b = rnd(0, aMax - a);
+    solutions = [
+      [a, `${b} + ? = ${a + b}`],
+      [a, `? + ${b} = ${a + b}`]
+    ]
+  } else {
+    b = rnd(0, a);
+    solutions = [
+      [a, `${b} + ${a - b} = ?`]
+    ]
+  }
+  return solutions[rnd(0, solutions.length - 1)];
+}
 
 function doubles(aLow, aHigh, aMod, rLow, rHigh) {
   /*
@@ -22,6 +42,30 @@ function doubles(aLow, aHigh, aMod, rLow, rHigh) {
   let equation = `${a} + ${a + drift} = ?`;
 
   return [answer, equation];
+}
+
+function reorder(aMin, aMax) {
+  /*
+  //Creates a reorder problem                           //
+  //----------------------------------------------------//
+  //aMin(integer): the minimum addend/                  //
+  //aMax(integer): the maximum addend                   //
+  //----------------------------------------------------//
+  //return(array[float, string]): the correct term and  //
+  //  a string representation of it                     //
+  */
+
+  let a = rnd(aMin, aMax);
+  let b = rnd(aMin, aMax);
+
+  let solutions = [
+    [a, `${a} + ${b} = ${b} + ?`],
+    [a, `? + ${b} = ${b} + ${a}`],
+    [a, `${b} + ${a} = ? + ${b}`],
+    [a, `${b} + ? = ${a} + ${b}`]
+  ]
+
+  return solutions[rnd(0, solutions.length - 1)];
 }
 
 function toOrFrom(aMin, base) {

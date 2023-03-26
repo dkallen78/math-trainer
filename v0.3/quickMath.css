@@ -72,11 +72,41 @@ button {
   border-radius: 1rem;
 }
 
+.inactiveButton {
+  filter: opacity(25%);
+}
+
 /*
-  Progression mode styles
+  Skills mode styles
 */
 
-#progressionSelectScreen {
+#skillsSelectScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100vh;
+}
+
+#skillsSelectScreenInfo {
+  font-size: 4rem;
+  text-align: center;
+}
+
+#skillsSelect {
+  display: grid;
+  grid-template-columns: 10rem 10rem;
+  grid-template-rows: 10rem 10rem;
+  justify-content: center;
+}
+
+#skillsSelect > button {
+  margin: .25rem;
+  font-size: 4rem;
+  border: .2rem solid var(--border-color);
+  border-radius: 1rem;
+}
+
+/*#progressionSelectScreen {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -144,7 +174,7 @@ button {
   padding-top: 1rem;
   font-size: 2rem;
   color: var(--text-color);
-}
+}*/
 
 #numberPad {
   display: grid;

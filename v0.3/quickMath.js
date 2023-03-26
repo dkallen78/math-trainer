@@ -44,6 +44,13 @@ async function makeModeSelectScreen() {
         resolve();
       }
 
+      let skillsButton = document.getElementById("skillsButton");
+      skillsButton.onclick = async () => {
+        playTone(randomNote());
+        await makeSkillsStartScreen();
+        resolve();
+      }
+
       let settingsButton = document.getElementById("settingsButton");
       settingsButton.onclick = async () => {
         playTone(randomNote());
@@ -86,8 +93,11 @@ async function makeModeSelectScreen() {
       let button = makeButton("Progression", null, "progressionButton", "bigButton");
       modeSelectScreen.appendChild(button);
 
-      button = makeButton("Settings", null, "settingsButton", "bigButton");
-      modeSelectScreen.appendChild(button);
+      let skillsButton = makeButton("Skills", null, "skillsButton", "bigButton");
+      modeSelectScreen.appendChild(skillsButton);
+
+      let settingsButton = makeButton("Settings", null, "settingsButton", "bigButton");
+      modeSelectScreen.appendChild(settingsButton);
 
       /*if (localStorage.getItem("userData")) {
         button = makeButton("Resume", null, "resumeButton", "bigButton");
@@ -110,7 +120,125 @@ async function makeModeSelectScreen() {
 
 
 
+function makeNumberPad() {
+  /*
+  //Makes and returns a div element with a number pad   //
+  //  inside of it. Additionally, it defines the        //
+  //  behavior for touch and mouse events               //
+  //----------------------------------------------------//
+  //return(element): HTML element                       //
+  */
+  
+  let numberPad = makeElement("div", "numberPad");
+  
+    numberPad.appendChild(makeButton("1", () => {}, "button1"));
+    numberPad.appendChild(makeButton("2", () => {}, "button2"));
+    numberPad.appendChild(makeButton("3", () => {}, "button3"));
+    numberPad.appendChild(makeButton("←", () => {}, "buttonBack"));
+    numberPad.appendChild(makeButton("4", () => {}, "button4"));
+    numberPad.appendChild(makeButton("5", () => {}, "button5"));
+    numberPad.appendChild(makeButton("6", () => {}, "button6"));
+    numberPad.appendChild(makeButton("7", () => {}, "button7"));
+    numberPad.appendChild(makeButton("8", () => {}, "button8"));
+    numberPad.appendChild(makeButton("9", () => {}, "button9"));
+    numberPad.appendChild(makeButton("Submit", () => {}, "buttonSubmit"));
+    numberPad.appendChild(makeButton("0", () => {}, "button0"));
+    numberPad.appendChild(makeButton(".", () => {}, "buttonDecimal"));
+    numberPad.appendChild(makeButton("Quit", () => {}, "buttonQuit"));
+  
+    for (let i = 0; i < numberPad.children.length; i++) {
+      numberPad.children[i].addEventListener("touchstart", () => {
+        numberPad.children[i].style.backgroundColor = "hsla(0, 100%, 0%, .125)";
+      });
+      numberPad.children[i].addEventListener("touchend", () => {
+        numberPad.children[i].style.backgroundColor = "var(--transparent)";
+      });
+      numberPad.children[i].addEventListener("mousedown", () => {
+        numberPad.children[i].style.backgroundColor = "hsla(0, 100%, 0%, .125)";
+      });
+      numberPad.children[i].addEventListener("mouseup", () => {
+        numberPad.children[i].style.backgroundColor = "var(--transparent)";
+      });
+    }
+  
+  return numberPad;
+}
 
+function numPadOn() {
+  /*
+  //Enables the onclick functions of the number pad
+  */
+  
+  document.getElementById("button1").onclick = function() {inputNumber("1")}
+  document.getElementById("button2").onclick = function() {inputNumber("2")}
+  document.getElementById("button3").onclick = function() {inputNumber("3")}
+  document.getElementById("button4").onclick = function() {inputNumber("4")}
+  document.getElementById("button5").onclick = function() {inputNumber("5")}
+  document.getElementById("button6").onclick = function() {inputNumber("6")}
+  document.getElementById("button7").onclick = function() {inputNumber("7")}
+  document.getElementById("button8").onclick = function() {inputNumber("8")}
+  document.getElementById("button9").onclick = function() {inputNumber("9")}
+  document.getElementById("button0").onclick = function() {inputNumber("0")}
+  document.getElementById("buttonBack").onclick = function() {inputNumber("-1")}
+  document.getElementById("buttonDecimal").onclick = function() {inputNumber(".")}
+  
+  return null;
+}
+
+function numPadOff() {
+  /*
+  //Disables the onclick functions of the number pad
+  */
+  
+  document.getElementById("button1").onclick = "";
+  document.getElementById("button2").onclick = "";
+  document.getElementById("button3").onclick = "";
+  document.getElementById("button4").onclick = "";
+  document.getElementById("button5").onclick = "";
+  document.getElementById("button6").onclick = "";
+  document.getElementById("button7").onclick = "";
+  document.getElementById("button8").onclick = "";
+  document.getElementById("button9").onclick = "";
+  document.getElementById("button0").onclick = "";
+  document.getElementById("buttonBack").onclick = "";
+  document.getElementById("buttonDecimal").onclick = "";
+  document.getElementById("buttonSubmit").onclick = "";
+}
+
+function inputNumber(num) {
+  /*
+  //Adds a number to the solutionDisplay element        //
+  //----------------------------------------------------//
+  //num(string): either a number/symbol to display or a //
+  //  numeric code                                      //
+  //  -1: backspace                                     //
+  //  10: submit answer                                 //
+  */
+  
+  let display = document.getElementById("solutionDisplay");
+  
+  playTone(randomNote());
+  if (num === "-1") {
+    /*
+      Removes the last input number. If the last input
+        number was preceded by a decimal point, the
+        decimal point is removed as well.
+    */
+  
+    let current = display.innerHTML;
+  
+    if (current[current.length - 2] === ".") {
+      display.innerHTML = current.slice(0, -2);
+    } else {
+      display.innerHTML = current.slice(0, -1);
+    }
+  } else if (num === "10") {
+  
+  } else {
+    display.innerHTML += num;
+  }
+  
+}
 
 function randomNote() {
   /*

@@ -1,4 +1,4 @@
-let testFunc = () => within3(1, 5);
+let testFunc = () => reorder(1, 5);
 
 function testOnce() {
   let problem = testFunc();
