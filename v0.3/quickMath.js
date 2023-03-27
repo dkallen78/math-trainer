@@ -7,7 +7,7 @@ function makeTitleScreen() {
 
   let titleScreen = makeElement("div", "titleScreen", "screen");
 
-    let titleDiv = makeElement("div", "titleDiv");
+    let titleDiv = makeElement("div", "titleDiv", "marquee");
       titleDiv.innerHTML = "QuickMath";
     titleScreen.appendChild(titleDiv);
 
@@ -278,6 +278,12 @@ function makeChord(chordPack, key) {
 const user = {
   activeScale: [14, 16, 18, 21, 23],
   activeKey: 14,
+  skillUnlock: {
+    "+": true,
+    "-": false,
+    "×": false,
+    "÷": false
+  },
   skillLevel: {
     mixedOps: 0,
     upTo: 0,

@@ -41,10 +41,7 @@ button {
   The title of the program
 */
 #titleDiv {
-  display: flex;
-  justify-content: center;
   margin: 3rem;
-  font-size: 3rem;
 }
 
 /*#titleScreen > button {
@@ -62,6 +59,12 @@ button {
 
 /*#modeSelectScreen > button {
 }*/
+
+.marquee {
+  font-size: 3rem;
+  text-align: center;
+  color: var(--text-color);
+}
 
 .bigButton {
   margin: 1rem;
@@ -87,15 +90,16 @@ button {
   height: 100vh;
 }
 
-#skillsSelectScreenInfo {
+/*#skillsSelectScreenInfo {
   font-size: 4rem;
   text-align: center;
-}
+  color: var(--text-color);
+}*/
 
 #skillsSelect {
   display: grid;
   grid-template-columns: 10rem 10rem;
-  grid-template-rows: 10rem 10rem;
+  grid-template-rows: 10rem 10rem auto;
   justify-content: center;
 }
 
@@ -104,6 +108,10 @@ button {
   font-size: 4rem;
   border: .2rem solid var(--border-color);
   border-radius: 1rem;
+}
+
+#skillsScreenBackButton {
+  grid-column: 1 / 3;
 }
 
 /*#progressionSelectScreen {

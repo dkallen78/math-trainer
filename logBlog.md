@@ -191,3 +191,9 @@ Happy Pi Day! I found and fixed a bug that made the skill level up not work righ
 I've also made it so the program won't level you up if there aren't any functions for the next level so you can keep playing without crashing the game. 
 
 Aside from the number of problem types available to the user, v0.3 has the same functionality as v0.2 so I'm going to update the link at the top of my page. Woohoo!
+
+## Update 2023-03-20
+
+### 22:15
+
+I've felt kind of stuck on how I want to move forward with how problems are organized so I decided to do some work on other parts of the program. Users can now change the color theme of the program. Long-term, I want the different themes to be something that can be unlocked by the users but I'm going to leave them as they are for now.
