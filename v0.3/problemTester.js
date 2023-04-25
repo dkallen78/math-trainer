@@ -1,4 +1,4 @@
-let testFunc = () => reorder(1, 5);
+let testFunc = () => reorderBreak(1, 1, 1, 1, 9, 1, 9);
 
 function testOnce() {
   let problem = testFunc();
