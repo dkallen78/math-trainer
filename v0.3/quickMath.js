@@ -284,11 +284,11 @@ const user = {
     "×": false,
     "÷": false
   },
-  skillLevel: {
-    mixedOps: 0,
-    upTo: 0,
-    doubles: 0,
-    nearDoubles: 0
+  addition: {
+    fundamentals: [],
+    reorder: [],
+    partition: [],
+    compensation: []
   }
 }
 

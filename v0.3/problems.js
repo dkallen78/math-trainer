@@ -1,22 +1,33 @@
-function addWithin(aMin, aMax) {
+function addWithin(aMin, aMax, simple = true) {
+  /*
+  //Creates an addition problem with a lower and upper  //
+  //  bound                                             //
+  //----------------------------------------------------//
+  //aMin(integer): the smallest sum possible            //
+  //aMax(integer): the largest sum possible             //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
+
   let a = rnd(aMin, aMax);
   let b = 0;
   let solutions = [];
-  let chance = rnd(1, 2);
 
-  if (chance === 1 && a < aMax) {
-    b = rnd(0, aMax - a);
-    solutions = [
-      [a, `${b} + ? = ${a + b}`],
-      [a, `? + ${b} = ${a + b}`]
-    ]
-  } else {
-    b = rnd(0, a);
-    solutions = [
-      [a, `${b} + ${a - b} = ?`]
-    ]
+  switch (simple) {
+    case false:
+      b = rnd(0, aMax - a);
+      solutions = [
+        [a, `${b} + ? = ${a + b}`],
+        [a, `? + ${b} = ${a + b}`],
+      ]
+    case true:
+      b = rnd(0, a);
+      solutions.push([a, `${b} + ${a - b} = ?`]);
   }
+
   return solutions[rnd(0, solutions.length - 1)];
+
 }
 
 function doubles(aLow, aHigh, aMod, rLow, rHigh) {
@@ -154,4 +165,37 @@ function within(aMin, aMax) {
   }
 
   return solutions[rnd(0, solutions.length - 1)];
+}
+
+function reorderBreak(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax) {
+  /*
+  //Creates a three-term problem that has a broken      //
+  //  factor of 10                                      //
+  //----------------------------------------------------//
+  //breakMin(integer): the smallest possible number to  //
+  //  be broken                                         //
+  //breakMax(integer): the largest possible number to   //
+  //  be broken                                         //
+  //breakMod(integer): multiplicative modifier for the  //
+  //  number to be broken                               //
+  //crackMin(integer): the smallest possible number by  //
+  //  which to break the factor of 10                   //
+  //crackMax(integer): the largest possible number by   //
+  //  which to break the factor of 10                   //
+  //cMin(integer): the smallest possible number of the  //
+  //  extra term                                        //
+  //cMax(integer): the largest possible number of the   //
+  //  extra term
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
+
+  let toBreak = rnd(breakMin, breakMax) * (10 ** breakMod);
+  let b = rnd(crackMin, crackMax);
+
+  let a = toBreak - b;
+  let c = rnd(cMin, cMax);
+
+  return [b, `${a} + ${c} + ${b} = ${a} + ? + ${c}`];
 }
