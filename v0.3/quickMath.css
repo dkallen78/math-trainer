@@ -132,7 +132,8 @@ button {
 }
 
 #skillDetail {
-
+  text-align: center;
+  font-size: 2rem;
 }
 
 #skillGrid {
@@ -189,8 +190,8 @@ button {
   border: .2rem solid var(--border-color);
   border-radius: 1rem;
 }
-
-#progressionInputScreen {
+*/
+#inputScreen {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 3rem 25% 50%;
@@ -218,7 +219,7 @@ button {
   padding-top: 1rem;
   font-size: 2rem;
   color: var(--text-color);
-}*/
+}
 
 #numberPad {
   display: grid;

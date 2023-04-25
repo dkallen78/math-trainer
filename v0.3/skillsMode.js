@@ -131,6 +131,8 @@ async function makeSkillsScreen(skill) {
 
   async function waitForButton() {
 
+    let activeSkill = 0;
+
     return new Promise((resolve, reject) => {
 
       for (let i = 1; i < skill.length; i++) {
@@ -139,13 +141,24 @@ async function makeSkillsScreen(skill) {
           let skillButton = document.getElementById(`skillButton${i}`);
           skillButton.classList.remove("inactiveButton");
 
+          let skillDetail = document.getElementById("skillDetail");
+
           skillButton.onclick = async () => {
             playTone(randomNote());
-
-            resolve(false);
+            activeSkill = i;
+            skillDetail.innerHTML = skill[i].name;
+            
+            let startButton = document.getElementById("selectSkillButton");
+            startButton.onclick = async () => {
+              await makeInputScreen([() => skill[i].run()]);
+              resolve(false);
+            }
           }
         }
       }
+
+      
+      
 
       let backButton = document.getElementById("skillsListScreenBackButton");
       backButton.onclick = async () => {
