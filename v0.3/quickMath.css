@@ -140,6 +140,7 @@ button {
   display: grid;
   grid-template-columns: auto auto auto auto;
   justify-content: space-evenly;
+  row-gap: .5rem;
 }
 
 .skillButton {

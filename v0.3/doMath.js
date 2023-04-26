@@ -32,6 +32,8 @@ async function mathLoop(problemSet) {
 
   let startTime, totalTime;
 
+  let queue = new ProgressQueue(2);
+
   while (!quit) {
 
     if (newProblem) {
@@ -47,10 +49,19 @@ async function mathLoop(problemSet) {
 
         totalTime = Date.now() - startTime;
 
-        playChord(makeChord(chords.I, user.activeKey));
+        queue.push([totalTime, digitCount(problem.answer)]);
 
+        if (queue.pass) {
+          playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey)); 
+
+          let targets = problemSet[problem.skillNum].id;
+          user[targets[0]][targets[1]][targets[2]] = true;
+
+          quit = true;
+        } else {
+          playChord(makeChord(chords.I, user.activeKey));
+        }
         newProblem = true;  
-
       })
       .catch((end) => {
         if (end) {
@@ -76,23 +87,32 @@ async function mathLoop(problemSet) {
 }
 
 function getNewProblem(problemSet) {
+  /*
+  //Creates a random arithmetic problem                 //
+  //----------------------------------------------------//
+  //skillSet(array[function]): an array of functions    //
+  //  that are randomly called to generate the problems //
+  //----------------------------------------------------//
+  //return(object): the object containing the problem   //
+  //  details                                           //
+  */
 
   let skill = rnd(0, problemSet.length - 1);
 
-  console.log(problemSet[skill]());
+  console.log(problemSet[skill].run());
 
   let problem = {
     answer: 0,
     equation: "",
     //skill: "",
-    //skillNum: 0,
+    skillNum: 0,
     //level: 0,
     //attempts: 0
   }
 
-  problem.answer = 0;
+  problem.skillNum = skill;
 
-  [problem.answer, problem.equation] = problemSet[skill]();
+  [problem.answer, problem.equation] = problemSet[skill].run();
 
   return problem;
 }
@@ -145,4 +165,34 @@ async function waitForAnswer(problem) {
       }
     }      
   })
+}
+
+class ProgressQueue {
+  constructor(size) {
+    this.size = size;
+    this.q = [];
+  }
+  get length() {
+    return this.q.length;
+  }
+  get avg() {
+    return Math.round(this.q.reduce((average, current) => {
+      let oldTotal = average[0] * average[1];
+      let newTotal = oldTotal + current[0];
+      let newCount = average[1] + current[1];
+      return [(newTotal / newCount), newCount];
+    }, [0, 0])[0]);
+  }
+  get pass() {
+    if (this.length < this.size || this.avg > 15000) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  push(x) {
+    if (this.q.push(x) > this.size) {
+      this.q.shift();
+    }
+  }
 }

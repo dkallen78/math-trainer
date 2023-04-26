@@ -205,3 +205,11 @@ I've felt kind of stuck on how I want to move forward with how problems are orga
 I've done a bit of a rework on how the app is going to work. The Progression mode is out. I'm implementing a Skills mode instead where users can work on individual skills to help them solve mental math problems. I'm also going to add a sort of speed mode where users try to get as far as they can while problems get progressively more difficult. 
 
 The big issue with implementing the Skills mode is how to organie the skills. What I've got now is separating the different techniques by operation (addition, subtraction, multiplication, division) and then having specific strategies/skills to practice and progress through. The big issue with that is implementing a progression which I'm having to do on my own because teachers are busy and don't have time to critique my choices or offer their own. So, I'm slowly and methodically putting together addition skills while trying to figure out how to design a UI for it. Good times!
+
+## Update 2023-04-24
+
+### 22:15
+
+I have something working again! Admitedly, I've been slacking lately, but my wife set a fire under my ass to keep working on it and so here I am. The program isn't really up and "working" but it's got a semblance of functionality which is as far as I wanted to push tonight. 
+
+Tomorrow I'll start getting it presentable again ;)

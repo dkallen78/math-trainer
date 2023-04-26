@@ -1,3 +1,30 @@
+function addition(aMin, aMax, aMod, bMin, bMax, bMod) {
+  /*
+  //Creates an addition based on the parameters         //
+  //----------------------------------------------------//
+  //aMin(integer): smallest possible value for the      //
+  //  first addend                                      //
+  //aMax(integer): largest possible value for the       //
+  //  first addend                                      //
+  //aMod(integer): multiplicative modifier for the      //
+  //  first addend                                      //
+  //bMin(integer): smallest possible value for the      //
+  //  second addend                                     //
+  //bMax(integer): largest possible value for the       //
+  //  second addend                                     //
+  //bMod(integer): multiplicative modifier for the      //
+  //  second addend
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
+
+  let a = rnd(aMin, aMax) * (10 ** aMod);
+  let b = rnd(bMin, bMax) * (10 ** bMod);
+
+  return [(a + b), `${a} + ${b} = ?`];
+}
+
 function addWithin(aMin, aMax, simple = true) {
   /*
   //Creates an addition problem with a lower and upper  //
@@ -167,7 +194,7 @@ function within(aMin, aMax) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
-function reorderBreak(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax) {
+function reorderBreak10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax) {
   /*
   //Creates a three-term problem that has a broken      //
   //  factor of 10                                      //
@@ -198,4 +225,31 @@ function reorderBreak(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cM
   let c = rnd(cMin, cMax);
 
   return [b, `${a} + ${c} + ${b} = ${a} + ? + ${c}`];
+}
+
+function reorderBreakDoubles() {
+  
+}
+
+function singleDigitAddition(minSum, maxSum) {
+  /*
+  //Creates a single-digit addition problem with a      //
+  //  minimum and maximum sum                           //
+  //----------------------------------------------------//
+  //minSum(integer): smallest possible sum              //
+  //maxSum(integer): largest possible sum               //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
+
+  let sum = rnd(minSum, maxSum);
+  let a = rnd(1, 9);
+  let b = sum - a;
+
+  while ((sum - a) > 9) {
+    a = rnd(1, 9);
+  }
+
+  return [sum, `${a} + ${b} = ?`];
 }

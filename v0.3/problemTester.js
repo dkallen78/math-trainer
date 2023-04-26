@@ -1,4 +1,4 @@
-let testFunc = () => reorderBreak(1, 1, 1, 1, 9, 1, 9);
+let testFunc = () => singleDigitAddition(11, 18);
 
 function testOnce() {
   let problem = testFunc();

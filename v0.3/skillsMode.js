@@ -150,7 +150,7 @@ async function makeSkillsScreen(skill) {
             
             let startButton = document.getElementById("selectSkillButton");
             startButton.onclick = async () => {
-              await makeInputScreen([() => skill[i].run()]);
+              await makeInputScreen([skill[i]]);
               resolve(false);
             }
           }
@@ -220,13 +220,15 @@ let additionFundamentals = [
   /*0*/"Fundamentals",
   /*1*/{
     name: "Single-Digit Addition 1",
-    run: () => addWithin(1, 9),
+    id: ["addition", "fundamentals", 1],
+    run: () => singleDigitAddition(1, 9),
     test: () => {
       return true;
     }
   },
   /*2*/{
     name: "Reorder",
+    id: ["addition", "fundamentals", 2],
     run: () => reorder(1, 9),
     test: () => {
       return true;
@@ -234,6 +236,7 @@ let additionFundamentals = [
   },
   /*3*/{
     name: "Missing Term",
+    id: ["addition", "fundamentals", 3],
     run: () => addWithin(1, 9, false),
     test: () => {
       if (user.addition.fundamentals[1] && user.addition.fundamentals[2]) {
@@ -244,12 +247,48 @@ let additionFundamentals = [
   },
   /*4*/{
     name: "Up To 10",
+    id: ["addition", "fundamentals", 4],
     run: () => upTo(1, 10),
     test: () => {
       if (user.addition.fundamentals[3]) {
         return true;
       }
       return false;
+    }
+  },
+  /*5*/{
+    name: "Doubles 1",
+    id: ["addition", "fundamentals", 5],
+    run: () => doubles(1, 10, 1, 0, 0),
+    test: () => {
+      if (user.addition.fundamentals[4]) {
+        return true;
+      }
+      return false;
+    }
+  },
+  /*6*/{
+    name: "10 + 1s",
+    id: ["addition", "fundamentals", 6],
+    run: () => addition(1, 1, 1, 1, 9, 0),
+    test: () => {
+      if (user.addition.fundamentals[5]) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  /*7*/{
+    name: "Single-Digit Addition 2",
+    id: ["addition", "fundamentals", 7],
+    run: () => singleDigitAddition(11, 18),
+    test: () => {
+      if (user.addition.fundamentals[6]) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 ]
@@ -273,7 +312,7 @@ let additionReorder = [
   /*0*/"Reorder",
   /*1*/{
     name: "Broken 10",
-    run: () => reorderBreak(1, 1, 1, 1, 9, 1, 9),
+    run: () => reorderBreak10s(1, 1, 1, 1, 9, 1, 9),
     test: () => {
       if (user.addition.fundamentals[7]) {
         return true;
