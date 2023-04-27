@@ -1,18 +1,18 @@
 #[Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-04-25
+## Update 2023-04-26
 
-### 21:30
+### 22:40
 
-Progression through the skills is back! The next step is to fill out all the skills to make sure everything is working together. 
+Making good, multi-use functions to produce random problems is hard. I could make custom functions for each skill but that seems kind of wasteful, so I'm trying to make functions that can be used by more than one skill. But the more work you make them do, the less they want to keep their flat distribution curves. It's not acceptable (to me) that one answer would be produced 34% of the time and another only 1%.
+
+I also put another post on reddit reaching out for some input/help/guidance. I have to try, but I think I'm alone on this one. For now.
 
 ### Issues
 
-Writing the functions to make the random math problems is tricky because I want a flat distribution of answers. It's really easy to end up making a normal distribution that gives a weight to certain answers but tricky to avoid it, especially without making really ugly functions.
+I'm finding that I need to make my problemTester program a little bit more versatile, so I'm going to try ot put some work in on that this week to make it more useful and maybe a little prettier.
 
-I need some way to notify the user when they've unlocked a new skill branch. Currently, the user starts with just Addition, Fundamentals unlocked, but when they unlock Addition, Reorder I want there to be some kind of notification that something new is available.
-
-I also have a headache and that's why I'm stopping kind of early. That totally counts as an issue.
+I still need a notification system but I'm focused on these other issues for now.
 
 [Previous updates](https://dkallen78.github.io/math-trainer/logBlog.md)
 

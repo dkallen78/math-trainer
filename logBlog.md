@@ -213,3 +213,17 @@ The big issue with implementing the Skills mode is how to organie the skills. Wh
 I have something working again! Admitedly, I've been slacking lately, but my wife set a fire under my ass to keep working on it and so here I am. The program isn't really up and "working" but it's got a semblance of functionality which is as far as I wanted to push tonight. 
 
 Tomorrow I'll start getting it presentable again ;)
+
+## Update 2023-04-25
+
+### 21:30
+
+Progression through the skills is back! The next step is to fill out all the skills to make sure everything is working together. 
+
+### Issues
+
+Writing the functions to make the random math problems is tricky because I want a flat distribution of answers. It's really easy to end up making a normal distribution that gives a weight to certain answers but tricky to avoid it, especially without making really ugly functions.
+
+I need some way to notify the user when they've unlocked a new skill branch. Currently, the user starts with just Addition, Fundamentals unlocked, but when they unlock Addition, Reorder I want there to be some kind of notification that something new is available.
+
+I also have a headache and that's why I'm stopping kind of early. That totally counts as an issue.

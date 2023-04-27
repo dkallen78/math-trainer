@@ -194,7 +194,7 @@ function within(aMin, aMax) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
-function reorderBreak10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax) {
+function broken10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax, mode) {
   /*
   //Creates a three-term problem that has a broken      //
   //  factor of 10                                      //
@@ -212,7 +212,11 @@ function reorderBreak10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin,
   //cMin(integer): the smallest possible number of the  //
   //  extra term                                        //
   //cMax(integer): the largest possible number of the   //
-  //  extra term
+  //  extra term                                        //
+  //mode(integer): determines what format the solution  //
+  //  will take                                         //
+  //    1: reorder problem                              //
+  //    2: standard 3-term problem                      //
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
@@ -224,12 +228,23 @@ function reorderBreak10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin,
   let a = toBreak - b;
   let c = rnd(cMin, cMax);
 
-  return [b, `${a} + ${c} + ${b} = ${a} + ? + ${c}`];
+  switch(mode) {
+    case 1:
+      return [b, `${a} + ${c} + ${b} = ${a} + ? + ${c}`];
+      break;
+    case 2:
+      return [(a + b + c), `${a} + ${c} + ${b} = ?`];
+      break;
+  }
 }
 
-function reorderBreakDoubles() {
-  
-}
+
+/*function threeDigitBreakDoubles(aMin, aMax, crackMin, crackMax) {
+  let a = rnd(aMin, aMax);
+  let b = rnd(crackMin, crackMax);
+
+  return
+}*/
 
 function singleDigitAddition(minSum, maxSum) {
   /*
@@ -245,11 +260,27 @@ function singleDigitAddition(minSum, maxSum) {
 
   let sum = rnd(minSum, maxSum);
   let a = rnd(1, 9);
-  let b = sum - a;
 
-  while ((sum - a) > 9) {
+  while ((sum - a) > 9 || (sum - a) < 0) {
     a = rnd(1, 9);
   }
 
-  return [sum, `${a} + ${b} = ?`];
+  return [sum, `${a} + ${sum - a} = ?`];
+}
+
+function partitionCrossing10s(aMin, aMax, aMod, mode) {
+
+  let a = rnd(aMin, aMax) * (10 ** aMod);
+  let b = rnd(1, 8);
+  let c = rnd(1, (9 - b));
+
+  switch(mode) {
+    case 1:
+      return [b, `${a - b} + ${b + c} = ${a - b} + ? + ${c}`];
+      break;
+    case 2:
+      return [(a + c), `${a - b} + ${b + c} = ?`];
+      break;
+  }
+
 }

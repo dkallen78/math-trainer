@@ -1,12 +1,34 @@
-let testFunc = () => singleDigitAddition(11, 18);
+let testFunc = () => partitionCrossing10s(2, 2, 1, 2);
 
 function testOnce() {
+  /*
+  //Runs the function to be tested one time and outputs //
+  //  the answer and the equation                       //
+  */
+
   let problem = testFunc();
   let problemOutput = document.getElementById("problemOutput");
   problemOutput.innerHTML = `Answer: ${problem[0]}, Equation: ${problem[1]}`;
 }
 
 function deepTest() {
+  /*
+  //Runs the function thousands of times to check that  //
+  //  it has a flat distribution curve                  //
+  //----------------------------------------------------//
+  //To start it runs the function a number of times     //
+  //  equal to the items variable, keeping track of the //
+  //  number of times an answer comes up                //
+  //----------------------------------------------------//
+  //It does this the number of times in the iterations  //
+  //  variable. Each time it iterates, it calculates the//
+  //  percentage of times an answer is produced and     //
+  //  maintains a running average of percentages for    //
+  //  that answer                                       //
+  //----------------------------------------------------//
+  //Finally, it produces an SVG graph to quickly        //
+  //  visualize the distribution curve of the answers   //
+  */
 
   let iterations = 1000;
 
@@ -16,20 +38,33 @@ function deepTest() {
 
     let results = {};
 
-    let items = 60;
+    let items = 100;
 
     for (let j = 0; j <= items; j++) {
       let problem = testFunc();
 
+      //stores the number of times an answer is produced in 
+      //  an object. The key is the answer and the value is
+      //  the number of times that answer is produced
       results[problem[0]] ? results[problem[0]]++ : results[problem[0]] = 1;
     }
 
+    //produces an array of the keys of the results object.
+    //  The keys are the answers produced in the previous
+    //  for loop
     let keys = Object.keys(results);
 
+    //produces an array of the percentage of times each
+    //  answer was produced
     let percent = keys.map((element) => {
       return results[element] / items;
     })
 
+    //stores the percentages in a new array that has index
+    //  parity with the percent array. If a percentage is
+    //  already present in the index, an average of the 
+    //  new percentage and all previous percentages is 
+    //  calculated
     percent.forEach((elem, i) => {
       if (totals[i]) {
         let oldTotal = totals[i][0] * totals[i][1];
@@ -47,7 +82,8 @@ function deepTest() {
 
   let svgBox = document.getElementById("svgBox");
   clearElement(svgBox);
-    
+  
+  //Makes an SVG element to put a graph in
   let svg = makeSVG("svg", "svgGraph");
   svg.setAttribute("viewBox", `0 0 ${totals.length} ${totals.length / 2}`);
 
