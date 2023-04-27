@@ -219,7 +219,7 @@ let launchSkill = {
 let additionFundamentals = [
   /*0*/"Fundamentals",
   /*1*/{
-    name: "Single-Digit Addition 1",
+    name: "Single-Digit Addition I",
     id: ["addition", "fundamentals", 1],
     run: () => singleDigitAddition(1, 9),
     test: () => {
@@ -257,7 +257,7 @@ let additionFundamentals = [
     }
   },
   /*5*/{
-    name: "Doubles 1",
+    name: "Doubles I",
     id: ["addition", "fundamentals", 5],
     run: () => doubles(1, 10, 1, 0, 0),
     test: () => {
@@ -280,7 +280,7 @@ let additionFundamentals = [
     }
   },
   /*7*/{
-    name: "Single-Digit Addition 2",
+    name: "Single-Digit Addition II",
     id: ["addition", "fundamentals", 7],
     run: () => singleDigitAddition(11, 18),
     test: () => {
@@ -296,8 +296,8 @@ let additionFundamentals = [
 let additionPartition = [
   /*0*/"Partition",
     /*1*/{
-      name: "",
-      run: null,
+      name: "Crossing 10 I",
+      run: partitionCrossing10s(1, 1, 1, 1),
       test: () => {
         if (user.addition.fundamentals[7]) {
           return true;
@@ -311,13 +311,67 @@ let additionPartition = [
 let additionReorder = [
   /*0*/"Reorder",
   /*1*/{
-    name: "Broken 10",
-    run: () => reorderBreak10s(1, 1, 1, 1, 9, 1, 9),
+    name: "Broken 10 I",
+    run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 1),
     test: () => {
-      if (user.addition.fundamentals[7]) {
+      if (user.addition.fundamentals[6]) {
         return true;
       }
       return false;
+    }
+  },
+  /*2*/{
+    name: "Broken 10 II",
+    run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 2),
+    test: () => {
+      if (user.addition.reorder[1]) {
+        return true;
+      }
+      return false;
+    }
+  },
+  /*3*/{
+    name: "Broken 20 I",
+    run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 1),
+    test: () => {
+      if (user.addition.reorder[2]) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  /*4*/{
+    name: "Broken 20 II",
+    run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 2),
+    test: () => {
+      if (user.addition.reorder[3]) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  /*5*/{
+    name: "Broken 10s I",
+    run: () => broken10s(2, 8, 1, 1, 9, 1, 9, 1),
+    test: () => {
+      if (user.addition.reorder[4]) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  /*6*/{
+    name: "Broken 10s II",
+    run: () => broken10s(2, 8, 1, 1, 9, 1, 9, 2),
+    test: () => {
+      if (user.addition.reorder[5]) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 ]
