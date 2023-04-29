@@ -196,7 +196,7 @@ button {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 3rem 25% 50%;
-  justify-content: center;
+  /*justify-content: center;*/
   align-content: end;
   height: calc(100vh - 2rem);
   width: 100vw;

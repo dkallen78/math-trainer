@@ -289,6 +289,10 @@ const user = {
     reorder: [],
     partition: [],
     compensation: []
+  },
+  subtraction: {
+    fundamentals: [],
+    partition: []
   }
 }
 

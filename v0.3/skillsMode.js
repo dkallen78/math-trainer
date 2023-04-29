@@ -18,7 +18,6 @@ async function makeSkillsStartScreen() {
           operationButtons[i].onclick = async () => {
             playTone(randomNote());
             await makeOperationBaseScreen(op);
-            //await launchSkill[op]();
             resolve(false);
           }
         }
@@ -207,177 +206,228 @@ async function makeSkillsScreen(skill) {
 
 }
 
-let launchSkill = {
-  "+": async () => makeAdditionBaseScreen(),
-  "-": () => makeSubtractionSkillsScreen(),
-  "×": () => makeMultiplicationSkillsScreen(),
-  "÷": () => makeDivisionSkillsScreen()
-}
-
-
-
-let additionFundamentals = [
-  /*0*/"Fundamentals",
-  /*1*/{
-    name: "Single-Digit Addition I",
-    id: ["addition", "fundamentals", 1],
-    run: () => singleDigitAddition(1, 9),
-    test: () => {
-      return true;
-    }
-  },
-  /*2*/{
-    name: "Reorder",
-    id: ["addition", "fundamentals", 2],
-    run: () => reorder(1, 9),
-    test: () => {
-      return true;
-    }
-  },
-  /*3*/{
-    name: "Missing Term",
-    id: ["addition", "fundamentals", 3],
-    run: () => addWithin(1, 9, false),
-    test: () => {
-      if (user.addition.fundamentals[1] && user.addition.fundamentals[2]) {
-        return true;
-      }
-      return false;
-    }
-  },
-  /*4*/{
-    name: "Up To 10",
-    id: ["addition", "fundamentals", 4],
-    run: () => upTo(1, 10),
-    test: () => {
-      if (user.addition.fundamentals[3]) {
-        return true;
-      }
-      return false;
-    }
-  },
-  /*5*/{
-    name: "Doubles I",
-    id: ["addition", "fundamentals", 5],
-    run: () => doubles(1, 10, 1, 0, 0),
-    test: () => {
-      if (user.addition.fundamentals[4]) {
-        return true;
-      }
-      return false;
-    }
-  },
-  /*6*/{
-    name: "10 + 1s",
-    id: ["addition", "fundamentals", 6],
-    run: () => addition(1, 1, 1, 1, 9, 0),
-    test: () => {
-      if (user.addition.fundamentals[5]) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  },
-  /*7*/{
-    name: "Single-Digit Addition II",
-    id: ["addition", "fundamentals", 7],
-    run: () => singleDigitAddition(11, 18),
-    test: () => {
-      if (user.addition.fundamentals[6]) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }
-]
-
-let additionPartition = [
-  /*0*/"Partition",
+let addition = {
+  fundamentals: [
+    /*0*/"Fundamentals",
     /*1*/{
-      name: "Crossing 10 I",
-      run: partitionCrossing10s(1, 1, 1, 1),
+      name: "Single-Digit Addition I",
+      id: ["addition", "fundamentals", 1],
+      run: () => singleDigitAddition(1, 9),
       test: () => {
-        if (user.addition.fundamentals[7]) {
+        return true;
+      }
+    },
+    /*2*/{
+      name: "Reorder",
+      id: ["addition", "fundamentals", 2],
+      run: () => reorder(1, 9),
+      test: () => {
+        return true;
+      }
+    },
+    /*3*/{
+      name: "Missing Term",
+      id: ["addition", "fundamentals", 3],
+      run: () => addWithin(1, 9, false),
+      test: () => {
+        if (user.addition.fundamentals[1] && user.addition.fundamentals[2]) {
           return true;
         }
         return false;
       }
-    }
-  
-]
-
-let additionReorder = [
-  /*0*/"Reorder",
-  /*1*/{
-    name: "Broken 10 I",
-    run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 1),
-    test: () => {
-      if (user.addition.fundamentals[6]) {
-        return true;
-      }
-      return false;
-    }
-  },
-  /*2*/{
-    name: "Broken 10 II",
-    run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 2),
-    test: () => {
-      if (user.addition.reorder[1]) {
-        return true;
-      }
-      return false;
-    }
-  },
-  /*3*/{
-    name: "Broken 20 I",
-    run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 1),
-    test: () => {
-      if (user.addition.reorder[2]) {
-        return true;
-      } else {
+    },
+    /*4*/{
+      name: "Up To 10",
+      id: ["addition", "fundamentals", 4],
+      run: () => upTo(1, 10),
+      test: () => {
+        if (user.addition.fundamentals[3]) {
+          return true;
+        }
         return false;
       }
-    }
-  },
-  /*4*/{
-    name: "Broken 20 II",
-    run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 2),
-    test: () => {
-      if (user.addition.reorder[3]) {
-        return true;
-      } else {
+    },
+    /*5*/{
+      name: "Doubles I",
+      id: ["addition", "fundamentals", 5],
+      run: () => doubles(1, 10, 1, 0, 0),
+      test: () => {
+        if (user.addition.fundamentals[4]) {
+          return true;
+        }
         return false;
       }
-    }
-  },
-  /*5*/{
-    name: "Broken 10s I",
-    run: () => broken10s(2, 8, 1, 1, 9, 1, 9, 1),
-    test: () => {
-      if (user.addition.reorder[4]) {
-        return true;
-      } else {
-        return false;
+    },
+    /*6*/{
+      name: "10 + 1s",
+      id: ["addition", "fundamentals", 6],
+      run: () => add(1, 1, 1, 1, 9, 0),
+      test: () => {
+        if (user.addition.fundamentals[5]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    /*7*/{
+      name: "Single-Digit Addition II",
+      id: ["addition", "fundamentals", 7],
+      run: () => singleDigitAddition(11, 18),
+      test: () => {
+        if (user.addition.fundamentals[6]) {
+          return true;
+        } else {
+          return false;
+        }
       }
     }
-  },
-  /*6*/{
-    name: "Broken 10s II",
-    run: () => broken10s(2, 8, 1, 1, 9, 1, 9, 2),
-    test: () => {
-      if (user.addition.reorder[5]) {
-        return true;
-      } else {
+  ],
+  partition: [
+    /*0*/"Partition",
+      /*1*/{
+        name: "Crossing 10 I",
+        id: ["addition", "partition", 1],
+        run: addPartCrossing10s(1, 1, 1, 1),
+        test: () => {
+          if (user.addition.fundamentals[7]) {
+            return true;
+          }
+          return false;
+        }
+      },
+      /*2*/{
+        name: "Crossing 10 II",
+        id: ["addition", "partition", 2],
+        run: addPartCrossing10s(1, 1, 1, 2),
+        test: () => {
+          if (user.addition.partition[1]) {
+            return true;
+          }
+          return false;
+        }
+      },
+      /*3*/{
+        name: "Near Doubles I",
+        id: ["addition", "partition", 3],
+        run: partitionNearDoubles(2, 9, 0, 1, 1),
+        test: () => {
+          if (user.addition.partition[2]) {
+            return true;
+          } 
+          return false;
+        }
+      },
+      /*4*/{
+        name: "Near Doubles II",
+        id: ["addition", "partition", 4],
+        run: partitionNearDoubles(2, 9, 0, 1, 2),
+        test: () => {
+          if (user.addition.partition[3]) {
+            return true;
+          }
+          return false;
+        }
+      },
+      /*5*/{
+        name: "Crossing 20 I",
+        id: ["addition", "partition", 5],
+        run: addPartCrossing10s(2, 2, 1, 1),
+        test: () => {
+          if (user.addition.partition[4]) {
+            return true;
+          }
+          return false;
+        }
+      },
+      /*6*/{
+        name: "Crossing 20 II",
+        id: ["addition", "partition", 6],
+        run: addPartCrossing10s(2, 2, 1, 2),
+        test: () => {
+          if (user.addition.partition[5]) {
+            return true;
+          }
+          return false;
+        }
+      }
+      
+  ],
+  reorder: [
+    /*0*/"Reorder",
+    /*1*/{
+      name: "Broken 10 I",
+      id: ["addition", "reorder", 1],
+      run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 1),
+      test: () => {
+        if (user.addition.fundamentals[6]) {
+          return true;
+        }
         return false;
       }
+    },
+    /*2*/{
+      name: "Broken 10 II",
+      id: ["addition", "reorder", 2],
+      run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 2),
+      test: () => {
+        if (user.addition.reorder[1]) {
+          return true;
+        }
+        return false;
+      }
+    },
+    /*3*/{
+      name: "Broken 20 I",
+      id: ["addition", "reorder", 3],
+      run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 1),
+      test: () => {
+        if (user.addition.reorder[2]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    /*4*/{
+      name: "Broken 20 II",
+      id: ["addition", "reorder", 4],
+      run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 2),
+      test: () => {
+        if (user.addition.reorder[3]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    /*5*/{
+      name: "Broken 10s I",
+      id: ["addition", "reorder", 5],
+      run: () => broken10s(2, 8, 1, 1, 9, 1, 9, 1),
+      test: () => {
+        if (user.addition.reorder[4]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    /*6*/{
+      name: "Broken 10s II",
+      id: ["addition", "reorder", 6],
+      run: () => broken10s(2, 8, 1, 1, 9, 1, 9, 2),
+      test: () => {
+        if (user.addition.reorder[5]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
     }
-  }
-]
-
-let additionCompensation = [
-  /*0*/"Compensation",
+  ],
+  compensation: [
+    /*0*/"Compensation",
     /*1*/{
       name: "",
       run: null,
@@ -388,46 +438,76 @@ let additionCompensation = [
         return false;
       }
     }
-  
-]
+  ]
+}
 
-let mathSkills = {
-  "additionFundamentals": additionFundamentals
+let subtraction = {
+  fundamentals: [
+    /*0*/"Fundamentals",
+    /*1*/{
+      name: "Single-Digit Subtraction I",
+      id: ["subtraction", "fundamentals", 1],
+      run: subWithin(1, 5),
+      test: () => {
+        if (user.addition.partition[1]) {
+          return true;
+        }
+        return false;
+      }
+    },
+    /*2*/{
+      name: "Single-Digit Subtraction II",
+      id: ["subtraction", "fundamentals", 2],
+      run: subWithin(1, 10),
+      test: () => {
+        if (user.subtraction.fundamentals[1]) {
+          return true;
+        }
+        return false;
+      }
+    },
+    /*3*/{
+      name: "Take from 10",
+      id: ["subtraction", "fundamentals", 3],
+      run: takeFrom(1, 1, 1),
+      test: () => {
+        if (user.subtraction.fundamentals[2]) {
+          return true;
+        }
+        return false;
+      }
+    }
+  ],
+  partition: [
+    /*0*/"Partition",
+    /*1*/{
+      name: "Crossing 10 I",
+      id: ["subtraction", "partition", 1],
+      run: subPartCrossing10s(1, 1, 1, 1),
+      test: () => {
+        if (user.subtraction.fundamentals[3]) {
+          return true;
+        }
+        return false;
+      }
+    },
+    /*2*/{
+      name: "Crossing 10 II",
+      id: ["subtraction", "partition", 2],
+      run: subPartCrossing10s(1, 1, 1, 2),
+      test: () => {
+        if (user.subtraction.partition[1]) {
+          return true;
+        }
+        return false;
+      }
+    }
+  ]
 }
 
 let skills = {
-  "+": [additionFundamentals, additionPartition, additionReorder, additionCompensation],
+  "+": [addition.fundamentals, addition.partition, addition.reorder, addition.compensation],
   "-": [],
   "×": [],
   "÷": []
-}
-
-/*let skills = {
-  addition: {
-
-  },
-  mixedOps: {
-
-  },
-  upTo: {
-
-  },
-  doubles: {
-
-  }
-}*/
-
-let skillsData = {
-  addition: {
-
-  },
-  mixedOps: {
-
-  },
-  upTo: {
-
-  },
-  doubles: {
-      
-  }
 }

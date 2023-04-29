@@ -1,4 +1,4 @@
-let testFunc = () => partitionCrossing10s(2, 2, 1, 2);
+let testFunc = () => subPartCrossing10s(1, 1, 1, 2);
 
 function testOnce() {
   /*
@@ -30,7 +30,9 @@ function deepTest() {
   //  visualize the distribution curve of the answers   //
   */
 
-  let iterations = 1000;
+  //let iterationNum = document.getElementById("averagePass").value;
+
+  let iterations = document.getElementById("averagePass").value;;
 
   let totals = [];
   
@@ -38,7 +40,7 @@ function deepTest() {
 
     let results = {};
 
-    let items = 100;
+    let items = document.getElementById("percentPass").value;
 
     for (let j = 0; j <= items; j++) {
       let problem = testFunc();
