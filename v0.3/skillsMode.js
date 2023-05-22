@@ -134,13 +134,13 @@ async function makeSkillsScreen(skill) {
 
     return new Promise((resolve, reject) => {
 
+      let skillDetail = document.getElementById("skillDetail");
+
       for (let i = 1; i < skill.length; i++) {
 
         if (skill[i].test()) {
           let skillButton = document.getElementById(`skillButton${i}`);
           skillButton.classList.remove("inactiveButton");
-
-          let skillDetail = document.getElementById("skillDetail");
 
           skillButton.onclick = async () => {
             playTone(randomNote());
@@ -149,6 +149,7 @@ async function makeSkillsScreen(skill) {
             
             let startButton = document.getElementById("selectSkillButton");
             startButton.onclick = async () => {
+              playTone(randomNote());
               await makeInputScreen([skill[i]]);
               resolve(false);
             }
@@ -265,9 +266,8 @@ let addition = {
       test: () => {
         if (user.addition.fundamentals[5]) {
           return true;
-        } else {
-          return false;
-        }
+        } 
+        return false;
       }
     },
     /*7*/{
@@ -277,9 +277,8 @@ let addition = {
       test: () => {
         if (user.addition.fundamentals[6]) {
           return true;
-        } else {
-          return false;
-        }
+        } 
+        return false;
       }
     }
   ],
