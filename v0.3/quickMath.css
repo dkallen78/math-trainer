@@ -75,6 +75,12 @@ button {
   border-radius: 1rem;
 }
 
+.readyButton {
+  animation-name: buttonPulse;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
+
 .inactiveButton {
   filter: opacity(25%);
 }
@@ -302,6 +308,10 @@ button {
   border-radius: 1rem;
 }
 
+@keyframes buttonPulse {
+  10%   {font-size: 2rem;}
+  20%   {font-size: 1.5rem;}
+}
 
 @media screen and (orientation:landscape) {
 

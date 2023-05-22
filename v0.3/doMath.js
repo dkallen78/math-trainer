@@ -132,6 +132,7 @@ async function waitForAnswer(problem) {
       } else if (event.key === "Backspace") {
         inputNumber("-1");
       } else if (event.key === "Escape") {
+        playTone(randomNote());
         reject(true);
       } else if (event.key === "Enter") {
               
@@ -148,7 +149,7 @@ async function waitForAnswer(problem) {
     }
 
     document.getElementById("buttonQuit").onclick = () => {
-      console.log("click quit");
+      playTone(randomNote());
       reject(true);
     }
       

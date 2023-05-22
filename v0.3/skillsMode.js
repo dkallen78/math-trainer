@@ -71,6 +71,14 @@ async function makeSkillsStartScreen() {
 }
 
 async function makeOperationBaseScreen(operation) {
+  /*
+  //Makes the screen with the categories of skills to   //
+  //  choose from                                       //
+  //----------------------------------------------------//
+  //operation(string): +, -, ×, or ÷                    //
+  //----------------------------------------------------//
+  //
+  */
 
   async function waitForButton() {
     return new Promise((resolve, reject) => {
@@ -127,6 +135,16 @@ async function makeOperationBaseScreen(operation) {
 }
 
 async function makeSkillsScreen(skill) {
+  /*
+  //Makes the screen where the user selects a skill to  //
+  //  practice. This is the screen right before the     //
+  //  primary math loop                                 //
+  //----------------------------------------------------//
+  //skill(array[objects]): the array of skills to be    //
+  //  displayed                                         //
+  //----------------------------------------------------//
+  //
+  */
 
   async function waitForButton() {
 
@@ -140,7 +158,14 @@ async function makeSkillsScreen(skill) {
 
         if (skill[i].test()) {
           let skillButton = document.getElementById(`skillButton${i}`);
+          let userKey = user[skill[i].id[0]][skill[i].id[1]][skill[i].id[2]];
+
           skillButton.classList.remove("inactiveButton");
+          
+          if (typeof userKey === "undefined") {
+            skillButton.classList.add("readyButton");
+          }
+          
 
           skillButton.onclick = async () => {
             playTone(randomNote());
@@ -148,6 +173,7 @@ async function makeSkillsScreen(skill) {
             skillDetail.innerHTML = skill[i].name;
             
             let startButton = document.getElementById("selectSkillButton");
+            startButton.classList.remove("inactiveButton");
             startButton.onclick = async () => {
               playTone(randomNote());
               await makeInputScreen([skill[i]]);
@@ -156,9 +182,6 @@ async function makeSkillsScreen(skill) {
           }
         }
       }
-
-      
-      
 
       let backButton = document.getElementById("skillsListScreenBackButton");
       backButton.onclick = async () => {
@@ -178,9 +201,13 @@ async function makeSkillsScreen(skill) {
         skillsScreenInfo.innerHTML = skill[0];
       skillsScreen.appendChild(skillsScreenInfo);
 
+      //
+      //Gives a brief description of the selected skill
       let skillDetail = makeElement("div", "skillDetail");
       skillsScreen.appendChild(skillDetail);
 
+      //
+      //Makes the grid of numbers that represent the skills
       let skillGrid = makeElement("div", "skillGrid");
 
         for (let i = 1; i < skill.length; i++) {
@@ -189,7 +216,7 @@ async function makeSkillsScreen(skill) {
         }
       skillsScreen.appendChild(skillGrid);
 
-      let selectSkillButton = makeButton("Start", null, "selectSkillButton", "bigButton");
+      let selectSkillButton = makeButton("Start", null, "selectSkillButton", "bigButton", "inactiveButton");
       skillsScreen.appendChild(selectSkillButton);
 
       let backButton = makeButton("Back", null, "skillsListScreenBackButton", "bigButton");

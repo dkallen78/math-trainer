@@ -241,3 +241,19 @@ I also put another post on reddit reaching out for some input/help/guidance. I h
 I'm finding that I need to make my problemTester program a little bit more versatile, so I'm going to try ot put some work in on that this week to make it more useful and maybe a little prettier.
 
 I still need a notification system but I'm focused on these other issues for now.
+
+## Update 2023-04-28
+
+### 22:30
+
+I spent most of the time I had available to work on making distribution curves flat. It's not too hard once you figure out what's causing them, and it's fun to think about different ways of arriving at similar solutions. 
+
+I was also all set to start on Addition - Compensation skills when I realized that they had subtraction built into them so I started building out the subtraction skill tree as well. Looking for inspiration, I went back to the CCSS, so I'm starting to align some of my problem types with those.
+
+I got a few responses to my reddit inquiry about helping or providing input on my progressions but I don't think most of them looked because they just sent me to read some other resources. Still, it's always good to go back to the academic papers because there's a lot of good stuff in there.
+
+### Issues
+
+I made my Problem Tester a tad more useful but it's not any prettier.
+
+I still need a notification system.

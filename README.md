@@ -1,18 +1,16 @@
 #[Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-04-28
+## Update 2023-05-21
 
 ### 22:30
 
-I spent most of the time I had available to work on making distribution curves flat. It's not too hard once you figure out what's causing them, and it's fun to think about different ways of arriving at similar solutions. 
+I tackled some small quality of life changes. The numbered buttons used to select a particular skill now "pulse" when they are available but have yet to be completed. I'm 85% happy with the effect but I feel like I can do better. Still, it's probably better to keep it simple. This change also tackles the smallest part of needing to have a notification when something new unlocks. This change is good when a new skill is unlocked on the screen you're already on, but I need something that indicates when something new is unlocked on another page. 
 
-I was also all set to start on Addition - Compensation skills when I realized that they had subtraction built into them so I started building out the subtraction skill tree as well. Looking for inspiration, I went back to the CCSS, so I'm starting to align some of my problem types with those.
+I've updated a button that now visually shows when it is "inactive" and when it can be clicked/touched. 
 
-I got a few responses to my reddit inquiry about helping or providing input on my progressions but I don't think most of them looked because they just sent me to read some other resources. Still, it's always good to go back to the academic papers because there's a lot of good stuff in there.
+Lastly, some buttons were missing sfx when they were clicked so I made sure they have my pentatonic tones.
 
 ### Issues
-
-I made my Problem Tester a tad more useful but it's not any prettier.
 
 I still need a notification system.
 
