@@ -32,6 +32,11 @@ async function mathLoop(problemSet) {
 
   let startTime, totalTime;
 
+  //
+  //This holds the completed answers and how long it took to
+  //  complete them. The number passed to it determines the 
+  //  minimum number of problems that need to be answered before
+  //  "competency" is reached
   let queue = new ProgressQueue(2);
 
   while (!quit) {
@@ -56,6 +61,10 @@ async function mathLoop(problemSet) {
 
           let targets = problemSet[problem.skillNum].id;
           user[targets[0]][targets[1]][targets[2]] = true;
+
+          if ("notification" in problemSet[problem.skillNum]) {
+            notify.push(problemSet[problem.skillNum].notification);
+          }
 
           quit = true;
         } else {

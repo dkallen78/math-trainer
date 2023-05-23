@@ -194,6 +194,7 @@ async function makeSkillsScreen(skill) {
   let quit = false;
 
   while (!quit) {
+    //let notification;
 
     let skillsScreen = makeElement("div", "skillsScreen", "screen");
 
@@ -222,11 +223,23 @@ async function makeSkillsScreen(skill) {
       let backButton = makeButton("Back", null, "skillsListScreenBackButton", "bigButton");
       skillsScreen.appendChild(backButton);
 
+      if (notify.length > 0) {
+        let notification = makeElement("div", "notification");
+        notification.innerHTML = notify[0];
+        skillsScreen.appendChild(notification);
+
+        notification.onanimationend = () => {
+          notify = [];
+          removeElement(notification);
+        }
+      }
 
     await fadeOut(document.body);
     clearElement(document.body);
     document.body.appendChild(skillsScreen);
     await fadeIn(document.body);
+
+    
 
     await waitForButton()
       .then((exit) => {quit = exit});
@@ -243,7 +256,8 @@ let addition = {
       run: () => singleDigitAddition(1, 9),
       test: () => {
         return true;
-      }
+      },
+      notification: "Test!"
     },
     /*2*/{
       name: "Reorder",
@@ -295,7 +309,8 @@ let addition = {
           return true;
         } 
         return false;
-      }
+      },
+      notification: "Addition, Reorder unlocked!"
     },
     /*7*/{
       name: "Single-Digit Addition II",

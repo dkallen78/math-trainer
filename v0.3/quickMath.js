@@ -296,6 +296,8 @@ const user = {
   }
 }
 
+let notify = [];
+
 //The notes A2 through A7, 61 in total
 const notes = [
   110, 116.54, 123.47, 
