@@ -1,18 +1,18 @@
 #[Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-05-21
+## Update 2023-05-22
 
 ### 22:30
 
-I tackled some small quality of life changes. The numbered buttons used to select a particular skill now "pulse" when they are available but have yet to be completed. I'm 85% happy with the effect but I feel like I can do better. Still, it's probably better to keep it simple. This change also tackles the smallest part of needing to have a notification when something new unlocks. This change is good when a new skill is unlocked on the screen you're already on, but I need something that indicates when something new is unlocked on another page. 
+I've got a scheme for doing notifications and I learned some new stuff about animation event listeners! I'm sure I've got some bugs in there I'll need to wrestle with down the line but I'm very happy with how everything is progressing. I needed to step away from making a hierarchy of mental math skills and get back to some programming problem solving. I also need to remind myself that I don't need to make a perfect skill tree of mental math, I just need to get chunks of all four operations and I'll be doing great. 
 
-I've updated a button that now visually shows when it is "inactive" and when it can be clicked/touched. 
+I've got a legacy button in my program that doesn't do anything. It says "Progression" but I don't have a Progression mode any more. I need to switch it out with a new mode or just get rid of it for now. 
 
-Lastly, some buttons were missing sfx when they were clicked so I made sure they have my pentatonic tones.
+I also think I need to organize what needs to be done better, I'm just not sure how to go about it right now. If anyone's reading this, shoot me some ideas!
 
 ### Issues
 
-I still need a notification system.
+Better organization of to-dos
 
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 
