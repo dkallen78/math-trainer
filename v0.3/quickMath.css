@@ -61,7 +61,7 @@ button {
 }*/
 
 .marquee {
-  font-size: 3rem;
+  font-size: 3em;
   text-align: center;
   color: var(--text-color);
 }
@@ -342,12 +342,12 @@ button {
 
 @keyframes notificationWindowPortrait {
   10%   {
-    height: 50vh;
+    height: 25vh;
     width: 90vw;
     font-size: 2rem;
   }
   90%   {
-    height: 50vh;
+    height: 25vh;
     width: 90vw;
     font-size: 2rem;
   }
@@ -360,12 +360,12 @@ button {
 
 @keyframes notificationWindowLandscape {
   10%   {
-    height: 50vh;
+    height: 25vh;
     width: 25vw;
     font-size: 2rem;
   }
   90%   {
-    height: 50vh;
+    height: 25vh;
     width: 25vw;
     font-size: 2rem;
   }
