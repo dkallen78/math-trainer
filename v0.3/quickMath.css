@@ -195,7 +195,7 @@ button {
 #inputScreen {
   display: grid;
   grid-template-columns: 95%;
-  grid-template-rows: 3rem 25% 50%;
+  grid-template-rows: 3rem 25% 60%;
   justify-content: center;
   align-content: center;
   height: calc(100vh - 2rem);
