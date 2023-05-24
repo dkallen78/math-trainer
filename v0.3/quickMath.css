@@ -126,7 +126,7 @@ button {
 #skillsScreen {
   display: grid;
   grid-template-rows: 10% 15% auto auto auto;
-  height: 100vh;
+  height: 95vh;
   align-content: start;
 }
 

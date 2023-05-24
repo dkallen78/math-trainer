@@ -271,3 +271,17 @@ Lastly, some buttons were missing sfx when they were clicked so I made sure they
 ### Issues
 
 I still need a notification system.
+
+## Update 2023-05-22
+
+### 22:30
+
+I've got a scheme for doing notifications and I learned some new stuff about animation event listeners! I'm sure I've got some bugs in there I'll need to wrestle with down the line but I'm very happy with how everything is progressing. I needed to step away from making a hierarchy of mental math skills and get back to some programming problem solving. I also need to remind myself that I don't need to make a perfect skill tree of mental math, I just need to get chunks of all four operations and I'll be doing great. 
+
+I've got a legacy button in my program that doesn't do anything. It says "Progression" but I don't have a Progression mode any more. I need to switch it out with a new mode or just get rid of it for now. 
+
+I also think I need to organize what needs to be done better, I'm just not sure how to go about it right now. If anyone's reading this, shoot me some ideas!
+
+### Issues
+
+Better organization of to-dos

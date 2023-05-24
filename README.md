@@ -1,18 +1,16 @@
 #[Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-05-22
+## Update 2023-05-23
 
 ### 22:30
 
-I've got a scheme for doing notifications and I learned some new stuff about animation event listeners! I'm sure I've got some bugs in there I'll need to wrestle with down the line but I'm very happy with how everything is progressing. I needed to step away from making a hierarchy of mental math skills and get back to some programming problem solving. I also need to remind myself that I don't need to make a perfect skill tree of mental math, I just need to get chunks of all four operations and I'll be doing great. 
-
-I've got a legacy button in my program that doesn't do anything. It says "Progression" but I don't have a Progression mode any more. I need to switch it out with a new mode or just get rid of it for now. 
-
-I also think I need to organize what needs to be done better, I'm just not sure how to go about it right now. If anyone's reading this, shoot me some ideas!
+I pulled up my program on my phone today and I was shocked to realize it looked like shit! I had planned this from the beginning as a mobile first app so it was a bit upsetting to see that nothing fit. One problem was my mobile Firefox settings upscaling my text because I set it to match my phone's settings (which have big letters because I'm over 40 now and my near sight is shit). Chrome looked better but that damn disappearing address bar was making my life miserable by cutting off just the tip of more than one page. Turns out I need to stay away from 100vh on mobile pages. I made the fixes and things look better. 
 
 ### Issues
 
 Better organization of to-dos
+
+Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 
 
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 
