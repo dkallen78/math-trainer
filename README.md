@@ -2,9 +2,9 @@
 
 ## Update 2023-05-23
 
-### 22:30
+### 22:00
 
-I pulled up my program on my phone today and I was shocked to realize it looked like shit! I had planned this from the beginning as a mobile first app so it was a bit upsetting to see that nothing fit. One problem was my mobile Firefox settings upscaling my text because I set it to match my phone's settings (which have big letters because I'm over 40 now and my near sight is shit). Chrome looked better but that damn disappearing address bar was making my life miserable by cutting off just the tip of more than one page. Turns out I need to stay away from 100vh on mobile pages. I made the fixes and things look better. 
+For better or worse, I just don't want to mess with skill trees right now. Instead I've started working on the sound options. I don't know how I'm going to turn it on and off short of an "if" command but that's probably how everyone does it. I have a sneaking suspicion I'll need to rework how I handle scales but probably not by much. I also need to come up with a new interface that's in my head and make it not be a hot mess. I would be working on that now but I'm tired and I'm ready for sleep. 
 
 ### Issues
 

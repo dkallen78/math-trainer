@@ -285,3 +285,15 @@ I also think I need to organize what needs to be done better, I'm just not sure 
 ### Issues
 
 Better organization of to-dos
+
+## Update 2023-05-23
+
+### 22:30
+
+I pulled up my program on my phone today and I was shocked to realize it looked like shit! I had planned this from the beginning as a mobile first app so it was a bit upsetting to see that nothing fit. One problem was my mobile Firefox settings upscaling my text because I set it to match my phone's settings (which have big letters because I'm over 40 now and my near sight is shit). Chrome looked better but that damn disappearing address bar was making my life miserable by cutting off just the tip of more than one page. Turns out I need to stay away from 100vh on mobile pages. I made the fixes and things look better. 
+
+### Issues
+
+Better organization of to-dos
+
+Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 
