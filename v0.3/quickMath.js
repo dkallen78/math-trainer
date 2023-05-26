@@ -276,8 +276,8 @@ function makeChord(chordPack, key) {
 
 
 const user = {
-  activeScale: [14, 16, 18, 21, 23],
-  activeKey: 14,
+  activeScale: [15, 17, 19, 22, 24],
+  activeKey: 15,
   skillUnlock: {
     "+": true,
     "-": false,

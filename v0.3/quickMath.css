@@ -303,12 +303,10 @@ button {
 }
 
 @keyframes buttonPulse {
-  10%   {
-    font-size: 2rem;
+  20%   {
     filter: invert(100%);
     background-color: var(--bg-color);    
   }
-  20%   {font-size: 1.5rem;}
 }
 
 #notification {

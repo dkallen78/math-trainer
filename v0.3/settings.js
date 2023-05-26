@@ -8,6 +8,13 @@ async function makeSettingsBaseScreen() {
                 await makeThemeScreen();
                 resolve(false);
             }
+
+            let soundButton = document.getElementById("soundButton");
+            soundButton.onclick = async () => {
+                playTone(randomNote());
+                await makeSoundScreen();
+                resolve(false);
+            }
     
             let backButton = document.getElementById("settingsBackButton");
             backButton.onclick = async () => {
@@ -24,6 +31,9 @@ async function makeSettingsBaseScreen() {
 
             let themeButton = makeButton("Theme", null, "themeButton", "bigButton");
             settingsBaseScreen.appendChild(themeButton);
+
+            let soundButton = makeButton("Sound", null, "soundButton", "bigButton");
+            settingsBaseScreen.appendChild(soundButton);
 
             let backButton = makeButton("Back", null, "settingsBackButton", "bigButton");
             settingsBaseScreen.appendChild(backButton);
@@ -85,6 +95,36 @@ async function makeThemeScreen() {
         await fadeOut(document.body);
         clearElement(document.body);
         document.body.appendChild(themeSelectionScreen);
+        await fadeIn(document.body);
+    })
+}
+
+async function makeSoundScreen() {
+
+    return new Promise (async (resolvve, reject) => {
+        let soundOptionsScreen = makeElement("div", "soundOptionsScreen", "screen");
+
+            let soundSelectionButton = makeButton("Sound On", null, "soundSelectionButton", "bigButton");
+            soundOptionsScreen.appendChild(soundSelectionButton);
+
+            let selectKeyButton = makeButton("Select Key", null, "selectKeyButton", "bigButton");
+            soundOptionsScreen.appendChild(selectKeyButton);
+
+            let selectScaleButton = makeButton("Select Scale", null, "selectScaleButton", "bigButton");
+            soundOptionsScreen.appendChild(selectScaleButton);
+
+            let playScaleButton = makeButton("Play Scale", null, "playScaleButton", "bigButton");
+            soundOptionsScreen.appendChild(playScaleButton);
+
+            let playRandomNoteButton = makeButton("Random Note", null, "playRandomNoteButton", "bigButton");
+            soundOptionsScreen.appendChild(playRandomNoteButton);
+
+            let soundOptionsBackButton = makeButton("Back", null, "soundOptionsBackButton", "bigButton");
+            soundOptionsScreen.appendChild(soundOptionsBackButton);
+
+        await fadeOut(document.body);
+        clearElement(document.body);
+        document.body.appendChild(soundOptionsScreen);
         await fadeIn(document.body);
     })
 }
