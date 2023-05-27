@@ -316,6 +316,13 @@ button {
   justify-content: center;
 }
 
+.keyButtons {
+  height: 4rem;
+  font-size: 1rem;
+  border: .1rem solid var(--border-color);
+  border-radius: .25rem;
+}
+
 #blackKeyDiv {
   display: grid;
   grid-template-columns: 7.14% 14.29% 14.29% 14.29% 14.29% 14.29% 14.29% 7.14%;
@@ -325,18 +332,15 @@ button {
 }
 
 #blackKeyDiv > button {
-  height: 4rem;
   color: var(--bg-color);
   background-color: var(--text-color);
-  font-size: 1rem;
-  border: .1rem solid var(--border-color);
 }
 
-#keyCsharp {
+#key2 {
   grid-column: 2 / 3;
 }
 
-#keyFsharp {
+#key7 {
   grid-column: 5 / 6;
 }
 
@@ -348,24 +352,12 @@ button {
   margin: .1rem 1rem 1rem;
 }
 
-#whiteKeyDiv > button {
-  height: 4rem;
-  font-size: 1rem;
-  border: .1rem solid var(--border-color);
-}
-
 #octaveDiv {
   display: grid;
   grid-template-columns: 7.14% 14.29% 14.29% 14.29% 14.29% 14.29% 14.29% 7.14%;
   justify-content: center;
   gap: .1rem;
   margin: 0 1rem 0;
-}
-
-#octaveDiv > button {
-  height: 4rem;
-  font-size: 1rem;
-  border: .1rem solid var(--border-color);
 }
 
 #octave2 {

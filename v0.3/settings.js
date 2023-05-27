@@ -193,16 +193,18 @@ async function makeKeyScreen() {
 
       let blackKeyDiv = makeElement("div", "blackKeyDiv");
         let blackNotes = ["C♯/\nD♭", "D♯/\nE♭", "F♯/\nG♭", "G♯/\nA♭", "A♯/\nB♭"];
+        let blackIntervals = [2, 4, 7, 9, 11];
         for (let i = 0; i < blackNotes.length; i++) {
-          let noteButton = makeButton(blackNotes[i], null, `key${blackNotes[i][0]}sharp`);
+          let noteButton = makeButton(blackNotes[i], null, `key${blackIntervals[i]}`, "keyButtons");
           blackKeyDiv.appendChild(noteButton);
         }
       keySelectionScreen.appendChild(blackKeyDiv);
 
       let whiteKeyDiv = makeElement("div", "whiteKeyDiv");
         let whiteNotes = ["C", "D", "E", "F", "G", "A", "B"];
+        let whiteIntervals = [1, 3, 5, 6, 8, 10, 12];
         for (let i = 0; i < whiteNotes.length; i++) {
-          let noteButton = makeButton(whiteNotes[i], null, `key${whiteNotes[i]}`);
+          let noteButton = makeButton(whiteNotes[i], null, `key${whiteIntervals[i]}`, "keyButtons");
           whiteKeyDiv.appendChild(noteButton);
         }
       keySelectionScreen.appendChild(whiteKeyDiv);
@@ -213,7 +215,7 @@ async function makeKeyScreen() {
 
       let octaveDiv = makeElement("div", "octaveDiv");
         for (let i = 2; i < 8; i++) {
-          let octaveButton = makeButton(i, null, `octave${i}`);
+          let octaveButton = makeButton(i, null, `octave${i}`, "keyButtons");
           octaveDiv.appendChild(octaveButton);
         }
       keySelectionScreen.appendChild(octaveDiv);
