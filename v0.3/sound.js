@@ -42,6 +42,8 @@ function playTone(frequency, wave = "sine", decay = 0.1) {
     //----------------------------------------------------//
     */
     
+    if (!user.soundOn) return;
+    
     /*
         Creates the oscillator node which will generate the tone
     */

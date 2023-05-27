@@ -276,6 +276,7 @@ function makeChord(chordPack, key) {
 
 
 const user = {
+  soundOn: true,
   activeScale: [15, 17, 19, 22, 24],
   activeKey: 15,
   skillUnlock: {

@@ -101,10 +101,23 @@ async function makeThemeScreen() {
 
 async function makeSoundScreen() {
 
-    return new Promise (async (resolvve, reject) => {
+    return new Promise (async (resolve, reject) => {
         let soundOptionsScreen = makeElement("div", "soundOptionsScreen", "screen");
 
             let soundSelectionButton = makeButton("Sound On", null, "soundSelectionButton", "bigButton");
+            if (user.soundOn === false) {
+                soundSelectionButton.innerHTML = "Sound Off";
+            }
+            soundSelectionButton.onclick = () => {
+                if (user.soundOn) {
+                    user.soundOn = false;
+                    soundSelectionButton.innerHTML = "Sound Off";
+                } else {
+                    user.soundOn = true;
+                    soundSelectionButton.innerHTML = "Sound On";
+                    playTone(randomNote());
+                }
+            }
             soundOptionsScreen.appendChild(soundSelectionButton);
 
             let selectKeyButton = makeButton("Select Key", null, "selectKeyButton", "bigButton");
@@ -120,11 +133,16 @@ async function makeSoundScreen() {
             soundOptionsScreen.appendChild(playRandomNoteButton);
 
             let soundOptionsBackButton = makeButton("Back", null, "soundOptionsBackButton", "bigButton");
+            soundOptionsBackButton.onclick = () => {
+                playTone(randomNote());
+                resolve();
+            }
             soundOptionsScreen.appendChild(soundOptionsBackButton);
 
         await fadeOut(document.body);
         clearElement(document.body);
         document.body.appendChild(soundOptionsScreen);
         await fadeIn(document.body);
+
     })
 }
