@@ -297,3 +297,15 @@ I pulled up my program on my phone today and I was shocked to realize it looked 
 Better organization of to-dos
 
 Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 
+
+## Update 2023-05-25
+
+### 22:00
+
+For better or worse, I just don't want to mess with skill trees right now. Instead I've started working on the sound options. I don't know how I'm going to turn it on and off short of an "if" command but that's probably how everyone does it. I have a sneaking suspicion I'll need to rework how I handle scales but probably not by much. I also need to come up with a new interface that's in my head and make it not be a hot mess. I would be working on that now but I'm tired and I'm ready for sleep. 
+
+### Issues
+
+Better organization of to-dos
+
+Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 

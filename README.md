@@ -1,16 +1,24 @@
 #[Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-05-23
+## Update 2023-05-26
 
-### 22:00
+### 22:30
 
-For better or worse, I just don't want to mess with skill trees right now. Instead I've started working on the sound options. I don't know how I'm going to turn it on and off short of an "if" command but that's probably how everyone does it. I have a sneaking suspicion I'll need to rework how I handle scales but probably not by much. I also need to come up with a new interface that's in my head and make it not be a hot mess. I would be working on that now but I'm tired and I'm ready for sleep. 
+I'm getting the sound options sorted out. I had to do a minor tweak to how I did my scales and how I played random notes, but I didn't have to make any drastic changes. Here's what I've got so far:
+
+* I can turn sound on and off. I had to put a `if (soundoff) return` at the very beginning of my `playTone()` function but it works and it's not ugly or ungainly
+
+* I can play a random note from the current scale or play the whole scale from the sound options menu
+
+* I can change the current active scale between one of the five pentatonic scales. I'm not terribly happy with the user interface, specifically with the fact that it doesn't indicate which of the scales is the currently active one, but it's time for bed, even if it is a Friday.
+
+Next up is changing the current key which is really a UI problem since the difficulty is that there are 54 possible keys. So I need to find a way to let the user choose between them while still maintaining my aesthetic. I've got some ideas but I'm not sure if they're any good or not. We'll see once I start trying to implement them!
 
 ### Issues
 
-Better organization of to-dos
+* Better organization of to-dos (seriously, one of these days I'm going to get on this)
 
-Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 
+* Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 
 
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 
