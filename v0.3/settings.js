@@ -180,11 +180,37 @@ async function makeSoundScreen() {
 }
 
 async function makeKeyScreen() {
+
+  let allNotes = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
+
+  function setRange() {
+
+  }
+
+  function selectKey(key) {
+
+    user.keyNote = key;
+
+    activeKeyDisplay.innerHTML = `${allNotes[user.keyNote]}${user.keyOctave} ${notes[user.activeKey]}`;
+    
+    playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
+
+  }
+
+  function selectOctave(octave) {
+
+    user.keyOctave = octave;
+
+    activeKeyDisplay.innerHTML = `${allNotes[user.keyNote]}${user.keyOctave} ${notes[user.activeKey]}`;
+
+    playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
+  }
+
   return new Promise (async (resolve, reject) => {
     let keySelectionScreen = makeElement("div", "scaleSelectionScreen", "screen");
 
       let activeKeyDisplay = makeElement("div", "activeKeyDisplay", "marquee");
-        activeKeyDisplay.innerHTML = `C4 ${notes[user.activeKey]}`;
+        activeKeyDisplay.innerHTML = `${allNotes[user.keyNote]}${user.keyOctave} ${notes[user.activeKey]}`;
       keySelectionScreen.appendChild(activeKeyDisplay);
 
       let keyHead = makeElement("div", "keyHead", "marqueeSmall");
@@ -193,18 +219,24 @@ async function makeKeyScreen() {
 
       let blackKeyDiv = makeElement("div", "blackKeyDiv");
         let blackNotes = ["C♯/\nD♭", "D♯/\nE♭", "F♯/\nG♭", "G♯/\nA♭", "A♯/\nB♭"];
-        let blackIntervals = [2, 4, 7, 9, 11];
+        let blackIntervals = [1, 3, 6, 8, 10];
         for (let i = 0; i < blackNotes.length; i++) {
           let noteButton = makeButton(blackNotes[i], null, `key${blackIntervals[i]}`, "keyButtons");
+            noteButton.onclick = () => {
+              selectKey(blackIntervals[i]);
+            }
           blackKeyDiv.appendChild(noteButton);
         }
       keySelectionScreen.appendChild(blackKeyDiv);
 
       let whiteKeyDiv = makeElement("div", "whiteKeyDiv");
         let whiteNotes = ["C", "D", "E", "F", "G", "A", "B"];
-        let whiteIntervals = [1, 3, 5, 6, 8, 10, 12];
+        let whiteIntervals = [0, 2, 4, 5, 7, 9, 11];
         for (let i = 0; i < whiteNotes.length; i++) {
           let noteButton = makeButton(whiteNotes[i], null, `key${whiteIntervals[i]}`, "keyButtons");
+          noteButton.onclick = () => {
+            selectKey(whiteIntervals[i]);
+          }
           whiteKeyDiv.appendChild(noteButton);
         }
       keySelectionScreen.appendChild(whiteKeyDiv);
@@ -216,9 +248,18 @@ async function makeKeyScreen() {
       let octaveDiv = makeElement("div", "octaveDiv");
         for (let i = 2; i < 8; i++) {
           let octaveButton = makeButton(i, null, `octave${i}`, "keyButtons");
+            octaveButton.onclick = () => {
+              selectOctave(i);
+            }
           octaveDiv.appendChild(octaveButton);
         }
       keySelectionScreen.appendChild(octaveDiv);
+
+      /*let playScaleButton = makeButton("Play Scale", null, "playScaleButton", "bigButton");
+        playScaleButton.onclick = () => {
+          playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
+        }
+      keySelectionScreen.appendChild(playScaleButton);*/
 
       let keyBackButton = makeButton("Back", null, "keyBackButton", "bigButton");
       keyBackButton.onclick = () => {
