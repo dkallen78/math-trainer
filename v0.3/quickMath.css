@@ -336,11 +336,11 @@ button {
   background-color: var(--text-color);
 }
 
-#key2 {
+#key1 {
   grid-column: 2 / 3;
 }
 
-#key7 {
+#key6 {
   grid-column: 5 / 6;
 }
 
