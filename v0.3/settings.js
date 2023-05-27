@@ -120,16 +120,22 @@ async function makeSoundScreen() {
             }
             soundOptionsScreen.appendChild(soundSelectionButton);
 
-            let selectKeyButton = makeButton("Select Key", null, "selectKeyButton", "bigButton");
+            let selectKeyButton = makeButton("Select Key", null, "selectKeyButton", "bigButton", "inactiveButton");
             soundOptionsScreen.appendChild(selectKeyButton);
 
-            let selectScaleButton = makeButton("Select Scale", null, "selectScaleButton", "bigButton");
+            let selectScaleButton = makeButton("Select Scale", null, "selectScaleButton", "bigButton", "inactiveButton");
             soundOptionsScreen.appendChild(selectScaleButton);
 
             let playScaleButton = makeButton("Play Scale", null, "playScaleButton", "bigButton");
+            playScaleButton.onclick = () => {
+                playArpeggio(makeChord(user.activeScale, 0), 200);
+            }
             soundOptionsScreen.appendChild(playScaleButton);
 
             let playRandomNoteButton = makeButton("Random Note", null, "playRandomNoteButton", "bigButton");
+            playRandomNoteButton.onclick = () => {
+                playTone(randomNote());
+            }
             soundOptionsScreen.appendChild(playRandomNoteButton);
 
             let soundOptionsBackButton = makeButton("Back", null, "soundOptionsBackButton", "bigButton");

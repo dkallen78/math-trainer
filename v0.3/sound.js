@@ -43,7 +43,7 @@ function playTone(frequency, wave = "sine", decay = 0.1) {
     */
     
     if (!user.soundOn) return;
-    
+
     /*
         Creates the oscillator node which will generate the tone
     */
@@ -72,6 +72,8 @@ function playTone(frequency, wave = "sine", decay = 0.1) {
     */
     gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
     oscillator.stop(audioCtx.currentTime + (decay * 5));    
+
+    //console.log(frequency);
 }
 
 function playChord(chordNotes) {
