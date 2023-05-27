@@ -302,6 +302,18 @@ button {
   border-radius: 1rem;
 }
 
+#soundOptionsScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#scaleSelectionScreen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 @keyframes buttonPulse {
   20%   {
     filter: invert(100%);
