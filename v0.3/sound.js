@@ -73,7 +73,7 @@ function playTone(frequency, wave = "sine", decay = 0.1) {
     gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
     oscillator.stop(audioCtx.currentTime + (decay * 5));    
 
-    //console.log(frequency);
+    console.log(frequency);
 }
 
 function playChord(chordNotes) {

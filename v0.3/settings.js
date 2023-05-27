@@ -104,6 +104,13 @@ async function makeSoundScreen() {
   async function waitForButton() {
     return new Promise ((resolve, reject) => {
 
+      let selectKey = document.getElementById("selectKeyButton");
+      selectKey.onclick = async () => {
+        playTone(randomNote());
+        await makeKeyScreen();
+        resolve(false);
+      }
+
       let selectScale = document.getElementById("selectScaleButton");
       selectScale.onclick = async () => {
         playTone(randomNote());
@@ -125,22 +132,22 @@ async function makeSoundScreen() {
     let soundOptionsScreen = makeElement("div", "soundOptionsScreen", "screen");
 
       let soundSelectionButton = makeButton("Sound On", null, "soundSelectionButton", "bigButton");
-      if (user.soundOn === false) {
-        soundSelectionButton.innerHTML = "Sound Off";
-      }
-      soundSelectionButton.onclick = () => {
-        if (user.soundOn) {
-          user.soundOn = false;
+        if (user.soundOn === false) {
           soundSelectionButton.innerHTML = "Sound Off";
-        } else {
-          user.soundOn = true;
-          soundSelectionButton.innerHTML = "Sound On";
-          playTone(randomNote());
         }
-      }
+        soundSelectionButton.onclick = () => {
+          if (user.soundOn) {
+            user.soundOn = false;
+            soundSelectionButton.innerHTML = "Sound Off";
+          } else {
+            user.soundOn = true;
+            soundSelectionButton.innerHTML = "Sound On";
+            playTone(randomNote());
+          }
+        }
       soundOptionsScreen.appendChild(soundSelectionButton);
 
-      let selectKeyButton = makeButton("Select Key", null, "selectKeyButton", "bigButton", "inactiveButton");
+      let selectKeyButton = makeButton("Select Key", null, "selectKeyButton", "bigButton");
       soundOptionsScreen.appendChild(selectKeyButton);
 
       let selectScaleButton = makeButton("Select Scale", null, "selectScaleButton", "bigButton");
@@ -170,6 +177,60 @@ async function makeSoundScreen() {
       .then((exit) => {quit = exit});
 
   }
+}
+
+async function makeKeyScreen() {
+  return new Promise (async (resolve, reject) => {
+    let keySelectionScreen = makeElement("div", "scaleSelectionScreen", "screen");
+
+      let activeKeyDisplay = makeElement("div", "activeKeyDisplay", "marquee");
+        activeKeyDisplay.innerHTML = `C4 ${notes[user.activeKey]}`;
+      keySelectionScreen.appendChild(activeKeyDisplay);
+
+      let keyHead = makeElement("div", "keyHead", "marqueeSmall");
+        keyHead.innerHTML = "Select Key";
+      keySelectionScreen.appendChild(keyHead);
+
+      let blackKeyDiv = makeElement("div", "blackKeyDiv");
+        let blackNotes = ["C♯/\nD♭", "D♯/\nE♭", "F♯/\nG♭", "G♯/\nA♭", "A♯/\nB♭"];
+        for (let i = 0; i < blackNotes.length; i++) {
+          let noteButton = makeButton(blackNotes[i], null, `key${blackNotes[i][0]}sharp`);
+          blackKeyDiv.appendChild(noteButton);
+        }
+      keySelectionScreen.appendChild(blackKeyDiv);
+
+      let whiteKeyDiv = makeElement("div", "whiteKeyDiv");
+        let whiteNotes = ["C", "D", "E", "F", "G", "A", "B"];
+        for (let i = 0; i < whiteNotes.length; i++) {
+          let noteButton = makeButton(whiteNotes[i], null, `key${whiteNotes[i]}`);
+          whiteKeyDiv.appendChild(noteButton);
+        }
+      keySelectionScreen.appendChild(whiteKeyDiv);
+
+      let octaveHead = makeElement("div", "octaveHead", "marqueeSmall");
+        octaveHead.innerHTML = "Select Octave";
+      keySelectionScreen.appendChild(octaveHead);
+
+      let octaveDiv = makeElement("div", "octaveDiv");
+        for (let i = 2; i < 8; i++) {
+          let octaveButton = makeButton(i, null, `octave${i}`);
+          octaveDiv.appendChild(octaveButton);
+        }
+      keySelectionScreen.appendChild(octaveDiv);
+
+      let keyBackButton = makeButton("Back", null, "keyBackButton", "bigButton");
+      keyBackButton.onclick = () => {
+        playTone(randomNote());
+        resolve();
+      }
+      keySelectionScreen.appendChild(keyBackButton);
+
+    await fadeOut(document.body);
+    clearElement(document.body);
+    document.body.appendChild(keySelectionScreen);
+    await fadeIn(document.body);
+
+  })
 }
 
 async function makeScaleScreen() {
