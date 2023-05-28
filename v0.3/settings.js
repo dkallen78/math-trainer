@@ -262,7 +262,6 @@ async function makeKeyScreen() {
 async function makeScaleScreen() {
 
   function makeScaleButton(scale, name) {
-    console.log(scale);
 
     let button = makeButton(name, null, `${name}Button`, "mediumButton");
     button.onclick = () => {
@@ -293,6 +292,9 @@ async function makeScaleScreen() {
       
       let inButton = makeScaleButton(scales.in, "In");
       scaleSelectionScreen.appendChild(inButton);
+
+      let hungarianButton = makeScaleButton(scales.hungarian, "Hungarian");
+      scaleSelectionScreen.appendChild(hungarianButton);
 
       /*let bluesMajorButton = makeButton("Blues Major", null, "bluesMajorButton", "bigButton");
       bluesMajorButton.onclick = () => {

@@ -304,7 +304,8 @@ const scales = {
   mongolian: [0, 2, 4, 7, 9],
   hirojoshi: [0, 1, 5, 6, 10],
   yo: [0, 2, 5, 7, 9],
-  in: [0, 1, 5, 7, 8]
+  in: [0, 1, 5, 7, 8], 
+  hungarian: [0, 2, 3, 5, 6, 7, 10]
 }
 
 const user = {
