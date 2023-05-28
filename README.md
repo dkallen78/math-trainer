@@ -1,22 +1,14 @@
 #[Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-05-26
+## Update 2023-05-27
 
-### 22:30
+### 22:15
 
-I'm getting the sound options sorted out. I had to do a minor tweak to how I did my scales and how I played random notes, but I didn't have to make any drastic changes. Here's what I've got so far:
+The sound options menu is coming together! Yesterday my scales were janky, today they're still janky, but not as bad. I also put together a way to change keys. I made some compromises there but if I hadn't, my code would have been kind of ugly and I like to avoid that when I can. Aside from the compromises, I'm really happy with how it turned out on the page and under the hood. I think I'm going to try playing with changing the waveforms next which should be straight forward for the basic waves but if I want to do anything fancy, it will get hard real quick. I'm also pondering just loading this thing up with all kinds of musical scales just for funsies and see if I can't find a good UI to make it work.
 
-* I can turn sound on and off. I had to put a `if (soundoff) return` at the very beginning of my `playTone()` function but it works and it's not ugly or ungainly
-
-* I can play a random note from the current scale or play the whole scale from the sound options menu
-
-* I can change the current active scale between one of the five pentatonic scales. I'm not terribly happy with the user interface, specifically with the fact that it doesn't indicate which of the scales is the currently active one, but it's time for bed, even if it is a Friday.
-
-Next up is changing the current key which is really a UI problem since the difficulty is that there are 54 possible keys. So I need to find a way to let the user choose between them while still maintaining my aesthetic. I've got some ideas but I'm not sure if they're any good or not. We'll see once I start trying to implement them!
+I also started adding stuff to my GitHub kanban so hopefully I can use that to keep on top of things.
 
 ### Issues
-
-* Better organization of to-dos (seriously, one of these days I'm going to get on this)
 
 * Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 
 
