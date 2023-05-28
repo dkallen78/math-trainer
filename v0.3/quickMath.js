@@ -303,7 +303,8 @@ const scales = {
   bluesMajor: [0, 2, 5, 7, 9],
   suspended: [0, 2, 5, 7, 10],
   minor: [0, 3, 5, 7, 10],
-  bluesMinor: [0, 3, 5, 8, 10]
+  bluesMinor: [0, 3, 5, 8, 10],
+  japanese: [0, 1, 5, 7, 8]
 }
 
 const user = {

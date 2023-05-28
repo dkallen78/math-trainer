@@ -153,16 +153,16 @@ async function makeSoundScreen() {
       let selectScaleButton = makeButton("Select Scale", null, "selectScaleButton", "bigButton");
       soundOptionsScreen.appendChild(selectScaleButton);
 
-      let playScaleButton = makeButton("Play Scale", null, "playScaleButton", "bigButton");
-      playScaleButton.onclick = () => {
-        playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
-      }
-      soundOptionsScreen.appendChild(playScaleButton);
+      /*let playScaleButton = makeButton("Play Scale", null, "playScaleButton", "bigButton");
+        playScaleButton.onclick = () => {
+          playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
+        }
+      soundOptionsScreen.appendChild(playScaleButton);*/
 
       let playRandomNoteButton = makeButton("Random Note", null, "playRandomNoteButton", "bigButton");
-      playRandomNoteButton.onclick = () => {
-        playTone(randomNote());
-      }
+        playRandomNoteButton.onclick = () => {
+          playTone(randomNote());
+        }
       soundOptionsScreen.appendChild(playRandomNoteButton);
 
       let soundOptionsBackButton = makeButton("Back", null, "soundOptionsBackButton", "bigButton");
@@ -270,13 +270,27 @@ async function makeScaleScreen() {
     let scaleSelectionScreen = makeElement("div", "scaleSelectionScreen", "screen");
 
       let majorButton = makeButton("Major", null, "majorButton", "bigButton");
-      majorButton.onclick = () => {
-        user.activeScale = scales.major;
-        playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
-      }
+        majorButton.onclick = () => {
+          user.activeScale = scales.major;
+          playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
+        }
       scaleSelectionScreen.appendChild(majorButton);
 
-      let bluesMajorButton = makeButton("Blues Major", null, "bluesMajorButton", "bigButton");
+      let minorButton = makeButton("Minor", null, "minorButton", "bigButton");
+      minorButton.onclick = () => {
+        user.activeScale = scales.minor;
+        playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
+      }
+      scaleSelectionScreen.appendChild(minorButton);
+
+      let japaneseButton = makeButton("Japanese", null, "japaneseButton", "bigButton");
+        japaneseButton.onclick = () => {
+          user.activeScale = scales.japanese;
+          playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
+        }
+      scaleSelectionScreen.appendChild(japaneseButton);
+
+      /*let bluesMajorButton = makeButton("Blues Major", null, "bluesMajorButton", "bigButton");
       bluesMajorButton.onclick = () => {
         user.activeScale = scales.bluesMajor;
         playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
@@ -290,19 +304,13 @@ async function makeScaleScreen() {
       }
       scaleSelectionScreen.appendChild(suspendedButton);
 
-      let minorButton = makeButton("Minor", null, "minorButton", "bigButton");
-      minorButton.onclick = () => {
-        user.activeScale = scales.minor;
-        playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
-      }
-      scaleSelectionScreen.appendChild(minorButton);
 
       let bluesMinorButton = makeButton("Blues Minor", null, "bluesMinorButton", "bigButton");
       bluesMinorButton.onclick = () => {
         user.activeScale = scales.bluesMinor;
         playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
       }
-      scaleSelectionScreen.appendChild(bluesMinorButton);
+      scaleSelectionScreen.appendChild(bluesMinorButton);*/
 
       let scaleBackButton = makeButton("Back", null, "scaleBackButton", "bigButton");
       scaleBackButton.onclick = () => {
