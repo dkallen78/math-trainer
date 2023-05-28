@@ -45,6 +45,15 @@ button {
   border-radius: 1rem;
 }
 
+.mediumButton {
+  margin: .5rem 1rem;
+  padding: .25rem;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  border: .2rem solid var(--border-color);
+  border-radius: 1rem;
+}
+
 .readyButton {
   animation-name: buttonPulse;
   animation-duration: 1.5s;

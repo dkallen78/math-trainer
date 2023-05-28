@@ -300,11 +300,11 @@ const chords = {
 
 const scales = {
   major: [0, 2, 4, 7, 9],
-  bluesMajor: [0, 2, 5, 7, 9],
-  suspended: [0, 2, 5, 7, 10],
   minor: [0, 3, 5, 7, 10],
-  bluesMinor: [0, 3, 5, 8, 10],
-  japanese: [0, 1, 5, 7, 8]
+  mongolian: [0, 2, 4, 7, 9],
+  hirojoshi: [0, 1, 5, 6, 10],
+  yo: [0, 2, 5, 7, 9],
+  in: [0, 1, 5, 7, 8]
 }
 
 const user = {
