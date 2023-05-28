@@ -183,11 +183,7 @@ async function makeKeyScreen() {
 
   let allNotes = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
 
-  function setRange() {
-
-  }
-
-  function selectKey(key) {
+  function selectKey(key, elem) {
 
     user.keyNote = key;
 
@@ -197,7 +193,7 @@ async function makeKeyScreen() {
 
   }
 
-  function selectOctave(octave) {
+  function selectOctave(octave, elem) {
 
     user.keyOctave = octave;
 
@@ -213,9 +209,9 @@ async function makeKeyScreen() {
         activeKeyDisplay.innerHTML = `${allNotes[user.keyNote]}${user.keyOctave} ${notes[user.activeKey]}`;
       keySelectionScreen.appendChild(activeKeyDisplay);
 
-      let keyHead = makeElement("div", "keyHead", "marqueeSmall");
-        keyHead.innerHTML = "Select Key";
-      keySelectionScreen.appendChild(keyHead);
+      let selectKeyHead = makeElement("div", "selectKeyHead", "marqueeSmall");
+        selectKeyHead.innerHTML = "Select Key";
+      keySelectionScreen.appendChild(selectKeyHead);
 
       let blackKeyDiv = makeElement("div", "blackKeyDiv");
         let blackNotes = ["C♯/\nD♭", "D♯/\nE♭", "F♯/\nG♭", "G♯/\nA♭", "A♯/\nB♭"];
@@ -223,7 +219,7 @@ async function makeKeyScreen() {
         for (let i = 0; i < blackNotes.length; i++) {
           let noteButton = makeButton(blackNotes[i], null, `key${blackIntervals[i]}`, "keyButtons");
             noteButton.onclick = () => {
-              selectKey(blackIntervals[i]);
+              selectKey(blackIntervals[i], noteButton);
             }
           blackKeyDiv.appendChild(noteButton);
         }
@@ -235,7 +231,7 @@ async function makeKeyScreen() {
         for (let i = 0; i < whiteNotes.length; i++) {
           let noteButton = makeButton(whiteNotes[i], null, `key${whiteIntervals[i]}`, "keyButtons");
           noteButton.onclick = () => {
-            selectKey(whiteIntervals[i]);
+            selectKey(whiteIntervals[i], noteButton);
           }
           whiteKeyDiv.appendChild(noteButton);
         }
@@ -246,20 +242,14 @@ async function makeKeyScreen() {
       keySelectionScreen.appendChild(octaveHead);
 
       let octaveDiv = makeElement("div", "octaveDiv");
-        for (let i = 2; i < 8; i++) {
+        for (let i = 3; i < 7; i++) {
           let octaveButton = makeButton(i, null, `octave${i}`, "keyButtons");
             octaveButton.onclick = () => {
-              selectOctave(i);
+              selectOctave(i, octaveButton);
             }
           octaveDiv.appendChild(octaveButton);
         }
       keySelectionScreen.appendChild(octaveDiv);
-
-      /*let playScaleButton = makeButton("Play Scale", null, "playScaleButton", "bigButton");
-        playScaleButton.onclick = () => {
-          playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
-        }
-      keySelectionScreen.appendChild(playScaleButton);*/
 
       let keyBackButton = makeButton("Back", null, "keyBackButton", "bigButton");
       keyBackButton.onclick = () => {
@@ -272,7 +262,6 @@ async function makeKeyScreen() {
     clearElement(document.body);
     document.body.appendChild(keySelectionScreen);
     await fadeIn(document.body);
-
   })
 }
 

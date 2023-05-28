@@ -360,8 +360,8 @@ button {
   margin: 0 1rem 0;
 }
 
-#octave2 {
-  grid-column: 2 / 3;
+#octave3 {
+  grid-column: 3 / 4;
 }
 
 #scaleSelectionScreen {
