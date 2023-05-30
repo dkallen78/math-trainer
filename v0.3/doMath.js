@@ -108,7 +108,7 @@ function getNewProblem(problemSet) {
 
   let skill = rnd(0, problemSet.length - 1);
 
-  console.log(problemSet[skill]);
+  //console.log(problemSet[skill]);
 
   let problem = {
     answer: 0,

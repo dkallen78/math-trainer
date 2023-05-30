@@ -148,7 +148,7 @@ async function makeSkillsScreen(skill) {
 
   async function waitForButton() {
 
-    let activeSkill = 0;
+    //let activeSkill = 0;
 
     return new Promise((resolve, reject) => {
 
@@ -175,7 +175,7 @@ async function makeSkillsScreen(skill) {
 
           skillButton.onclick = async () => {
             playTone(randomNote());
-            activeSkill = i;
+            //activeSkill = i;
             skillDetail.innerHTML = skill[i].name;
             
             //
