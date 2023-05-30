@@ -230,7 +230,7 @@ function addPartCrossing10s(aMin, aMax, aMod, mode) {
   switch(mode) {
     case 1:
       c = rnd(1, (9 - b));
-      return [b, `${a - b} + ${b + c} = ${a - b} + ? + ${c}`];
+      return [b, `${a - b} + <span class="spanBox">${b + c}</span> = ${a - b} + <span class="spanBox">? + ${c}</span>`];
     case 2:
       c = rnd((b + 1), 9);
       return [(a + b), `${(a + b) - c} + ${c} = ?`];
@@ -267,8 +267,8 @@ function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
   switch(mode) {
     case 1:
       solutions = [
-        [a, `${a} + ${a + split} = ${a} + ? + ${split}`],
-        [a, `${a + split} + ${a} = ${split} + ? + ${a}`]
+        [a, `${a} + <span class="spanBox">${a + split}</span> = ${a} + <span class="spanBox">? + ${split}</span>`],
+        [a, `<span class="spanBox">${a + split}</span> + ${a} = <span class="spanBox">${split} + ?</span> + ${a}`]
       ]
       break;
     case 2:

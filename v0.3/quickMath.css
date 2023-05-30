@@ -64,6 +64,11 @@ button {
   filter: opacity(25%);
 }
 
+.spanBox {
+  padding: .25rem;
+  border: .15rem solid var(--border-color);
+  border-radius: .5rem;
+}
 /*
   Base page for the program
 */
