@@ -1,12 +1,12 @@
 #[Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-05-27
+## Update 2023-05-29
 
-### 22:15
+### 22:00
 
-The sound options menu is coming together! Yesterday my scales were janky, today they're still janky, but not as bad. I also put together a way to change keys. I made some compromises there but if I hadn't, my code would have been kind of ugly and I like to avoid that when I can. Aside from the compromises, I'm really happy with how it turned out on the page and under the hood. I think I'm going to try playing with changing the waveforms next which should be straight forward for the basic waves but if I want to do anything fancy, it will get hard real quick. I'm also pondering just loading this thing up with all kinds of musical scales just for funsies and see if I can't find a good UI to make it work.
+I fell into a rabbit hole with sound this weekend. It was fun learning about scales and harmonics but I told myself I had to refocus on more important things this week. One thing that's been bugging me is how cluttered some of my problems look when they're displayed. I wanted to find a better way to convey the information that what I had. I think I found a solution for one class of problems, addition partition problems. I used a `<span>` to enclose parts of each side of the equation with a border that I think really helps focus on the skill I want the users to be developing for that type of problem. 
 
-I also started adding stuff to my GitHub kanban so hopefully I can use that to keep on top of things.
+I'm not having the same luck with the addition reordering problems. It just looks like a hot mess on the screen and I need a better visual language for the problems. I think the issue is it's just a clutter of numbers and symbols and that kind of thing is overwhelming for kids who are already struggling in math. Of course, I need to balance any solution I come up with, with the need to not overcomplicate things on the programming side of things. I'm going to give it some thought, maybe I'll figure it out in my dreams?
 
 ### Issues
 

@@ -329,3 +329,15 @@ Next up is changing the current key which is really a UI problem since the diffi
 * Better organization of to-dos (seriously, one of these days I'm going to get on this)
 
 * Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 
+
+## Update 2023-05-27
+
+### 22:15
+
+The sound options menu is coming together! Yesterday my scales were janky, today they're still janky, but not as bad. I also put together a way to change keys. I made some compromises there but if I hadn't, my code would have been kind of ugly and I like to avoid that when I can. Aside from the compromises, I'm really happy with how it turned out on the page and under the hood. I think I'm going to try playing with changing the waveforms next which should be straight forward for the basic waves but if I want to do anything fancy, it will get hard real quick. I'm also pondering just loading this thing up with all kinds of musical scales just for funsies and see if I can't find a good UI to make it work.
+
+I also started adding stuff to my GitHub kanban so hopefully I can use that to keep on top of things.
+
+### Issues
+
+* Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 
