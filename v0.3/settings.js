@@ -29,6 +29,10 @@ async function makeSettingsBaseScreen() {
   while (!quit) {
     let settingsBaseScreen = makeElement("div", "settingsBaseScreen", "screen");
 
+      let settingsScreenMarquee = makeElement("div", "settingsScreenMarquee", "marquee");
+        settingsScreenMarquee.innerHTML = "Settings Menu"; 
+      settingsBaseScreen.appendChild(settingsScreenMarquee);
+
       let themeButton = makeButton("Theme", null, "themeButton", "bigButton");
       settingsBaseScreen.appendChild(themeButton);
 
