@@ -156,12 +156,18 @@ async function makeSkillsScreen(skill) {
 
       for (let i = 1; i < skill.length; i++) {
 
+        //
+        //Checks to see if the skill is available, if so, it 
+        //  adds an onclick function
         if (skill[i].test()) {
           let skillButton = document.getElementById(`skillButton${i}`);
           let userKey = user[skill[i].id[0]][skill[i].id[1]][skill[i].id[2]];
 
           skillButton.classList.remove("inactiveButton");
           
+          //
+          //If the skill is available, but hasn't been completed yet, 
+          //  it's given a special style to indicate it's new
           if (typeof userKey === "undefined") {
             skillButton.classList.add("readyButton");
           }
@@ -172,6 +178,8 @@ async function makeSkillsScreen(skill) {
             activeSkill = i;
             skillDetail.innerHTML = skill[i].name;
             
+            //
+            //When a skill has been selected, it makes the Start button clickable
             let startButton = document.getElementById("selectSkillButton");
             startButton.classList.remove("inactiveButton");
             startButton.onclick = async () => {
@@ -329,7 +337,7 @@ let addition = {
       /*1*/{
         name: "Crossing 10 I",
         id: ["addition", "partition", 1],
-        run: addPartCrossing10s(1, 1, 1, 1),
+        run: () => addPartCrossing10s(1, 1, 1, 1),
         test: () => {
           if (user.addition.fundamentals[7]) {
             return true;
@@ -340,7 +348,7 @@ let addition = {
       /*2*/{
         name: "Crossing 10 II",
         id: ["addition", "partition", 2],
-        run: addPartCrossing10s(1, 1, 1, 2),
+        run: () => addPartCrossing10s(1, 1, 1, 2),
         test: () => {
           if (user.addition.partition[1]) {
             return true;
@@ -351,7 +359,7 @@ let addition = {
       /*3*/{
         name: "Near Doubles I",
         id: ["addition", "partition", 3],
-        run: partitionNearDoubles(2, 9, 0, 1, 1),
+        run: () => partitionNearDoubles(2, 9, 0, 1, 1),
         test: () => {
           if (user.addition.partition[2]) {
             return true;
@@ -362,7 +370,7 @@ let addition = {
       /*4*/{
         name: "Near Doubles II",
         id: ["addition", "partition", 4],
-        run: partitionNearDoubles(2, 9, 0, 1, 2),
+        run: () => partitionNearDoubles(2, 9, 0, 1, 2),
         test: () => {
           if (user.addition.partition[3]) {
             return true;
@@ -373,7 +381,7 @@ let addition = {
       /*5*/{
         name: "Crossing 20 I",
         id: ["addition", "partition", 5],
-        run: addPartCrossing10s(2, 2, 1, 1),
+        run: () => addPartCrossing10s(2, 2, 1, 1),
         test: () => {
           if (user.addition.partition[4]) {
             return true;
@@ -384,7 +392,7 @@ let addition = {
       /*6*/{
         name: "Crossing 20 II",
         id: ["addition", "partition", 6],
-        run: addPartCrossing10s(2, 2, 1, 2),
+        run: () => addPartCrossing10s(2, 2, 1, 2),
         test: () => {
           if (user.addition.partition[5]) {
             return true;
@@ -488,7 +496,7 @@ let subtraction = {
     /*1*/{
       name: "Single-Digit Subtraction I",
       id: ["subtraction", "fundamentals", 1],
-      run: subWithin(1, 5),
+      run: () => subWithin(1, 5),
       test: () => {
         if (user.addition.partition[1]) {
           return true;
@@ -499,7 +507,7 @@ let subtraction = {
     /*2*/{
       name: "Single-Digit Subtraction II",
       id: ["subtraction", "fundamentals", 2],
-      run: subWithin(1, 10),
+      run: () => subWithin(1, 10),
       test: () => {
         if (user.subtraction.fundamentals[1]) {
           return true;
@@ -510,7 +518,7 @@ let subtraction = {
     /*3*/{
       name: "Take from 10",
       id: ["subtraction", "fundamentals", 3],
-      run: takeFrom(1, 1, 1),
+      run: () => takeFrom(1, 1, 1),
       test: () => {
         if (user.subtraction.fundamentals[2]) {
           return true;
@@ -524,7 +532,7 @@ let subtraction = {
     /*1*/{
       name: "Crossing 10 I",
       id: ["subtraction", "partition", 1],
-      run: subPartCrossing10s(1, 1, 1, 1),
+      run: () => subPartCrossing10s(1, 1, 1, 1),
       test: () => {
         if (user.subtraction.fundamentals[3]) {
           return true;
@@ -535,7 +543,7 @@ let subtraction = {
     /*2*/{
       name: "Crossing 10 II",
       id: ["subtraction", "partition", 2],
-      run: subPartCrossing10s(1, 1, 1, 2),
+      run: () => subPartCrossing10s(1, 1, 1, 2),
       test: () => {
         if (user.subtraction.partition[1]) {
           return true;

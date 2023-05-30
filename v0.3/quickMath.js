@@ -323,9 +323,9 @@ const user = {
     "÷": false
   },
   addition: {
-    fundamentals: [],
-    reorder: [],
-    partition: [],
+    fundamentals: [1, 1, 1, 1, 1, 1, 1, 1],
+    reorder: [1, 1, 1, 1, 1, 1, 1, 1],
+    partition: [1, 1, 1, 1, 1, 1, 1, 1],
     compensation: []
   },
   subtraction: {
