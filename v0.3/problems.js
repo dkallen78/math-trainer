@@ -167,9 +167,20 @@ function broken10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax,
   let a = toBreak - b;
   let c = rnd(cMin, cMax);
 
+  let ss = "<span class='spanStroke'>";
+  let sb = "<span class='spanBox'>";
+  let s = "</span>";
+
+  function stroke(num) {
+    let text = num.toString(10);
+    return `<span class="spanStroke">${text}</span>`
+  }
+
   switch(mode) {
     case 1:
-      return [b, `${a} + ${c} + ${b} = ${a} + ? + ${c}`];
+      return [b, `${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)}&nbsp= (${a} +  ?) + ${c}`];
+      //return [b, `${ss} ${a} ${s}&nbsp+ ${c} +&nbsp${ss} ${b} ${s}&nbsp= ${a} +  ? + ${c}`];
+      //return [b, `${a} + ${c} + ${b} = ${a} + ? + ${c}`];
       break;
     case 2:
       return [(a + b + c), `${a} + ${c} + ${b} = ?`];

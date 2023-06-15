@@ -69,6 +69,12 @@ button {
   border: .15rem solid var(--border-color);
   border-radius: .5rem;
 }
+
+.spanStroke {
+  color: var(--bg-color);
+  font-weight: bold;
+  -webkit-text-stroke: .05rem var(--text-color);
+}
 /*
   Base page for the program
 */
