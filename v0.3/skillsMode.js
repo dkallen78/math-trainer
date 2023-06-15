@@ -16,6 +16,7 @@ async function makeSkillsStartScreen() {
           operationButtons[i].classList.remove("inactiveButton");
 
           operationButtons[i].onclick = async () => {
+            console.log(op);
             playTone(randomNote());
             await makeOperationBaseScreen(op);
             resolve(false);
@@ -556,7 +557,7 @@ let subtraction = {
 
 let skills = {
   "+": [addition.fundamentals, addition.partition, addition.reorder, addition.compensation],
-  "-": [],
+  "-": [subtraction.fundamentals, subtraction.partition],
   "×": [],
   "÷": []
 }

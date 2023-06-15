@@ -318,7 +318,7 @@ const user = {
   },
   skillUnlock: {
     "+": true,
-    "-": false,
+    "-": true,
     "×": false,
     "÷": false
   },
@@ -329,8 +329,8 @@ const user = {
     compensation: []
   },
   subtraction: {
-    fundamentals: [],
-    partition: []
+    fundamentals: [1, 1, 1, 1, 1],
+    partition: [1, 1, 1, 1, 1]
   }
 }
 
