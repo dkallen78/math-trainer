@@ -508,7 +508,7 @@ let subtraction = {
     /*2*/{
       name: "Single-Digit Subtraction II",
       id: ["subtraction", "fundamentals", 2],
-      run: () => subWithin(1, 10),
+      run: () => subWithin(1, 10, true),
       test: () => {
         if (user.subtraction.fundamentals[1]) {
           return true;
@@ -522,6 +522,39 @@ let subtraction = {
       run: () => takeFrom(1, 1, 1),
       test: () => {
         if (user.subtraction.fundamentals[2]) {
+          return true;
+        }
+        return false;
+      }
+    },
+    /*4*/{
+      name: "Missing Term I",
+      id: ["subtraction", "fundamentals", 4],
+      run: () => subWithin(1, 10, false),
+      test: () => {
+        if (user.subtraction.fundamentals[3]) {
+          return true;
+        }
+        return false;
+      }
+    },
+    /*5*/{
+      name: "Down to 10 I",
+      id: ["subtraction", "fundamentals", 5],
+      run: () => downTo(1, 9, 1, 1, 10),
+      test: () => {
+        if (user.subtraction.fundamentals[4]) {
+          return true;
+        }
+        return false;
+      }
+    },
+    /*6*/{
+      name: "Down to 10 II",
+      id: ["subtraction", "fundamentals", 6],
+      run: () => downTo(1, 9, 1, 9, 10),
+      test: () => {
+        if (user.subtraction.fundamentals[5]) {
           return true;
         }
         return false;

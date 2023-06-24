@@ -1,12 +1,13 @@
-let testFunc = () => subPartCrossing10s(1, 1, 1, 2);
+let testFunc = () => downTo(1, 9, 1, 9, 10);
 
 function testOnce() {
   /*
   //Runs the function to be tested one time and outputs //
   //  the answer and the equation                       //
   */
-
+  console.log("running");
   let problem = testFunc();
+  console.log(problem);
   let problemOutput = document.getElementById("problemOutput");
   problemOutput.innerHTML = `Answer: ${problem[0]}, Equation: ${problem[1]}`;
 }

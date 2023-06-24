@@ -345,7 +345,7 @@ function singleDigitAddition(minSum, maxSum) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
-function subWithin(difMin, difMax) {
+function subWithin(difMin, difMax, simple = true) {
   /*
   //Creates a subtraction problem within a range of     //
   //  possible differences                              //
@@ -358,13 +358,30 @@ function subWithin(difMin, difMax) {
   */
 
   let a = rnd(difMin, difMax);
-  let b = rnd(a, difMax);
-  let c = rnd(0, b);
+  let b = 0;
+  let solutions = [];
 
-  let solutions = [
-    [a, `${b} - ${b - a} = ?`],
-    [a, `? = ${b} - ${b - a}`]
-  ]
+  switch (simple) {
+    case false:
+      b = rnd(difMin, difMax);
+      if (a >= b) {
+        solutions.push(
+          [b, `${a} - ? = ${a - b}`],
+          [a, `? - ${b} = ${a - b}`]
+        )
+      } else {
+        solutions.push(
+          [a, `${b} - ? = ${b - a}`],
+          [b, `? - ${a} = ${b - a}`]
+        )
+      }
+    case true:
+      b = rnd(a, difMax);
+      solutions.push( 
+        [a, `${b} - ${b - a} = ?`],
+        [a, `? = ${b} - ${b - a}`]
+      );
+  }
 
   return solutions[rnd(0, solutions.length - 1)];
 }
@@ -390,9 +407,28 @@ function upTo(aMin, cap) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
+function downTo(aMin, aMax, floorMin, floorMax, floorMod) {
+
+  let a = rnd(aMin, aMax);
+  let floor = rnd(floorMin, floorMax) * floorMod;
+
+  return [a, `${floor + a} - ? = ${floor}`];
+}
+
 //----------------------------------------------------------------
 
 function takeFrom(aMin, aMax, aMod) {
+  /*
+  //Creates a subtraction problem with a set minuend    //
+  //----------------------------------------------------//
+  //aMin(integer): the minimum value of the minuend     //
+  //aMax(integer): the maximum value of the minuend     //
+  //aMod(integer): the multiplicative modifier to be    //
+  //  applied to the minuend                            //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
 
   let a = rnd(aMin, aMax) * (10 ** aMod);
   let b = rnd(1, 9);
