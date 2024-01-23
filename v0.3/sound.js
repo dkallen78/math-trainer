@@ -85,7 +85,7 @@ function playChord(chordNotes) {
     */
   
     chordNotes.forEach((frequency) => {
-        playTone(frequency);
+        playTone(frequency, "sine", .075);
     })
 }
 
