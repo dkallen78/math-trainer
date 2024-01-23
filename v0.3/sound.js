@@ -27,9 +27,10 @@ compressor.connect(audioCtx.destination);
     523.25, 554.37, 587.33, 622.25, 659.25, 698.46, 739.99, 783.99, 830.61, 880, 932.33, 987.77,
     1046.5, 1108.73, 1174.66, 1244.51, 1318.51, 1396.91, 1479.98, 1567.98, 1661.22, 1670, 1864.66, 1975.53,
     2093, 2217.46, 2349.32, 2489.02, 2637.02, 2793.83, 2959.96, 3135.96, 3322.44, 3520
-];*/
+  ];
+*/
 
-function playTone(frequency, wave = "sine", decay = 0.05) {
+function playTone(frequency, wave = "sine", decay = 0.025) {
     /*
     //Generates a tone and outputs it to the computer     //
     //----------------------------------------------------//
@@ -62,7 +63,6 @@ function playTone(frequency, wave = "sine", decay = 0.05) {
     */
     oscillator.connect(gainNode).connect(compressor);
 
-
     oscillator.type = wave;
     oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime); 
     oscillator.start();
@@ -71,12 +71,9 @@ function playTone(frequency, wave = "sine", decay = 0.05) {
         Gradually ramps down the gain to 0, beginning at the current 
         time, for a set amount of time
     */
-    //gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
-    gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, .02);
-    //oscillator.stop(audioCtx.currentTime + (decay * 10));  
-    oscillator.stop(audioCtx.currentTime + .25);  
+    gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
 
-    //console.log(frequency);
+    oscillator.stop(audioCtx.currentTime + (decay * 10));  
 }
 
 function playChord(chordNotes) {
