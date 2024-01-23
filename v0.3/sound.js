@@ -71,8 +71,10 @@ function playTone(frequency, wave = "sine", decay = 0.05) {
         Gradually ramps down the gain to 0, beginning at the current 
         time, for a set amount of time
     */
-    gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
-    oscillator.stop(audioCtx.currentTime + (decay * 10));    
+    //gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
+    gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, .02);
+    //oscillator.stop(audioCtx.currentTime + (decay * 10));  
+    oscillator.stop(audioCtx.currentTime + .25);  
 
     //console.log(frequency);
 }
