@@ -253,7 +253,7 @@ button {
 #numberPad {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  height: 95vw;
+  /*height: 95vw;*/
   width: 95vw;
   border: .1rem solid var(--border-color);
   border-radius: 1rem;

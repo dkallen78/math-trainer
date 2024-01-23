@@ -30,7 +30,7 @@ compressor.connect(audioCtx.destination);
   ];
 */
 
-function playTone(frequency, wave = "sine", decay = 0.025) {
+function playTone(frequency, wave = "sine", decay = 0.05) {
     /*
     //Generates a tone and outputs it to the computer     //
     //----------------------------------------------------//
