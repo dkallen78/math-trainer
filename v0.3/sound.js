@@ -29,7 +29,7 @@ compressor.connect(audioCtx.destination);
     2093, 2217.46, 2349.32, 2489.02, 2637.02, 2793.83, 2959.96, 3135.96, 3322.44, 3520
 ];*/
 
-function playTone(frequency, wave = "sine", decay = 0.1) {
+function playTone(frequency, wave = "sine", decay = 0.05) {
     /*
     //Generates a tone and outputs it to the computer     //
     //----------------------------------------------------//
@@ -62,6 +62,7 @@ function playTone(frequency, wave = "sine", decay = 0.1) {
     */
     oscillator.connect(gainNode).connect(compressor);
 
+
     oscillator.type = wave;
     oscillator.frequency.setValueAtTime(frequency, audioCtx.currentTime); 
     oscillator.start();
@@ -71,7 +72,7 @@ function playTone(frequency, wave = "sine", decay = 0.1) {
         time, for a set amount of time
     */
     gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, decay);
-    oscillator.stop(audioCtx.currentTime + (decay * 5));    
+    oscillator.stop(audioCtx.currentTime + (decay * 10));    
 
     //console.log(frequency);
 }
