@@ -167,10 +167,6 @@ function broken10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax,
   let a = toBreak - b;
   let c = rnd(cMin, cMax);
 
-  let ss = "<span class='spanStroke'>";
-  let sb = "<span class='spanBox'>";
-  let s = "</span>";
-
   function stroke(num) {
     let text = num.toString(10);
     return `<span class="spanStroke">${text}</span>`
@@ -178,12 +174,10 @@ function broken10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax,
 
   switch(mode) {
     case 1:
-      return [b, `${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)}&nbsp= (${a} +  ?) + ${c}`];
-      //return [b, `${ss} ${a} ${s}&nbsp+ ${c} +&nbsp${ss} ${b} ${s}&nbsp= ${a} +  ? + ${c}`];
-      //return [b, `${a} + ${c} + ${b} = ${a} + ? + ${c}`];
+      return [b, `${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)}&nbsp= (${stroke(a)}&nbsp+&nbsp${stroke("?")}) + ${c}`];
       break;
     case 2:
-      return [(a + b + c), `${a} + ${c} + ${b} = ?`];
+      return [(a + b + c), `${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)} = ?`];
       break;
   }
 }
@@ -241,7 +235,7 @@ function addPartCrossing10s(aMin, aMax, aMod, mode) {
   switch(mode) {
     case 1:
       c = rnd(1, (9 - b));
-      return [b, `${a - b} + <span class="spanBox">${b + c}</span> = ${a - b} + <span class="spanBox">? + ${c}</span>`];
+      return [b, `${a - b} +&nbsp<span class="spanBox">${b + c}</span>&nbsp= ${a - b} +&nbsp<span class="spanBox">? + ${c}</span>`];
     case 2:
       c = rnd((b + 1), 9);
       return [(a + b), `${(a + b) - c} + ${c} = ?`];

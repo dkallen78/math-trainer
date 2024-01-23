@@ -266,7 +266,7 @@ let addition = {
       test: () => {
         return true;
       },
-      notification: "Test!"
+      //notification: "Test!"
     },
     /*2*/{
       name: "Reorder",
@@ -330,7 +330,8 @@ let addition = {
           return true;
         } 
         return false;
-      }
+      },
+      notification: "Addition, Partition unlocked!"
     }
   ],
   partition: [
