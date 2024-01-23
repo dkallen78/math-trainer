@@ -24,13 +24,13 @@ button {
 }
 
 .marquee {
-  font-size: 3em;
+  font-size: 10vw;
   text-align: center;
   color: var(--text-color);
 }
 
 .marqueeSmall {
-  font-size: 2em;
+  font-size: 8vw;
   text-align: center;
   color: var(--text-color);
   margin: 1rem;
@@ -118,8 +118,8 @@ button {
 
 #skillsSelect {
   display: grid;
-  grid-template-columns: 10rem 10rem;
-  grid-template-rows: 10rem 10rem auto;
+  grid-template-columns: 40vw 40vw;
+  grid-template-rows: 40vw 40vw auto;
   justify-content: center;
 }
 
@@ -466,6 +466,26 @@ button {
   .screen {
     width: 30vw !important;
     min-width: 20rem;
+  }
+
+  .marquee {
+    font-size: 3em;
+    text-align: center;
+    color: var(--text-color);
+  }
+  
+  .marqueeSmall {
+    font-size: 2em;
+    text-align: center;
+    color: var(--text-color);
+    margin: 1rem;
+  }
+
+  #skillsSelect {
+    display: grid;
+    grid-template-columns: 10rem 10rem;
+    grid-template-rows: 10rem 10rem auto;
+    justify-content: center;
   }
 
   #progressionInputScreen {

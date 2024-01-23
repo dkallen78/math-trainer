@@ -77,7 +77,8 @@ async function mathLoop(problemSet) {
           quit = true;
         } else {
           playChord(makeChord(chords.TT, user.activeKey));
-          getNewProblem = false;
+          newProblem = false;
+          //getNewProblem = false;
           let interval = 50;
           problemDisplay.style.padding = "0 .5rem .5rem 0";
           setTimeout(function() {
