@@ -37,7 +37,7 @@ button {
 }
 
 .bigButton {
-  margin: 1rem;
+  margin: 2vh;
   padding: .5rem;
   font-size: 2rem;
   font-family: sans-serif;
@@ -144,7 +144,7 @@ button {
 }
 
 #operationBaseScreenInfo {
-  margin: 3rem 0 3rem 0;
+  margin: 5vh 0 5vh 0;
 }
 
 /*
