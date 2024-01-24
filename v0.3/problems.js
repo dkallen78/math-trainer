@@ -73,6 +73,10 @@ function within(aMin, aMax) {
 }*/
 
 //-----------------------------------------------------------
+function stroke(num) {
+  let text = num.toString(10);
+  return `<span class="spanStroke">${text}</span>`
+}
 
 function add(aMin, aMax, aMod, bMin, bMax, bMod) {
   /*
@@ -167,10 +171,10 @@ function broken10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax,
   let a = toBreak - b;
   let c = rnd(cMin, cMax);
 
-  function stroke(num) {
+  /*function stroke(num) {
     let text = num.toString(10);
     return `<span class="spanStroke">${text}</span>`
-  }
+  }*/
 
   switch(mode) {
     case 1:
@@ -235,7 +239,7 @@ function addPartCrossing10s(aMin, aMax, aMod, mode) {
   switch(mode) {
     case 1:
       c = rnd(1, (9 - b));
-      return [b, `${a - b} +&nbsp<span class="spanBox">${b + c}</span>&nbsp= ${a - b} +&nbsp<span class="spanBox">? + ${c}</span>`];
+      return [b, `${a - b} +&nbsp${stroke(b + c)}&nbsp=&nbsp<span class="spanBox">${a - b} +&nbsp${stroke("?")}</span>&nbsp+&nbsp${stroke(c)}`];
     case 2:
       c = rnd((b + 1), 9);
       return [(a + b), `${(a + b) - c} + ${c} = ?`];
@@ -272,8 +276,8 @@ function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
   switch(mode) {
     case 1:
       solutions = [
-        [a, `${a} + <span class="spanBox">${a + split}</span> = ${a} + <span class="spanBox">? + ${split}</span>`],
-        [a, `<span class="spanBox">${a + split}</span> + ${a} = <span class="spanBox">${split} + ?</span> + ${a}`]
+        [a, `${a} +&nbsp${stroke(a + split)}&nbsp= ${a} +&nbsp${stroke("?")}&nbsp+&nbsp${stroke(split)}`],
+        [a, `${stroke(a + split)}&nbsp+ ${a} =&nbsp${stroke(split)}&nbsp+&nbsp${stroke("?")}&nbsp+ ${a}`]
       ]
       break;
     case 2:
@@ -369,6 +373,7 @@ function subWithin(difMin, difMax, simple = true) {
           [b, `? - ${a} = ${b - a}`]
         )
       }
+      break;
     case true:
       b = rnd(a, difMax);
       solutions.push( 
@@ -462,7 +467,7 @@ function subPartCrossing10s(aMin, aMax, aMod, mode) {
   switch(mode) {
     case 1:
       c = rnd(1, (9 - b));
-      return [b, `${a + b} - ${b + c} = ${a + b} - ? - ${c}`];
+      return [b, `${a + b} -&nbsp${stroke(b + c)}&nbsp=&nbsp<span class="spanBox">${a + b} -&nbsp${stroke("?")}</span>&nbsp-&nbsp${stroke(c)}`];
     case 2:
       c = rnd((b + 1), 9);
       return [(a - b), `${(a - b) + c} - ${c} = ?`];

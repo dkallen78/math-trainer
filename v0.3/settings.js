@@ -42,6 +42,41 @@ async function makeSettingsBaseScreen() {
       let backButton = makeButton("Back", null, "settingsBackButton", "bigButton");
       settingsBaseScreen.appendChild(backButton);
 
+      let tourButton = makeButton("Normal", null, "settingsTourButton", "bigButton");
+        if (user.tour === true) {
+          tourButton.innerHTML = "Tour";
+        }
+        tourButton.onclick = () => {
+          if (!user.tour) {
+            playTone(randomNote());
+            user.tour = true;
+            tourButton.innerHTML = "Tour";
+            user.skillUnlock["-"] = true;
+            user.addition.fundamentals = [1, 1, 1, 1, 1, 1, 1, 1];
+            user.addition.reorder = [1, 1, 1, 1, 1, 1, 1, 1];
+            user.addition.partition = [1, 1, 1, 1, 1, 1, 1, 1];
+            user.addition.compensation = [];
+            user.subtraction.fundamentals = [1, 1, 1, 1, 1, 1];
+            user.subtraction.partition = [1, 1, 1, 1, 1];
+            user.qDepth = 2;
+            user.maxAvg = 15000;
+          } else {
+            playTone(randomNote());
+            user.tour = false;
+            tourButton.innerHTML = "Normal";
+            user.skillUnlock["-"] = false;
+            user.addition.fundamentals = [];
+            user.addition.reorder = [];
+            user.addition.partition = [];
+            user.addition.compensation = [];
+            user.subtraction.fundamentals = [];
+            user.subtraction.partition = [];
+            user.qDepth = 10;
+            user.maxAvg = 5000;
+          }
+        }
+      settingsBaseScreen.appendChild(tourButton);
+
     await fadeOut(document.body);
     clearElement(document.body);
     document.body.appendChild(settingsBaseScreen);

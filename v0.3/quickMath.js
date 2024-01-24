@@ -318,19 +318,28 @@ const user = {
   },
   skillUnlock: {
     "+": true,
-    "-": true,
+    "-": false,
     "×": false,
     "÷": false
   },
   addition: {
-    fundamentals: [1, 1, 1, 1, 1, 1, 1, 1],
-    reorder: [1, 1, 1, 1, 1, 1, 1, 1],
-    partition: [1, 1, 1, 1, 1, 1, 1, 1],
+    //fundamentals: [1, 1, 1, 1, 1, 1, 1, 1],
+    //reorder: [1, 1, 1, 1, 1, 1, 1, 1],
+    //partition: [1, 1, 1, 1, 1, 1, 1, 1],
+    fundamentals: [],
+    reorder: [],
+    partition: [1],
     compensation: []
   },
   subtraction: {
-    fundamentals: [1, 1, 1, 1, 1],
-    partition: [1, 1, 1, 1, 1]
-  }
+    //fundamentals: [1, 1, 1, 1, 1],
+    //partition: [1, 1, 1, 1, 1]
+    fundamentals: [],
+    partition: []
+
+  },
+  tour: false,
+  qDepth: 10,
+  maxAvg: 5000
 }
 

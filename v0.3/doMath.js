@@ -37,7 +37,7 @@ async function mathLoop(problemSet) {
   //  complete them. The number passed to it determines the 
   //  minimum number of problems that need to be answered before
   //  "competency" is reached
-  let queue = new ProgressQueue(2, 15000);
+  let queue = new ProgressQueue(user.qDepth, user.maxAvg);
 
   while (!quit) {
 
