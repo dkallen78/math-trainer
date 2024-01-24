@@ -1,16 +1,18 @@
-#[Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
+# [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
 ## Update 2024-01-23
 
 ### 22:30
 
-A random post on Reddit made me come back and tweak my sound until I got it how I liked it. It's not longer popping at the end of the sound on my phone but there's still some weirdness that pops up that I haven't identified yet. 
+A random post on Reddit made me come back and tweak my sound until I got it how I liked it. It's not longer popping at the end of the sound on my phone but there's still some weirdness that pops up that I haven't identified yet. After playing with it, it still feels too punchy on the way in. Maybe it's my speakers?
 
 I've also gone through and addressed some of the style issues I've had with presenting the problems so that they're more intuitive for users to understand (I hope). Some of my output HTML is pretty ugly but I'm not sure of a good way to clean it up.
 
 I've also made it so that users can unlock everything with a push of a button *and* progress through the skills faster. I probably don't need that second part, or I could make it another button... I'll have to ponder that another night.
 
 ### Issues
+
+* Investigate poppy phone sound
 
 * Make it so that notifications are a one-time event 
 
