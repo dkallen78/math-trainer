@@ -1,16 +1,18 @@
 #[Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2023-05-29
+## Update 2024-01-23
 
-### 22:00
+### 22:30
 
-I fell into a rabbit hole with sound this weekend. It was fun learning about scales and harmonics but I told myself I had to refocus on more important things this week. One thing that's been bugging me is how cluttered some of my problems look when they're displayed. I wanted to find a better way to convey the information that what I had. I think I found a solution for one class of problems, addition partition problems. I used a `<span>` to enclose parts of each side of the equation with a border that I think really helps focus on the skill I want the users to be developing for that type of problem. 
+A random post on Reddit made me come back and tweak my sound until I got it how I liked it. It's not longer popping at the end of the sound on my phone but there's still some weirdness that pops up that I haven't identified yet. 
 
-I'm not having the same luck with the addition reordering problems. It just looks like a hot mess on the screen and I need a better visual language for the problems. I think the issue is it's just a clutter of numbers and symbols and that kind of thing is overwhelming for kids who are already struggling in math. Of course, I need to balance any solution I come up with, with the need to not overcomplicate things on the programming side of things. I'm going to give it some thought, maybe I'll figure it out in my dreams?
+I've also gone through and addressed some of the style issues I've had with presenting the problems so that they're more intuitive for users to understand (I hope). Some of my output HTML is pretty ugly but I'm not sure of a good way to clean it up.
+
+I've also made it so that users can unlock everything with a push of a button *and* progress through the skills faster. I probably don't need that second part, or I could make it another button... I'll have to ponder that another night.
 
 ### Issues
 
-* Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 
+* Make it so that notifications are a one-time event 
 
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 
@@ -41,9 +43,9 @@ https://docs.google.com/spreadsheets/d/17vwSJWGRL2A5TwsRnspX6qdaLeBSmVft7JT1ZNvB
 
 - [ ] Setup menu
 
-   * Change color palette
+   * ~~Change color palette~~
 
-   * Change sound options
+   * ~~Change sound options~~
 
    * Change language
 

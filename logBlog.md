@@ -341,3 +341,15 @@ I also started adding stuff to my GitHub kanban so hopefully I can use that to k
 ### Issues
 
 * Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 
+
+## Update 2023-05-29
+
+### 22:00
+
+I fell into a rabbit hole with sound this weekend. It was fun learning about scales and harmonics but I told myself I had to refocus on more important things this week. One thing that's been bugging me is how cluttered some of my problems look when they're displayed. I wanted to find a better way to convey the information that what I had. I think I found a solution for one class of problems, addition partition problems. I used a `<span>` to enclose parts of each side of the equation with a border that I think really helps focus on the skill I want the users to be developing for that type of problem. 
+
+I'm not having the same luck with the addition reordering problems. It just looks like a hot mess on the screen and I need a better visual language for the problems. I think the issue is it's just a clutter of numbers and symbols and that kind of thing is overwhelming for kids who are already struggling in math. Of course, I need to balance any solution I come up with, with the need to not overcomplicate things on the programming side of things. I'm going to give it some thought, maybe I'll figure it out in my dreams?
+
+### Issues
+
+* Sound is still "crunchy" on my phone. I don't know if it's my speakers or just the tones causing weird issues. 
