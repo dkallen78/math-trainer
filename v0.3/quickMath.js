@@ -324,6 +324,7 @@ const user = {
   },
   addition: {
     fundamentals: [],
+    placeValue: [],
     reorder: [],
     partition: [],
     compensation: []

@@ -173,7 +173,6 @@ async function makeSkillsScreen(skill) {
             skillButton.classList.add("readyButton");
           }
           
-
           skillButton.onclick = async () => {
             playTone(randomNote());
             //activeSkill = i;
@@ -218,7 +217,6 @@ async function makeSkillsScreen(skill) {
       //
       //Makes the grid of numbers that represent the skills
       let skillGrid = makeElement("div", "skillGrid");
-
         for (let i = 1; i < skill.length; i++) {
           let button = makeButton(i, null, `skillButton${i}`, "skillButton", "inactiveButton");
           skillGrid.appendChild(button);
@@ -292,7 +290,8 @@ let addition = {
           return true;
         }
         return false;
-      }
+      },
+      notification: "Addition-Reorder unlocked!"
     },
     /*5*/{
       name: "Doubles I",
@@ -303,46 +302,21 @@ let addition = {
           return true;
         }
         return false;
-      }
+      },
+      notification: "Addition-Place Value unlocked!"
     },
     /*6*/{
-      name: "10 + 1s",
+      name: "Single-Digit Addition II",
       id: ["addition", "fundamentals", 6],
-      run: () => add(1, 1, 1, 1, 9, 0),
+      run: () => singleDigitAddition(11, 18),
       test: () => {
         if (user.addition.fundamentals[5]) {
           return true;
         } 
         return false;
       },
-      notification: "Addition-Reorder unlocked!"
-    },
-    /*7*/{
-      name: "Single-Digit Addition II",
-      id: ["addition", "fundamentals", 7],
-      run: () => singleDigitAddition(11, 18),
-      test: () => {
-        if (user.addition.fundamentals[6]) {
-          return true;
-        } 
-        return false;
-      },
-      notification: "Addition-Partition unlocked!"
     }
-  ],
-  placeValue: [
-    /*0*/"Place Value",
-    /*1*/{
-      name: "",
-      run: null,
-      test: () => {
-        if (user.addition.fundamentals[7]) {
-          return true;
-        }
-        return false;
-      }
-    }
-  ],
+  ], 
   reorder: [
     /*0*/"Reorder",
     /*1*/{
@@ -350,11 +324,12 @@ let addition = {
       id: ["addition", "reorder", 1],
       run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 1),
       test: () => {
-        if (user.addition.fundamentals[6]) {
+        if (user.addition.fundamentals[4]) {
           return true;
         }
         return false;
-      }
+      },
+      notification: "Addition-Partition unlocked!"
     },
     /*2*/{
       name: "Broken 10 II",
@@ -416,6 +391,20 @@ let addition = {
       }
     }
   ],
+  placeValue: [
+    /*0*/"Place Value",
+    /*1*/{
+      name: "10 + 1s",
+      id: ["addition", "placeValue", 1],
+      run: () => add(1, 1, 1, 1, 9, 0),
+      test: () => {
+        if (user.addition.fundamentals[5]) {
+          return true;
+        } 
+        return false;
+      }
+    }
+  ],
   partition: [
     /*0*/"Partition",
       /*1*/{
@@ -423,7 +412,7 @@ let addition = {
         id: ["addition", "partition", 1],
         run: () => addPartCrossing10s(1, 1, 1, 1),
         test: () => {
-          if (user.addition.fundamentals[7]) {
+          if (user.addition.reorder[1]) {
             return true;
           }
           return false;
@@ -599,7 +588,7 @@ let subtraction = {
 }
 
 let skills = {
-  "+": [addition.fundamentals, addition.placeValue, addition.reorder, addition.partition, addition.compensation],
+  "+": [addition.fundamentals, addition.reorder, addition.placeValue, addition.partition, addition.compensation],
   "-": [subtraction.fundamentals, subtraction.partition],
   "×": [],
   "÷": []

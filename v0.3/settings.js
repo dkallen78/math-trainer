@@ -52,10 +52,13 @@ async function makeSettingsBaseScreen() {
             user.tour = true;
             tourButton.innerHTML = "Tour";
             user.skillUnlock["-"] = true;
+
             user.addition.fundamentals = [1, 1, 1, 1, 1, 1, 1, 1];
+            user.addition.placeValue = [1, 1, 1, 1, 1, 1];
             user.addition.reorder = [1, 1, 1, 1, 1, 1, 1, 1];
             user.addition.partition = [1, 1, 1, 1, 1, 1, 1, 1];
-            user.addition.compensation = [];
+            user.addition.compensation = [1, 1, 1, 1, 1, 1];
+
             user.subtraction.fundamentals = [1, 1, 1, 1, 1, 1, 1];
             user.subtraction.partition = [1, 1, 1, 1, 1];
             
@@ -64,10 +67,13 @@ async function makeSettingsBaseScreen() {
             user.tour = false;
             tourButton.innerHTML = "Normal";
             user.skillUnlock["-"] = false;
+            
             user.addition.fundamentals = [];
+            user.addition.placeValue = [];
             user.addition.reorder = [];
             user.addition.partition = [];
             user.addition.compensation = [];
+
             user.subtraction.fundamentals = [];
             user.subtraction.partition = [];
           }
