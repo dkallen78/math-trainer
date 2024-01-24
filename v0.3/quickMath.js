@@ -333,6 +333,7 @@ const user = {
     partition: []
   },
   tour: false,
+  fast: false,
   qDepth: 10,
   maxAvg: 5000
 }

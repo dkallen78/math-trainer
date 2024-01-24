@@ -56,10 +56,9 @@ async function makeSettingsBaseScreen() {
             user.addition.reorder = [1, 1, 1, 1, 1, 1, 1, 1];
             user.addition.partition = [1, 1, 1, 1, 1, 1, 1, 1];
             user.addition.compensation = [];
-            user.subtraction.fundamentals = [1, 1, 1, 1, 1, 1];
+            user.subtraction.fundamentals = [1, 1, 1, 1, 1, 1, 1];
             user.subtraction.partition = [1, 1, 1, 1, 1];
-            user.qDepth = 2;
-            user.maxAvg = 15000;
+            
           } else {
             playTone(randomNote());
             user.tour = false;
@@ -71,11 +70,30 @@ async function makeSettingsBaseScreen() {
             user.addition.compensation = [];
             user.subtraction.fundamentals = [];
             user.subtraction.partition = [];
+          }
+        }
+      settingsBaseScreen.appendChild(tourButton);
+
+      let fastButton = makeButton("Normal", null, "settingsFastButton", "bigButton");
+        if (user.fast === true) {
+          fastButton.innerHTML = "Fast";
+        }
+        fastButton.onclick = () => {
+          if (!user.fast) {
+            playTone(randomNote());
+            user.fast = true;
+            fastButton.innerHTML = "Fast";
+            user.qDepth = 2;
+            user.maxAvg = 15000;
+          } else {
+            playTone(randomNote());
+            user.fast = false;
+            fastButton.innerHTML = "Normal";
             user.qDepth = 10;
             user.maxAvg = 5000;
           }
         }
-      settingsBaseScreen.appendChild(tourButton);
+      settingsBaseScreen.appendChild(fastButton);
 
     await fadeOut(document.body);
     clearElement(document.body);
