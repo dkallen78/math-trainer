@@ -323,20 +323,14 @@ const user = {
     "÷": false
   },
   addition: {
-    //fundamentals: [1, 1, 1, 1, 1, 1, 1, 1],
-    //reorder: [1, 1, 1, 1, 1, 1, 1, 1],
-    //partition: [1, 1, 1, 1, 1, 1, 1, 1],
     fundamentals: [],
     reorder: [],
-    partition: [1],
+    partition: [],
     compensation: []
   },
   subtraction: {
-    //fundamentals: [1, 1, 1, 1, 1],
-    //partition: [1, 1, 1, 1, 1]
     fundamentals: [],
     partition: []
-
   },
   tour: false,
   qDepth: 10,

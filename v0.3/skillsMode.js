@@ -203,7 +203,6 @@ async function makeSkillsScreen(skill) {
   let quit = false;
 
   while (!quit) {
-    //let notification;
 
     let skillsScreen = makeElement("div", "skillsScreen", "screen");
 
@@ -248,8 +247,6 @@ async function makeSkillsScreen(skill) {
     document.body.appendChild(skillsScreen);
     await fadeIn(document.body);
 
-    
-
     await waitForButton()
       .then((exit) => {quit = exit});
   }
@@ -266,7 +263,6 @@ let addition = {
       test: () => {
         return true;
       },
-      //notification: "Test!"
     },
     /*2*/{
       name: "Reorder",
@@ -319,7 +315,7 @@ let addition = {
         } 
         return false;
       },
-      notification: "Addition, Reorder unlocked!"
+      notification: "Addition-Reorder unlocked!"
     },
     /*7*/{
       name: "Single-Digit Addition II",
@@ -331,7 +327,7 @@ let addition = {
         } 
         return false;
       },
-      notification: "Addition, Partition unlocked!"
+      notification: "Addition-Partition unlocked!"
     }
   ],
   partition: [

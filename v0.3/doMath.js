@@ -73,17 +73,22 @@ async function mathLoop(problemSet) {
         */
         if (queue.pass) {
           playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey)); 
-          //
-          //Marks the skill as completed in the user object
+          
           let targets = problemSet[problem.skillNum].id;
-          user[targets[0]][targets[1]][targets[2]] = true;
           //
           //Checks if there is a notification associated with passing the
-          //  current skill, and puts it in the notify array to be announced
-          //  on the Skills page
-          if ("notification" in problemSet[problem.skillNum]) {
+          //  current skill, if the notification has been previously announced,
+          //  and puts it in the notify array to be announced on the Skills page
+          //  if it hasn't
+          if (
+              "notification" in problemSet[problem.skillNum] &&
+              !user[targets[0]][targets[1]][targets[2]]
+            ) {
             notify.push(problemSet[problem.skillNum].notification);
           }
+          //
+          //Marks the skill as completed in the user object
+          user[targets[0]][targets[1]][targets[2]] = true;
           //
           //Flags the loop to end
           quit = true;
