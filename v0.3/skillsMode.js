@@ -330,75 +330,18 @@ let addition = {
       notification: "Addition-Partition unlocked!"
     }
   ],
-  partition: [
-    /*0*/"Partition",
-      /*1*/{
-        name: "Crossing 10 I",
-        id: ["addition", "partition", 1],
-        run: () => addPartCrossing10s(1, 1, 1, 1),
-        test: () => {
-          if (user.addition.fundamentals[7]) {
-            return true;
-          }
-          return false;
+  placeValue: [
+    /*0*/"Place Value",
+    /*1*/{
+      name: "",
+      run: null,
+      test: () => {
+        if (user.addition.fundamentals[7]) {
+          return true;
         }
-      },
-      /*2*/{
-        name: "Crossing 10 II",
-        id: ["addition", "partition", 2],
-        run: () => addPartCrossing10s(1, 1, 1, 2),
-        test: () => {
-          if (user.addition.partition[1]) {
-            return true;
-          }
-          return false;
-        }
-      },
-      /*3*/{
-        name: "Near Doubles I",
-        id: ["addition", "partition", 3],
-        run: () => partitionNearDoubles(2, 9, 0, 1, 1),
-        test: () => {
-          if (user.addition.partition[2]) {
-            return true;
-          } 
-          return false;
-        }
-      },
-      /*4*/{
-        name: "Near Doubles II",
-        id: ["addition", "partition", 4],
-        run: () => partitionNearDoubles(2, 9, 0, 1, 2),
-        test: () => {
-          if (user.addition.partition[3]) {
-            return true;
-          }
-          return false;
-        }
-      },
-      /*5*/{
-        name: "Crossing 20 I",
-        id: ["addition", "partition", 5],
-        run: () => addPartCrossing10s(2, 2, 1, 1),
-        test: () => {
-          if (user.addition.partition[4]) {
-            return true;
-          }
-          return false;
-        }
-      },
-      /*6*/{
-        name: "Crossing 20 II",
-        id: ["addition", "partition", 6],
-        run: () => addPartCrossing10s(2, 2, 1, 2),
-        test: () => {
-          if (user.addition.partition[5]) {
-            return true;
-          }
-          return false;
-        }
+        return false;
       }
-      
+    }
   ],
   reorder: [
     /*0*/"Reorder",
@@ -472,6 +415,76 @@ let addition = {
         }
       }
     }
+  ],
+  partition: [
+    /*0*/"Partition",
+      /*1*/{
+        name: "Crossing 10 I",
+        id: ["addition", "partition", 1],
+        run: () => addPartCrossing10s(1, 1, 1, 1),
+        test: () => {
+          if (user.addition.fundamentals[7]) {
+            return true;
+          }
+          return false;
+        }
+      },
+      /*2*/{
+        name: "Crossing 10 II",
+        id: ["addition", "partition", 2],
+        run: () => addPartCrossing10s(1, 1, 1, 2),
+        test: () => {
+          if (user.addition.partition[1]) {
+            return true;
+          }
+          return false;
+        }
+      },
+      /*3*/{
+        name: "Near Doubles I",
+        id: ["addition", "partition", 3],
+        run: () => partitionNearDoubles(2, 9, 0, 1, 1),
+        test: () => {
+          if (user.addition.partition[2]) {
+            return true;
+          } 
+          return false;
+        }
+      },
+      /*4*/{
+        name: "Near Doubles II",
+        id: ["addition", "partition", 4],
+        run: () => partitionNearDoubles(2, 9, 0, 1, 2),
+        test: () => {
+          if (user.addition.partition[3]) {
+            return true;
+          }
+          return false;
+        }
+      },
+      /*5*/{
+        name: "Crossing 20 I",
+        id: ["addition", "partition", 5],
+        run: () => addPartCrossing10s(2, 2, 1, 1),
+        test: () => {
+          if (user.addition.partition[4]) {
+            return true;
+          }
+          return false;
+        }
+      },
+      /*6*/{
+        name: "Crossing 20 II",
+        id: ["addition", "partition", 6],
+        run: () => addPartCrossing10s(2, 2, 1, 2),
+        test: () => {
+          if (user.addition.partition[5]) {
+            return true;
+          }
+          return false;
+        }
+      }
+      
   ],
   compensation: [
     /*0*/"Compensation",
@@ -586,7 +599,7 @@ let subtraction = {
 }
 
 let skills = {
-  "+": [addition.fundamentals, addition.partition, addition.reorder, addition.compensation],
+  "+": [addition.fundamentals, addition.placeValue, addition.reorder, addition.partition, addition.compensation],
   "-": [subtraction.fundamentals, subtraction.partition],
   "×": [],
   "÷": []

@@ -37,8 +37,8 @@ button {
 }
 
 .bigButton {
-  margin: 2vh;
-  padding: .5rem;
+  margin: 1vh;
+  padding: 1vh;
   font-size: 2rem;
   font-family: sans-serif;
   border: .2rem solid var(--border-color);
