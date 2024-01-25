@@ -273,7 +273,7 @@ async function makeSkillsScreen(skill) {
 let addition = {
   fundamentals: [
     /*0*/"Fundamentals",
-    /*1*/{
+    /*1 - Single-Digit Addition I*/{
       name: "Single-Digit Addition I",
       id: ["addition", "fundamentals", 1],
       run: () => singleDigitAddition(1, 9),
@@ -281,7 +281,7 @@ let addition = {
         return true;
       },
     },
-    /*2*/{
+    /*2 - Reorder*/{
       name: "Reorder",
       id: ["addition", "fundamentals", 2],
       run: () => reorder(1, 9),
@@ -289,7 +289,7 @@ let addition = {
         return true;
       }
     },
-    /*3*/{
+    /*3 - Missing Term*/{
       name: "Missing Term",
       id: ["addition", "fundamentals", 3],
       run: () => addWithin(1, 9, false),
@@ -300,7 +300,7 @@ let addition = {
         return false;
       }
     },
-    /*4*/{
+    /*4 - Up To 10*/{
       name: "Up To 10",
       id: ["addition", "fundamentals", 4],
       run: () => upTo(1, 10),
@@ -312,10 +312,10 @@ let addition = {
       },
       notification: "Addition-Reorder unlocked!"
     },
-    /*5*/{
+    /*5 - Doubles I*/{
       name: "Doubles I",
       id: ["addition", "fundamentals", 5],
-      run: () => doubles(1, 10, 1, 0, 0),
+      run: () => doubles(1, 5, 1, 0, 0),
       test: () => {
         if (user.addition.fundamentals[4]) {
           return true;
@@ -324,7 +324,7 @@ let addition = {
       },
       notification: "Addition-Place Value unlocked!"
     },
-    /*6*/{
+    /*6 - Single-Digit Addition II*/{
       name: "Single-Digit Addition II",
       id: ["addition", "fundamentals", 6],
       run: () => singleDigitAddition(11, 18),
@@ -334,7 +334,19 @@ let addition = {
         } 
         return false;
       },
-    }
+    },
+    /*7 - Doubles II*/{
+      name: "Doubles II",
+      id: ["addition", "fundamentals", 7],
+      run: () => doubles(1, 10, 1, 0, 0),
+      test: () => user.addition.fundamentals[6]
+    },
+    /*8 - Three-Term Addition I*/{
+      name: "Three-Term Addition I",
+      id: ["addition", "fundamentals", 8],
+      run: () => add3(3, 20),
+      test: () => user.addition.fundamentals[7]
+    } 
   ], 
   reorder: [
     /*0*/"Reorder",

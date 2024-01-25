@@ -78,31 +78,28 @@ function stroke(num) {
   return `<span class="spanStroke">${text}</span>`
 }
 
-function add(aMin, aMax, aMod, bMin, bMax, bMod) {
+function add3(minSum, maxSum) {
   /*
-  //Creates an addition based on the parameters         //
+  //Creates an addition problem with three terms        //
   //----------------------------------------------------//
-  //aMin(integer): smallest possible value for the      //
-  //  first addend                                      //
-  //aMax(integer): largest possible value for the       //
-  //  first addend                                      //
-  //aMod(integer): multiplicative modifier for the      //
-  //  first addend                                      //
-  //bMin(integer): smallest possible value for the      //
-  //  second addend                                     //
-  //bMax(integer): largest possible value for the       //
-  //  second addend                                     //
-  //bMod(integer): multiplicative modifier for the      //
-  //  second addend
+  //minSum(integer): smallest possible sum              //
+  //maxSum(integer): largest possible sum               //
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
   */
 
-  let a = rnd(aMin, aMax) * (10 ** aMod);
-  let b = rnd(bMin, bMax) * (10 ** bMod);
+  let sum = rnd(minSum, maxSum);
+  let a = rnd(1, (sum - 2));
+  let b = rnd(1, (sum - a - 1));
+  let c = sum - (a + b);
 
-  return [(a + b), `${a} + ${b} = ?`];
+  let solutions = [
+    [sum, `${a} + ${b} + ${c} = ?`],
+    [sum, `? = ${a} + ${b} + ${c}`]
+  ];
+
+  return solutions[rnd(0, solutions.length - 1)];
 }
 
 function addWithin(aMin, aMax, simple = true) {
@@ -210,6 +207,8 @@ function doubles(aLow, aHigh, aMod, rLow, rHigh) {
 
   return [answer, equation];
 }
+
+
 
 function addPartCrossing10s(aMin, aMax, aMod, mode) {
   /*

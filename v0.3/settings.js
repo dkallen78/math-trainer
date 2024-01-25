@@ -52,14 +52,14 @@ async function makeSettingsBaseScreen() {
             user.tour = true;
             tourButton.innerHTML = "Tour";
 
-            user.addition.fundamentals = [1, 1, 1, 1, 1, 1, 1, 1];
-            user.addition.placeValue = [1, 1, 1, 1, 1, 1];
-            user.addition.reorder = [1, 1, 1, 1, 1, 1, 1, 1];
-            user.addition.partition = [1, 1, 1, 1, 1, 1, 1, 1];
-            user.addition.compensation = [1, 1, 1, 1, 1, 1];
+            user.addition.fundamentals = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+            user.addition.placeValue = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+            user.addition.reorder = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+            user.addition.partition = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+            user.addition.compensation = [1, 1, 1, 1, 1, 1, 1, 1, 1];
 
-            user.subtraction.fundamentals = [1, 1, 1, 1, 1, 1, 1];
-            user.subtraction.partition = [1, 1, 1, 1, 1];
+            user.subtraction.fundamentals = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+            user.subtraction.partition = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             
           } else {
             playTone(randomNote());
