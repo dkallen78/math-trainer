@@ -1,20 +1,20 @@
 # [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2024-01-23
+## Update 2024-01-25
 
-### 22:30
+### 09:50
 
-A random post on Reddit made me come back and tweak my sound until I got it how I liked it. It's not longer popping at the end of the sound on my phone but there's still some weirdness that pops up that I haven't identified yet. After playing with it, it still feels too punchy on the way in. Maybe it's my speakers?
+I've been adding new operation skills (Addition-Place Value) and reorganizing the UI to accomodate the new buttons. 
 
-I've also gone through and addressed some of the style issues I've had with presenting the problems so that they're more intuitive for users to understand (I hope). Some of my output HTML is pretty ugly but I'm not sure of a good way to clean it up.
+I've also been working on adding at least 8 individual skills to each operation skill. Writing "skill" out so many times makes me think I need to come up with a better set of descriptors for what I'm doing because this is going to be confusing to anyone outside of my bubble. Part of adding new micro skills is making new problem functions so I've made two more of those. One for 3-digit addition problems and one for reordering broken doubles. I'm very glad I put the work into that problem tester program because my intuition is often off for what will be a balanced or unbalanced answer distribution.
 
-I've also made it so that users can unlock everything with a push of a button *and* progress through the skills faster. I probably don't need that second part, or I could make it another button... I'll have to ponder that another night.
+I've solved the redundant notification issue and I also discovered and fixed an issue where the Subtraction skills wouldn't unlock.
+
+For the next bit, I'm going to try and fill out each strategy/skill (I like strategy, I may start using that going forward) with at least 8 types prolems.
 
 ### Issues
 
-* Investigate poppy phone sound
-
-* Make it so that notifications are a one-time event 
+* Investigate poppy phone sound (low priority for now)
 
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 
