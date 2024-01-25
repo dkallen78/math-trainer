@@ -245,6 +245,9 @@ async function makeSkillsScreen(skill) {
       let backButton = makeButton("Back", null, "skillsListScreenBackButton", "bigButton");
       skillsScreen.appendChild(backButton);
 
+      /*
+      //If there are any pending notifications, they happen here
+      */
       if (notify.length > 0) {
         let notification = makeElement("div", "notification");
         notification.innerHTML = notify[0];
