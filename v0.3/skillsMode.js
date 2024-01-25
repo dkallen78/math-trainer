@@ -350,7 +350,7 @@ let addition = {
   ], 
   reorder: [
     /*0*/"Reorder",
-    /*1*/{
+    /*1 - Broken 10 I*/{
       name: "Broken 10 I",
       id: ["addition", "reorder", 1],
       run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 1),
@@ -362,7 +362,7 @@ let addition = {
       },
       notification: "Addition-Partition unlocked!"
     },
-    /*2*/{
+    /*2 - Broken 10 II*/{
       name: "Broken 10 II",
       id: ["addition", "reorder", 2],
       run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 2),
@@ -373,7 +373,7 @@ let addition = {
         return false;
       }
     },
-    /*3*/{
+    /*3 - Broken 20 I*/{
       name: "Broken 20 I",
       id: ["addition", "reorder", 3],
       run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 1),
@@ -385,7 +385,7 @@ let addition = {
         }
       }
     },
-    /*4*/{
+    /*4 - Broken 20 II*/{
       name: "Broken 20 II",
       id: ["addition", "reorder", 4],
       run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 2),
@@ -397,34 +397,34 @@ let addition = {
         }
       }
     },
-    /*5*/{
-      name: "Broken 10s I",
+    /*5 - Broken Doubles I*/{
+      name: "Broken Doubles I",
       id: ["addition", "reorder", 5],
-      run: () => broken10s(2, 8, 1, 1, 9, 1, 9, 1),
-      test: () => {
-        if (user.addition.reorder[4]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
+      run: () => {},
+      test: () => user.addition.reorder[4]
     },
-    /*6*/{
-      name: "Broken 10s II",
+    /*6 - Broken Doubles II*/{
+      name: "Broken Doubles II",
       id: ["addition", "reorder", 6],
+      run: () => {},
+      test: () => user.addition.reorder[5]
+    },
+    /*7 - Broken 10s I*/{
+      name: "Broken 10s I",
+      id: ["addition", "reorder", 7],
+      run: () => broken10s(2, 8, 1, 1, 9, 1, 9, 1),
+      test: () => user.addition.reorder[6]
+    },
+    /*8 - Broken 10s II*/{
+      name: "Broken 10s II",
+      id: ["addition", "reorder", 8],
       run: () => broken10s(2, 8, 1, 1, 9, 1, 9, 2),
-      test: () => {
-        if (user.addition.reorder[5]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
+      test: () => user.addition.reorder[7]
     }
   ],
   placeValue: [
     /*0*/"Place Value",
-    /*1*/{
+    /*1 - 10 + 1s*/{
       name: "10 + 1s",
       id: ["addition", "placeValue", 1],
       run: () => add(1, 1, 1, 1, 9, 0),
@@ -438,7 +438,7 @@ let addition = {
   ],
   partition: [
     /*0*/"Partition",
-      /*1*/{
+      /*1 - Crossing 10 I*/{
         name: "Crossing 10 I",
         id: ["addition", "partition", 1],
         run: () => addPartCrossing10s(1, 1, 1, 1),
@@ -450,7 +450,7 @@ let addition = {
         },
         notification: "Subtraction unlocked!"
       },
-      /*2*/{
+      /*2 - Crossing 10 II*/{
         name: "Crossing 10 II",
         id: ["addition", "partition", 2],
         run: () => addPartCrossing10s(1, 1, 1, 2),
@@ -461,7 +461,7 @@ let addition = {
           return false;
         }
       },
-      /*3*/{
+      /*3 - Near Doubles I*/{
         name: "Near Doubles I",
         id: ["addition", "partition", 3],
         run: () => partitionNearDoubles(2, 9, 0, 1, 1),
@@ -472,7 +472,7 @@ let addition = {
           return false;
         }
       },
-      /*4*/{
+      /*4 - Near Doubles II*/{
         name: "Near Doubles II",
         id: ["addition", "partition", 4],
         run: () => partitionNearDoubles(2, 9, 0, 1, 2),
@@ -483,7 +483,7 @@ let addition = {
           return false;
         }
       },
-      /*5*/{
+      /*5 - Crossing 20 I*/{
         name: "Crossing 20 I",
         id: ["addition", "partition", 5],
         run: () => addPartCrossing10s(2, 2, 1, 1),
@@ -494,7 +494,7 @@ let addition = {
           return false;
         }
       },
-      /*6*/{
+      /*6 - Crossing 20 II*/{
         name: "Crossing 20 II",
         id: ["addition", "partition", 6],
         run: () => addPartCrossing10s(2, 2, 1, 2),

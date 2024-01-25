@@ -168,17 +168,45 @@ function broken10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax,
   let a = toBreak - b;
   let c = rnd(cMin, cMax);
 
-  /*function stroke(num) {
-    let text = num.toString(10);
-    return `<span class="spanStroke">${text}</span>`
-  }*/
-
   switch(mode) {
     case 1:
       return [b, `${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)}&nbsp= (${stroke(a)}&nbsp+&nbsp${stroke("?")}) + ${c}`];
       break;
     case 2:
       return [(a + b + c), `${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)} = ?`];
+      break;
+  }
+}
+
+function brokenDoubles(aLow, aHigh, bLow, bHigh, mode) {
+  /*
+  //Creates a three-term problem that has a broken      //
+  //  double                                            //
+  //----------------------------------------------------//
+  //
+  //mode(integer): determines what format the solution  //
+  //  will take                                         //
+  //    1: reorder problem                              //
+  //    2: standard 3-term problem                      //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  */
+
+  let a, b;
+
+  switch(mode) {
+    case 1:
+      a = rnd(aLow, aHigh);
+      b = rnd(bLow, bHigh);
+      return [a, `${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}&nbsp= (${stroke(a)}&nbsp+&nbsp${stroke("?")}) + ${b}`];
+      break;
+    case 2:
+      let sum = rnd(((2 * aLow) + bLow), ((2 * aHigh) + bHigh));
+      let dubMax = Math.floor((sum - 1) / 2);
+      a = rnd(2, (dubMax < aHigh ? dubMax : aHigh));
+      b = sum - (2 * a);
+      return [sum, `${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}&nbsp= ?`];
       break;
   }
 }
@@ -207,8 +235,6 @@ function doubles(aLow, aHigh, aMod, rLow, rHigh) {
 
   return [answer, equation];
 }
-
-
 
 function addPartCrossing10s(aMin, aMax, aMod, mode) {
   /*

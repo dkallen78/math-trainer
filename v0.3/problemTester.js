@@ -1,4 +1,4 @@
-let testFunc = () => add3(3, 20);
+let testFunc = () => brokenDoubles(2, 9, 1, 9, 2);
 
 function testOnce() {
   /*
@@ -17,7 +17,7 @@ function deepTest() {
   //Runs the function thousands of times to check that  //
   //  it has a flat distribution curve                  //
   //----------------------------------------------------//
-  //To start it runs the function a number of times     //
+  //To start, it runs the function a number of times    //
   //  equal to the items variable, keeping track of the //
   //  number of times an answer comes up                //
   //----------------------------------------------------//
