@@ -307,8 +307,7 @@ const scales = {
   in: [0, 1, 5, 7, 8], 
   hungarian: [0, 2, 3, 5, 6, 7, 10]
 }
-
-const user = {
+let user = {
   soundOn: true,
   activeScale: scales.major,
   keyNote: 0,
@@ -316,16 +315,10 @@ const user = {
   get activeKey() {
     return ((this.keyOctave - 2) * 12) + this.keyNote;
   },
-  skillUnlock: {
-    "+": true,
-    "-": false,
-    "×": false,
-    "÷": false
-  },
   addition: {
-    fundamentals: [],
+    fundamentals: [1, 1, 1, 1, 1],
     placeValue: [],
-    reorder: [],
+    reorder: [1, 1, 1],
     partition: [],
     compensation: []
   },
@@ -338,4 +331,3 @@ const user = {
   qDepth: 10,
   maxAvg: 5000
 }
-

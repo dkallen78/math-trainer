@@ -416,7 +416,7 @@ button {
   border: .2rem solid var(--border-color);
   border-radius: 1rem;
   animation-name: notificationWindowPortrait;
-  animation-duration: 4s;
+  animation-duration: 2s;
 }
 
 @keyframes notificationWindowPortrait {

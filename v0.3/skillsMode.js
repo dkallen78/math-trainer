@@ -12,11 +12,10 @@ async function makeSkillsStartScreen() {
 
       for (let i = 0; i < operationButtons.length; i++) {
         let op = operationButtons[i].innerHTML;
-        if (user.skillUnlock[op]) {
+        if (operationUnlock(op)) {
           operationButtons[i].classList.remove("inactiveButton");
 
           operationButtons[i].onclick = async () => {
-            console.log(op);
             playTone(randomNote());
             await makeOperationBaseScreen(op);
             resolve(false);
@@ -30,6 +29,23 @@ async function makeSkillsStartScreen() {
         resolve(true);
       }
     })
+  }
+
+  function operationUnlock(op) {
+    switch(op) {
+      case "+":
+        return true;
+        break;
+      case "-":
+        return user.addition.partition[1];
+        break;
+      case "×":
+        return false;
+        break;
+      case "÷":
+        return false;
+        break;
+    }
   }
 
   let quit = false;
@@ -416,7 +432,8 @@ let addition = {
             return true;
           }
           return false;
-        }
+        },
+        notification: "Subtraction unlocked!"
       },
       /*2*/{
         name: "Crossing 10 II",
