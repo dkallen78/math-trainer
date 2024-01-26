@@ -6,43 +6,26 @@
     <title>
       Problem Tester 2
     </title>
-    <!--
-      <link rel="stylesheet" href="stylesheet.css">
-      <link rel="stylesheet" href="stylesheet.css" media="print">
-    -->
+    <link rel="stylesheet" href="problem-tester-2.css">
     <script src="util.js"></script>
     <script src="problems.js"></script>
     <script src="problem-tester-2.js"></script>
-    <style>
-      #problemOutput {
-        height: 2rem;
-        padding-top: .5rem;
-      }
-
-      #deepOutput {
-        height: 2rem;
-        padding-top: .5rem;
-      }
-
-      #svgBox {
-        height: 25vw;
-        width: 50vw;
-      }
-    </style>
   </head>
   <body>
-    <button type="button" onclick="testOnce()">Test Problem</button><br>
-    <div id="problemOutput"></div>
+    <div id="problem-tester">
+      <button type="button" onclick="testOnce()">Test Problem</button><br>
+      <div id="problemOutput"></div>
+    </div>
     <br><br>
-    <label for="percentPass">Number of problems to produce:</label>
-    <input id="percentPass" type="number" name="percentPass" value="100" />
-    <br>
-    <label for="averagePass">Number of iterations to run:</label>
-    <input id="averagePass" type="number" name="averagePass" value="1000" />
-    <br>
-    <button type="button" onclick="analyzeFunction()">Check Problem</button><br>
-    <div id="deepOutput"></div>
-    <div id="svgBox">
+    <div id="problem-analyzer">
+      <div id="analysis-inputs">
+        <label for="percentPass">Problems per iteration:</label>
+        <input id="percentPass" type="number" name="percentPass" value="10" />
+        <label for="averagePass">Iterations:</label>
+        <input id="averagePass" type="number" name="averagePass" value="1000" />
+        <button type="button" id="analyze-function" onclick="analyzeFunction()">Analyze Function</button>
+      </div>
+      <div id="svgBox"></div>
     </div>
   </body>
 </html>

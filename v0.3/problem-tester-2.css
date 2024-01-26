@@ -1,0 +1,38 @@
+#problem-tester {
+  padding: .5em;
+  border: .1em solid black;
+  border-radius: .25em;
+}
+
+#problemOutput {
+  height: 2rem;
+  padding-top: .5rem;
+  font-size: 2em;
+}
+
+#problem-analyzer {
+  padding: .5em;
+  border: .1em solid black;
+  border-radius: .25em;
+}
+
+#analysis-inputs {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 33% 33% 33%;
+  gap: .2em;
+}
+
+#analyze-function {
+  grid-column: 1 / 3;
+}
+
+#deepOutput {
+  height: 2rem;
+  padding-top: .5rem;
+}
+
+#svgBox {
+  height: 47.5vw;
+  width: 95vw;
+}
