@@ -33,7 +33,7 @@ function deepTest() {
 
   //let iterationNum = document.getElementById("averagePass").value;
 
-  let iterations = document.getElementById("averagePass").value;;
+  let iterations = document.getElementById("averagePass").value;
 
   let totals = [];
   

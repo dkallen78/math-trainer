@@ -30,8 +30,94 @@ function testOnce() {
 }
 
 function analyzeFunction() {
+
+  let iterations = document.getElementById("averagePass").value;
+
+  let bigStats = {};
+
+  for (let i = 0; i < iterations; i++) {
+
+    let statsCount = {};
+
+    //
+    //Gets the number of times to run the function
+    let cycles = document.getElementById("percentPass").value;
+
+    //
+    //Runs the function multiple times, counting the number of 
+    //  times each answer is produced
+    for (let j = 0; j < cycles; j++) {
+      let problem = testFunc();
+      let answer = problem[0];
+
+      //
+      //If the answer has already been produced, it is incremented
+      //  in the statsCount object
+      //If it hasn't already been produced, it is created
+      if (answer in statsCount) {
+        statsCount[answer]++;
+      } else {
+        statsCount[answer] = 1;
+      } 
+    }
+
+    let countKeys = Object.keys(statsCount);
+
+    countKeys.forEach((answer, index) => {
+
+      if (answer in bigStats) {
+        bigStats[answer] += statsCount[answer];
+      } else {
+        bigStats[answer] = statsCount[answer];
+      }
+    });
+
+  }
+
+  console.clear();
+  console.log(bigStats);
+
+  let statsAvg = {};
+
+  let bigKeys = Object.keys(bigStats);
+
+  bigKeys.forEach((answer) => {
+    statsAvg[answer] = bigStats[answer] / iterations;
+  });
+
+  console.log(statsAvg);
+
+  let avgKeys = Object.keys(statsAvg);
+
+  let svgBox = document.getElementById("svgBox");
+  clearElement(svgBox);
+  //Makes an SVG element to put a graph in
+  let svg = makeSVG("svg", "svgGraph");
+  svg.setAttribute("viewBox", `0 0 ${avgKeys.length} 5`);
+
+  let max = 0;
+  avgKeys.forEach((number) => {
+    max = max > statsAvg[avgKeys] ? max : statsAvg[avgKeys];
+  });
+
+  avgKeys.forEach((number) => {
+    let percent = (avgStats[number] / max) * 100;
+    let rect = makeSVG("rect");
+      rect.setAttribute("x", i);
+      rect.setAttribute("y", `${100 - percent}%`);
+      rect.setAttribute("width", 0.75);
+      rect.setAttribute("height", `${percent}%`);
+    svg.appendChild(rect);
+
+  });
+
+}
+
+function analyzeFunction2() {
   /*----------------------------------------------------//
-  //Performs the analysis on the problem function       //
+  //Performs the analysis on the problem function by    //
+  //  running it thousands of times and counting the    //
+  //  answers produced                                  //
   //----------------------------------------------------//
   //----------------------------------------------------*/
 
@@ -50,7 +136,12 @@ function analyzeFunction() {
     let problem = testFunc();
     let answer = problem[0];
 
-    statsCount[answer] ? statsCount[answer]++ : statsCount[answer] = 1;
+    if (answer in statsCount) {
+      statsCount[answer]++;
+    } else {
+      statsCount[answer] = 1;
+    }
+    //statsCount[answer] ? statsCount[answer]++ : statsCount[answer] = 1;
   }
 
   console.clear();
@@ -71,7 +162,7 @@ function analyzeFunction() {
     statsPercent[number] = statsCount[number] / cycles;
   });
 
-  console.log(statsPercent);
+  //console.log(statsPercent);
 
   let svgBox = document.getElementById("svgBox");
   clearElement(svgBox);
