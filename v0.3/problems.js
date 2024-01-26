@@ -107,7 +107,9 @@ function add(aMin, aMax, aMod, bMin, bMax, bMod) {
 
   let solutions = [
     [(a + b), `${a} + ${b} = ?`],
-    [(a + b), `? = ${a} + ${b}`]
+    [(a + b), `${b} + ${a} = ?`],
+    [(a + b), `? = ${a} + ${b}`],
+    [(a + b), `? = ${b} + ${a}`]
   ]
 
   return solutions[rnd(0, solutions.length - 1)];

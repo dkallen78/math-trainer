@@ -443,6 +443,12 @@ let addition = {
       id: ["addition", "placeValue", 4],
       run: () => decompose(2),
       test: () => user.addition.placeValue[3]
+    },
+    /*5 - 10s and 1s*/{
+      name: "10s an 1s",
+      id: ["addition", "placeValue", 5],
+      run: () => add(1, 9, 1, 1, 9, 0),
+      test: () => user.addition.placeValue[4]
     }
   ],
   partition: [
