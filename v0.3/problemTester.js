@@ -5,7 +5,7 @@ function testOnce() {
   //Runs the function to be tested one time and outputs //
   //  the answer and the equation                       //
   */
-  console.log("running");
+  console.clear();
   let problem = testFunc();
   console.log(problem);
   let problemOutput = document.getElementById("problemOutput");
