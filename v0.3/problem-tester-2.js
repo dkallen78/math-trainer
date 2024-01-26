@@ -28,7 +28,7 @@ function testOnce() {
   console.clear();
   let problem = testFunc();
   console.log(problem);
-  let problemOutput = document.getElementById("problemOutput");
+  let problemOutput = document.getElementById("problem-output");
   problemOutput.innerHTML = `Answer: ${problem[0]}, Equation: ${problem[1]}`;
 }
 

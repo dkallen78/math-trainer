@@ -1,19 +1,23 @@
-#problem-tester {
+#problem-tester, #problem-analyzer {
+  margin: .2em;
   padding: .5em;
   border: .1em solid black;
   border-radius: .25em;
 }
 
-#problemOutput {
+button {
+  font-size: 1.5em;S
+}
+
+#test-function {
+  width: 100%;
+}
+
+#problem-output {
   height: 2rem;
   padding-top: .5rem;
   font-size: 2em;
-}
-
-#problem-analyzer {
-  padding: .5em;
-  border: .1em solid black;
-  border-radius: .25em;
+  text-align: center;
 }
 
 #analysis-inputs {
@@ -21,6 +25,16 @@
   grid-template-columns: 50% 50%;
   grid-template-rows: 33% 33% 33%;
   gap: .2em;
+  margin-bottom: .5em;
+}
+
+label {
+  font-size: 1.25em;
+  text-align: right;
+}
+
+input {
+  font-size: 1.25em;
 }
 
 #analyze-function {
