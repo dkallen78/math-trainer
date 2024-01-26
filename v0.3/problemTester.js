@@ -1,4 +1,4 @@
-let testFunc = () => add(11, 99, 0, 1, 1, 1);
+let testFunc = () => add(1, 9, 1, 1, 9, 0);
 
 function testOnce() {
   /*

@@ -437,6 +437,12 @@ let addition = {
       id: ["addition", "placeValue", 3],
       run: () => add(11, 99, 0, 1, 1, 1),
       test: () => user.addition.placeValue[2]
+    },
+    /*4 - Decompose I*/{
+      name: "Decompose I",
+      id: ["addition", "placeValue", 4],
+      run: () => decompose(2),
+      test: () => user.addition.placeValue[3]
     }
   ],
   partition: [

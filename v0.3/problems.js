@@ -114,6 +114,19 @@ function add(aMin, aMax, aMod, bMin, bMax, bMod) {
 }
 
 function add2(minSum, maxSum, sumMod, aMod) {
+  /*----------------------------------------------------//
+  //Creates an addition problem with two terms          //
+  //----------------------------------------------------//
+  //minSum(integer): smallest possible sum              //
+  //maxSum(integer): largest possible sum               //
+  //sumMod(integer): exponential modifier for the sum   //
+  //aMod(integer): exponential modifier for the first   //
+  //  term                                              //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------*/
+
 
   let sumSeed = rnd(minSum, maxSum);
   let sum = sumSeed * (10 ** sumMod);
@@ -267,6 +280,48 @@ function brokenDoubles(aLow, aHigh, bLow, bHigh, mode) {
       return [sum, `${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}&nbsp= ?`];
       break;
   }
+}
+
+function decompose(numDigits) {
+  /*----------------------------------------------------//
+  //Creates a decomposition problem                     //
+  //----------------------------------------------------//
+  //numDigits(integer): number of terms in the problem  //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------*/
+
+
+  let digits = [];
+  
+  for (let i = 0; i < numDigits; i++) {
+    digits.push(rnd(1, 9));
+  }
+
+  let unknownDigit = rnd(0, digits.length - 1);
+  let output = "";
+  let number = 0;
+  
+  digits.forEach((digit, index) => {
+    let iNumber = digit * (10 ** index);
+    number += iNumber;
+    if (index === unknownDigit) {
+      output = ` ? ${output}`;
+    } else {
+      output = ` ${(iNumber).toString(10)} ${output}`;
+    }
+    if (index !== digits.length - 1) {
+      output = `+ ${output}`;
+    }
+  });
+
+  let answer = digits[unknownDigit] * (10 ** unknownDigit);
+  let solutions = [
+    [answer, `${output} = ${number}`]
+  ];
+
+  return solutions[rnd(0, solutions.length - 1)];
 }
 
 function doubles(aLow, aHigh, aMod, rLow, rHigh) {

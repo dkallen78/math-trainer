@@ -15,6 +15,7 @@ For the next bit, I'm going to try and fill out each strategy/skill (I like stra
 ### Issues
 
 * Investigate poppy phone sound (low priority for now)
+* Do something about `addWithin()` function
 
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 
