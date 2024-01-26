@@ -1,4 +1,4 @@
-let testFunc = () => brokenDoubles(2, 9, 1, 9, 2);
+let testFunc = () => add(11, 99, 0, 1, 1, 1);
 
 function testOnce() {
   /*
@@ -183,6 +183,7 @@ function randomCheck() {
 /*
 //Unbalanced function museum
 */
+
 function withinX(aMin, aMax) {
     /*
     //Creates a mixed operations problem with a maximum   //

@@ -277,17 +277,13 @@ let addition = {
       name: "Single-Digit Addition I",
       id: ["addition", "fundamentals", 1],
       run: () => singleDigitAddition(1, 9),
-      test: () => {
-        return true;
-      },
+      test: () => true
     },
     /*2 - Reorder*/{
       name: "Reorder",
       id: ["addition", "fundamentals", 2],
       run: () => reorder(1, 9),
-      test: () => {
-        return true;
-      }
+      test: () => true
     },
     /*3 - Missing Term*/{
       name: "Missing Term",
@@ -400,13 +396,13 @@ let addition = {
     /*5 - Broken Doubles I*/{
       name: "Broken Doubles I",
       id: ["addition", "reorder", 5],
-      run: () => {},
+      run: () => brokenDoubles(2, 5, 1, 9, 1),
       test: () => user.addition.reorder[4]
     },
     /*6 - Broken Doubles II*/{
       name: "Broken Doubles II",
       id: ["addition", "reorder", 6],
-      run: () => {},
+      run: () => brokenDoubles(2, 5, 1, 9, 2),
       test: () => user.addition.reorder[5]
     },
     /*7 - Broken 10s I*/{
@@ -428,12 +424,19 @@ let addition = {
       name: "10 + 1s",
       id: ["addition", "placeValue", 1],
       run: () => add(1, 1, 1, 1, 9, 0),
-      test: () => {
-        if (user.addition.fundamentals[5]) {
-          return true;
-        } 
-        return false;
-      }
+      test: () => user.addition.fundamentals[5]
+    },
+    /*2 - Add 10s*/{
+      name: "Add 10s",
+      id: ["addition", "placeValue", 2],
+      run: () => add2(1, 9, 1, 1),
+      test: () => user.addition.placeValue[1]
+    }, 
+    /*3 - 10 More I*/{
+      name: "10 More I",
+      id: ["addition", "placeValue", 3],
+      run: () => add(11, 99, 0, 1, 1, 1),
+      test: () => user.addition.placeValue[2]
     }
   ],
   partition: [

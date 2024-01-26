@@ -78,8 +78,58 @@ function stroke(num) {
   return `<span class="spanStroke">${text}</span>`
 }
 
+function add(aMin, aMax, aMod, bMin, bMax, bMod) {
+  /*----------------------------------------------------//
+  //Creates an addition problem based on the parameters //
+  //----------------------------------------------------//
+  //aMin(integer): smallest possible value for the      //
+  //  first addend                                      //
+  //aMax(integer): largest possible value for the       //
+  //  first addend                                      //
+  //aMod(integer): multiplicative modifier for the      //
+  //  first addend                                      //
+  //bMin(integer): smallest possible value for the      //
+  //  second addend                                     //
+  //bMax(integer): largest possible value for the       //
+  //  second addend                                     //
+  //bMod(integer): multiplicative modifier for the      //
+  //  second addend                                     //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+  //POTENTIALLY UNBALANCED - TEST IMPLEMENTATION        //
+  //----------------------------------------------------*/
+  
+  
+  let a = rnd(aMin, aMax) * (10 ** aMod);
+  let b = rnd(bMin, bMax) * (10 ** bMod);
+
+  let solutions = [
+    [(a + b), `${a} + ${b} = ?`],
+    [(a + b), `? = ${a} + ${b}`]
+  ]
+
+  return solutions[rnd(0, solutions.length - 1)];
+}
+
+function add2(minSum, maxSum, sumMod, aMod) {
+
+  let sumSeed = rnd(minSum, maxSum);
+  let sum = sumSeed * (10 ** sumMod);
+  let aSeed = rnd(0, sumSeed);
+  let a = aSeed * (10 ** aMod);
+
+
+  let solutions = [
+    [sum, `${a} + ${sum - a} = ?`]
+  ];
+
+  return solutions[rnd(0, solutions.length - 1)];
+}
+
 function add3(minSum, maxSum) {
-  /*
+  /*----------------------------------------------------//
   //Creates an addition problem with three terms        //
   //----------------------------------------------------//
   //minSum(integer): smallest possible sum              //
@@ -87,7 +137,7 @@ function add3(minSum, maxSum) {
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------*/
 
   let sum = rnd(minSum, maxSum);
   let a = rnd(1, (sum - 2));
@@ -103,7 +153,7 @@ function add3(minSum, maxSum) {
 }
 
 function addWithin(aMin, aMax, simple = true) {
-  /*
+  /*----------------------------------------------------//
   //Creates an addition problem with a lower and upper  //
   //  bound                                             //
   //----------------------------------------------------//
@@ -112,7 +162,7 @@ function addWithin(aMin, aMax, simple = true) {
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------*/
 
   let a = rnd(aMin, aMax);
   let b = 0;
@@ -124,7 +174,8 @@ function addWithin(aMin, aMax, simple = true) {
       solutions = [
         [a, `${b} + ? = ${a + b}`],
         [a, `? + ${b} = ${a + b}`],
-      ]
+      ];
+      break;
     case true:
       b = rnd(0, a);
       solutions.push([a, `${b} + ${a - b} = ?`]);
@@ -135,7 +186,7 @@ function addWithin(aMin, aMax, simple = true) {
 }
 
 function broken10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax, mode) {
-  /*
+  /*----------------------------------------------------//
   //Creates a three-term problem that has a broken      //
   //  factor of 10                                      //
   //----------------------------------------------------//
@@ -160,7 +211,7 @@ function broken10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax,
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------*/
 
   let toBreak = rnd(breakMin, breakMax) * (10 ** breakMod);
   let b = rnd(crackMin, crackMax);
@@ -179,11 +230,16 @@ function broken10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax,
 }
 
 function brokenDoubles(aLow, aHigh, bLow, bHigh, mode) {
-  /*
+  /*----------------------------------------------------//
   //Creates a three-term problem that has a broken      //
   //  double                                            //
   //----------------------------------------------------//
-  //
+  //aLow(integer): lowest potential value for double    //
+  //aHigh(integer): highest potential value for double  //
+  //bLow(integer): lowest potential value for third     //
+  //  term of equation                                  //
+  //bHigh(integer): highest potential vlaue for third   //
+  //  term of equation                                  //
   //mode(integer): determines what format the solution  //
   //  will take                                         //
   //    1: reorder problem                              //
@@ -191,7 +247,7 @@ function brokenDoubles(aLow, aHigh, bLow, bHigh, mode) {
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------*/
 
   let a, b;
 
@@ -199,6 +255,7 @@ function brokenDoubles(aLow, aHigh, bLow, bHigh, mode) {
     case 1:
       a = rnd(aLow, aHigh);
       b = rnd(bLow, bHigh);
+
       return [a, `${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}&nbsp= (${stroke(a)}&nbsp+&nbsp${stroke("?")}) + ${b}`];
       break;
     case 2:
@@ -206,13 +263,14 @@ function brokenDoubles(aLow, aHigh, bLow, bHigh, mode) {
       let dubMax = Math.floor((sum - 1) / 2);
       a = rnd(2, (dubMax < aHigh ? dubMax : aHigh));
       b = sum - (2 * a);
+
       return [sum, `${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}&nbsp= ?`];
       break;
   }
 }
 
 function doubles(aLow, aHigh, aMod, rLow, rHigh) {
-  /*
+  /*----------------------------------------------------//
   //Creates an near doubles addition problem            //
   //----------------------------------------------------//
   //aLow(integer): lowest number for the term           //
@@ -226,7 +284,7 @@ function doubles(aLow, aHigh, aMod, rLow, rHigh) {
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------*/
 
   let a = rnd(aLow, aHigh) * aMod;
   let drift = rnd(rLow, rHigh);
@@ -237,7 +295,7 @@ function doubles(aLow, aHigh, aMod, rLow, rHigh) {
 }
 
 function addPartCrossing10s(aMin, aMax, aMod, mode) {
-  /*
+  /*----------------------------------------------------//
   //Creates a crossing 10s problem that can be solved   //
   //  with partitioning                                 //
   //----------------------------------------------------//
@@ -254,7 +312,7 @@ function addPartCrossing10s(aMin, aMax, aMod, mode) {
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------*/
 
 
   let a = rnd(aMin, aMax) * (10 ** aMod);
@@ -273,7 +331,7 @@ function addPartCrossing10s(aMin, aMax, aMod, mode) {
 }
 
 function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
-  /*
+  /*----------------------------------------------------//
   //Creates a near doubles problem that can be solved   //
   //  with partitioning                                 //
   //----------------------------------------------------//
@@ -292,7 +350,7 @@ function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------*/
 
   let a = rnd(aMin, aMax) * (10 ** aMod);
   let split = rnd(1, maxSplit);
@@ -318,7 +376,7 @@ function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
 }
 
 function reorder(aMin, aMax) {
-  /*
+  /*----------------------------------------------------//
   //Creates a reorder problem                           //
   //----------------------------------------------------//
   //aMin(integer): the minimum addend/                  //
@@ -326,7 +384,7 @@ function reorder(aMin, aMax) {
   //----------------------------------------------------//
   //return(array[float, string]): the correct term and  //
   //  a string representation of it                     //
-  */
+  //----------------------------------------------------*/
 
   let a = rnd(aMin, aMax);
   let b = rnd(aMin, aMax);
@@ -341,8 +399,8 @@ function reorder(aMin, aMax) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
-function singleDigitAddition(minSum, maxSum) {
-  /*
+function singleDigitAddition(minSum, maxSum, mode) {
+  /*----------------------------------------------------//
   //Creates a single-digit addition problem with a      //
   //  minimum and maximum sum                           //
   //----------------------------------------------------//
@@ -351,7 +409,7 @@ function singleDigitAddition(minSum, maxSum) {
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------*/
 
   let sum = rnd(minSum, maxSum);
   let a = rnd(1, 9);
@@ -369,7 +427,7 @@ function singleDigitAddition(minSum, maxSum) {
 }
 
 function subWithin(difMin, difMax, simple = true) {
-  /*
+  /*----------------------------------------------------//
   //Creates a subtraction problem within a range of     //
   //  possible differences                              //
   //----------------------------------------------------//
@@ -378,7 +436,7 @@ function subWithin(difMin, difMax, simple = true) {
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------*/
 
   let a = rnd(difMin, difMax);
   let b = 0;
@@ -411,7 +469,7 @@ function subWithin(difMin, difMax, simple = true) {
 }
 
 function upTo(aMin, cap) {
-  /*
+  /*----------------------------------------------------//
   //Creates an addition problem with a fixed sum        //
   //----------------------------------------------------//
   //aMin(integer): the minimum addend                   //
@@ -419,7 +477,7 @@ function upTo(aMin, cap) {
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------*/
 
   let a = rnd(aMin, cap);
 
@@ -431,6 +489,9 @@ function upTo(aMin, cap) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
+
+//----------------------------------------------------------------
+
 function downTo(aMin, aMax, floorMin, floorMax, floorMod) {
 
   let a = rnd(aMin, aMax);
@@ -439,7 +500,6 @@ function downTo(aMin, aMax, floorMin, floorMax, floorMod) {
   return [a, `${floor + a} - ? = ${floor}`];
 }
 
-//----------------------------------------------------------------
 
 function takeFrom(aMin, aMax, aMod) {
   /*
