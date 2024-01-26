@@ -369,3 +369,19 @@ I've also made it so that users can unlock everything with a push of a button *a
 * Investigate poppy phone sound
 
 * Make it so that notifications are a one-time event 
+
+## Update 2024-01-25
+
+### 09:50
+
+I've been adding new operation skills (Addition-Place Value) and reorganizing the UI to accomodate the new buttons. 
+
+I've also been working on adding at least 8 individual skills to each operation skill. Writing "skill" out so many times makes me think I need to come up with a better set of descriptors for what I'm doing because this is going to be confusing to anyone outside of my bubble. Part of adding new micro skills is making new problem functions so I've made two more of those. One for 3-digit addition problems and one for reordering broken doubles. I'm very glad I put the work into that problem tester program because my intuition is often off for what will be a balanced or unbalanced answer distribution.
+
+I've solved the redundant notification issue and I also discovered and fixed an issue where the Subtraction skills wouldn't unlock.
+
+For the next bit, I'm going to try and fill out each strategy/skill (I like strategy, I may start using that going forward) with at least 8 types prolems.
+
+### Issues
+
+* Investigate poppy phone sound (low priority for now)

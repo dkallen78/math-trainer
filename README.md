@@ -1,16 +1,14 @@
 # [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2024-01-25
+## Update 2024-01-26
 
-### 09:50
+### 00:00
 
-I've been adding new operation skills (Addition-Place Value) and reorganizing the UI to accomodate the new buttons. 
+I powered through a few more micro skills (three in Addition-Place Value) but I got hung up on trying to consolidate some of the *seemingly* redundant functions. It turns out I'm not as clever as I thought so I kept things mostly as they were. 
 
-I've also been working on adding at least 8 individual skills to each operation skill. Writing "skill" out so many times makes me think I need to come up with a better set of descriptors for what I'm doing because this is going to be confusing to anyone outside of my bubble. Part of adding new micro skills is making new problem functions so I've made two more of those. One for 3-digit addition problems and one for reordering broken doubles. I'm very glad I put the work into that problem tester program because my intuition is often off for what will be a balanced or unbalanced answer distribution.
+Then I thought I'd start on remaking the problem tester program. I never liked how it didn't keep track of the answers produced, only the percentages involved so I started redoing it with a mind to keep ahold of those values. I think it's going to be mostly the same but I'm going to go back at it with an eye for style once I get it doing what I want.
 
-I've solved the redundant notification issue and I also discovered and fixed an issue where the Subtraction skills wouldn't unlock.
-
-For the next bit, I'm going to try and fill out each strategy/skill (I like strategy, I may start using that going forward) with at least 8 types prolems.
+But it's midnight now and I don't want to be too grumpy in the morning so it's time to turn it in.
 
 ### Issues
 

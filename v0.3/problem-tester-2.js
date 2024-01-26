@@ -77,7 +77,7 @@ function analyzeFunction() {
   clearElement(svgBox);
   //Makes an SVG element to put a graph in
   let svg = makeSVG("svg", "svgGraph");
-  svg.setAttribute("viewBox", `0 0 ${countKeys.length} 2`);
+  svg.setAttribute("viewBox", `0 0 ${countKeys.length} 5`);
 
   //
   //Makes a bar for a graph representing the number of times
