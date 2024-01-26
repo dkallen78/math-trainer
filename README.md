@@ -2,6 +2,10 @@
 
 ## Update 2024-01-26
 
+### 15:00
+
+I have revamped the problem tester! It's a lot prettier now and it's easier to see what's going on. I think there's more that I need to do with it, but for the moment, I'm very pleased.
+
 ### 00:00
 
 I powered through a few more micro skills (three in Addition-Place Value) but I got hung up on trying to consolidate some of the *seemingly* redundant functions. It turns out I'm not as clever as I thought so I kept things mostly as they were. 
