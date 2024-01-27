@@ -23,6 +23,12 @@ button {
   font-size: 2em;
 }
 
+#problem-analyzer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
 #solution {
   text-align: right;
 }

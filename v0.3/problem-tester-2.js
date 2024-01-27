@@ -1,5 +1,5 @@
-let testFunc = () => add(1, 9, 0, 1, 9, 0);
-//let testFunc = () => add(11, 99, 0, 1, 1, 1);
+//let testFunc = () => add(1, 9, 0, 1, 9, 0);
+let testFunc = () => add(11, 99, 0, 1, 1, 1);
 //let testFunc = () => add(1, 1, 1, 1, 9, 0);
 //let testFunc = () => addPartCrossing10s(3, 9, 1, 2);
 
@@ -129,9 +129,9 @@ function analyzeFunction() {
       let percent = (statsAvg[number] / max) * 100;
       let rect = makeSVG("rect");
         rect.id = `rect-${i}`;
-        rect.setAttribute("x", i);
+        rect.setAttribute("x", `${i + 0.1}`);
         rect.setAttribute("y", `${100 - percent}%`);
-        rect.setAttribute("width", 0.75);
+        rect.setAttribute("width", 0.8);
         rect.setAttribute("height", `${percent}%`);
         rect.setAttribute("fill", "black");
       svg.appendChild(rect);
