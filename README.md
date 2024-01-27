@@ -2,6 +2,10 @@
 
 ## Update 2024-01-26
 
+### 22:30
+
+Filled in the operation micro skills. Fundementals has 8, Reorder 8, Place Value 6, Partition 8, and Compensation 4. Eventually I'll be filling those out more but I want to move on to something else next. I might work on fleshing out subtraction or starting on multiplication but I might just rename "Progression" from the top-level menu to "Survival" and work on that. I need to change things up a bit I think. 
+
 ### 15:00
 
 I have revamped the problem tester! It's a lot prettier now and it's easier to see what's going on. I think there's more that I need to do with it, but for the moment, I'm very pleased.
@@ -17,6 +21,7 @@ But it's midnight now and I don't want to be too grumpy in the morning so it's t
 ### Issues
 
 * Investigate poppy phone sound (low priority for now)
+
 * Do something about `addWithin()` function
 
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
