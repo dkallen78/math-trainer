@@ -284,6 +284,50 @@ function brokenDoubles(aLow, aHigh, bLow, bHigh, mode) {
   }
 }
 
+function compIntro(mode) {
+  let a = rnd(1, 9);
+  let b = rnd(1, 9);
+  let solutions = [];
+
+  switch(mode) {
+    case 1:
+      solutions = [
+        [a, `${a} + (${b} - ${b}) = ?`],
+        [a, `? + (${b} - ${b}) = ${a}`],
+        [a, `(${b} - ${b}) + ${a} = ?`],
+        [a, `(${b} - ${b}) + ? = ${a}`],
+        [a, `${a} = ? + (${b} - ${b})`],
+        [a, `${a} = (${b} - ${b}) + ?`],
+        [a, `? = (${b} - ${b}) + ${a}`],
+        [a, `? = ${a} + (${b} - ${b})`]
+      ];
+      break;
+    case 2:
+      solutions = [
+        [b, `${a} + (${b} - ?) = ${a}`],
+        [b, `${a} + (? - ${b}) = ${a}`],
+        [b, `${a} = ${a} + (${b} - ?)`],
+        [b, `${a} = ${a} + (? - ${b})`],
+        [b, `(${b} - ?) + ${a} = ${a}`],
+        [b, `(? - ${b}) + ${a} = ${a}`],
+        [b, `${a} = (${b} - ?) + ${a}`],
+        [b, `${a} = (? - ${b}) + ${a}`]
+      ];
+      break;
+    case 3:
+      solutions = [
+        [b, `${b} + ${a} - ? = ${a}`],
+        [b, `? + ${a} - ${b} = ${a}`],
+        [b, `${a} = ? + ${a} - ${b}`],
+        [b, `${a} = ${b} + ${a} - ?`]
+      ];
+      break;
+  }
+
+  return solutions[rnd(0, solutions.length - 1)];
+
+}
+
 function decompose(numDigits) {
   /*----------------------------------------------------//
   //Creates a decomposition problem                     //

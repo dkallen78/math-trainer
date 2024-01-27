@@ -463,82 +463,60 @@ let addition = {
         name: "Crossing 10 I",
         id: ["addition", "partition", 1],
         run: () => addPartCrossing10s(1, 1, 1, 1),
-        test: () => {
-          if (user.addition.reorder[1]) {
-            return true;
-          }
-          return false;
-        },
+        test: () => user.addition.reorder[1],
         notification: "Subtraction unlocked!"
       },
       /*2 - Crossing 10 II*/{
         name: "Crossing 10 II",
         id: ["addition", "partition", 2],
         run: () => addPartCrossing10s(1, 1, 1, 2),
-        test: () => {
-          if (user.addition.partition[1]) {
-            return true;
-          }
-          return false;
-        }
+        test: () => user.addition.partition[1]
       },
       /*3 - Near Doubles I*/{
         name: "Near Doubles I",
         id: ["addition", "partition", 3],
         run: () => partitionNearDoubles(2, 9, 0, 1, 1),
-        test: () => {
-          if (user.addition.partition[2]) {
-            return true;
-          } 
-          return false;
-        }
+        test: () => user.addition.partition[2]
       },
       /*4 - Near Doubles II*/{
         name: "Near Doubles II",
         id: ["addition", "partition", 4],
         run: () => partitionNearDoubles(2, 9, 0, 1, 2),
-        test: () => {
-          if (user.addition.partition[3]) {
-            return true;
-          }
-          return false;
-        }
+        test: () => user.addition.partition[3]
       },
       /*5 - Crossing 20 I*/{
         name: "Crossing 20 I",
         id: ["addition", "partition", 5],
         run: () => addPartCrossing10s(2, 2, 1, 1),
-        test: () => {
-          if (user.addition.partition[4]) {
-            return true;
-          }
-          return false;
-        }
+        test: () => user.addition.partition[4]
       },
       /*6 - Crossing 20 II*/{
         name: "Crossing 20 II",
         id: ["addition", "partition", 6],
         run: () => addPartCrossing10s(2, 2, 1, 2),
-        test: () => {
-          if (user.addition.partition[5]) {
-            return true;
-          }
-          return false;
-        }
+        test: () => user.addition.partition[5]
       }
       
   ],
   compensation: [
     /*0*/"Compensation",
-    /*1*/{
-      name: "",
-      run: null,
-      test: () => {
-        if (user.addition.fundamentals[7]) {
-          return true;
-        }
-        return false;
-      }
+    /*1 - Give and Take I*/{
+      name: "Give and Take I",
+      id: ["addition", "compensation", 1],
+      run: () => compIntro(1),
+      test: () => user.subtraction.fundamentals[1]
+    },
+    /*2 - Give and Take II*/{
+      name: "Give and Take II",
+      id: ["addition", "compensation", 2],
+      run: () => compIntro(2),
+      test: () => user.addition.compensation[1]
+    },
+    /*3 - Give and Take III*/{
+      name: "Give and Take III",
+      id: ["addition", "compensation", 3],
+      run: () => compIntro(3),
+      test: () => user.addition.compensation[2]
     }
   ]
 }

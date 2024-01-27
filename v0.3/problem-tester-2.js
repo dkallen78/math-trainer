@@ -1,7 +1,7 @@
 //let testFunc = () => add(1, 9, 0, 1, 9, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
 //let testFunc = () => add(1, 1, 1, 1, 9, 0);
-let testFunc = () => add(1, 9, 1, 11, 99, 0);
+let testFunc = () => compIntro(3);
 
 
 function makeSVG(type, id, ...classes) {
@@ -68,9 +68,10 @@ function analyzeFunction() {
     }
 
     let countKeys = Object.keys(statsCount);
-
+    //
+    //Takes the data from the current iteration and adds
+    //  it to the bigStats object
     countKeys.forEach((answer, index) => {
-
       if (answer in bigStats) {
         bigStats[answer] += statsCount[answer];
       } else {
@@ -81,17 +82,18 @@ function analyzeFunction() {
   }
 
   console.clear();
-  console.log(bigStats);
+  //console.log(bigStats);
 
   let statsAvg = {};
-
   let bigKeys = Object.keys(bigStats);
-
+  //
+  //Calculates the average number of times each answer was 
+  //  produced per iteration
   bigKeys.forEach((answer) => {
     statsAvg[answer] = bigStats[answer] / iterations;
   });
 
-  console.log(statsAvg);
+  //console.log(statsAvg);
 
   let avgKeys = Object.keys(statsAvg);
 
@@ -127,23 +129,37 @@ function analyzeFunction() {
     //
     //Gets the average of the average answers produced
     let avgMean = Object.values(statsAvg).reduce((partialSum, a) => partialSum + a, 0) / avgKeys.length;
-    console.log(avgMean);
-    console.log(avgMean * avgKeys.length);
+    console.log(`Weighted average: ${avgMean}`);
 
     let avgBaseline = 100 - ((avgMean / max) * 100);
 
-    let avgRect = makeSVG("rect");
+    /*let avgRect = makeSVG("rect");
       avgRect.setAttribute("x", "0%");
       avgRect.setAttribute("y", `${avgBaseline}%`);
       avgRect.setAttribute("width", "100%");
-      avgRect.setAttribute("height", "1%");
+      avgRect.setAttribute("height", ".5%");
       avgRect.setAttribute("style", "fill:rgb(0,255,0)");
-    svg.appendChild(avgRect);
+    svg.appendChild(avgRect);*/
 
+    let avgLine = makeSVG("line");
+      avgLine.setAttribute("x1", "0%");
+      avgLine.setAttribute("y1", `${avgBaseline}%`);
+      avgLine.setAttribute("x2", "100%");
+      avgLine.setAttribute("y2", `${avgBaseline}%`);
+      avgLine.setAttribute("stroke", "chartreuse");
+      avgLine.setAttribute("stroke-width", ".25%");
+      avgLine.setAttribute("stroke-dasharray", "3% 1%");
+      avgLine.setAttribute("stroke-dashoffset", "3%");
+    svg.appendChild(avgLine);
+
+    //
+    //Calculates the standard deviation and the coefficient of variation 
     let meanSquares = Object.values(statsAvg).map((x) => Math.abs(avgMean - x) ** 2);
     let variance = meanSquares.reduce((partialSum, a) => partialSum + a, 0) / avgKeys.length;
     let sd = Math.sqrt(variance);
-    console.log(sd);
+    let cv = sd / avgMean;
+    console.log(`Standard deviation: ${sd}`);
+    console.log(`Coefficient of variation: ${cv}`);
 
     let sdTop = 100 - (((avgMean + sd) / max) * 100);
     let sdHeight = ((sd * 2) / max) * 100;
@@ -154,9 +170,9 @@ function analyzeFunction() {
       sdRect.setAttribute("y", `${sdTop}%`);
       sdRect.setAttribute("width", "100%");
       sdRect.setAttribute("height", `${sdHeight}%`);
-      let color = sd > 0.1 ? "red" : "green";
+      let color = cv > 0.25 ? "red" : "green";
       sdRect.setAttribute("fill", color);
-      sdRect.setAttribute("fill-opacity", "25%");
+      sdRect.setAttribute("fill-opacity", "12.5%");
     svg.appendChild(sdRect);
 
   svgBox.appendChild(svg);
