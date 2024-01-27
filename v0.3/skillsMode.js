@@ -495,6 +495,18 @@ let addition = {
         id: ["addition", "partition", 6],
         run: () => addPartCrossing10s(2, 2, 1, 2),
         test: () => user.addition.partition[5]
+      },
+      /*7 - Crossing 10s I*/{
+        name: "Crossing 10s I",
+        id: ["addition", "partition", 7],
+        run: () => addPartCrossing10s(3, 9, 1, 1),
+        test: () => user.addition.partition[6]
+      },
+      /*8 - Crossing 10s II*/{
+        name: "Crossing 10s II",
+        id: ["addition", "partition", 8],
+        run: () => addPartCrossing10s(3, 9, 1, 2),
+        test: () => user.addition.partition[7]
       }
       
   ],
@@ -517,6 +529,12 @@ let addition = {
       id: ["addition", "compensation", 3],
       run: () => compIntro(3),
       test: () => user.addition.compensation[2]
+    },
+    /*4 - Give and Take IV*/{
+      name: "Give and Take IV",
+      id: ["addition", "compensation", 4],
+      run: () => addComp(),
+      test: () => user.addition.compensation[3]
     }
   ]
 }

@@ -167,6 +167,28 @@ function add3(minSum, maxSum) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
+function addComp() {
+  /*----------------------------------------------------//
+  //Creates a decomposition problem                     //
+  //----------------------------------------------------//
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------*/
+
+
+  let c = rnd(1, 8);
+  let a = 10 - c;
+  let b = rnd(c + 1, 9);
+
+  let solutions = [
+    [c, `${a} + ${b} = (${a} + ?) + (${b} - ?)`],
+    [c, `(${a} + ?) + (${b} - ?) = ${a} + ${b}`]
+  ]
+
+  return solutions[rnd(0, solutions.length - 1)];
+}
+
 function addWithin(aMin, aMax, simple = true) {
   /*----------------------------------------------------//
   //Creates an addition problem with a lower and upper  //
@@ -285,6 +307,16 @@ function brokenDoubles(aLow, aHigh, bLow, bHigh, mode) {
 }
 
 function compIntro(mode) {
+  /*----------------------------------------------------//
+  //Creates simple compensation addition problem        //
+  //----------------------------------------------------//
+  //mode(integer): determines how to organize the terms //
+  //  in the equation                                   //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------*/
+
   let a = rnd(1, 9);
   let b = rnd(1, 9);
   let solutions = [];
@@ -418,17 +450,26 @@ function addPartCrossing10s(aMin, aMax, aMod, mode) {
 
   let a = rnd(aMin, aMax) * (10 ** aMod);
   let b = rnd(1, 8);
-  let c;
+  let c = 0;
+  let solutions = [];
 
   switch(mode) {
     case 1:
       c = rnd(1, (9 - b));
-      return [b, `${a - b} +&nbsp${stroke(b + c)}&nbsp=&nbsp<span class="spanBox">${a - b} +&nbsp${stroke("?")}</span>&nbsp+&nbsp${stroke(c)}`];
+      solutions = [
+        [b, `${a - b} +&nbsp${stroke(b + c)}&nbsp=&nbsp<span class="spanBox">${a - b} +&nbsp${stroke("?")}</span>&nbsp+&nbsp${stroke(c)}`],
+        [b, `<span class="spanBox">${a - b} +&nbsp${stroke("?")}</span>&nbsp+&nbsp${stroke(c)}&nbsp= ${a - b} +&nbsp${stroke(b + c)}`]
+      ];
+      break;
     case 2:
       c = rnd((b + 1), 9);
-      return [(a + b), `${(a + b) - c} + ${c} = ?`];
+      solutions = [
+        [(a + b), `${(a + b) - c} + ${c} = ?`],
+        [(a + b), `? = ${(a + b) - c} + ${c}`]
+      ]
   }
 
+  return solutions[rnd(0, solutions.length - 1)];
 }
 
 function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
