@@ -82,7 +82,6 @@ function analyzeFunction() {
   }
 
   console.clear();
-  //console.log(bigStats);
 
   let statsAvg = {};
   let bigKeys = Object.keys(bigStats);
@@ -92,8 +91,6 @@ function analyzeFunction() {
   bigKeys.forEach((answer) => {
     statsAvg[answer] = bigStats[answer] / iterations;
   });
-
-  //console.log(statsAvg);
 
   let avgKeys = Object.keys(statsAvg);
 
@@ -113,6 +110,8 @@ function analyzeFunction() {
     //Sets the length of the SVG element to the number 
     //  of answers to be graphed and the height to half that
     svg.setAttribute("viewBox", `0 0 ${avgKeys.length} ${avgKeys.length / 2}`);
+
+    let analysisDeets = document.getElementById("analysis-deets");
     //
     //Iterates through statsAvg building a bar graph 
     //  based on the answer averages
@@ -123,7 +122,16 @@ function analyzeFunction() {
         rect.setAttribute("y", `${100 - percent}%`);
         rect.setAttribute("width", 0.75);
         rect.setAttribute("height", `${percent}%`);
+        rect.setAttribute("fill", "black");
       svg.appendChild(rect);
+      rect.addEventListener("mouseenter", (e) => {
+        analysisDeets.innerHTML = `Answer: ${number}, Occurrences: ${bigStats[number]}, Avg: ${statsAvg[number]}`;
+        rect.setAttribute("fill", "chartreuse");
+      });
+      rect.addEventListener("mouseleave", (e) => {
+        analysisDeets.innerHTML = "";
+        rect.setAttribute("fill", "black");
+      });
     });
 
     //
@@ -132,14 +140,6 @@ function analyzeFunction() {
     console.log(`Weighted average: ${avgMean}`);
 
     let avgBaseline = 100 - ((avgMean / max) * 100);
-
-    /*let avgRect = makeSVG("rect");
-      avgRect.setAttribute("x", "0%");
-      avgRect.setAttribute("y", `${avgBaseline}%`);
-      avgRect.setAttribute("width", "100%");
-      avgRect.setAttribute("height", ".5%");
-      avgRect.setAttribute("style", "fill:rgb(0,255,0)");
-    svg.appendChild(avgRect);*/
 
     let avgLine = makeSVG("line");
       avgLine.setAttribute("x1", "0%");
