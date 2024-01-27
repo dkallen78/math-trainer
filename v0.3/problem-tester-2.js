@@ -1,7 +1,7 @@
-//let testFunc = () => add(1, 9, 0, 1, 9, 0);
+let testFunc = () => add(1, 9, 0, 1, 9, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
 //let testFunc = () => add(1, 1, 1, 1, 9, 0);
-let testFunc = () => addPartCrossing10s(3, 9, 1, 2);
+//let testFunc = () => addPartCrossing10s(3, 9, 1, 2);
 
 
 function makeSVG(type, id, ...classes) {
@@ -40,6 +40,7 @@ function analyzeFunction() {
   let iterations = document.getElementById("averagePass").value;
 
   let bigStats = {};
+  let fineStats = {};
 
   for (let i = 0; i < iterations; i++) {
 
@@ -76,6 +77,15 @@ function analyzeFunction() {
         bigStats[answer] += statsCount[answer];
       } else {
         bigStats[answer] = statsCount[answer];
+      }
+
+      if (answer in fineStats) {
+        fineStats[answer].max = fineStats[answer].max > statsCount[answer] ? fineStats[answer].max : statsCount[answer];
+      } else {
+        fineStats[answer] = {
+          min: 0,
+          max: 0
+        }
       }
     });
 
@@ -118,6 +128,7 @@ function analyzeFunction() {
     avgKeys.forEach((number, i) => {
       let percent = (statsAvg[number] / max) * 100;
       let rect = makeSVG("rect");
+        rect.id = `rect-${i}`;
         rect.setAttribute("x", i);
         rect.setAttribute("y", `${100 - percent}%`);
         rect.setAttribute("width", 0.75);
@@ -125,7 +136,7 @@ function analyzeFunction() {
         rect.setAttribute("fill", "black");
       svg.appendChild(rect);
       rect.addEventListener("mouseenter", (e) => {
-        analysisDeets.innerHTML = `Answer: ${number}, Occurrences: ${bigStats[number]}, Avg: ${statsAvg[number]}`;
+        analysisDeets.innerHTML = `Answer: ${number}, Occurrences: ${bigStats[number]}, Avg: ${statsAvg[number]}, Min: ${fineStats[number].min}, Max: ${fineStats[number].max}`;
         rect.setAttribute("fill", "chartreuse");
       });
       rect.addEventListener("mouseleave", (e) => {
@@ -173,8 +184,10 @@ function analyzeFunction() {
       let color = cv > 0.25 ? "red" : "green";
       sdRect.setAttribute("fill", color);
       sdRect.setAttribute("fill-opacity", "12.5%");
-    svg.appendChild(sdRect);
 
   svgBox.appendChild(svg);
+  let rect0 = document.getElementById("rect-0");
+  svg.insertBefore(sdRect, rect0);
+
 }
 
