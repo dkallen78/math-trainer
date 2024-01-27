@@ -1,6 +1,6 @@
 //let testFunc = () => add(1, 9, 0, 1, 9, 0);
-let testFunc = () => add(11, 99, 0, 1, 1, 1);
-//let testFunc = () => add(1, 1, 1, 1, 9, 0);
+//let testFunc = () => add(11, 99, 0, 1, 1, 1);
+let testFunc = () => add(1, 1, 1, 1, 9, 0);
 //let testFunc = () => addPartCrossing10s(3, 9, 1, 2);
 
 
@@ -10,7 +10,7 @@ function makeSVG(type, id, ...classes) {
   //----------------------------------------------------//
   //type(string): type of SVG element to create         //
   //id(string): id of the element                       //
-  //classes(string): classes to add to the element       //
+  //classes(string): classes to add to the element      //
   //----------------------------------------------------//
   //return(element): SVG element                        //
   //----------------------------------------------------//
@@ -26,8 +26,9 @@ function testOnce() {
   //Runs the function to be tested one time and outputs //
   //  the answer and the equation                       //
   //----------------------------------------------------*/
-  console.clear();
+  
   let problem = testFunc();
+  console.clear();
   console.log(problem);
   let solution = document.getElementById("solution");
   let equation = document.getElementById("equation");
@@ -36,27 +37,23 @@ function testOnce() {
 }
 
 function analyzeFunction() {
-
+  
   let iterations = document.getElementById("averagePass").value;
 
-  let bigStats = {};
-  let fineStats = {};
+  let stats = {};
 
   for (let i = 0; i < iterations; i++) {
 
+    let count = document.getElementById("percentPass").value;
+
     let statsCount = {};
-
-    //
-    //Gets the number of times to run the function
-    let cycles = document.getElementById("percentPass").value;
-
     //
     //Runs the function multiple times, counting the number of 
     //  times each answer is produced
-    for (let j = 0; j < cycles; j++) {
+    for (let j = 0; j < count; j++) {
+
       let problem = testFunc();
       let answer = problem[0];
-
       //
       //If the answer has already been produced, it is incremented
       //  in the statsCount object
@@ -65,51 +62,67 @@ function analyzeFunction() {
         statsCount[answer]++;
       } else {
         statsCount[answer] = 1;
-      } 
-    }
-
-    let countKeys = Object.keys(statsCount);
-    //
-    //Takes the data from the current iteration and adds
-    //  it to the bigStats object
-    countKeys.forEach((answer, index) => {
-      if (answer in bigStats) {
-        bigStats[answer] += statsCount[answer];
-      } else {
-        bigStats[answer] = statsCount[answer];
       }
-
-      if (answer in fineStats) {
-        fineStats[answer].max = fineStats[answer].max > statsCount[answer] ? fineStats[answer].max : statsCount[answer];
+    }
+    //
+    //Iterates over the statsCount object, incrementing the count 
+    //  and keeping track of the max
+    Object.keys(statsCount).forEach((a) => {
+      if (a in stats) {
+        stats[a].count += statsCount[a];
+        stats[a].max = stats[a].max > statsCount[a] ? stats[a].max : statsCount[a];
       } else {
-        fineStats[answer] = {
+        stats[a] = {
+          count: statsCount[a],
+          avg: 0,
           min: 0,
-          max: 0
+          max: statsCount[a], 
+          sdm: 0
         }
       }
     });
-
   }
 
-  console.clear();
-
-  let statsAvg = {};
-  let bigKeys = Object.keys(bigStats);
+  let statKeys = Object.keys(stats);
+  stats.keys = statKeys;
+  stats.max = 0;
+  stats.avgMean = 0;
   //
-  //Calculates the average number of times each answer was 
-  //  produced per iteration
-  bigKeys.forEach((answer) => {
-    statsAvg[answer] = bigStats[answer] / iterations;
+  //Iterates over the stats object finding the average for 
+  //  each answer, the maximum average overall, and the average
+  //  of all the averages
+  statKeys.forEach((a, i) => {
+    stats[a].avg = stats[a].count / iterations;
+    stats.max = stats.max > stats[a].avg ? stats.max : stats[a].avg;
+    stats.avgMean = ((stats.avgMean * i) + stats[a].avg) / (i + 1);
   });
 
-  let avgKeys = Object.keys(statsAvg);
-
+  stats.var = 0;
   //
-  //Finds the maximum value in the statsAvg object
-  let max = 0;
-  avgKeys.forEach((number) => {
-    max = max > statsAvg[number] ? max : statsAvg[number];
+  //Iterates over the stats object finding the squared deviations
+  //  from the mean for each average and the overall variance
+  statKeys.forEach((a, i) => {
+    stats[a].sdm = (stats.avgMean - stats[a].avg) ** 2;
+    stats.var = ((stats.var * i) + stats[a].sdm) / (i + 1);
   });
+  //
+  //The standard deviation and the coefficient of variation
+  stats.sd = Math.sqrt(stats.var);
+  stats.cv = stats.sd / stats.avgMean;
+
+  makeGraph(stats);
+}
+
+function makeGraph(stats) {
+  //----------------------------------------------------//
+  //Makes the graph for my data                         //
+  //----------------------------------------------------//
+  //type(string): type of SVG element to create         //
+  //id(string): id of the element                       //
+  //classes(string): classes to add to the element      //
+  //----------------------------------------------------//
+  //return(element): SVG element                        //
+  //----------------------------------------------------//
 
   let svgBox = document.getElementById("svgBox");
   clearElement(svgBox);
@@ -119,14 +132,30 @@ function analyzeFunction() {
     //
     //Sets the length of the SVG element to the number 
     //  of answers to be graphed and the height to half that
-    svg.setAttribute("viewBox", `0 0 ${avgKeys.length} ${avgKeys.length / 2}`);
+    //--------------------------------------------------------
+    //If this 2:1 ratio is changed, it also has to be changed in the CSS
+    //--------------------------------------------------------
+    svg.setAttribute("viewBox", `0 0 ${stats.keys.length} ${stats.keys.length / 2}`);
+    //
+    //Draws the range of the standard deviation on the graph
+    let sdTop = 100 - (((stats.avgMean + stats.sd) / stats.max) * 100);
+    let sdHeight = ((stats.sd * 2) / stats.max) * 100;
+    let sdRect = makeSVG("rect");
+      sdRect.setAttribute("x", "0%");
+      sdRect.setAttribute("y", `${sdTop}%`);
+      sdRect.setAttribute("width", "100%");
+      sdRect.setAttribute("height", `${sdHeight}%`);
+      let color = stats.cv > 0.25 ? "red" : "green";
+      sdRect.setAttribute("fill", color);
+      sdRect.setAttribute("fill-opacity", "12.5%");
+    svg.appendChild(sdRect);
 
     let analysisDeets = document.getElementById("analysis-deets");
     //
     //Iterates through statsAvg building a bar graph 
     //  based on the answer averages
-    avgKeys.forEach((number, i) => {
-      let percent = (statsAvg[number] / max) * 100;
+    stats.keys.forEach((a, i) => {
+      let percent = (stats[a].avg / stats.max) * 100;
       let rect = makeSVG("rect");
         rect.id = `rect-${i}`;
         rect.setAttribute("x", `${i + 0.1}`);
@@ -136,7 +165,11 @@ function analyzeFunction() {
         rect.setAttribute("fill", "black");
       svg.appendChild(rect);
       rect.addEventListener("mouseenter", (e) => {
-        analysisDeets.innerHTML = `Answer: ${number}, Occurrences: ${bigStats[number]}, Avg: ${statsAvg[number]}, Min: ${fineStats[number].min}, Max: ${fineStats[number].max}`;
+        let deetAns = `Answer: ${a}, `;
+        let deetOcc = `Occurrences: ${stats[a].count}, `;
+        let deetAvg = `Avg: ${(stats[a].avg * 100).toPrecision(4)}%, `;
+        let deetMax = `Max: ${stats[a].max}`;
+        analysisDeets.innerHTML = deetAns + deetOcc + deetAvg + deetMax;
         rect.setAttribute("fill", "chartreuse");
       });
       rect.addEventListener("mouseleave", (e) => {
@@ -144,14 +177,9 @@ function analyzeFunction() {
         rect.setAttribute("fill", "black");
       });
     });
-
     //
-    //Gets the average of the average answers produced
-    let avgMean = Object.values(statsAvg).reduce((partialSum, a) => partialSum + a, 0) / avgKeys.length;
-    console.log(`Weighted average: ${avgMean}`);
-
-    let avgBaseline = 100 - ((avgMean / max) * 100);
-
+    //Draws a bright green bar to indicate where the average is
+    let avgBaseline = 100 - ((stats.avgMean / stats.max) * 100);
     let avgLine = makeSVG("line");
       avgLine.setAttribute("x1", "0%");
       avgLine.setAttribute("y1", `${avgBaseline}%`);
@@ -159,35 +187,6 @@ function analyzeFunction() {
       avgLine.setAttribute("y2", `${avgBaseline}%`);
       avgLine.setAttribute("stroke", "chartreuse");
       avgLine.setAttribute("stroke-width", ".25%");
-      avgLine.setAttribute("stroke-dasharray", "3% 1%");
-      avgLine.setAttribute("stroke-dashoffset", "3%");
     svg.appendChild(avgLine);
-
-    //
-    //Calculates the standard deviation and the coefficient of variation 
-    let meanSquares = Object.values(statsAvg).map((x) => Math.abs(avgMean - x) ** 2);
-    let variance = meanSquares.reduce((partialSum, a) => partialSum + a, 0) / avgKeys.length;
-    let sd = Math.sqrt(variance);
-    let cv = sd / avgMean;
-    console.log(`Standard deviation: ${sd}`);
-    console.log(`Coefficient of variation: ${cv}`);
-
-    let sdTop = 100 - (((avgMean + sd) / max) * 100);
-    let sdHeight = ((sd * 2) / max) * 100;
-
-
-    let sdRect = makeSVG("rect");
-      sdRect.setAttribute("x", "0%");
-      sdRect.setAttribute("y", `${sdTop}%`);
-      sdRect.setAttribute("width", "100%");
-      sdRect.setAttribute("height", `${sdHeight}%`);
-      let color = cv > 0.25 ? "red" : "green";
-      sdRect.setAttribute("fill", color);
-      sdRect.setAttribute("fill-opacity", "12.5%");
-
   svgBox.appendChild(svg);
-  let rect0 = document.getElementById("rect-0");
-  svg.insertBefore(sdRect, rect0);
-
 }
-
