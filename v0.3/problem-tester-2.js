@@ -117,11 +117,8 @@ function makeGraph(stats) {
   //----------------------------------------------------//
   //Makes the graph for my data                         //
   //----------------------------------------------------//
-  //type(string): type of SVG element to create         //
-  //id(string): id of the element                       //
-  //classes(string): classes to add to the element      //
-  //----------------------------------------------------//
-  //return(element): SVG element                        //
+  //stats(object): the data structure that holds all the//
+  //  statistical information                           //
   //----------------------------------------------------//
 
   let svgBox = document.getElementById("svgBox");
