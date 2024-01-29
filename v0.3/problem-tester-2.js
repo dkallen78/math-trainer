@@ -1,6 +1,6 @@
-let testFunc = () => add(1, 6, 0, 1, 6, 0);
+//let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
-//let testFunc = () => add(1, 1, 1, 1, 9, 0);
+let testFunc = () => add(1, 1, 1, 1, 9, 0);
 //let testFunc = () => addPartCrossing10s(3, 9, 1, 2);
 
 
@@ -39,12 +39,13 @@ function testOnce() {
 function analyzeFunction() {
   
   let iterations = document.getElementById("averagePass").value;
+  let count = document.getElementById("percentPass").value;
 
   let stats = {};
 
   for (let i = 0; i < iterations; i++) {
 
-    let count = document.getElementById("percentPass").value;
+    
 
     let statsCount = {};
     //
@@ -85,6 +86,10 @@ function analyzeFunction() {
 
   let statKeys = Object.keys(stats);
   stats.keys = statKeys;
+  //
+  //The expected probability of an individual answer
+  //  being produced (uniform distribution)
+  stats.pi_i = (stats.keys.length ** -1);
   stats.max = 0;
   stats.avgMean = 0;
   //
@@ -174,16 +179,47 @@ function makeGraph(stats) {
         rect.setAttribute("fill", "black");
       });
     });
+
+    let idealAvgBaseline = 100 - (stats.pi_i * 100);
+    let idealAvgLine = makeSVG("line");
+      idealAvgLine.setAttribute("x1", "0%");
+      idealAvgLine.setAttribute("y1", `${idealAvgBaseline}%`);
+      idealAvgLine.setAttribute("x2", "100%");
+      idealAvgLine.setAttribute("y2", `${idealAvgBaseline}%`);
+      idealAvgLine.setAttribute("stroke", "LawnGreen");
+      idealAvgLine.setAttribute("stroke-width", ".25%");
+    svg.appendChild(idealAvgLine);
+    idealAvgLine.addEventListener("mouseenter", (e) => {
+      let deetAvgPercent = `Ideal Average: ${(stats.pi_i * 100).toPrecision(4)}%, `;
+      analysisDeets.innerHTML = deetAvgPercent;
+      idealAvgLine.setAttribute("stroke", "chartreuse");
+    });
+    idealAvgLine.addEventListener("mouseleave", (e) => {
+      analysisDeets.innerHTML = "";
+      idealAvgLine.setAttribute("stroke", "LawnGreen");
+    });
+
     //
-    //Draws a bright green bar to indicate where the average is
+    //Draws a green bar to indicate where the average is
     let avgBaseline = 100 - ((stats.avgMean / stats.max) * 100);
     let avgLine = makeSVG("line");
       avgLine.setAttribute("x1", "0%");
       avgLine.setAttribute("y1", `${avgBaseline}%`);
       avgLine.setAttribute("x2", "100%");
       avgLine.setAttribute("y2", `${avgBaseline}%`);
-      avgLine.setAttribute("stroke", "chartreuse");
+      avgLine.setAttribute("stroke", "green");
       avgLine.setAttribute("stroke-width", ".25%");
+      avgLine.setAttribute("stroke-dasharray", "1 1");
     svg.appendChild(avgLine);
+    avgLine.addEventListener("mouseenter", (e) => {
+      let deetAvgPercent = `Average: ${(stats.avgMean * 100).toPrecision(4)}%, `;
+      analysisDeets.innerHTML = deetAvgPercent;
+      avgLine.setAttribute("stroke", "chartreuse");
+    });
+    avgLine.addEventListener("mouseleave", (e) => {
+      analysisDeets.innerHTML = "";
+      avgLine.setAttribute("stroke", "green");
+    });
+
   svgBox.appendChild(svg);
 }
