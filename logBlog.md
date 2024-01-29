@@ -385,3 +385,27 @@ For the next bit, I'm going to try and fill out each strategy/skill (I like stra
 ### Issues
 
 * Investigate poppy phone sound (low priority for now)
+
+## Update 2024-01-26
+
+### 22:30
+
+Filled in the operation micro skills. Fundementals has 8, Reorder 8, Place Value 6, Partition 8, and Compensation 4. Eventually I'll be filling those out more but I want to move on to something else next. I might work on fleshing out subtraction or starting on multiplication but I might just rename "Progression" from the top-level menu to "Survival" and work on that. I need to change things up a bit I think. 
+
+### 15:00
+
+I have revamped the problem tester! It's a lot prettier now and it's easier to see what's going on. I think there's more that I need to do with it, but for the moment, I'm very pleased.
+
+### 00:00
+
+I powered through a few more micro skills (three in Addition-Place Value) but I got hung up on trying to consolidate some of the *seemingly* redundant functions. It turns out I'm not as clever as I thought so I kept things mostly as they were. 
+
+Then I thought I'd start on remaking the problem tester program. I never liked how it didn't keep track of the answers produced, only the percentages involved so I started redoing it with a mind to keep ahold of those values. I think it's going to be mostly the same but I'm going to go back at it with an eye for style once I get it doing what I want.
+
+But it's midnight now and I don't want to be too grumpy in the morning so it's time to turn it in.
+
+### Issues
+
+* Investigate poppy phone sound (low priority for now)
+
+* Do something about `addWithin()` function
