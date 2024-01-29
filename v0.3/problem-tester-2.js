@@ -164,9 +164,9 @@ function makeGraph(stats) {
       rect.addEventListener("mouseenter", (e) => {
         let deetAns = `Answer: ${a}, `;
         let deetOcc = `Occurrences: ${stats[a].count}, `;
-        let deetAvg = `Avg: ${(stats[a].avg * 100).toPrecision(4)}%, `;
+        let deetPercent = `Percentage: ${(stats[a].avg * 100).toPrecision(4)}%, `;
         let deetMax = `Max: ${stats[a].max}`;
-        analysisDeets.innerHTML = deetAns + deetOcc + deetAvg + deetMax;
+        analysisDeets.innerHTML = deetAns + deetOcc + deetPercent + deetMax;
         rect.setAttribute("fill", "chartreuse");
       });
       rect.addEventListener("mouseleave", (e) => {

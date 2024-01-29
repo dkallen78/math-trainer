@@ -42,7 +42,7 @@ async function mathLoop(problemSet) {
   while (!quit) {
 
     //
-    //Gets a new problem and establishes a start time to establish
+    //Gets a new problem and establishes a start time to track
     //  how long it took to solve
     if (newProblem) {
       problem = getNewProblem(problemSet);
@@ -144,7 +144,7 @@ function getNewProblem(problemSet) {
   /*
   //Creates a random arithmetic problem                 //
   //----------------------------------------------------//
-  //skillSet(array[function]): an array of functions    //
+  //problemSet(array[function]): an array of functions  //
   //  that are randomly called to generate the problems //
   //----------------------------------------------------//
   //return(object): the object containing the problem   //
