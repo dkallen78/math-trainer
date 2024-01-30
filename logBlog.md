@@ -409,3 +409,24 @@ But it's midnight now and I don't want to be too grumpy in the morning so it's t
 * Investigate poppy phone sound (low priority for now)
 
 * Do something about `addWithin()` function
+
+## Update 2024-01-28
+
+### 23:30
+
+As I thought about doing a new mode, I knew that I wanted to have a timer or countdown of some sort on the screen, but looking at the screen space available when users are inputing answers, I could see I didn't have a lot to work with. In previous programs I'd used a few nested div elements to make a countdown but there just isn't space in this program to make that work. An idea I hit upon was to have an animated border that would grow or shrink like a burning fuse or something similar. 
+
+Nothing like that exists. 
+
+What does exist is a often overlooked SVG property called `stroke-dasharray`. It's pretty easy to understand, you just indicate the length of the dash and the length of the gap. The units are either the regular baked-in units of SVG or percentages where 100% is the normalized diagonal of the `viewBox` or the SVG element itself if there is no `viewBox`. So what I have to do is start my dash array with a `0` and follow it with "`(objectPerimeter / normalizedDiagonal)%`." The formula for a normalized diagonal is graciously given in the SVG specs and the object perimeter is the `2(L + W)` unless there're rounded corners and then you have `2(L + W) - 8r + 2πr`." From here it's just a matter of changing the initial `0` until it matches `objectPerimeter / normalizedDiagonal`. 
+
+[Here's a rough draft](https://dkallen78.github.io/math-trainer/experiments/dasharray-test.html)
+
+Tomorrow, if I have time, I'm going to try and implement it with responsive design features in my new mode.
+
+
+### Issues
+
+* Investigate poppy phone sound (low priority for now)
+
+* Do something about `addWithin()` function

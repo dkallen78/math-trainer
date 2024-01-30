@@ -1,19 +1,14 @@
 # [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2024-01-28
+## Update 2024-01-29
 
 ### 23:30
 
-As I thought about doing a new mode, I knew that I wanted to have a timer or countdown of some sort on the screen, but looking at the screen space available when users are inputing answers, I could see I didn't have a lot to work with. In previous programs I'd used a few nested div elements to make a countdown but there just isn't space in this program to make that work. An idea I hit upon was to have an animated border that would grow or shrink like a burning fuse or something similar. 
+Before I could put my fancy moving stroke somewhere I figured I had to have somewhere to put it so I've been working on the Challenge mode (formerly Progression). My first challenge to create is going to be called Survival. The idea is the user will have 60 seconds to answer as many questions as possible. Every correct answer adds five seconds to their time. The final score will be the number of digits answered correctly. I think I'm going to break it down into different operations so that the user can tackle one operation at a time. Maybe I'll make it a toggle so you can select one, all, or any combination of the four operations. Nothing is set in stone at this point.
 
-Nothing like that exists. 
+I'm also playing with refactoring my CSS because I want it to be more readable so I'm going to try the BEM model or a variation of it. I've been using JavaScript camel case to name my CSS stuff and I don't like it anymore. I'm also going to make an effort to use more intentional tags instead of drowing the page in divs. It doesn't break anything when I do it and maybe it will help someone down the road.
 
-What does exist is a often overlooked SVG property called `stroke-dasharray`. It's pretty easy to understand, you just indicate the length of the dash and the length of the gap. The units are either the regular baked-in units of SVG or percentages where 100% is the normalized diagonal of the `viewBox` or the SVG element itself if there is no `viewBox`. So what I have to do is start my dash array with a `0` and follow it with "`(objectPerimeter / normalizedDiagonal)%`." The formula for a normalized diagonal is graciously given in the SVG specs and the object perimeter is the `2(L + W)` unless there're rounded corners and then you have `2(L + W) - 8r + 2πr`." From here it's just a matter of changing the initial `0` until it matches `objectPerimeter / normalizedDiagonal`. 
-
-[Here's a rough draft](https://dkallen78.github.io/math-trainer/experiments/dasharray-test.html)
-
-Tomorrow, if I have time, I'm going to try and implement it with responsive design features in my new mode.
-
+Tomorrow I hope to have something working.
 
 ### Issues
 
