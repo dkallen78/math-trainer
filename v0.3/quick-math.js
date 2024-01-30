@@ -37,10 +37,10 @@ async function makeModeSelectScreen() {
   async function waitForButton() {
     
     return new Promise((resolve, reject) => {
-      let progressionButton = document.getElementById("progressionButton");
-      progressionButton.onclick = async () => {
+      let challengeButton = document.getElementById("challenge-button");
+      challengeButton.onclick = async () => {
         playTone(randomNote());
-        await makeProgressionStartScreen();
+        await makeChallengeStartScreen();
         resolve();
       }
 
@@ -90,8 +90,8 @@ async function makeModeSelectScreen() {
 
     let modeSelectScreen = makeElement("div", "modeSelectScreen", "screen");
 
-      let button = makeButton("Progression", null, "progressionButton", "bigButton");
-      modeSelectScreen.appendChild(button);
+      let challengeButton = makeButton("Challenge", null, "challenge-button", "bigButton");
+      modeSelectScreen.appendChild(challengeButton);
 
       let skillsButton = makeButton("Skills", null, "skillsButton", "bigButton");
       modeSelectScreen.appendChild(skillsButton);

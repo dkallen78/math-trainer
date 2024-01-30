@@ -95,6 +95,7 @@ button {
 /*
   Mode Select Screen
 */
+
 #modeSelectScreen {
   display: flex;
   flex-direction: column;
@@ -105,10 +106,17 @@ button {
   color: var(--text-color);
 }
 
+#challenge-select {
+  display: grid;
+  grid-template-columns: 80vw;
+  justify-content: center;
+}
+
 
 /*
   Select an Operation screen
 */
+
 #skillsSelectScreen {
   display: flex;
   flex-direction: column;
