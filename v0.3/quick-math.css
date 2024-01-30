@@ -45,6 +45,15 @@ button {
   border-radius: 1rem;
 }
 
+.big-button {
+  margin: 1vh;
+  padding: 1vh;
+  font-size: 2rem;
+  font-family: sans-serif;
+  border: .2rem solid var(--border-color);
+  border-radius: 1rem;
+}
+
 .mediumButton {
   margin: .5rem 1rem;
   padding: .25rem;
@@ -61,6 +70,10 @@ button {
 }
 
 .inactiveButton {
+  filter: opacity(25%);
+}
+
+.inactive-button {
   filter: opacity(25%);
 }
 

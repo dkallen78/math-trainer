@@ -40,7 +40,7 @@ async function makeModeSelectScreen() {
       let challengeButton = document.getElementById("challenge-button");
       challengeButton.onclick = async () => {
         playTone(randomNote());
-        await makeChallengeStartScreen();
+        await makeChallengeBaseScreen();
         resolve();
       }
 
@@ -118,7 +118,22 @@ async function makeModeSelectScreen() {
   }
 }
 
-
+function operationUnlock(op) {
+  switch(op) {
+    case "+":
+      return true;
+      break;
+    case "-":
+      return user.addition.partition[1];
+      break;
+    case "×":
+      return false;
+      break;
+    case "÷":
+      return false;
+      break;
+  }
+}
 
 function makeNumberPad() {
   /*

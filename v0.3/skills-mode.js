@@ -31,22 +31,6 @@ async function makeSkillsStartScreen() {
     })
   }
 
-  function operationUnlock(op) {
-    switch(op) {
-      case "+":
-        return true;
-        break;
-      case "-":
-        return user.addition.partition[1];
-        break;
-      case "×":
-        return false;
-        break;
-      case "÷":
-        return false;
-        break;
-    }
-  }
 
   let quit = false;
 
