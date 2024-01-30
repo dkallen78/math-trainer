@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Problem Tester 3
+    </title>
+    <link rel="stylesheet" href="problem-tester-3.css">
+    <script src="util.js"></script>
+    <script src="problems.js"></script>
+    <script src="problem-tester-3.js"></script>
+  </head>
+  <body>
+    <div id="problem-tester">
+      <button type="button" id="test-function" onclick="testOnce()">Test Problem</button><br>
+      <div id="problem-output">
+        <div id="solution"></div>
+        <div id="equation"></div>
+      </div>
+    </div>
+    <div id="problem-analyzer">
+      <div id="analysis-inputs">
+        <label for="iterations">Iterations:</label>
+        <input id="iterations" type="number" name="iterations" value="1000" />
+        <button type="button" id="analyze-function" onclick="analyzeFunction()">Analyze Function</button>
+      </div>
+      <div id="analysis-deets"></div>
+      <div id="svgBox"></div>
+    </div>
+  </body>
+</html>

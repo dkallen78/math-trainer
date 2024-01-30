@@ -1,0 +1,70 @@
+#problem-tester, #problem-analyzer {
+  margin: .2em;
+  padding: .5em;
+  border: .1em solid black;
+  border-radius: .25em;
+}
+
+button {
+  font-size: 1.5em;
+}
+
+#test-function {
+  width: 100%;
+}
+
+#problem-output {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  column-gap: 1em;
+  justify-content: center;
+  height: 2rem;
+  padding: .5rem;
+  font-size: 2em;
+}
+
+#problem-analyzer {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+#solution {
+  text-align: right;
+}
+
+#equation {
+  text-align: left;
+}
+
+#analysis-inputs {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  gap: .2em;
+  margin-bottom: .5em;
+}
+
+label {
+  font-size: 1.25em;
+  text-align: right;
+}
+
+input {
+  font-size: 1.25em;
+}
+
+#analyze-function {
+  grid-column: 1 / 3;
+}
+
+#analysis-deets {
+  height: 2em;
+  text-align: center;
+  font-size: 1.25em;
+}
+
+#svgBox {
+  height: 47.5vw;
+  width: 95vw;
+}
