@@ -324,7 +324,7 @@ async function makeScaleScreen() {
 
   function makeScaleButton(scale, name) {
 
-    let button = makeButton(name, null, `${name}Button`, "mediumButton");
+    let button = makeButton(name, null, `${name}Button`, "medium-button");
     button.onclick = () => {
       user.activeScale = scale;
 

@@ -13,7 +13,7 @@ async function makeSkillsStartScreen() {
       for (let i = 0; i < operationButtons.length; i++) {
         let op = operationButtons[i].innerHTML;
         if (operationUnlock(op)) {
-          operationButtons[i].classList.remove("inactiveButton");
+          operationButtons[i].classList.remove("inactive-button");
 
           operationButtons[i].onclick = async () => {
             playTone(randomNote());
@@ -43,16 +43,16 @@ async function makeSkillsStartScreen() {
 
       let skillsSelect = makeElement("div", "skillsSelect");
 
-        let additionButton = makeButton("+", null, "additionButton", "inactiveButton");
+        let additionButton = makeButton("+", null, "additionButton", "inactive-button");
         skillsSelect.appendChild(additionButton);
 
-        let subtractionButton = makeButton("-", null, "subtractionButton", "inactiveButton");
+        let subtractionButton = makeButton("-", null, "subtractionButton", "inactive-button");
         skillsSelect.appendChild(subtractionButton);
 
-        let multiplicationButton = makeButton("×", null, "multiplicationButton", "inactiveButton");
+        let multiplicationButton = makeButton("×", null, "multiplicationButton", "inactive-button");
         skillsSelect.appendChild(multiplicationButton);
 
-        let divisionButton = makeButton("÷", null, "divisionButton", "inactiveButton");
+        let divisionButton = makeButton("÷", null, "divisionButton", "inactive-button");
         skillsSelect.appendChild(divisionButton);
 
         let backButton = makeButton("Back", null, "skillsScreenBackButton", "bigButton");
@@ -88,7 +88,7 @@ async function makeOperationBaseScreen(operation) {
 
         if (skills[operation][i][1].test()) {
           let opButton = document.getElementById(`opSkills${i}`);
-          opButton.classList.remove("inactiveButton");
+          opButton.classList.remove("inactive-button");
 
           opButton.onclick = async () => {
             playTone(randomNote());
@@ -117,7 +117,7 @@ async function makeOperationBaseScreen(operation) {
       operationBaseScreen.appendChild(operationBaseScreenInfo);
 
       for (let i = 0; i < skills[operation].length; i++) {
-        let skillButton = makeButton(skills[operation][i][0], null, `opSkills${i}`, "bigButton", "inactiveButton");
+        let skillButton = makeButton(skills[operation][i][0], null, `opSkills${i}`, "bigButton", "inactive-button");
         operationBaseScreen.appendChild(skillButton);
       }
 
@@ -164,7 +164,7 @@ async function makeSkillsScreen(skill) {
           let skillButton = document.getElementById(`skillButton${i}`);
           let userKey = user[skill[i].id[0]][skill[i].id[1]][skill[i].id[2]];
 
-          skillButton.classList.remove("inactiveButton");
+          skillButton.classList.remove("inactive-button");
           
           //
           //If the skill is available, but hasn't been completed yet, 
@@ -181,7 +181,7 @@ async function makeSkillsScreen(skill) {
             //
             //When a skill has been selected, it makes the Start button clickable
             let startButton = document.getElementById("selectSkillButton");
-            startButton.classList.remove("inactiveButton");
+            startButton.classList.remove("inactive-button");
             startButton.onclick = async () => {
               playTone(randomNote());
               await makeInputScreen([skill[i]]);
@@ -218,12 +218,12 @@ async function makeSkillsScreen(skill) {
       //Makes the grid of numbers that represent the skills
       let skillGrid = makeElement("div", "skillGrid");
         for (let i = 1; i < skill.length; i++) {
-          let button = makeButton(i, null, `skillButton${i}`, "skillButton", "inactiveButton");
+          let button = makeButton(i, null, `skillButton${i}`, "skillButton", "inactive-button");
           skillGrid.appendChild(button);
         }
       skillsScreen.appendChild(skillGrid);
 
-      let selectSkillButton = makeButton("Start", null, "selectSkillButton", "bigButton", "inactiveButton");
+      let selectSkillButton = makeButton("Start", null, "selectSkillButton", "bigButton", "inactive-button");
       skillsScreen.appendChild(selectSkillButton);
 
       let backButton = makeButton("Back", null, "skillsListScreenBackButton", "bigButton");
