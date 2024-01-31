@@ -170,9 +170,10 @@ function getNewProblem(problemSet) {
 }
 
 async function waitForAnswer(problem) {
-  /*
-  //Waits for user input after a problem has been displayed
-  */
+  //----------------------------------------------------//
+  //Waits for user input after a problem has been       //
+  //  displayed                                         //
+  //----------------------------------------------------//
 
   return new Promise((resolve, reject) => {
     let solutionDisplay = document.getElementById("solutionDisplay");
@@ -203,12 +204,12 @@ async function waitForAnswer(problem) {
       event.preventDefault();
     }
 
-    document.getElementById("buttonQuit").onclick = () => {
+    document.getElementById("number-pad__button-quit").onclick = () => {
       playTone(randomNote());
       reject(true);
     }
       
-    document.getElementById("buttonSubmit").onclick = () => {
+    document.getElementById("number-pad__button-submit").onclick = () => {
       
       let solution = parseFloat(solutionDisplay.innerHTML, 10);
       clearElement(solutionDisplay);

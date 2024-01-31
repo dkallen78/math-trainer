@@ -1,21 +1,21 @@
 function makeTitleScreen() {
-  /*
-  //Makes the title screen                                //
-  */
+  //----------------------------------------------------//
+	//Makes the title screen                              //
+	//----------------------------------------------------//
 
   clearElement(document.body);
 
-  let titleScreen = makeElement("div", "titleScreen", "screen");
+  let titleScreen = makeElement("main", "title-screen", "screen");
 
-    let titleDiv = makeElement("div", "titleDiv", "marquee");
-      titleDiv.innerHTML = "QuickMath";
-    titleScreen.appendChild(titleDiv);
+    let titleScreenHeader = makeElement("header", "title-screen__header", "marquee");
+      titleScreenHeader.innerHTML = "QuickMath";
+    titleScreen.appendChild(titleScreenHeader);
 
-    let letsGoButton = makeButton("Let's Go!", () => {
+    let launchButton = makeButton("Let's Go!", () => {
       playTone(randomNote());
       makeModeSelectScreen();
-    }, "letsGoButton", "bigButton");
-    titleScreen.appendChild(letsGoButton);
+    }, "title-screen__launch-button", "big-button");
+    titleScreen.appendChild(launchButton);
 
   document.body.appendChild(titleScreen);
 
@@ -28,30 +28,30 @@ function makeTitleScreen() {
 }
 
 async function makeModeSelectScreen() {
-  /*
-  //Makes the mode select screen. This is also the base   //
-  //  to which the program returns when all other loops   //
-  //  have ended                                          //
-  */
+  //----------------------------------------------------//
+	//Makes the mode select screen. This is also the base //
+  //  to which the program returns when all other loops //
+  //  have ended                                        //
+	//----------------------------------------------------//
 
   async function waitForButton() {
     
     return new Promise((resolve, reject) => {
-      let challengeButton = document.getElementById("challenge-button");
+      let challengeButton = document.getElementById("mode-select-screen__challenge-button");
       challengeButton.onclick = async () => {
         playTone(randomNote());
         await makeChallengeBaseScreen();
         resolve();
       }
 
-      let skillsButton = document.getElementById("skillsButton");
+      let skillsButton = document.getElementById("mode-select-screen__skills-button");
       skillsButton.onclick = async () => {
         playTone(randomNote());
         await makeSkillsStartScreen();
         resolve();
       }
 
-      let settingsButton = document.getElementById("settingsButton");
+      let settingsButton = document.getElementById("mode-select-screen__settings-button");
       settingsButton.onclick = async () => {
         playTone(randomNote());
         await makeSettingsBaseScreen();
@@ -88,15 +88,15 @@ async function makeModeSelectScreen() {
 
   while (!quit) {
 
-    let modeSelectScreen = makeElement("div", "modeSelectScreen", "screen");
+    let modeSelectScreen = makeElement("main", "mode-select-screen", "screen");
 
-      let challengeButton = makeButton("Challenge", null, "challenge-button", "bigButton");
+      let challengeButton = makeButton("Challenge", null, "mode-select-screen__challenge-button", "bigButton");
       modeSelectScreen.appendChild(challengeButton);
 
-      let skillsButton = makeButton("Skills", null, "skillsButton", "bigButton");
+      let skillsButton = makeButton("Skills", null, "mode-select-screen__skills-button", "bigButton");
       modeSelectScreen.appendChild(skillsButton);
 
-      let settingsButton = makeButton("Settings", null, "settingsButton", "bigButton");
+      let settingsButton = makeButton("Settings", null, "mode-select-screen__settings-button", "bigButton");
       modeSelectScreen.appendChild(settingsButton);
 
       /*if (localStorage.getItem("userData")) {
@@ -136,30 +136,30 @@ function operationUnlock(op) {
 }
 
 function makeNumberPad() {
-  /*
+  //----------------------------------------------------//
   //Makes and returns a div element with a number pad   //
   //  inside of it. Additionally, it defines the        //
   //  behavior for touch and mouse events               //
   //----------------------------------------------------//
   //return(element): HTML element                       //
-  */
+  //----------------------------------------------------//
   
-  let numberPad = makeElement("div", "numberPad");
+  let numberPad = makeElement("div", "number-pad");
   
-    numberPad.appendChild(makeButton("1", () => {}, "button1"));
-    numberPad.appendChild(makeButton("2", () => {}, "button2"));
-    numberPad.appendChild(makeButton("3", () => {}, "button3"));
-    numberPad.appendChild(makeButton("←", () => {}, "buttonBack"));
-    numberPad.appendChild(makeButton("4", () => {}, "button4"));
-    numberPad.appendChild(makeButton("5", () => {}, "button5"));
-    numberPad.appendChild(makeButton("6", () => {}, "button6"));
-    numberPad.appendChild(makeButton("7", () => {}, "button7"));
-    numberPad.appendChild(makeButton("8", () => {}, "button8"));
-    numberPad.appendChild(makeButton("9", () => {}, "button9"));
-    numberPad.appendChild(makeButton("Submit", () => {}, "buttonSubmit"));
-    numberPad.appendChild(makeButton("0", () => {}, "button0"));
-    numberPad.appendChild(makeButton(".", () => {}, "buttonDecimal"));
-    numberPad.appendChild(makeButton("Quit", () => {}, "buttonQuit"));
+    numberPad.appendChild(makeButton("1", () => {}, "number-pad__button-1"));
+    numberPad.appendChild(makeButton("2", () => {}, "number-pad__button-2"));
+    numberPad.appendChild(makeButton("3", () => {}, "number-pad__button-3"));
+    numberPad.appendChild(makeButton("←", () => {}, "number-pad__button-back"));
+    numberPad.appendChild(makeButton("4", () => {}, "number-pad__button-4"));
+    numberPad.appendChild(makeButton("5", () => {}, "number-pad__button-5"));
+    numberPad.appendChild(makeButton("6", () => {}, "number-pad__button-6"));
+    numberPad.appendChild(makeButton("7", () => {}, "number-pad__button-7"));
+    numberPad.appendChild(makeButton("8", () => {}, "number-pad__button-8"));
+    numberPad.appendChild(makeButton("9", () => {}, "number-pad__button-9"));
+    numberPad.appendChild(makeButton("Submit", () => {}, "number-pad__button-submit"));
+    numberPad.appendChild(makeButton("0", () => {}, "number-pad__button-0"));
+    numberPad.appendChild(makeButton(".", () => {}, "number-pad__button-decimal"));
+    numberPad.appendChild(makeButton("Quit", () => {}, "number-pad__button-quit"));
   
     for (let i = 0; i < numberPad.children.length; i++) {
       numberPad.children[i].addEventListener("touchstart", () => {
@@ -180,55 +180,55 @@ function makeNumberPad() {
 }
 
 function numPadOn() {
-  /*
-  //Enables the onclick functions of the number pad
-  */
+  //----------------------------------------------------//
+  //Enables the onclick functions of the number pad     //
+  //----------------------------------------------------//
   
-  document.getElementById("button1").onclick = function() {inputNumber("1")}
-  document.getElementById("button2").onclick = function() {inputNumber("2")}
-  document.getElementById("button3").onclick = function() {inputNumber("3")}
-  document.getElementById("button4").onclick = function() {inputNumber("4")}
-  document.getElementById("button5").onclick = function() {inputNumber("5")}
-  document.getElementById("button6").onclick = function() {inputNumber("6")}
-  document.getElementById("button7").onclick = function() {inputNumber("7")}
-  document.getElementById("button8").onclick = function() {inputNumber("8")}
-  document.getElementById("button9").onclick = function() {inputNumber("9")}
-  document.getElementById("button0").onclick = function() {inputNumber("0")}
-  document.getElementById("buttonBack").onclick = function() {inputNumber("-1")}
-  document.getElementById("buttonDecimal").onclick = function() {inputNumber(".")}
+  document.getElementById("number-pad__button-1").onclick = function() {inputNumber("1")}
+  document.getElementById("number-pad__button-2").onclick = function() {inputNumber("2")}
+  document.getElementById("number-pad__button-3").onclick = function() {inputNumber("3")}
+  document.getElementById("number-pad__button-4").onclick = function() {inputNumber("4")}
+  document.getElementById("number-pad__button-5").onclick = function() {inputNumber("5")}
+  document.getElementById("number-pad__button-6").onclick = function() {inputNumber("6")}
+  document.getElementById("number-pad__button-7").onclick = function() {inputNumber("7")}
+  document.getElementById("number-pad__button-8").onclick = function() {inputNumber("8")}
+  document.getElementById("number-pad__button-9").onclick = function() {inputNumber("9")}
+  document.getElementById("number-pad__button-0").onclick = function() {inputNumber("0")}
+  document.getElementById("number-pad__button-back").onclick = function() {inputNumber("-1")}
+  document.getElementById("number-pad__button-decimal").onclick = function() {inputNumber(".")}
   
   return null;
 }
 
 function numPadOff() {
-  /*
-  //Disables the onclick functions of the number pad
-  */
+  //----------------------------------------------------//
+  //Disables the onclick functions of the number pad    //
+  //----------------------------------------------------//
   
-  document.getElementById("button1").onclick = "";
-  document.getElementById("button2").onclick = "";
-  document.getElementById("button3").onclick = "";
-  document.getElementById("button4").onclick = "";
-  document.getElementById("button5").onclick = "";
-  document.getElementById("button6").onclick = "";
-  document.getElementById("button7").onclick = "";
-  document.getElementById("button8").onclick = "";
-  document.getElementById("button9").onclick = "";
-  document.getElementById("button0").onclick = "";
-  document.getElementById("buttonBack").onclick = "";
-  document.getElementById("buttonDecimal").onclick = "";
-  document.getElementById("buttonSubmit").onclick = "";
+  document.getElementById("number-pad__button-1").onclick = "";
+  document.getElementById("number-pad__button-2").onclick = "";
+  document.getElementById("number-pad__button-3").onclick = "";
+  document.getElementById("number-pad__button-4").onclick = "";
+  document.getElementById("number-pad__button-5").onclick = "";
+  document.getElementById("number-pad__button-6").onclick = "";
+  document.getElementById("number-pad__button-7").onclick = "";
+  document.getElementById("number-pad__button-8").onclick = "";
+  document.getElementById("number-pad__button-9").onclick = "";
+  document.getElementById("number-pad__button-0").onclick = "";
+  document.getElementById("number-pad__button-back").onclick = "";
+  document.getElementById("number-pad__button-decimal").onclick = "";
+  document.getElementById("number-pad__button-submit").onclick = "";
 }
 
 function inputNumber(num) {
-  /*
+  //----------------------------------------------------//
   //Adds a number to the solutionDisplay element        //
   //----------------------------------------------------//
   //num(string): either a number/symbol to display or a //
-  //  numeric code                                      //
-  //  -1: backspace                                     //
-  //  10: submit answer                                 //
-  */
+  //  numeric code:                                     //
+  //    -1: backspace                                   //
+  //    10: submit answer                               //
+  //----------------------------------------------------//
   
   let display = document.getElementById("solutionDisplay");
   
@@ -256,12 +256,12 @@ function inputNumber(num) {
 }
 
 function randomNote() {
-  /*
-  //Returns a random note from the current active scale   //
-  //------------------------------------------------------//
-  //return(float): the frequency of the randomly selected //
-  //  note                                                //
-  */
+  //----------------------------------------------------//
+  //Returns a random note from the current active scale //
+  //----------------------------------------------------//
+  //return(float): the frequency of the randomly        //
+  //  selected note                                     //
+  //----------------------------------------------------//
   
   return notes[
     user.activeScale[
@@ -271,7 +271,7 @@ function randomNote() {
 }
 
 function makeChord(chordPack, key) {
-  /*
+  //----------------------------------------------------//
   //Makes an array of frequencies that can be passed to //
   //  the chord or arpeggio functions                   //
   //----------------------------------------------------//
@@ -282,7 +282,7 @@ function makeChord(chordPack, key) {
   //----------------------------------------------------//
   //return(array[float]): the frequencies of the notes  //
   //  to be played                                      //
-  */
+  //----------------------------------------------------//
 
   let chord = [];
 
