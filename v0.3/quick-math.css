@@ -256,47 +256,6 @@ button {
   border-radius: .5rem;
 }
 
-/*#progressionSelectScreen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-#progressionSelectScreen > button {
-  margin: .5rem;
-  padding: .5rem;
-  font-size: 2rem;
-  font-family: sans-serif;
-  background-color: var(--button-bg-color);
-  border: .2rem solid var(--border-color);
-  border-radius: 1rem;
-}
-
-#startGuide {
-  display: flex;
-  justify-content: center;
-  margin: 3rem 0 3rem 0;
-  font-size: 2.5rem;
-  color: var(--text-color);
-}
-
-#activeSkills {
-  display: grid;
-  grid-template-columns: 30% 30% 30%;
-  justify-content: space-between;
-  margin: .5rem;
-}
-
-.skillDisplay {
-  padding: .5rem;
-  height: 4rem;
-  font-size: 1rem;
-  background-color: var(--button-bg-color);
-  border: .2rem solid var(--border-color);
-  border-radius: 1rem;
-}
-*/
-
 #inputScreen {
   display: grid;
   grid-template-columns: 95%;
@@ -336,7 +295,7 @@ button {
   border-radius: 1rem;
 }
 
-#number-pad > button {
+#numberPad > button {
   font-size: 1rem;
   font-weight: bold;
   font-family: sans-serif;

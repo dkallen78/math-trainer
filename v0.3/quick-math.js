@@ -144,7 +144,7 @@ function makeNumberPad() {
   //return(element): HTML element                       //
   //----------------------------------------------------//
   
-  let numberPad = makeElement("div", "number-pad");
+  let numberPad = makeElement("section", "number-pad");
   
     numberPad.appendChild(makeButton("1", () => {}, "number-pad__button-1"));
     numberPad.appendChild(makeButton("2", () => {}, "number-pad__button-2"));

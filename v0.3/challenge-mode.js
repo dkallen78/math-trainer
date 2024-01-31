@@ -58,6 +58,13 @@ async function makeChallengeBaseScreen() {
 async function makeSurvivalBaseScreen() {
 
   function checkStartState() {
+    //----------------------------------------------------//
+    //Checks to see if any of the operation buttons have  //
+    //  been selected. If so, it removes the inactcive-   //
+    //  button class from the startButton. If not, it     //
+    //  adds the inactive-button class to the startButton //
+    //----------------------------------------------------//
+
     let startButton = document.getElementById("survival-base-screen__menu__start-button");
     let operationButtons = document.getElementById("survival-base-screen__menu").childNodes;
 
@@ -77,8 +84,10 @@ async function makeSurvivalBaseScreen() {
       let operationButtons = document.getElementById("survival-base-screen__menu").childNodes;
 
       for (let i = 0; i < operationButtons.length; i++) {
+        
         let op = operationButtons[i].innerHTML;
         if (operationUnlock(op)) {
+
           operationButtons[i].classList.remove("inactive-button");
 
           operationButtons[i].onclick = async () => {
