@@ -179,23 +179,23 @@ function makeNumberPad() {
   return numberPad;
 }
 
-function numPadOn() {
+function numPadOn(solutionDisplay) {
   //----------------------------------------------------//
   //Enables the onclick functions of the number pad     //
   //----------------------------------------------------//
   
-  document.getElementById("number-pad__button-1").onclick = function() {inputNumber("1")}
-  document.getElementById("number-pad__button-2").onclick = function() {inputNumber("2")}
-  document.getElementById("number-pad__button-3").onclick = function() {inputNumber("3")}
-  document.getElementById("number-pad__button-4").onclick = function() {inputNumber("4")}
-  document.getElementById("number-pad__button-5").onclick = function() {inputNumber("5")}
-  document.getElementById("number-pad__button-6").onclick = function() {inputNumber("6")}
-  document.getElementById("number-pad__button-7").onclick = function() {inputNumber("7")}
-  document.getElementById("number-pad__button-8").onclick = function() {inputNumber("8")}
-  document.getElementById("number-pad__button-9").onclick = function() {inputNumber("9")}
-  document.getElementById("number-pad__button-0").onclick = function() {inputNumber("0")}
-  document.getElementById("number-pad__button-back").onclick = function() {inputNumber("-1")}
-  document.getElementById("number-pad__button-decimal").onclick = function() {inputNumber(".")}
+  document.getElementById("number-pad__button-1").onclick = function() {inputNumber("1", solutionDisplay)}
+  document.getElementById("number-pad__button-2").onclick = function() {inputNumber("2", solutionDisplay)}
+  document.getElementById("number-pad__button-3").onclick = function() {inputNumber("3", solutionDisplay)}
+  document.getElementById("number-pad__button-4").onclick = function() {inputNumber("4", solutionDisplay)}
+  document.getElementById("number-pad__button-5").onclick = function() {inputNumber("5", solutionDisplay)}
+  document.getElementById("number-pad__button-6").onclick = function() {inputNumber("6", solutionDisplay)}
+  document.getElementById("number-pad__button-7").onclick = function() {inputNumber("7", solutionDisplay)}
+  document.getElementById("number-pad__button-8").onclick = function() {inputNumber("8", solutionDisplay)}
+  document.getElementById("number-pad__button-9").onclick = function() {inputNumber("9", solutionDisplay)}
+  document.getElementById("number-pad__button-0").onclick = function() {inputNumber("0", solutionDisplay)}
+  document.getElementById("number-pad__button-back").onclick = function() {inputNumber("-1", solutionDisplay)}
+  document.getElementById("number-pad__button-decimal").onclick = function() {inputNumber(".", solutionDisplay)}
   
   return null;
 }
@@ -220,7 +220,7 @@ function numPadOff() {
   document.getElementById("number-pad__button-submit").onclick = "";
 }
 
-function inputNumber(num) {
+function inputNumber(num, display) {
   //----------------------------------------------------//
   //Adds a number to the solutionDisplay element        //
   //----------------------------------------------------//
@@ -230,7 +230,7 @@ function inputNumber(num) {
   //    10: submit answer                               //
   //----------------------------------------------------//
   
-  let display = document.getElementById("skill-input-screen__solution-display");
+  //let display = document.getElementById("skill-input-screen__solution-display");
   
   playTone(randomNote());
   if (num === "-1") {

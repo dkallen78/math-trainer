@@ -25,16 +25,147 @@ async function makeChallengeInputScreen(challengeOperations) {
 
 async function challengeMathLoop(challengeOperations) {
 
-  let startTime = 0;
-  let elapsedTime = 0;
-  let maxTime = 60_000;
+  let problemDisplay = document.getElementById("challenge-input-screen__problem-display");
+  let solutionDisplay = document.getElementById("challenge-input-screen__solution-display");
+  let newProblem = true;
+  let problem;
+  let timer = {
+    start: performance.now(),
+    max: 60_000,
+    add: function(time) {
+      this.max += time;
+    },
+    get elapsed() {
+      return performance.now() - this.start;
+    }
+
+  }
 
   let quit = false;
   while (!quit) {
 
+    if (newProblem) {
+      problem = getChallengeProblem(challengeOperations, timer.elapsed);
+    }
+
+    problemDisplay.innerHTML = problem.equation;
+    numPadOn(solutionDisplay);
+
+    await waitForChallengeAnswer(problem)
+      .then(() => {
+        playChord(makeChord(chords.I, user.activeKey));
+        newProblem = true;
+      })
+      .catch((end) => {
+        //
+        //If the user quits
+        if (end) {
+          quit = true;
+        //
+        //If the answer is wrong
+        } else {
+          //
+          //Play the tritone
+          playChord(makeChord(chords.TT, user.activeKey));
+          //
+          //Flags to keep the current problem
+          newProblem = false;
+          //
+          //All this causes the problem to shake a bit
+          let interval = 50;
+          problemDisplay.style.padding = "0 .5rem .5rem 0";
+          setTimeout(function() {
+            problemDisplay.style.padding = ".5rem 0 0 .5rem";
+          }, interval);
+          setTimeout(function() {
+            problemDisplay.style.padding = "";
+          }, (interval * 2));          
+        }
+      })
+    
+    document.onkeydown = "";
   }
+  return true;
 }
 
-function getChallengeProblem(challengeOperations) {
-  
+function getChallengeProblem(challengeOperations, elapsed) {
+
+  elapsed = Math.floor(elapsed / 1000);
+  let problemFunctions = {
+    "+": () => addWithin(1, elapsed),
+    "-": () => subWithin(1, elapsed),
+    "×": 0,
+    "÷": 0
+  }
+
+  let problemSet = [];
+  let problem = {
+    answer: 0,
+    equation: ""
+  }
+
+  challengeOperations.keys.forEach((e) => {
+    if (challengeOperations[e]) {
+      problemSet.push(problemFunctions[e]);
+    }
+  });
+
+  let challengeProblem = rnd(0, problemSet.length - 1);
+
+  [problem.answer, problem.equation] = problemSet[challengeProblem]();
+
+  return problem;
+}
+
+async function waitForChallengeAnswer(problem) {
+  //----------------------------------------------------//
+  //Waits for user input after a problem has been       //
+  //  displayed                                         //
+  //----------------------------------------------------//
+
+  return new Promise((resolve, reject) => {
+    let solutionDisplay = document.getElementById("challenge-input-screen__solution-display");
+
+    //
+    //Handles keyboard input
+    document.onkeydown = (event) => {
+      let key = parseInt(event.key, 10);
+      if ((key >= 0 && key <= 9 || event.key === ".")) {
+        inputNumber(event.key, solutionDisplay);
+      } else if (event.key === "Backspace") {
+        inputNumber("-1", solutionDisplay);
+      } else if (event.key === "Escape") {
+        playTone(randomNote());
+        reject(true);
+      } else if (event.key === "Enter") {
+              
+        let solution = parseFloat(solutionDisplay.innerHTML, 10);
+        clearElement(solutionDisplay);
+      
+        if (problem.answer === solution) {
+          resolve();
+        } else {
+          reject(false);
+        }
+      }
+      event.preventDefault();
+    }
+
+    document.getElementById("number-pad__button-quit").onclick = () => {
+      playTone(randomNote());
+      reject(true);
+    }
+      
+    document.getElementById("number-pad__button-submit").onclick = () => {
+      
+      let solution = parseFloat(solutionDisplay.innerHTML, 10);
+      clearElement(solutionDisplay);
+      
+      if (problem.answer === solution) {
+        resolve();
+      } else {
+        reject(false);
+      }
+    }      
+  })
 }

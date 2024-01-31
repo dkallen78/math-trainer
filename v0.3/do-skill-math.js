@@ -29,7 +29,7 @@ async function mathLoop(problemSet) {
   let newProblem = true;
   let problem;
   let problemDisplay = document.getElementById("skill-input-screen__problem-display");
-
+  let solutionDisplay = document.getElementById("skill-input-screen__solution-display");
   let startTime, totalTime;
 
   //
@@ -52,7 +52,7 @@ async function mathLoop(problemSet) {
     //
     //Displays the problem on the screen and activates the number pad buttons
     problemDisplay.innerHTML = problem.equation;
-    numPadOn();
+    numPadOn(solutionDisplay);
 
     await waitForAnswer(problem)
       //
@@ -101,18 +101,15 @@ async function mathLoop(problemSet) {
         //Flags a new problem to be grabbed on the next loop
         newProblem = true;  
       })
-      /*
+      //
       //What to do for an incorrect answer or quit
-      */
       .catch((end) => {
-        /*
+        //
         //If the user quits
-        */
         if (end) {
           quit = true;
-        /*
+        //
         //If the answer is wrong
-        */
         } else {
           //
           //Play the tritone
@@ -177,15 +174,14 @@ async function waitForAnswer(problem) {
   return new Promise((resolve, reject) => {
     let solutionDisplay = document.getElementById("skill-input-screen__solution-display");
 
-    /*
+    //
     //Handles keyboard input
-    */
-    document.onkeydown = event => {
+    document.onkeydown = (event) => {
       let key = parseInt(event.key, 10);
       if ((key >= 0 && key <= 9 || event.key === ".")) {
-        inputNumber(event.key);
+        inputNumber(event.key, solutionDisplay);
       } else if (event.key === "Backspace") {
-        inputNumber("-1");
+        inputNumber("-1", solutionDisplay);
       } else if (event.key === "Escape") {
         playTone(randomNote());
         reject(true);

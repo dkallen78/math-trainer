@@ -62,6 +62,7 @@ async function makeSurvivalBaseScreen() {
     "-": 0,
     "×": 0,
     "÷": 0,
+    keys: ["+", "-", "×", "÷"],
     toggle: function(op) {
       //----------------------------------------------------//
       //Toggles the value of the op key from 1 to 0         //
@@ -122,7 +123,7 @@ async function makeSurvivalBaseScreen() {
             let startButton = document.getElementById("survival-base-screen__menu__start-button");
             if (checkStartState()) {
               startButton.onclick = async () => {
-                
+
                 playTone(randomNote());
                 await makeChallengeInputScreen(challengeOperations);
                 resolve(false);

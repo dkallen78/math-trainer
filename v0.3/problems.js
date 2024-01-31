@@ -568,6 +568,38 @@ function singleDigitAddition(minSum, maxSum, mode) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
+function upTo(aMin, cap) {
+  /*----------------------------------------------------//
+  //Creates an addition problem with a fixed sum        //
+  //----------------------------------------------------//
+  //aMin(integer): the minimum addend                   //
+  //cap(integer): the sum to add up to                  //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------*/
+
+  let a = rnd(aMin, cap);
+
+  let solutions = [
+    [(cap - a), `${a} + ? = ${cap}`],
+    [(cap - a), `? + ${a} = ${cap}`]
+  ]
+
+  return solutions[rnd(0, solutions.length - 1)];
+}
+
+
+//----------------------------------------------------------------
+
+function downTo(aMin, aMax, floorMin, floorMax, floorMod) {
+
+  let a = rnd(aMin, aMax);
+  let floor = rnd(floorMin, floorMax) * floorMod;
+
+  return [a, `${floor + a} - ? = ${floor}`];
+}
+
 function subWithin(difMin, difMax, simple = true) {
   /*----------------------------------------------------//
   //Creates a subtraction problem within a range of     //
@@ -605,43 +637,11 @@ function subWithin(difMin, difMax, simple = true) {
         [a, `${b} - ${b - a} = ?`],
         [a, `? = ${b} - ${b - a}`]
       );
+      break;
   }
 
   return solutions[rnd(0, solutions.length - 1)];
 }
-
-function upTo(aMin, cap) {
-  /*----------------------------------------------------//
-  //Creates an addition problem with a fixed sum        //
-  //----------------------------------------------------//
-  //aMin(integer): the minimum addend                   //
-  //cap(integer): the sum to add up to                  //
-  //----------------------------------------------------//
-  //return(array[float, string]): the answer to the     //
-  //  equation and a string representation of it        //
-  //----------------------------------------------------*/
-
-  let a = rnd(aMin, cap);
-
-  let solutions = [
-    [(cap - a), `${a} + ? = ${cap}`],
-    [(cap - a), `? + ${a} = ${cap}`]
-  ]
-
-  return solutions[rnd(0, solutions.length - 1)];
-}
-
-
-//----------------------------------------------------------------
-
-function downTo(aMin, aMax, floorMin, floorMax, floorMod) {
-
-  let a = rnd(aMin, aMax);
-  let floor = rnd(floorMin, floorMax) * floorMod;
-
-  return [a, `${floor + a} - ? = ${floor}`];
-}
-
 
 function takeFrom(aMin, aMax, aMod) {
   /*
