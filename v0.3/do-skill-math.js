@@ -1,11 +1,11 @@
-async function makeInputScreen(problemSet) {
+async function makeSkillInputScreen(problemSet) {
 
-  let inputScreen = makeElement("div", "inputScreen", "screen");
+  let inputScreen = makeElement("main", "skill-input-screen", "screen");
 
-    let problemDisplay = makeElement("div", "problemDisplay");
+    let problemDisplay = makeElement("section", "skill-input-screen__problem-display", "problem-display");
     inputScreen.appendChild(problemDisplay)
 
-    let solutionDisplay = makeElement("div", "solutionDisplay");
+    let solutionDisplay = makeElement("section", "skill-input-screen__solution-display", "solution-display");
     inputScreen.appendChild(solutionDisplay);
 
     let numberPad = makeNumberPad()
@@ -28,7 +28,7 @@ async function mathLoop(problemSet) {
   let quit = false;
   let newProblem = true;
   let problem;
-  let problemDisplay = document.getElementById("problemDisplay");
+  let problemDisplay = document.getElementById("skill-input-screen__problem-display");
 
   let startTime, totalTime;
 
@@ -55,9 +55,8 @@ async function mathLoop(problemSet) {
     numPadOn();
 
     await waitForAnswer(problem)
-      /*
+      //
       //What to do for a correct answer
-      */
       .then(() => {
         //
         //Get the time taken to answer the question
@@ -141,7 +140,7 @@ async function mathLoop(problemSet) {
 }
 
 function getNewProblem(problemSet) {
-  /*
+  //----------------------------------------------------//
   //Creates a random arithmetic problem                 //
   //----------------------------------------------------//
   //problemSet(array[function]): an array of functions  //
@@ -149,7 +148,7 @@ function getNewProblem(problemSet) {
   //----------------------------------------------------//
   //return(object): the object containing the problem   //
   //  details                                           //
-  */
+  //----------------------------------------------------//
 
   let skill = rnd(0, problemSet.length - 1);
 
@@ -176,7 +175,7 @@ async function waitForAnswer(problem) {
   //----------------------------------------------------//
 
   return new Promise((resolve, reject) => {
-    let solutionDisplay = document.getElementById("solutionDisplay");
+    let solutionDisplay = document.getElementById("skill-input-screen__solution-display");
 
     /*
     //Handles keyboard input

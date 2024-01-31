@@ -230,7 +230,7 @@ function inputNumber(num) {
   //    10: submit answer                               //
   //----------------------------------------------------//
   
-  let display = document.getElementById("solutionDisplay");
+  let display = document.getElementById("skill-input-screen__solution-display");
   
   playTone(randomNote());
   if (num === "-1") {

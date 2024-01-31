@@ -57,6 +57,22 @@ async function makeChallengeBaseScreen() {
 
 async function makeSurvivalBaseScreen() {
 
+  let challengeOperations = {
+    "+": 0,
+    "-": 0,
+    "×": 0,
+    "÷": 0,
+    toggle: function(op) {
+      //----------------------------------------------------//
+      //Toggles the value of the op key from 1 to 0         //
+      //----------------------------------------------------//
+      //op(string): the key whose value is to be toggled    //
+      //----------------------------------------------------//
+
+      this[op] = 1 - (this[op]|0);
+    }
+  }
+
   function checkStartState() {
     //----------------------------------------------------//
     //Checks to see if any of the operation buttons have  //
@@ -71,10 +87,11 @@ async function makeSurvivalBaseScreen() {
     for (let i = 0; i < operationButtons.length; i++) {
       if (operationButtons[i].classList.contains("selected-button")) {
         startButton.classList.remove("inactive-button");
-        return
+        return true;
       }
     }
     startButton.classList.add("inactive-button");
+    return false;
   }
   
   async function waitForButton() {
@@ -82,18 +99,38 @@ async function makeSurvivalBaseScreen() {
     return new Promise((resolve, reject) => {
 
       let operationButtons = document.getElementById("survival-base-screen__menu").childNodes;
-
+      //
+      //Iterates over the operationButtons, turning them
+      //  on if the user is elibigle
       for (let i = 0; i < operationButtons.length; i++) {
-        
+
         let op = operationButtons[i].innerHTML;
         if (operationUnlock(op)) {
 
           operationButtons[i].classList.remove("inactive-button");
-
           operationButtons[i].onclick = async () => {
+
             playTone(randomNote());
+            //
+            //Toggles the operationButton off or on
             operationButtons[i].classList.toggle("selected-button");
-            checkStartState();
+            challengeOperations.toggle(op);
+            //
+            //If an operationButton is toggled, checks to
+            //  see if the startButton should be enabled 
+            //  or not
+            let startButton = document.getElementById("survival-base-screen__menu__start-button");
+            if (checkStartState()) {
+              startButton.onclick = async () => {
+                
+                playTone(randomNote());
+                await makeChallengeInputScreen(challengeOperations);
+                resolve(false);
+              }
+            } else {
+              startButton.onclick = "";
+            }
+
           }
         }
       }

@@ -182,6 +182,18 @@ button {
   border-radius: 1rem;
 }
 
+#challenge-input-screen {
+  display: grid;
+  grid-template-columns: 95%;
+  grid-template-rows: 6rem 20% 60%;
+  justify-content: center;
+  align-content: center;
+  height: calc(100vh - 2rem);
+  width: 100vw;
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
 /*
   Select an Operation screen
 */
@@ -256,7 +268,7 @@ button {
   border-radius: .5rem;
 }
 
-#inputScreen {
+#skill-input-screen {
   display: grid;
   grid-template-columns: 95%;
   grid-template-rows: 6rem 20% 60%;
@@ -269,7 +281,7 @@ button {
 
 }
 
-#problemDisplay {
+.problem-display {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -278,7 +290,7 @@ button {
   transition: padding 50ms;
 }
 
-#solutionDisplay {
+.solution-display {
   display: flex;
   justify-content: center;
   padding-top: 1rem;
@@ -289,13 +301,12 @@ button {
 #number-pad {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  /*height: 95vw;*/
   width: 95vw;
   border: .1rem solid var(--border-color);
   border-radius: 1rem;
 }
 
-#numberPad > button {
+#number-pad > button {
   font-size: 1rem;
   font-weight: bold;
   font-family: sans-serif;

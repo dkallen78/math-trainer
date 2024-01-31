@@ -136,7 +136,7 @@ async function makeOperationBaseScreen(operation) {
 }
 
 async function makeSkillsScreen(skill) {
-  /*
+  //----------------------------------------------------//
   //Makes the screen where the user selects a skill to  //
   //  practice. This is the screen right before the     //
   //  primary math loop                                 //
@@ -144,8 +144,6 @@ async function makeSkillsScreen(skill) {
   //skill(array[objects]): the array of skills to be    //
   //  displayed                                         //
   //----------------------------------------------------//
-  //
-  */
 
   async function waitForButton() {
 
@@ -184,7 +182,7 @@ async function makeSkillsScreen(skill) {
             startButton.classList.remove("inactive-button");
             startButton.onclick = async () => {
               playTone(randomNote());
-              await makeInputScreen([skill[i]]);
+              await makeSkillInputScreen([skill[i]]);
               resolve(false);
             }
           }
