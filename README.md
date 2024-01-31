@@ -1,14 +1,14 @@
 # [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2024-01-29
+## Update 2024-01-30
 
-### 23:30
+### 23:00
 
-Before I could put my fancy moving stroke somewhere I figured I had to have somewhere to put it so I've been working on the Challenge mode (formerly Progression). My first challenge to create is going to be called Survival. The idea is the user will have 60 seconds to answer as many questions as possible. Every correct answer adds five seconds to their time. The final score will be the number of digits answered correctly. I think I'm going to break it down into different operations so that the user can tackle one operation at a time. Maybe I'll make it a toggle so you can select one, all, or any combination of the four operations. Nothing is set in stone at this point.
+Not much to brag about today since I didn't get a lot done on the Survival challenge. The issue is that I can't abide an ugly UI and it takes some finesse to make things look good. Couple that with rejiggering how I want to handle CSS and I feel like it might be time for an overhaul soon. We'll see... 
 
-I'm also playing with refactoring my CSS because I want it to be more readable so I'm going to try the BEM model or a variation of it. I've been using JavaScript camel case to name my CSS stuff and I don't like it anymore. I'm also going to make an effort to use more intentional tags instead of drowing the page in divs. It doesn't break anything when I do it and maybe it will help someone down the road.
+I got the launch screen for survival mode done. It has the four buttons for each operation that can be toggled on and off as well as Start and Back buttons. Before I jump into the math part that's ahead of me, I need to figure out how I'm going to handle problems. I know I want them to get harder as time goes on (or do I?) but I'm not sure how that will happen from an algorithmic perspective. Maybe just increase the potential value of the terms as a function of elapsed time? That's a good start I guess but I also want to open up decimals after a bit as well. Let's just start with my first idea and see if we can get it working =P
 
-Tomorrow I hope to have something working.
+That will be my task for tomorrow.
 
 ### Issues
 
