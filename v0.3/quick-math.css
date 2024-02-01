@@ -24,13 +24,14 @@ button {
 }
 
 .marquee {
+  height: 10vw;
   font-size: 10vw;
   text-align: center;
   color: var(--text-color);
 }
 
-.marqueeSmall {
-  font-size: 8vw;
+.marquee-small {
+  font-size: clamp(1em, 8vw, 2em);
   text-align: center;
   color: var(--text-color);
   margin: 1rem;
@@ -373,7 +374,7 @@ button {
 }
 
 /*
-  Settings screen styles
+  Settings Screen
 */
 
 #settings-screen {
@@ -386,6 +387,10 @@ button {
   color: var(--text-color);
 }
 
+/*
+  Settings Screen
+    Theme Menu
+*/
 #theme-menu-screen {
   display: flex;
   flex-direction: column;
@@ -395,7 +400,6 @@ button {
   text-align: center;
   color: var(--text-color);
 }
-
 
 .theme-button {
   margin: 1rem;
@@ -408,20 +412,38 @@ button {
   border-radius: 1rem;
 }
 
-#soundOptionsScreen {
+/*
+  Settings Screen
+    Sound Options
+*/
+
+#sound-options-screen {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.keyButtons {
+/*
+  Settings Screen
+    Sound Options
+      Select Key
+*/
+
+#key-selection-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 95vh;
+}
+
+.key-buttons {
   height: 4rem;
   font-size: 1rem;
   border: .1rem solid var(--border-color);
   border-radius: .25rem;
 }
 
-#blackKeyDiv {
+#key-selection-screen__select-key__black-keys {
   display: grid;
   grid-template-columns: 7.14% 14.29% 14.29% 14.29% 14.29% 14.29% 14.29% 7.14%;
   justify-content: center;
@@ -429,20 +451,20 @@ button {
   margin: 0 1rem 0;
 }
 
-#blackKeyDiv > button {
+#key-selection-screen__select-key__black-keys > button {
   color: var(--bg-color);
   background-color: var(--text-color);
 }
 
-#key1 {
+#key-1 {
   grid-column: 2 / 3;
 }
 
-#key6 {
+#key-6 {
   grid-column: 5 / 6;
 }
 
-#whiteKeyDiv {
+#key-selection-screen__select-key__white-keys {
   display: grid;
   grid-template-columns: 14.29% 14.29% 14.29% 14.29% 14.29% 14.29% 14.29%;
   justify-content: center;
@@ -450,22 +472,27 @@ button {
   margin: .1rem 1rem 1rem;
 }
 
-#octaveDiv {
+#key-selction-screen__select-octave__octaves {
   display: grid;
   grid-template-columns: 7.14% 14.29% 14.29% 14.29% 14.29% 14.29% 14.29% 7.14%;
   justify-content: center;
   gap: .1rem;
-  margin: 0 1rem 0;
+  margin: 0 1rem 0.5rem;
 }
 
-#octave3 {
+#octave-3 {
   grid-column: 3 / 4;
 }
 
-#scaleSelectionScreen {
+/*
+  Settings Screen
+    Sount Options
+      Select Scale
+*/
+
+#scale-selection-screen {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 @keyframes buttonPulse {

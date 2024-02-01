@@ -118,6 +118,7 @@ async function makeThemeScreen() {
 	//Makes the Theme Menu where the color palettes can   //
   //  be changed                                        //
 	//----------------------------------------------------//
+
   let root = document.documentElement;
 
   return new Promise (async (resolve, reject) => {
@@ -168,25 +169,28 @@ async function makeThemeScreen() {
 }
 
 async function makeSoundScreen() {
+  //----------------------------------------------------//
+	//Lists the basic options for in-app sound            //
+	//----------------------------------------------------//
 
   async function waitForButton() {
     return new Promise ((resolve, reject) => {
 
-      let selectKey = document.getElementById("selectKeyButton");
+      let selectKey = document.getElementById("sound-options-screen__select-key-button");
       selectKey.onclick = async () => {
         playTone(randomNote());
         await makeKeyScreen();
         resolve(false);
       }
 
-      let selectScale = document.getElementById("selectScaleButton");
+      let selectScale = document.getElementById("sound-options-screen__select-scale-button");
       selectScale.onclick = async () => {
         playTone(randomNote());
         await makeScaleScreen();
         resolve(false);
       }
 
-      let backButton = document.getElementById("soundOptionsBackButton");
+      let backButton = document.getElementById("sound-options-screen__back-button");
       backButton.onclick = () => {
         playTone(randomNote());
         resolve(true);
@@ -197,38 +201,38 @@ async function makeSoundScreen() {
   let quit = false;
 
   while(!quit) {
-    let soundOptionsScreen = makeElement("div", "soundOptionsScreen", "screen");
+    let soundOptionsScreen = makeElement("main", "sound-options-screen", "screen");
 
-      let soundSelectionButton = makeButton("Sound On", null, "soundSelectionButton", "bigButton");
+      let soundToggleButton = makeButton("Sound On", null, "sound-options-screen__sound-toggle-button", "big-button");
         if (user.soundOn === false) {
-          soundSelectionButton.innerHTML = "Sound Off";
+          soundToggleButton.innerHTML = "Sound Off";
         }
-        soundSelectionButton.onclick = () => {
+        soundToggleButton.onclick = () => {
           if (user.soundOn) {
             user.soundOn = false;
-            soundSelectionButton.innerHTML = "Sound Off";
+            soundToggleButton.innerHTML = "Sound Off";
           } else {
             user.soundOn = true;
-            soundSelectionButton.innerHTML = "Sound On";
+            soundToggleButton.innerHTML = "Sound On";
             playTone(randomNote());
           }
         }
-      soundOptionsScreen.appendChild(soundSelectionButton);
+      soundOptionsScreen.appendChild(soundToggleButton);
 
-      let selectKeyButton = makeButton("Select Key", null, "selectKeyButton", "bigButton");
+      let selectKeyButton = makeButton("Select Key", null, "sound-options-screen__select-key-button", "big-button");
       soundOptionsScreen.appendChild(selectKeyButton);
 
-      let selectScaleButton = makeButton("Select Scale", null, "selectScaleButton", "bigButton");
+      let selectScaleButton = makeButton("Select Scale", null, "sound-options-screen__select-scale-button", "big-button");
       soundOptionsScreen.appendChild(selectScaleButton);
 
-      let playRandomNoteButton = makeButton("Random Note", null, "playRandomNoteButton", "bigButton");
+      let playRandomNoteButton = makeButton("Random Note", null, "sound-options-screen__play-random-note-button", "big-button");
         playRandomNoteButton.onclick = () => {
           playTone(randomNote());
         }
       soundOptionsScreen.appendChild(playRandomNoteButton);
 
-      let soundOptionsBackButton = makeButton("Back", null, "soundOptionsBackButton", "bigButton");
-      soundOptionsScreen.appendChild(soundOptionsBackButton);
+      let backButton = makeButton("Back", null, "sound-options-screen__back-button", "big-button");
+      soundOptionsScreen.appendChild(backButton);
 
     await fadeOut(document.body);
     clearElement(document.body);
@@ -242,82 +246,103 @@ async function makeSoundScreen() {
 }
 
 async function makeKeyScreen() {
+  //----------------------------------------------------//
+	//Makes the screen to let the user change the key     //
+	//----------------------------------------------------//
 
   let allNotes = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
 
-  function selectKey(key, elem) {
+  function chooseKey(key, elem) {
 
     user.keyNote = key;
-
+    let activeKeyDisplay = document.getElementById("key-selection-screen__active-key-display");
     activeKeyDisplay.innerHTML = `${allNotes[user.keyNote]}${user.keyOctave} ${notes[user.activeKey]}`;
     
     playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
 
   }
 
-  function selectOctave(octave, elem) {
+  function chooseOctave(octave, elem) {
 
     user.keyOctave = octave;
-
+    let activeKeyDisplay = document.getElementById("key-selection-screen__active-key-display");
     activeKeyDisplay.innerHTML = `${allNotes[user.keyNote]}${user.keyOctave} ${notes[user.activeKey]}`;
 
     playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
   }
 
   return new Promise (async (resolve, reject) => {
-    let keySelectionScreen = makeElement("div", "scaleSelectionScreen", "screen");
+    let keySelectionScreen = makeElement("main", "key-selection-screen", "screen");
 
-      let activeKeyDisplay = makeElement("div", "activeKeyDisplay", "marquee");
+      let activeKeyDisplay = makeElement("header", "key-selection-screen__active-key-display", "marquee");
         activeKeyDisplay.innerHTML = `${allNotes[user.keyNote]}${user.keyOctave} ${notes[user.activeKey]}`;
       keySelectionScreen.appendChild(activeKeyDisplay);
+      //
+      //Displays the buttons for selecting the different keys
+      let selectKey = makeElement("section", "key-selection-screen__select-key");
+        //
+        //Header for the key selection section
+        let keyHed = makeElement("header", "key-selection-screen__select-key__key-hed", "marquee-small");
+          keyHed.innerHTML = "Select Key";
+        selectKey.appendChild(keyHed);
+        //
+        //The 5 black keys
+        let blackKeys = makeElement("div", "key-selection-screen__select-key__black-keys");
 
-      let selectKeyHead = makeElement("div", "selectKeyHead", "marqueeSmall");
-        selectKeyHead.innerHTML = "Select Key";
-      keySelectionScreen.appendChild(selectKeyHead);
+          let blackNotes = ["C♯/\nD♭", "D♯/\nE♭", "F♯/\nG♭", "G♯/\nA♭", "A♯/\nB♭"];
+          let blackIntervals = [1, 3, 6, 8, 10];
 
-      let blackKeyDiv = makeElement("div", "blackKeyDiv");
-        let blackNotes = ["C♯/\nD♭", "D♯/\nE♭", "F♯/\nG♭", "G♯/\nA♭", "A♯/\nB♭"];
-        let blackIntervals = [1, 3, 6, 8, 10];
-        for (let i = 0; i < blackNotes.length; i++) {
-          let noteButton = makeButton(blackNotes[i], null, `key${blackIntervals[i]}`, "keyButtons");
-            noteButton.onclick = () => {
-              selectKey(blackIntervals[i], noteButton);
-            }
-          blackKeyDiv.appendChild(noteButton);
-        }
-      keySelectionScreen.appendChild(blackKeyDiv);
-
-      let whiteKeyDiv = makeElement("div", "whiteKeyDiv");
-        let whiteNotes = ["C", "D", "E", "F", "G", "A", "B"];
-        let whiteIntervals = [0, 2, 4, 5, 7, 9, 11];
-        for (let i = 0; i < whiteNotes.length; i++) {
-          let noteButton = makeButton(whiteNotes[i], null, `key${whiteIntervals[i]}`, "keyButtons");
-          noteButton.onclick = () => {
-            selectKey(whiteIntervals[i], noteButton);
+          for (let i = 0; i < blackNotes.length; i++) {
+            let noteButton = makeButton(blackNotes[i], null, `key-${blackIntervals[i]}`, "key-buttons");
+              noteButton.onclick = () => {
+                chooseKey(blackIntervals[i], noteButton);
+              }
+            blackKeys.appendChild(noteButton);
           }
-          whiteKeyDiv.appendChild(noteButton);
-        }
-      keySelectionScreen.appendChild(whiteKeyDiv);
-
-      let octaveHead = makeElement("div", "octaveHead", "marqueeSmall");
-        octaveHead.innerHTML = "Select Octave";
-      keySelectionScreen.appendChild(octaveHead);
-
-      let octaveDiv = makeElement("div", "octaveDiv");
-        for (let i = 3; i < 7; i++) {
-          let octaveButton = makeButton(i, null, `octave${i}`, "keyButtons");
-            octaveButton.onclick = () => {
-              selectOctave(i, octaveButton);
+        selectKey.appendChild(blackKeys);
+        //
+        //the 7 white keys
+        let whiteKeys = makeElement("div", "key-selection-screen__select-key__white-keys");
+          let whiteNotes = ["C", "D", "E", "F", "G", "A", "B"];
+          let whiteIntervals = [0, 2, 4, 5, 7, 9, 11];
+          for (let i = 0; i < whiteNotes.length; i++) {
+            let noteButton = makeButton(whiteNotes[i], null, `key-${whiteIntervals[i]}`, "key-buttons");
+            noteButton.onclick = () => {
+              chooseKey(whiteIntervals[i], noteButton);
             }
-          octaveDiv.appendChild(octaveButton);
-        }
-      keySelectionScreen.appendChild(octaveDiv);
+            whiteKeys.appendChild(noteButton);
+          }
+        selectKey.appendChild(whiteKeys);
 
-      let keyBackButton = makeButton("Back", null, "keyBackButton", "bigButton");
-      keyBackButton.onclick = () => {
-        playTone(randomNote());
-        resolve();
-      }
+      keySelectionScreen.appendChild(selectKey);
+      //
+      //Displays the buttons for selecting the different octaves
+      let selectOctave = makeElement("section", "key-selection-screen__select-octave");
+        //
+        //Header for the octave selection section
+        let octaveHed = makeElement("div", "key-selection-screen__select-octave__octave-hed", "marquee-small");
+          octaveHed.innerHTML = "Select Octave";
+        selectOctave.appendChild(octaveHed);
+        //
+        //The four octave buttons
+        let octaves = makeElement("div", "key-selction-screen__select-octave__octaves");
+          for (let i = 3; i < 7; i++) {
+            let octaveButton = makeButton(i, null, `octave-${i}`, "key-buttons");
+              octaveButton.onclick = () => {
+                chooseOctave(i, octaveButton);
+              }
+            octaves.appendChild(octaveButton);
+          }
+        selectOctave.appendChild(octaves);
+
+      keySelectionScreen.appendChild(selectOctave);
+      //
+      //The Back button
+      let keyBackButton = makeButton("Back", null, "key-selection-screen__back-button", "big-button");
+        keyBackButton.onclick = () => {
+          playTone(randomNote());
+          resolve();
+        }
       keySelectionScreen.appendChild(keyBackButton);
 
     await fadeOut(document.body);
@@ -328,10 +353,13 @@ async function makeKeyScreen() {
 }
 
 async function makeScaleScreen() {
+  //----------------------------------------------------//
+	//Makes the screen to let the user change the scale   //
+	//----------------------------------------------------//
 
   function makeScaleButton(scale, name) {
 
-    let button = makeButton(name, null, `${name}Button`, "medium-button");
+    let button = makeButton(name, null, `${name}-Button`, "medium-button");
     button.onclick = () => {
       user.activeScale = scale;
 
@@ -341,7 +369,8 @@ async function makeScaleScreen() {
   }
 
   return new Promise (async (resolve, reject) => {
-    let scaleSelectionScreen = makeElement("div", "scaleSelectionScreen", "screen");
+
+    let scaleSelectionScreen = makeElement("main", "scale-selection-screen", "screen");
 
       let majorButton = makeScaleButton(scales.major, "Major");
       scaleSelectionScreen.appendChild(majorButton);
@@ -386,12 +415,12 @@ async function makeScaleScreen() {
       }
       scaleSelectionScreen.appendChild(bluesMinorButton);*/
 
-      let scaleBackButton = makeButton("Back", null, "scaleBackButton", "bigButton");
-      scaleBackButton.onclick = () => {
+      let backButton = makeButton("Back", null, "scale-selection-screen__back-button", "medium-button");
+      backButton.onclick = () => {
         playTone(randomNote());
         resolve();
       }
-      scaleSelectionScreen.appendChild(scaleBackButton);
+      scaleSelectionScreen.appendChild(backButton);
 
     await fadeOut(document.body);
     clearElement(document.body);
