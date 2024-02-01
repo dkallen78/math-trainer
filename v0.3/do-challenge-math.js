@@ -19,7 +19,11 @@ let challengeTimer = {
 
 let challengeDeets = {
   score: 0,
-  totalTime: 0
+  totalTime: 0,
+  init: function() {
+    this.score = 0;
+    this.totalTime = 0;
+  }
 }
 
 async function makeChallengeInputScreen(challengeOperations) {
@@ -73,7 +77,7 @@ async function challengeMathLoop(challengeOperations) {
   let solutionDisplay = document.getElementById("challenge-input-screen__solution-display");
   let newProblem = true;
   let problem;
-  
+  challengeDeets.init();
   //
   //The elements I need the exact measures of to animate the
   //  <rect> stroke
@@ -277,7 +281,7 @@ async function makeChallengeSummaryScreen() {
       challengeStats.appendChild(challengeScore);
 
       let challengeTime = makeElement("div", "summary-display__challenge-stats__challenge-score");
-        let displayTime = (challengeDeets.totalTime / 1000).toPrecision(2)
+        let displayTime = (challengeDeets.totalTime / 1000).toPrecision(4)
         challengeTime.innerHTML = `Total Time: ${displayTime} s`;
       challengeStats.appendChild(challengeTime);
 
