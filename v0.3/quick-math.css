@@ -92,20 +92,20 @@ button {
   background-color: var(--bg-color);
 }
 
-.spanBox {
+.span-box {
   padding: .25rem;
   border: .15rem solid var(--border-color);
   border-radius: .5rem;
 }
 
-.spanStroke {
+.span-stroke {
   color: var(--bg-color);
   font-weight: bold;
   -webkit-text-stroke: .05rem var(--text-color);
 }
 
 /*
-  Base page for the program
+  Title Screen
 */
 
 #title-screen {
@@ -258,6 +258,7 @@ button {
 /*
   Select skill category screen
 */
+
 #operationBaseScreen {
   display: flex;
   flex-direction: column;
@@ -271,6 +272,7 @@ button {
 /*
   Select individual skills screen
 */
+
 #skillsScreen {
   display: grid;
   grid-template-rows: 10% 15% auto auto auto;
@@ -329,6 +331,10 @@ button {
   font-size: 2rem;
   color: var(--text-color);
 }
+
+/*
+  Number pad
+*/
 
 #number-pad {
   display: grid;

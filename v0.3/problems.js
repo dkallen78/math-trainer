@@ -75,7 +75,7 @@ function within(aMin, aMax) {
 //-----------------------------------------------------------
 function stroke(num) {
   let text = num.toString(10);
-  return `<span class="spanStroke">${text}</span>`
+  return `<span class="span-stroke">${text}</span>`
 }
 
 function add(aMin, aMax, aMod, bMin, bMax, bMod) {
@@ -457,8 +457,8 @@ function addPartCrossing10s(aMin, aMax, aMod, mode) {
     case 1:
       c = rnd(1, (9 - b));
       solutions = [
-        [b, `${a - b} +&nbsp${stroke(b + c)}&nbsp=&nbsp<span class="spanBox">${a - b} +&nbsp${stroke("?")}</span>&nbsp+&nbsp${stroke(c)}`],
-        [b, `<span class="spanBox">${a - b} +&nbsp${stroke("?")}</span>&nbsp+&nbsp${stroke(c)}&nbsp= ${a - b} +&nbsp${stroke(b + c)}`]
+        [b, `${a - b} +&nbsp${stroke(b + c)}&nbsp=&nbsp<span class="span-box">${a - b} +&nbsp${stroke("?")}</span>&nbsp+&nbsp${stroke(c)}`],
+        [b, `<span class="span-box">${a - b} +&nbsp${stroke("?")}</span>&nbsp+&nbsp${stroke(c)}&nbsp= ${a - b} +&nbsp${stroke(b + c)}`]
       ];
       break;
     case 2:
@@ -694,7 +694,7 @@ function subPartCrossing10s(aMin, aMax, aMod, mode) {
   switch(mode) {
     case 1:
       c = rnd(1, (9 - b));
-      return [b, `${a + b} -&nbsp${stroke(b + c)}&nbsp=&nbsp<span class="spanBox">${a + b} -&nbsp${stroke("?")}</span>&nbsp-&nbsp${stroke(c)}`];
+      return [b, `${a + b} -&nbsp${stroke(b + c)}&nbsp=&nbsp<span class="span-box">${a + b} -&nbsp${stroke("?")}</span>&nbsp-&nbsp${stroke(c)}`];
     case 2:
       c = rnd((b + 1), 9);
       return [(a - b), `${(a - b) + c} - ${c} = ?`];
