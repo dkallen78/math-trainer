@@ -97,6 +97,7 @@ async function challengeMathLoop(challengeOperations) {
       .then(() => {
         playChord(makeChord(chords.I, user.activeKey));
         newProblem = true;
+        timer.max += 2000;
       })
       .catch((end) => {
         //

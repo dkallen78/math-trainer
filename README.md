@@ -1,14 +1,10 @@
 # [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
 
-## Update 2024-01-30
+## Update 2024-01-31
 
 ### 23:00
 
-Not much to brag about today since I didn't get a lot done on the Survival challenge. The issue is that I can't abide an ugly UI and it takes some finesse to make things look good. Couple that with rejiggering how I want to handle CSS and I feel like it might be time for an overhaul soon. We'll see... 
-
-I got the launch screen for survival mode done. It has the four buttons for each operation that can be toggled on and off as well as Start and Back buttons. Before I jump into the math part that's ahead of me, I need to figure out how I'm going to handle problems. I know I want them to get harder as time goes on (or do I?) but I'm not sure how that will happen from an algorithmic perspective. Maybe just increase the potential value of the terms as a function of elapsed time? That's a good start I guess but I also want to open up decimals after a bit as well. Let's just start with my first idea and see if we can get it working =P
-
-That will be my task for tomorrow.
+We have achieved math. I have the skeleton of the Survival challenge assembled and I've even got the animated stroke working as intended; I'm very happy with the effect. Next up is to make the time do something because right now it doesn't do anyting, although I do keep track of it. I need to have the challenge end when the time is up and have a score-display screen or something. I suppose I'll eventually have to keep track of scores but that's more of a long-term goal. For now I'm going to rest happy that I pulled this off and that it looks nice. Tomorrow we'll make a complete challenge.
 
 ### Issues
 

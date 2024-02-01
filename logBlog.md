@@ -446,3 +446,19 @@ Tomorrow I hope to have something working.
 * Investigate poppy phone sound (low priority for now)
 
 * Do something about `addWithin()` function
+
+## Update 2024-01-30
+
+### 23:00
+
+Not much to brag about today since I didn't get a lot done on the Survival challenge. The issue is that I can't abide an ugly UI and it takes some finesse to make things look good. Couple that with rejiggering how I want to handle CSS and I feel like it might be time for an overhaul soon. We'll see... 
+
+I got the launch screen for survival mode done. It has the four buttons for each operation that can be toggled on and off as well as Start and Back buttons. Before I jump into the math part that's ahead of me, I need to figure out how I'm going to handle problems. I know I want them to get harder as time goes on (or do I?) but I'm not sure how that will happen from an algorithmic perspective. Maybe just increase the potential value of the terms as a function of elapsed time? That's a good start I guess but I also want to open up decimals after a bit as well. Let's just start with my first idea and see if we can get it working =P
+
+That will be my task for tomorrow.
+
+### Issues
+
+* Investigate poppy phone sound (low priority for now)
+
+* Do something about `addWithin()` function
