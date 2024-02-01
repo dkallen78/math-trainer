@@ -1,4 +1,4 @@
-# [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quickMath.html)
+# [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quick-math.html)
 
 ## Update 2024-01-31
 
