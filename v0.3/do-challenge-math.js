@@ -1,3 +1,23 @@
+let challengeTimer = {
+  start: 0,
+  max: 5_000,
+  add: (time) => {
+    this.max += time;
+  },
+  timeStart: function() {
+    this.start = performance.now();
+  },
+  get elapsed() {
+    return performance.now() - this.start;
+  }
+}
+
+let challengeDeets = {
+  score: 0,
+  totalTime: 0
+}
+
+
 async function makeChallengeInputScreen(challengeOperations) {
   //----------------------------------------------------//
   //Makes the HTML scafold for the answer display and   //
@@ -50,16 +70,7 @@ async function challengeMathLoop(challengeOperations) {
   let solutionDisplay = document.getElementById("challenge-input-screen__solution-display");
   let newProblem = true;
   let problem;
-  let timer = {
-    start: performance.now(),
-    max: 60_000,
-    add: function(time) {
-      this.max += time;
-    },
-    get elapsed() {
-      return performance.now() - this.start;
-    }
-  }
+  
   //
   //The elements I need the exact measures of to animate the
   //  <rect> stroke
@@ -78,8 +89,9 @@ async function challengeMathLoop(challengeOperations) {
   //
   //Animates the countdown by reducing the percentage of 
   //  stroke around the <rect>
-  let timerCountdown = setInterval(() => {
-    let timePercent = (timer.max - timer.elapsed) / timer.max;
+  challengeTimer.timeStart();
+  let challengeTimerCountdown = setInterval(() => {
+    let timePercent = (challengeTimer.max - challengeTimer.elapsed) / challengeTimer.max;
     rect.setAttribute("stroke-dasharray", `${timePercent * perimeterPercent}% ${perimeterPercent}%`);
   }, 10);
 
@@ -87,7 +99,7 @@ async function challengeMathLoop(challengeOperations) {
   while (!quit) {
 
     if (newProblem) {
-      problem = getChallengeProblem(challengeOperations, timer.elapsed);
+      problem = getChallengeProblem(challengeOperations, challengeTimer.elapsed);
     }
 
     problemDisplay.innerHTML = problem.equation;
@@ -97,32 +109,44 @@ async function challengeMathLoop(challengeOperations) {
       .then(() => {
         playChord(makeChord(chords.I, user.activeKey));
         newProblem = true;
-        timer.max += 2000;
+        challengeTimer.max += 2000;
+        challengeDeets.score += digitCount(problem.answer);
       })
-      .catch((end) => {
-        //
-        //If the user quits
-        if (end) {
-          quit = true;
-        //
-        //If the answer is wrong
-        } else {
+      .catch((reject) => {
+        switch(reject) {
           //
-          //Play the tritone
-          playChord(makeChord(chords.TT, user.activeKey));
+          //If the user quits
+          case "quit":
+            quit = true;
+            break;
           //
-          //Flags to keep the current problem
-          newProblem = false;
+          //If the user produces an incorrect answer
+          case "answer":
+            //
+            //Play the tritone
+            playChord(makeChord(chords.TT, user.activeKey));
+            //
+            //Flags to keep the current problem
+            newProblem = false;
+            //
+            //All this causes the problem to shake a bit
+            let interval = 50;
+            problemDisplay.style.padding = "0 .5rem .5rem 0";
+            setTimeout(function() {
+              problemDisplay.style.padding = ".5rem 0 0 .5rem";
+            }, interval);
+            setTimeout(function() {
+              problemDisplay.style.padding = "";
+            }, (interval * 2));
+            break;
           //
-          //All this causes the problem to shake a bit
-          let interval = 50;
-          problemDisplay.style.padding = "0 .5rem .5rem 0";
-          setTimeout(function() {
-            problemDisplay.style.padding = ".5rem 0 0 .5rem";
-          }, interval);
-          setTimeout(function() {
-            problemDisplay.style.padding = "";
-          }, (interval * 2));          
+          //If time runs out
+          case "time":
+            clearInterval(challengeTimerCountdown);
+            playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
+            challengeDeets.totalTime = challengeTimer.elapsed;
+            quit = true;
+            break;
         }
       })
     
@@ -170,6 +194,13 @@ async function waitForChallengeAnswer(problem) {
   return new Promise((resolve, reject) => {
     let solutionDisplay = document.getElementById("challenge-input-screen__solution-display");
 
+    let timeCheck = setInterval(() => {
+      if (challengeTimer.elapsed > challengeTimer.max) {
+        clearInterval(timeCheck);
+        reject("time");
+      }
+    }, 10);
+
     //
     //Handles keyboard input
     document.onkeydown = (event) => {
@@ -180,7 +211,7 @@ async function waitForChallengeAnswer(problem) {
         inputNumber("-1", solutionDisplay);
       } else if (event.key === "Escape") {
         playTone(randomNote());
-        reject(true);
+        reject("quit");
       } else if (event.key === "Enter") {
               
         let solution = parseFloat(solutionDisplay.innerHTML, 10);
@@ -189,17 +220,19 @@ async function waitForChallengeAnswer(problem) {
         if (problem.answer === solution) {
           resolve();
         } else {
-          reject(false);
+          reject("answer");
         }
       }
       event.preventDefault();
     }
-
+    //
+    //When the user presses the Quit button
     document.getElementById("number-pad__button-quit").onclick = () => {
       playTone(randomNote());
-      reject(true);
+      reject("quit");
     }
-      
+    //
+    //When the user submits an answer
     document.getElementById("number-pad__button-submit").onclick = () => {
       
       let solution = parseFloat(solutionDisplay.innerHTML, 10);
@@ -208,7 +241,7 @@ async function waitForChallengeAnswer(problem) {
       if (problem.answer === solution) {
         resolve();
       } else {
-        reject(false);
+        reject("answer");
       }
     }      
   })
