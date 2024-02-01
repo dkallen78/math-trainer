@@ -376,7 +376,7 @@ button {
   Settings screen styles
 */
 
-#settingsBaseScreen {
+#settings-screen {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -386,7 +386,7 @@ button {
   color: var(--text-color);
 }
 
-#themeSelectionScreen {
+#theme-menu-screen {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -397,7 +397,7 @@ button {
 }
 
 
-.themeButton {
+.theme-button {
   margin: 1rem;
   padding: .5rem;
   color: var(--text-color);

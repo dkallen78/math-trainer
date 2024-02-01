@@ -1,22 +1,26 @@
-async function makeSettingsBaseScreen() {
+async function makeSettingsScreen() {
+  //----------------------------------------------------//
+	//Makes the base settings screen from which all       //
+  //  settings can be accessed                          //
+	//----------------------------------------------------//
 
   async function waitForButton() {
       return new Promise ((resolve, reject) => {
-          let themeButton = document.getElementById("themeButton");
+          let themeButton = document.getElementById("settings-screen__theme-button");
           themeButton.onclick = async () => {
               playTone(randomNote());
               await makeThemeScreen();
               resolve(false);
           }
 
-          let soundButton = document.getElementById("soundButton");
+          let soundButton = document.getElementById("settings-screen__sound-button");
           soundButton.onclick = async () => {
               playTone(randomNote());
               await makeSoundScreen();
               resolve(false);
           }
   
-          let backButton = document.getElementById("settingsBackButton");
+          let backButton = document.getElementById("settings-screen__back-button");
           backButton.onclick = async () => {
               playTone(randomNote());
               resolve(true);
@@ -27,22 +31,22 @@ async function makeSettingsBaseScreen() {
   let quit = false;
 
   while (!quit) {
-    let settingsBaseScreen = makeElement("div", "settingsBaseScreen", "screen");
+    let settingsScreen = makeElement("main", "settings-screen", "screen");
 
-      let settingsScreenMarquee = makeElement("div", "settingsScreenMarquee", "marquee");
-        settingsScreenMarquee.innerHTML = "Settings Menu"; 
-      settingsBaseScreen.appendChild(settingsScreenMarquee);
+      let settingsScreenInfo = makeElement("header", "settings-screen__info", "marquee");
+        settingsScreenInfo.innerHTML = "Settings Menu"; 
+      settingsScreen.appendChild(settingsScreenInfo);
 
-      let themeButton = makeButton("Theme", null, "themeButton", "bigButton");
-      settingsBaseScreen.appendChild(themeButton);
+      let themeButton = makeButton("Theme", null, "settings-screen__theme-button", "bigButton");
+      settingsScreen.appendChild(themeButton);
 
-      let soundButton = makeButton("Sound", null, "soundButton", "bigButton");
-      settingsBaseScreen.appendChild(soundButton);
+      let soundButton = makeButton("Sound", null, "settings-screen__sound-button", "bigButton");
+      settingsScreen.appendChild(soundButton);
 
-      let backButton = makeButton("Back", null, "settingsBackButton", "bigButton");
-      settingsBaseScreen.appendChild(backButton);
+      let backButton = makeButton("Back", null, "settings-screen__back-button", "bigButton");
+      settingsScreen.appendChild(backButton);
 
-      let tourButton = makeButton("Normal", null, "settingsTourButton", "bigButton");
+      let tourButton = makeButton("Normal", null, "settings-screen__tour-button", "bigButton");
         if (user.tour === true) {
           tourButton.innerHTML = "Tour";
         }
@@ -76,9 +80,9 @@ async function makeSettingsBaseScreen() {
             user.subtraction.partition = [];
           }
         }
-      settingsBaseScreen.appendChild(tourButton);
+      settingsScreen.appendChild(tourButton);
 
-      let fastButton = makeButton("Normal", null, "settingsFastButton", "bigButton");
+      let fastButton = makeButton("Normal", null, "settings-screen__fast-button", "bigButton");
         if (user.fast === true) {
           fastButton.innerHTML = "Fast";
         }
@@ -97,11 +101,11 @@ async function makeSettingsBaseScreen() {
             user.maxAvg = 5000;
           }
         }
-      settingsBaseScreen.appendChild(fastButton);
+      settingsScreen.appendChild(fastButton);
 
     await fadeOut(document.body);
     clearElement(document.body);
-    document.body.appendChild(settingsBaseScreen);
+    document.body.appendChild(settingsScreen);
     await fadeIn(document.body);
 
     await waitForButton()
@@ -110,14 +114,17 @@ async function makeSettingsBaseScreen() {
 }
 
 async function makeThemeScreen() {
-
+  //----------------------------------------------------//
+	//Makes the Theme Menu where the color palettes can   //
+  //  be changed                                        //
+	//----------------------------------------------------//
   let root = document.documentElement;
 
   return new Promise (async (resolve, reject) => {
-    let themeSelectionScreen = makeElement("div", "themeSelectionScreen", "screen");
+    let themeMenuScreen = makeElement("main", "theme-menu-screen", "screen");
 
-      let defaultThemeButton = makeButton("Default", null, "defaultThemeButton", "themeButton");
-      themeSelectionScreen.appendChild(defaultThemeButton);
+      let defaultThemeButton = makeButton("Default", null, "theme-menu-screen__default-theme-button", "theme-button");
+      themeMenuScreen.appendChild(defaultThemeButton);
       defaultThemeButton.onclick = () => {
         playTone(randomNote());
         root.style.setProperty("--text-color", "hsla(0, 0%, 0%, 1)");
@@ -126,7 +133,7 @@ async function makeThemeScreen() {
         root.style.setProperty("--button-bg-color", "hsla(0, 0%, 0%, 0)");
       }
 
-      let vaporWaveThemeButton = makeButton("Vapor Wave", null, "vaporWaveThemeButton", "themeButton");
+      let vaporWaveThemeButton = makeButton("Vapor Wave", null, "theme-menu-screen__vapor-wave-theme-button", "theme-button");
       vaporWaveThemeButton.onclick = () => {
         playTone(randomNote());
         root.style.setProperty("--text-color", "hsla(190, 100%, 50%, 1)");
@@ -134,28 +141,28 @@ async function makeThemeScreen() {
         root.style.setProperty("--border-color", "hsla(300, 100%, 50%, 1)");
         root.style.setProperty("--button-bg-color", "hsla(0, 0%, 0%, 0)");
       }
-      themeSelectionScreen.appendChild(vaporWaveThemeButton);
+      themeMenuScreen.appendChild(vaporWaveThemeButton);
 
-      let chalkThemeButton = makeButton("Chalk Board", null, "chalkThemeButton", "themeButton");
+      let chalkThemeButton = makeButton("Chalk Board", null, "theme-menu-screen__chalk-theme-button", "theme-button");
       chalkThemeButton.onclick = () => {
         playTone(randomNote());
         root.style.setProperty("--text-color", "hsla(0, 0%, 100%, 1)");
-        root.style.setProperty("--bg-color", "hsla(100, 100%, 60%, 1)");
+        root.style.setProperty("--bg-color", "hsla(100, 95%, 35%, 1)");
         root.style.setProperty("--border-color", "hsla(0, 0%, 100%, 1)");
-        root.style.setProperty("--button-bg-color", "hsla(100, 100%, 60%, 1)");
+        root.style.setProperty("--button-bg-color", "hsla(100, 95%, 35%, 1)");
       }
-      themeSelectionScreen.appendChild(chalkThemeButton);
+      themeMenuScreen.appendChild(chalkThemeButton);
 
-      let themeBackButton = makeButton("Back", null, "themeBackButton", "bigButton");
-      themeBackButton.onclick = () => {
+      let backButton = makeButton("Back", null, "theme-menu-screen__back-button", "big-button");
+      backButton.onclick = () => {
         playTone(randomNote());
         resolve();
       }
-      themeSelectionScreen.appendChild(themeBackButton);
+      themeMenuScreen.appendChild(backButton);
 
     await fadeOut(document.body);
     clearElement(document.body);
-    document.body.appendChild(themeSelectionScreen);
+    document.body.appendChild(themeMenuScreen);
     await fadeIn(document.body);
   })
 }

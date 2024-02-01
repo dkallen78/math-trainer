@@ -54,7 +54,7 @@ async function makeModeSelectScreen() {
       let settingsButton = document.getElementById("mode-select-screen__settings-button");
       settingsButton.onclick = async () => {
         playTone(randomNote());
-        await makeSettingsBaseScreen();
+        await makeSettingsScreen();
         resolve();
       }
 
@@ -124,7 +124,8 @@ function operationUnlock(op) {
       return true;
       break;
     case "-":
-      return user.addition.partition[1];
+      //return user.addition.partition[1];
+      return true;
       break;
     case "×":
       return false;
@@ -268,6 +269,11 @@ function randomNote() {
       rnd(0, (user.activeScale.length - 1))
     ] + user.activeKey
   ];
+}
+
+function randomChord() {
+  let rndChords = ["I", "IV", "V"];
+  return chords[rndChords[rnd(0, 2)]];
 }
 
 function makeChord(chordPack, key) {

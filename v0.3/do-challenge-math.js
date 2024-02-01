@@ -114,7 +114,8 @@ async function challengeMathLoop(challengeOperations) {
 
     await waitForChallengeAnswer(problem)
       .then(() => {
-        playChord(makeChord(chords.I, user.activeKey));
+        //playChord(makeChord(chords.I, user.activeKey));
+        playChord(makeChord(randomChord(), user.activeKey));
         newProblem = true;
         if (challengeTimer.elapsed > 2000) {
           challengeTimer.start += 2000;
@@ -176,7 +177,7 @@ function getChallengeProblem(challengeOperations, elapsed) {
   elapsed = Math.floor(elapsed / 1000);
 
   let problemFunctions = {
-    "+": () => addWithin(1, elapsed),
+    "+": () => addWithin(Math.ceil(elapsed / 5), elapsed),
     "-": () => subWithin(1, elapsed),
     "×": 0,
     "÷": 0
