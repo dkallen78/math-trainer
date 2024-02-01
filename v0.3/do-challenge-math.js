@@ -112,7 +112,7 @@ async function challengeMathLoop(challengeOperations) {
         challengeTimer.max += 2000;
         challengeDeets.score += digitCount(problem.answer);
       })
-      .catch((reject) => {
+      .catch(async (reject) => {
         switch(reject) {
           //
           //If the user quits
@@ -146,6 +146,7 @@ async function challengeMathLoop(challengeOperations) {
             playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
             challengeDeets.totalTime = challengeTimer.elapsed;
             quit = true;
+            await makeChallengeSummaryScreen();
             break;
         }
       })
@@ -244,5 +245,59 @@ async function waitForChallengeAnswer(problem) {
         reject("answer");
       }
     }      
+  })
+}
+
+/*async function makeChallengeSummaryScreen() {
+
+  let summaryScreen = makeElement("main", "summary-screen", "screen");
+
+    let summaryDisplay = makeElement("header", "summary-screen__summary-display", "marquee");
+      summaryDisplay.innerHTML = "Challenge Complete!";
+    summaryScreen.appendChild(summaryDisplay);
+
+    let challengeStats = makeElement("section", "summary-screen__challenge-stats");
+      challengeStats.innerHTML = `Score: ${challengeDeets.score}<br>Total Time: ${challengeDeets.totalTime}`;
+    summaryScreen.appendChild(challengeStats);
+
+    let doneButton = makeButton("Done", null, "summary-screen__done-button", "big-button");
+    summaryScreen.appendChild(doneButton);
+
+  await fadeOut(document.body);
+  clearElement(document.body);
+  document.body.appendChild(inputScreen);
+  await fadeIn(document.body);
+
+  await waitForButton()
+      .then((exit) => {quit = exit});
+}*/
+
+async function makeChallengeSummaryScreen() {
+
+  let summaryScreen = makeElement("main", "summary-screen", "screen");
+
+    let summaryDisplay = makeElement("header", "summary-screen__summary-display", "marquee");
+      summaryDisplay.innerHTML = "Challenge Complete!";
+    summaryScreen.appendChild(summaryDisplay);
+
+    let challengeStats = makeElement("section", "summary-screen__challenge-stats");
+      challengeStats.innerHTML = `Score: ${challengeDeets.score}<br>Total Time: ${challengeDeets.totalTime}`;
+    summaryScreen.appendChild(challengeStats);
+
+    let doneButton = makeButton("Done", null, "summary-screen__done-button", "big-button");
+    summaryScreen.appendChild(doneButton);
+
+    await fadeOut(document.body);
+    clearElement(document.body);
+    document.body.appendChild(summaryScreen);
+    await fadeIn(document.body);
+
+  return new Promise ((resolve, reject) => {
+    
+    let doneButton = document.getElementById("summary-screen__done-button");
+    doneButton.onclick = () => {
+      playTone(randomNote());
+      resolve();
+    }
   })
 }
