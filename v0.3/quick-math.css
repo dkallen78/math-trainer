@@ -187,13 +187,41 @@ button {
   grid-template-columns: 95%;
   grid-template-rows: 6rem 20% 60%;
   justify-content: center;
+  justify-items: center;
   align-content: center;
   height: calc(100vh - 2rem);
   width: 100vw;
   text-align: center;
   padding-bottom: 2rem;
+  padding-top: 1vh;
 }
 
+/*#challenge-input-screen__svg {
+  position: absolute;
+  margin: 0 auto;
+  height: 6rem;
+  width: 94%;
+  right: 0;
+  left: 0;
+  border-radius: 2vw;
+}*/
+
+#challenge-input-screen__problem-display {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2; 
+}
+
+#challenge-input-screen__svg {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+  width: 100%;
+  height: 6rem;
+}
+
+#challenge-input-screen__svg__countdownRect {
+  stroke: var(--border-color);
+  stroke-width: 1%;
+}
 /*
   Select an Operation screen
 */
@@ -249,7 +277,7 @@ button {
 #skillDetail {
   color: var(--text-color);
   text-align: center;
-  font-size: 8vw;
+  font-size: clamp(1rem, 3rem, 8vw);
 }
 
 #skillGrid {
@@ -285,7 +313,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 8vw;
+  font-size: clamp(1rem, 2rem, 8vw);
   color: var(--text-color);
   transition: padding 50ms;
 }
@@ -301,7 +329,7 @@ button {
 #number-pad {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  width: 95vw;
+  width: 95%;
   border: .1rem solid var(--border-color);
   border-radius: 1rem;
 }

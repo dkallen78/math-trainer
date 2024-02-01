@@ -57,23 +57,6 @@ async function makeChallengeBaseScreen() {
 
 async function makeSurvivalBaseScreen() {
 
-  let challengeOperations = {
-    "+": 0,
-    "-": 0,
-    "×": 0,
-    "÷": 0,
-    keys: ["+", "-", "×", "÷"],
-    toggle: function(op) {
-      //----------------------------------------------------//
-      //Toggles the value of the op key from 1 to 0         //
-      //----------------------------------------------------//
-      //op(string): the key whose value is to be toggled    //
-      //----------------------------------------------------//
-
-      this[op] = 1 - (this[op]|0);
-    }
-  }
-
   function checkStartState() {
     //----------------------------------------------------//
     //Checks to see if any of the operation buttons have  //
@@ -97,6 +80,23 @@ async function makeSurvivalBaseScreen() {
   
   async function waitForButton() {
 
+    let challengeOperations = {
+      "+": 0,
+      "-": 0,
+      "×": 0,
+      "÷": 0,
+      keys: ["+", "-", "×", "÷"],
+      toggle: function(op) {
+        //----------------------------------------------------//
+        //Toggles the value of the op key from 1 to 0         //
+        //----------------------------------------------------//
+        //op(string): the key whose value is to be toggled    //
+        //----------------------------------------------------//
+  
+        this[op] = 1 - (this[op]|0);
+      }
+    }
+
     return new Promise((resolve, reject) => {
 
       let operationButtons = document.getElementById("survival-base-screen__menu").childNodes;
@@ -109,6 +109,7 @@ async function makeSurvivalBaseScreen() {
         if (operationUnlock(op)) {
 
           operationButtons[i].classList.remove("inactive-button");
+
           operationButtons[i].onclick = async () => {
 
             playTone(randomNote());
