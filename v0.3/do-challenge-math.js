@@ -1,14 +1,19 @@
 let challengeTimer = {
   start: 0,
+  rawStart: 0,
   max: 5_000,
   add: (time) => {
     this.max += time;
   },
   timeStart: function() {
     this.start = performance.now();
+    this.rawStart = this.start;
   },
   get elapsed() {
     return performance.now() - this.start;
+  },
+  get rawElapsed() {
+    return performance.now() - this.rawStart;
   }
 }
 
@@ -16,7 +21,6 @@ let challengeDeets = {
   score: 0,
   totalTime: 0
 }
-
 
 async function makeChallengeInputScreen(challengeOperations) {
   //----------------------------------------------------//
@@ -65,7 +69,6 @@ async function challengeMathLoop(challengeOperations) {
   //The loop that handles all of the challenge logic    //
   //----------------------------------------------------//
 
-
   let problemDisplay = document.getElementById("challenge-input-screen__problem-display");
   let solutionDisplay = document.getElementById("challenge-input-screen__solution-display");
   let newProblem = true;
@@ -99,7 +102,7 @@ async function challengeMathLoop(challengeOperations) {
   while (!quit) {
 
     if (newProblem) {
-      problem = getChallengeProblem(challengeOperations, challengeTimer.elapsed);
+      problem = getChallengeProblem(challengeOperations, challengeTimer.rawElapsed);
     }
 
     problemDisplay.innerHTML = problem.equation;
@@ -109,7 +112,12 @@ async function challengeMathLoop(challengeOperations) {
       .then(() => {
         playChord(makeChord(chords.I, user.activeKey));
         newProblem = true;
-        challengeTimer.max += 2000;
+        if (challengeTimer.elapsed > 2000) {
+          challengeTimer.start += 2000;
+        } else {
+          challengeTimer.start += challengeTimer.elapsed;
+        }
+        
         challengeDeets.score += digitCount(problem.answer);
       })
       .catch(async (reject) => {
@@ -144,7 +152,7 @@ async function challengeMathLoop(challengeOperations) {
           case "time":
             clearInterval(challengeTimerCountdown);
             playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
-            challengeDeets.totalTime = challengeTimer.elapsed;
+            challengeDeets.totalTime = challengeTimer.rawElapsed;
             quit = true;
             await makeChallengeSummaryScreen();
             break;
@@ -157,6 +165,9 @@ async function challengeMathLoop(challengeOperations) {
 }
 
 function getChallengeProblem(challengeOperations, elapsed) {
+  //----------------------------------------------------//
+  //gets the problem for the challenge                  //
+  //----------------------------------------------------//
 
   elapsed = Math.floor(elapsed / 1000);
 
@@ -248,31 +259,10 @@ async function waitForChallengeAnswer(problem) {
   })
 }
 
-/*async function makeChallengeSummaryScreen() {
-
-  let summaryScreen = makeElement("main", "summary-screen", "screen");
-
-    let summaryDisplay = makeElement("header", "summary-screen__summary-display", "marquee");
-      summaryDisplay.innerHTML = "Challenge Complete!";
-    summaryScreen.appendChild(summaryDisplay);
-
-    let challengeStats = makeElement("section", "summary-screen__challenge-stats");
-      challengeStats.innerHTML = `Score: ${challengeDeets.score}<br>Total Time: ${challengeDeets.totalTime}`;
-    summaryScreen.appendChild(challengeStats);
-
-    let doneButton = makeButton("Done", null, "summary-screen__done-button", "big-button");
-    summaryScreen.appendChild(doneButton);
-
-  await fadeOut(document.body);
-  clearElement(document.body);
-  document.body.appendChild(inputScreen);
-  await fadeIn(document.body);
-
-  await waitForButton()
-      .then((exit) => {quit = exit});
-}*/
-
 async function makeChallengeSummaryScreen() {
+  //----------------------------------------------------//
+  //Makes the summary screen post challenge             //
+  //----------------------------------------------------//
 
   let summaryScreen = makeElement("main", "summary-screen", "screen");
 
@@ -281,7 +271,16 @@ async function makeChallengeSummaryScreen() {
     summaryScreen.appendChild(summaryDisplay);
 
     let challengeStats = makeElement("section", "summary-screen__challenge-stats");
-      challengeStats.innerHTML = `Score: ${challengeDeets.score}<br>Total Time: ${challengeDeets.totalTime}`;
+
+      let challengeScore = makeElement("div", "summary-display__challenge-stats__challenge-score");
+        challengeScore.innerHTML = `Score: ${challengeDeets.score}`;
+      challengeStats.appendChild(challengeScore);
+
+      let challengeTime = makeElement("div", "summary-display__challenge-stats__challenge-score");
+        let displayTime = (challengeDeets.totalTime / 1000).toPrecision(2)
+        challengeTime.innerHTML = `Total Time: ${displayTime} s`;
+      challengeStats.appendChild(challengeTime);
+
     summaryScreen.appendChild(challengeStats);
 
     let doneButton = makeButton("Done", null, "summary-screen__done-button", "big-button");
