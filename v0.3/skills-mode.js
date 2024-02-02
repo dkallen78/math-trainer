@@ -515,7 +515,7 @@ let addition = {
 let subtraction = {
   fundamentals: [
     /*0*/"Fundamentals",
-    /*1*/{
+    /*1 - Single-Digit Subtraction  I*/{
       name: "Single-Digit Subtraction I",
       id: ["subtraction", "fundamentals", 1],
       run: () => subWithin(1, 5),
@@ -526,7 +526,7 @@ let subtraction = {
         return false;
       }
     },
-    /*2*/{
+    /*2 - Single-Digit Subraction II*/{
       name: "Single-Digit Subtraction II",
       id: ["subtraction", "fundamentals", 2],
       run: () => subWithin(1, 10, true),
@@ -537,7 +537,7 @@ let subtraction = {
         return false;
       }
     },
-    /*3*/{
+    /*3 - Take from 10*/{
       name: "Take from 10",
       id: ["subtraction", "fundamentals", 3],
       run: () => takeFrom(1, 1, 1),
@@ -548,7 +548,7 @@ let subtraction = {
         return false;
       }
     },
-    /*4*/{
+    /*4 - Missing Term I*/{
       name: "Missing Term I",
       id: ["subtraction", "fundamentals", 4],
       run: () => subWithin(1, 10, false),
@@ -559,7 +559,7 @@ let subtraction = {
         return false;
       }
     },
-    /*5*/{
+    /*5 - Down to 10 I*/{
       name: "Down to 10 I",
       id: ["subtraction", "fundamentals", 5],
       run: () => downTo(1, 9, 1, 1, 10),
@@ -570,7 +570,7 @@ let subtraction = {
         return false;
       }
     },
-    /*6*/{
+    /*6 - Down to 10 II*/{
       name: "Down to 10 II",
       id: ["subtraction", "fundamentals", 6],
       run: () => downTo(1, 9, 1, 9, 10),
@@ -584,27 +584,29 @@ let subtraction = {
   ],
   partition: [
     /*0*/"Partition",
-    /*1*/{
+    /*1 - Crossing 10 I*/{
       name: "Crossing 10 I",
       id: ["subtraction", "partition", 1],
       run: () => subPartCrossing10s(1, 1, 1, 1),
-      test: () => {
-        if (user.subtraction.fundamentals[3]) {
-          return true;
-        }
-        return false;
-      }
+      test: () => user.subtraction.fundamentals[3]
     },
-    /*2*/{
+    /*2 - Crossing 10 II*/{
       name: "Crossing 10 II",
       id: ["subtraction", "partition", 2],
       run: () => subPartCrossing10s(1, 1, 1, 2),
-      test: () => {
-        if (user.subtraction.partition[1]) {
-          return true;
-        }
-        return false;
-      }
+      test: () => user.subtraction.partition[1]
+    },
+    /*3 - Crossing 10s I*/{
+      name: "Crossing 10s I",
+      id: ["subtraction", "partition", 3],
+      run: () => subPartCrossing10s(1, 9, 1, 1),
+      test: () => user.subtraction.partition[2]
+    },
+    /*4 - Crossing 10s II*/{
+      name: "crossing 10s II",
+      id: ["subtraction", "partition", 4],
+      run: () => subPartCrossing10s(1, 9, 1, 2),
+      test: () => user.subtraction.partition[3]
     }
   ]
 }
