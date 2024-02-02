@@ -462,3 +462,15 @@ That will be my task for tomorrow.
 * Investigate poppy phone sound (low priority for now)
 
 * Do something about `addWithin()` function
+
+## Update 2024-01-31
+
+### 23:00
+
+We have achieved math. I have the skeleton of the Survival challenge assembled and I've even got the animated stroke working as intended; I'm very happy with the effect. Next up is to make the time do something because right now it doesn't do anyting, although I do keep track of it. I need to have the challenge end when the time is up and have a score-display screen or something. I suppose I'll eventually have to keep track of scores but that's more of a long-term goal. For now I'm going to rest happy that I pulled this off and that it looks nice. Tomorrow we'll make a complete challenge.
+
+### Issues
+
+* Investigate poppy phone sound (low priority for now)
+
+* Do something about `addWithin()` function

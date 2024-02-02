@@ -1,16 +1,22 @@
 # [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quick-math.html)
 
-## Update 2024-01-31
+## Update 2024-02-01
 
-### 23:00
+### 23:15
 
-We have achieved math. I have the skeleton of the Survival challenge assembled and I've even got the animated stroke working as intended; I'm very happy with the effect. Next up is to make the time do something because right now it doesn't do anyting, although I do keep track of it. I need to have the challenge end when the time is up and have a score-display screen or something. I suppose I'll eventually have to keep track of scores but that's more of a long-term goal. For now I'm going to rest happy that I pulled this off and that it looks nice. Tomorrow we'll make a complete challenge.
+I have the survial challenge put together how I want it and that makes me really happy just because of how it all came together close to how I envisioned it. I did ask my wife to play with it on her phone and she didn't know what to do intuitively. She said she didn't understand how to confirm her answer input, so I think I need to put some kind of affordance into my number pad to make it clear that the `Submit` button is important.
+
+One issue I do see with the Survival Challenge is I'll often get addition by low numbers or even 0. That's just based on the way the problem-generating function is set up to produce a uniform distribution of answers, but I wonder if it might be better to abandon that principle in the pursuit of better difficulty scaling. I'll just have to try it and see how I like it I guess. 
+
+Tomorrow I should continue putting in more subtraction problems and maybe even start on multiplication. 
+
+The more I build this out, the more my past choices frustrate me and the more I want to build it more organized. I don't think it's time to do another rewrite/v0.4 but I do want to start thinking about how I can make everything easier to navigate within the IDE. It doesn't help that I've been building this over the past year off and on I guess.
 
 ### Issues
 
-* Investigate poppy phone sound (low priority for now)
+* Find a good threshold to unlock multiplication and division
 
-* Do something about `addWithin()` function
+* Look into better ways to structure things
 
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 
