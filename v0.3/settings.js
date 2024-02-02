@@ -37,16 +37,16 @@ async function makeSettingsScreen() {
         settingsScreenInfo.innerHTML = "Settings Menu"; 
       settingsScreen.appendChild(settingsScreenInfo);
 
-      let themeButton = makeButton("Theme", null, "settings-screen__theme-button", "bigButton");
+      let themeButton = makeButton("Theme", null, "settings-screen__theme-button", "big-button");
       settingsScreen.appendChild(themeButton);
 
-      let soundButton = makeButton("Sound", null, "settings-screen__sound-button", "bigButton");
+      let soundButton = makeButton("Sound", null, "settings-screen__sound-button", "big-button");
       settingsScreen.appendChild(soundButton);
 
-      let backButton = makeButton("Back", null, "settings-screen__back-button", "bigButton");
+      let backButton = makeButton("Back", null, "settings-screen__back-button", "big-button");
       settingsScreen.appendChild(backButton);
 
-      let tourButton = makeButton("Normal", null, "settings-screen__tour-button", "bigButton");
+      let tourButton = makeButton("Normal", null, "settings-screen__tour-button", "big-button");
         if (user.tour === true) {
           tourButton.innerHTML = "Tour";
         }
@@ -82,7 +82,7 @@ async function makeSettingsScreen() {
         }
       settingsScreen.appendChild(tourButton);
 
-      let fastButton = makeButton("Normal", null, "settings-screen__fast-button", "bigButton");
+      let fastButton = makeButton("Normal", null, "settings-screen__fast-button", "big-button");
         if (user.fast === true) {
           fastButton.innerHTML = "Fast";
         }

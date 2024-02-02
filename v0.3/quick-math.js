@@ -90,20 +90,20 @@ async function makeModeSelectScreen() {
 
     let modeSelectScreen = makeElement("main", "mode-select-screen", "screen");
 
-      let challengeButton = makeButton("Challenge", null, "mode-select-screen__challenge-button", "bigButton");
+      let challengeButton = makeButton("Challenge", null, "mode-select-screen__challenge-button", "big-button");
       modeSelectScreen.appendChild(challengeButton);
 
-      let skillsButton = makeButton("Skills", null, "mode-select-screen__skills-button", "bigButton");
+      let skillsButton = makeButton("Skills", null, "mode-select-screen__skills-button", "big-button");
       modeSelectScreen.appendChild(skillsButton);
 
-      let settingsButton = makeButton("Settings", null, "mode-select-screen__settings-button", "bigButton");
+      let settingsButton = makeButton("Settings", null, "mode-select-screen__settings-button", "big-button");
       modeSelectScreen.appendChild(settingsButton);
 
       /*if (localStorage.getItem("userData")) {
-        button = makeButton("Resume", null, "resumeButton", "bigButton");
+        button = makeButton("Resume", null, "resumeButton", "big-button");
         modeSelectScreen.appendChild(button);
 
-        button = makeButton("Clear Data", null, "clearDataButton", "bigButton");
+        button = makeButton("Clear Data", null, "clearDataButton", "big-button");
         modeSelectScreen.appendChild(button);
       }*/
       

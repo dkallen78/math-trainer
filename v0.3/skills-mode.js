@@ -1,14 +1,15 @@
 async function makeSkillsStartScreen() {
-  /*
-  //Makes the initial Skills Selection screen where the user can 
-  //  select which operation they want to practice
-  */
+  //----------------------------------------------------//
+  //Makes the initial Skills Selection screen where the //
+  //  user can select which operation they want         //
+  //  to practice                                       //
+  //----------------------------------------------------//
 
   async function waitForButton() {
     
     return new Promise((resolve, reject) => {
 
-      let operationButtons = document.getElementById("skillsSelect").childNodes;
+      let operationButtons = document.getElementById("operation-select-screen__operation-grid").childNodes;
 
       for (let i = 0; i < operationButtons.length; i++) {
         let op = operationButtons[i].innerHTML;
@@ -17,13 +18,13 @@ async function makeSkillsStartScreen() {
 
           operationButtons[i].onclick = async () => {
             playTone(randomNote());
-            await makeOperationBaseScreen(op);
+            await makeSkillsDrillsScreen(op);
             resolve(false);
           }
         }
       }
 
-      let backButton = document.getElementById("skillsScreenBackButton");
+      let backButton = document.getElementById("operation-select-screen__operation-grid__back-button");
       backButton.onclick = async () => {
         playTone(randomNote());
         resolve(true);
@@ -35,34 +36,34 @@ async function makeSkillsStartScreen() {
   let quit = false;
 
   while (!quit) {
-    let skillsSelectScreen = makeElement("div", "skillsSelectScreen", "screen");
+    let operationSelectScreen = makeElement("main", "operation-select-screen", "screen");
 
-      let skillsSelectScreenInfo = makeElement("div", "skillsSelectScreenInfo", "marquee");
-        skillsSelectScreenInfo.innerHTML = "Select an Operation";
-      skillsSelectScreen.appendChild(skillsSelectScreenInfo);
+      let operationSelectScreenInfo = makeElement("header", "operation-select-screen__info", "marquee");
+        operationSelectScreenInfo.innerHTML = "Select an Operation";
+      operationSelectScreen.appendChild(operationSelectScreenInfo);
 
-      let skillsSelect = makeElement("div", "skillsSelect");
+      let operationGrid = makeElement("section", "operation-select-screen__operation-grid");
 
-        let additionButton = makeButton("+", null, "additionButton", "inactive-button");
-        skillsSelect.appendChild(additionButton);
+        let additionButton = makeButton("+", null, "operation-select-screen__operation-grid__addition-button", "inactive-button");
+        operationGrid.appendChild(additionButton);
 
-        let subtractionButton = makeButton("-", null, "subtractionButton", "inactive-button");
-        skillsSelect.appendChild(subtractionButton);
+        let subtractionButton = makeButton("-", null, "operation-select-screen__operation-grid__subtraction-button", "inactive-button");
+        operationGrid.appendChild(subtractionButton);
 
-        let multiplicationButton = makeButton("×", null, "multiplicationButton", "inactive-button");
-        skillsSelect.appendChild(multiplicationButton);
+        let multiplicationButton = makeButton("×", null, "operation-select-screen__operation-grid__multiplication-button", "inactive-button");
+        operationGrid.appendChild(multiplicationButton);
 
-        let divisionButton = makeButton("÷", null, "divisionButton", "inactive-button");
-        skillsSelect.appendChild(divisionButton);
+        let divisionButton = makeButton("÷", null, "operation-select-screen__operation-grid__division-button", "inactive-button");
+        operationGrid.appendChild(divisionButton);
 
-        let backButton = makeButton("Back", null, "skillsScreenBackButton", "bigButton");
-        skillsSelect.appendChild(backButton);
+        let backButton = makeButton("Back", null, "operation-select-screen__operation-grid__back-button", "big-button");
+        operationGrid.appendChild(backButton);
 
-      skillsSelectScreen.appendChild(skillsSelect);
+      operationSelectScreen.appendChild(operationGrid);
 
     await fadeOut(document.body);
     clearElement(document.body);
-    document.body.appendChild(skillsSelectScreen);
+    document.body.appendChild(operationSelectScreen);
     await fadeIn(document.body);
 
     await waitForButton()
@@ -71,15 +72,13 @@ async function makeSkillsStartScreen() {
   }
 }
 
-async function makeOperationBaseScreen(operation) {
-  /*
+async function makeSkillsDrillsScreen(operation) {
+  //----------------------------------------------------//
   //Makes the screen with the categories of skills to   //
   //  choose from                                       //
   //----------------------------------------------------//
   //operation(string): +, -, ×, or ÷                    //
   //----------------------------------------------------//
-  //
-  */
 
   async function waitForButton() {
     return new Promise((resolve, reject) => {
@@ -87,7 +86,7 @@ async function makeOperationBaseScreen(operation) {
       for (let i = 0; i < skills[operation].length; i++) {
 
         if (skills[operation][i][1].test()) {
-          let opButton = document.getElementById(`opSkills${i}`);
+          let opButton = document.getElementById(`op-skills-${i}`);
           opButton.classList.remove("inactive-button");
 
           opButton.onclick = async () => {
@@ -98,7 +97,7 @@ async function makeOperationBaseScreen(operation) {
         }
       }
 
-      let backButton = document.getElementById("skillCategoryScreenBackButton");
+      let backButton = document.getElementById("skill-group-screen__back-button");
       backButton.onclick = async () => {
         playTone(randomNote());
         resolve(true);
@@ -110,23 +109,23 @@ async function makeOperationBaseScreen(operation) {
 
   while (!quit) {
 
-    let operationBaseScreen = makeElement("div", "operationBaseScreen", "screen");
+    let skillGroupScreen = makeElement("main", "skill-group-screen", "screen");
 
-      let operationBaseScreenInfo = makeElement("div", "operationBaseScreenInfo", "marquee");
-        operationBaseScreenInfo.innerHTML = "Skills Drills";
-      operationBaseScreen.appendChild(operationBaseScreenInfo);
+      let skillGroupScreenInfo = makeElement("header", "skill-group-screen__info", "marquee");
+        skillGroupScreenInfo.innerHTML = "Skills Drills";
+      skillGroupScreen.appendChild(skillGroupScreenInfo);
 
       for (let i = 0; i < skills[operation].length; i++) {
-        let skillButton = makeButton(skills[operation][i][0], null, `opSkills${i}`, "bigButton", "inactive-button");
-        operationBaseScreen.appendChild(skillButton);
+        let skillButton = makeButton(skills[operation][i][0], null, `op-skills-${i}`, "big-button", "inactive-button");
+        skillGroupScreen.appendChild(skillButton);
       }
 
-      let backButton = makeButton("Back", null, "skillCategoryScreenBackButton", "bigButton");
-      operationBaseScreen.appendChild(backButton);
+      let backButton = makeButton("Back", null, "skill-group-screen__back-button", "big-button");
+      skillGroupScreen.appendChild(backButton);
 
     await fadeOut(document.body);
     clearElement(document.body);
-    document.body.appendChild(operationBaseScreen);
+    document.body.appendChild(skillGroupScreen);
     await fadeIn(document.body);
 
     await waitForButton()
@@ -147,38 +146,32 @@ async function makeSkillsScreen(skill) {
 
   async function waitForButton() {
 
-    //let activeSkill = 0;
-
     return new Promise((resolve, reject) => {
 
-      let skillDetail = document.getElementById("skillDetail");
+      let skillDetail = document.getElementById("skills-screen__skill-detail");
 
       for (let i = 1; i < skill.length; i++) {
-
         //
         //Checks to see if the skill is available, if so, it 
         //  adds an onclick function
         if (skill[i].test()) {
-          let skillButton = document.getElementById(`skillButton${i}`);
+          let skillButton = document.getElementById(`skills-screen__skill-grid__skill-button-${i}`);
           let userKey = user[skill[i].id[0]][skill[i].id[1]][skill[i].id[2]];
 
           skillButton.classList.remove("inactive-button");
-          
           //
           //If the skill is available, but hasn't been completed yet, 
           //  it's given a special style to indicate it's new
           if (typeof userKey === "undefined") {
-            skillButton.classList.add("readyButton");
+            skillButton.classList.add("ready-button");
           }
           
           skillButton.onclick = async () => {
             playTone(randomNote());
-            //activeSkill = i;
             skillDetail.innerHTML = skill[i].name;
-            
             //
             //When a skill has been selected, it makes the Start button clickable
-            let startButton = document.getElementById("selectSkillButton");
+            let startButton = document.getElementById("skills-screen__start-button");
             startButton.classList.remove("inactive-button");
             startButton.onclick = async () => {
               playTone(randomNote());
@@ -189,7 +182,7 @@ async function makeSkillsScreen(skill) {
         }
       }
 
-      let backButton = document.getElementById("skillsListScreenBackButton");
+      let backButton = document.getElementById("skills-screen__back-button");
       backButton.onclick = async () => {
         playTone(randomNote());
         resolve(true);
@@ -201,30 +194,28 @@ async function makeSkillsScreen(skill) {
 
   while (!quit) {
 
-    let skillsScreen = makeElement("div", "skillsScreen", "screen");
+    let skillsScreen = makeElement("main", "skills-screen", "screen");
 
-      let skillsScreenInfo = makeElement("div", "skillsScreenInfo", "marquee");
+      let skillsScreenInfo = makeElement("heading", "skills-screen__info", "marquee");
         skillsScreenInfo.innerHTML = skill[0];
       skillsScreen.appendChild(skillsScreenInfo);
-
       //
       //Gives a brief description of the selected skill
-      let skillDetail = makeElement("div", "skillDetail");
+      let skillDetail = makeElement("section", "skills-screen__skill-detail");
       skillsScreen.appendChild(skillDetail);
-
       //
       //Makes the grid of numbers that represent the skills
-      let skillGrid = makeElement("div", "skillGrid");
+      let skillGrid = makeElement("section", "skills-screen__skill-grid");
         for (let i = 1; i < skill.length; i++) {
-          let button = makeButton(i, null, `skillButton${i}`, "skillButton", "inactive-button");
+          let button = makeButton(i, null, `skills-screen__skill-grid__skill-button-${i}`, "skill-button", "inactive-button");
           skillGrid.appendChild(button);
         }
       skillsScreen.appendChild(skillGrid);
 
-      let selectSkillButton = makeButton("Start", null, "selectSkillButton", "bigButton", "inactive-button");
-      skillsScreen.appendChild(selectSkillButton);
+      let startButton = makeButton("Start", null, "skills-screen__start-button", "big-button", "inactive-button");
+      skillsScreen.appendChild(startButton);
 
-      let backButton = makeButton("Back", null, "skillsListScreenBackButton", "bigButton");
+      let backButton = makeButton("Back", null, "skills-screen__back-button", "big-button");
       skillsScreen.appendChild(backButton);
 
       /*

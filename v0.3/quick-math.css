@@ -24,7 +24,6 @@ button {
 }
 
 .marquee {
-  height: 10vw;
   font-size: 10vw;
   text-align: center;
   color: var(--text-color);
@@ -37,28 +36,10 @@ button {
   margin: 1rem;
 }
 
-.bigButton {
-  margin: 1vh;
-  padding: 1vh;
-  font-size: 2rem;
-  font-family: sans-serif;
-  border: .2rem solid var(--border-color);
-  border-radius: 1rem;
-}
-
 .big-button {
   margin: 1vh;
   padding: 1vh;
   font-size: 2rem;
-  font-family: sans-serif;
-  border: .2rem solid var(--border-color);
-  border-radius: 1rem;
-}
-
-.mediumButton {
-  margin: .5rem 1rem;
-  padding: .25rem;
-  font-size: 1.5rem;
   font-family: sans-serif;
   border: .2rem solid var(--border-color);
   border-radius: 1rem;
@@ -73,14 +54,10 @@ button {
   border-radius: 1rem;
 }
 
-.readyButton {
+.ready-button {
   animation-name: buttonPulse;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
-}
-
-.inactiveButton {
-  filter: opacity(25%);
 }
 
 .inactive-button {
@@ -154,6 +131,11 @@ button {
   display: flex;
   flex-direction: column;
 }
+
+/*
+  Challenges
+    Survival
+*/
 
 #survival-base-screen__header {
   margin: 2vh 0;
@@ -230,28 +212,28 @@ button {
   Select an Operation screen
 */
 
-#skillsSelectScreen {
+#operation-select-screen {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   height: 95vh;
 }
 
-#skillsSelect {
+#operation-select-screen__operation-grid {
   display: grid;
-  grid-template-columns: 40vw 40vw;
-  grid-template-rows: 40vw 40vw auto;
+  grid-template-columns: 25vh 25vh;
+  grid-template-rows: 25vh 25vh auto;
   justify-content: center;
 }
 
-#skillsSelect > button {
+#operation-select-screen__operation-grid > button {
   margin: .25rem;
   font-size: 4rem;
   border: .2rem solid var(--border-color);
   border-radius: 1rem;
 }
 
-#skillsScreenBackButton {
+#operation-select-screen__operation-grid__back-button {
   grid-column: 1 / 3;
 }
 
@@ -259,13 +241,13 @@ button {
   Select skill category screen
 */
 
-#operationBaseScreen {
+#skill-group-screen {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-#operationBaseScreenInfo {
+#skill-group-screen__info {
   margin: 5vh 0 5vh 0;
 }
 
@@ -273,27 +255,27 @@ button {
   Select individual skills screen
 */
 
-#skillsScreen {
+#skills-screen {
   display: grid;
   grid-template-rows: 10% 15% auto auto auto;
   height: 95vh;
   align-content: start;
 }
 
-#skillDetail {
+#skills-screen__skill-detail {
   color: var(--text-color);
   text-align: center;
   font-size: clamp(1rem, 3rem, 8vw);
 }
 
-#skillGrid {
+#skills-screen__skill-grid {
   display: grid;
   grid-template-columns: auto auto auto auto;
   justify-content: space-evenly;
   row-gap: .5rem;
 }
 
-.skillButton {
+.skill-button {
   height: 3rem;
   width: 4rem;
   font-size: 1.5rem;
@@ -301,6 +283,10 @@ button {
   border: .2rem solid var(--border-color);
   border-radius: .5rem;
 }
+
+/*
+  Skill practice math input screen
+*/
 
 #skill-input-screen {
   display: grid;
