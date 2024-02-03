@@ -384,18 +384,18 @@ function compIntro(mode) {
       break;
     case 3:
       solutions = [
-        [a, `${b} + ${a} - ${b} = ?`],
-        [a, `${b} + ? - ${b} = ${a}`],
-        [a, `${a} = ${b} + ? - ${b}`],
-        [a, `? = ${b} + ${a} - ${b}`]
+        [a, `${stroke(b)}&nbsp+ ${a} -&nbsp${stroke(b)}&nbsp= ?`],
+        [a, `${stroke(b)}&nbsp+ ? -&nbsp${stroke(b)}&nbsp= ${a}`],
+        [a, `${a} =&nbsp${stroke(b)}&nbsp+ ? -&nbsp${stroke(b)}`],
+        [a, `? =&nbsp${stroke(b)}&nbsp+ ${a} -&nbsp${stroke(b)}`]
       ];
       break;
     case 4:
       solutions = [
-        [b, `${b} + ${a} - ? = ${a}`],
-        [b, `? + ${a} - ${b} = ${a}`],
-        [b, `${a} = ? + ${a} - ${b}`],
-        [b, `${a} = ${b} + ${a} - ?`]
+        [b, `${stroke(b)}&nbsp+ ${a} -&nbsp${stroke("?")}&nbsp= ${a}`],
+        [b, `${stroke("?")}&nbsp+ ${a} -&nbsp${stroke(b)}&nbsp= ${a}`],
+        [b, `${a} =&nbsp${stroke("?")}&nbsp+ ${a} -&nbsp${stroke(b)}`],
+        [b, `${a} =&nbsp${stroke(b)}&nbsp+ ${a} -&nbsp${stroke("?")}`]
       ];
       break;
     
