@@ -171,19 +171,33 @@ function add3(minSum, maxSum) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
-function addComp() {
+function addComp(aMin, aMax, aMod, cMin, cMax, cMod) {
   /*----------------------------------------------------//
   //Creates a decomposition problem                     //
   //----------------------------------------------------//
+  //aMin(integer): minimum value of the number to be    //
+  //  compensated                                       //
+  //aMax(integer): maximum value of the number to be    //
+  //  compensated                                       //
+  //aMod(integer): exponential modifier of the number   //
+  //  to be compensated                                 //
+  //cMin(integer): minimum value of the number by which //
+  //  a is to be compensated                            //
+  //cMax(integer): maximum value of the number by which //
+  //  a is to be compensated                            //
+  //cMod(integer): exponential modifier of the number   //
+  //  by which a is to be compensated                   //
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
   //----------------------------------------------------*/
 
+  aMod = 10 ** aMod;
+  cMod = 10 ** cMod;
 
-  let c = rnd(1, 8);
-  let a = 10 - c;
-  let b = rnd(c + 1, 9);
+  let c = rnd(cMin, cMax) * cMod;
+  let a = (rnd(aMin, aMax) * aMod) - c;
+  let b = rnd(c + (1 * cMod), 9 * cMod);
 
   let solutions = [
     [c, `${a} +&nbsp${stroke(b)}&nbsp=&nbsp${box(`${a} +&nbsp${stroke("?")}`)}&nbsp+&nbsp${stroke(b - c)}`],

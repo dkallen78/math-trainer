@@ -503,11 +503,17 @@ let addition = {
       run: () => compIntro(3),
       test: () => user.addition.compensation[2]
     },
-    /*4 - Give and Take IV*/{
-      name: "Give and Take IV",
+    /*4 - Compensation I*/{
+      name: "Compensation I",
       id: ["addition", "compensation", 4],
-      run: () => addComp(),
+      run: () => addComp(1, 1, 1, 1, 4, 0),
       test: () => user.addition.compensation[3]
+    },
+    /*5 - Compensation II*/{
+      name: "Compensation II",
+      id: ["addition", "compensation", 5],
+      run: () => addComp(2, 9, 1, 1, 4, 0),
+      test: () => user.addition.compensation[4]
     }
   ]
 }
