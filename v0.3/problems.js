@@ -73,17 +73,35 @@ function within(aMin, aMax) {
 }*/
 
 //-----------------------------------------------------------
-function stroke(num) {
-  let text = num.toString(10);
+function stroke(text) {
+  //----------------------------------------------------//
+  //Places the input text into a custom <span>          //
+  //----------------------------------------------------//
+  //text(string): text to be placed in the <span>       //
+  //----------------------------------------------------//
+  //return(string): a pair of <span> tags between which //
+  //  the input text is placed                          //
+  //----------------------------------------------------//
+
+  if (typeof text === "number") text = text.toString(10);
   return `<span class="span-stroke">${text}</span>`;
 }
 
-function box(exp) {
-  return `<span class="span-box">${exp}</span>`;
+function box(text) {
+  //----------------------------------------------------//
+  //Places the input text into a custom <span>          //
+  //----------------------------------------------------//
+  //text(string): text to be placed in the <span>       //
+  //----------------------------------------------------//
+  //return(string): a pair of <span> tags between which //
+  //  the input text is placed                          //
+  //----------------------------------------------------//
+  
+  return `<span class="span-box">${text}</span>`;
 }
 
 function add(aMin, aMax, aMod, bMin, bMax, bMod) {
-  /*----------------------------------------------------//
+  //----------------------------------------------------//
   //Creates an addition problem based on the parameters //
   //----------------------------------------------------//
   //aMin(integer): smallest possible value for the      //
@@ -103,7 +121,7 @@ function add(aMin, aMax, aMod, bMin, bMax, bMod) {
   //  equation and a string representation of it        //
   //----------------------------------------------------//
   //POTENTIALLY UNBALANCED - TEST IMPLEMENTATION        //
-  //----------------------------------------------------*/
+  //----------------------------------------------------//
   
   
   let a = rnd(aMin, aMax) * (10 ** aMod);
