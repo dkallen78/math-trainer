@@ -384,12 +384,21 @@ function compIntro(mode) {
       break;
     case 3:
       solutions = [
+        [a, `${b} + ${a} - ${b} = ?`],
+        [a, `${b} + ? - ${b} = ${a}`],
+        [a, `${a} = ${b} + ? - ${b}`],
+        [a, `? = ${b} + ${a} - ${b}`]
+      ];
+      break;
+    case 4:
+      solutions = [
         [b, `${b} + ${a} - ? = ${a}`],
         [b, `? + ${a} - ${b} = ${a}`],
         [b, `${a} = ? + ${a} - ${b}`],
         [b, `${a} = ${b} + ${a} - ?`]
       ];
       break;
+    
   }
 
   return solutions[rnd(0, solutions.length - 1)];
