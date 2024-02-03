@@ -75,7 +75,11 @@ function within(aMin, aMax) {
 //-----------------------------------------------------------
 function stroke(num) {
   let text = num.toString(10);
-  return `<span class="span-stroke">${text}</span>`
+  return `<span class="span-stroke">${text}</span>`;
+}
+
+function box(exp) {
+  return `<span class="span-box">${exp}</span>`;
 }
 
 function add(aMin, aMax, aMod, bMin, bMax, bMod) {
@@ -182,8 +186,8 @@ function addComp() {
   let b = rnd(c + 1, 9);
 
   let solutions = [
-    [c, `${a} + ${b} = (${a} + ?) + (${b} - ?)`],
-    [c, `(${a} + ?) + (${b} - ?) = ${a} + ${b}`]
+    [c, `${a} +&nbsp${stroke(b)}&nbsp=&nbsp${box(`${a} +&nbsp${stroke("?")}`)}&nbsp+&nbsp${stroke(b - c)}`],
+    [c, `${box(`${a} +&nbsp${stroke("?")}`)}&nbsp+&nbsp${stroke(b - c)}&nbsp= ${a} +&nbsp${stroke(b)}`]
   ]
 
   return solutions[rnd(0, solutions.length - 1)];

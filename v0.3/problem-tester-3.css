@@ -21,6 +21,7 @@ button {
   height: 2rem;
   padding: .5rem;
   font-size: 2em;
+  font-family: monospace;
 }
 
 #problem-analyzer {
@@ -67,4 +68,16 @@ input {
 #svgBox {
   height: 47.5vw;
   width: 95vw;
+}
+
+.span-box {
+  padding: .25rem;
+  border: .15rem solid black;
+  border-radius: .5rem;
+}
+
+.span-stroke {
+  color: white;
+  font-weight: bold;
+  -webkit-text-stroke: .05rem black;
 }

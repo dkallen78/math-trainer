@@ -1,7 +1,7 @@
 //let testFunc = () => add(1, 999, 0, 1, 999, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
 //let testFunc = () => add(1, 1, 1, 1, 9, 0);
-let testFunc = () => subPartCrossing10s(1, 9, 1, 2);
+let testFunc = () => addComp(1, 9, 1, 2);
 
 
 function makeSVG(type, id, ...classes) {
