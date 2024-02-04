@@ -531,67 +531,37 @@ let subtraction = {
       name: "Single-Digit Subtraction I",
       id: ["subtraction", "fundamentals", 1],
       run: () => subWithin(1, 5),
-      test: () => {
-        if (user.addition.partition[1]) {
-          return true;
-        }
-        return false;
-      }
+      test: () => user.addition.partition[1]
     },
     /*2 - Single-Digit Subraction II*/{
       name: "Single-Digit Subtraction II",
       id: ["subtraction", "fundamentals", 2],
       run: () => subWithin(1, 10, true),
-      test: () => {
-        if (user.subtraction.fundamentals[1]) {
-          return true;
-        }
-        return false;
-      }
+      test: () => user.subtraction.fundamentals[1]
     },
     /*3 - Take from 10*/{
       name: "Take from 10",
       id: ["subtraction", "fundamentals", 3],
       run: () => takeFrom(1, 1, 1),
-      test: () => {
-        if (user.subtraction.fundamentals[2]) {
-          return true;
-        }
-        return false;
-      }
+      test: () => user.subtraction.fundamentals[2]
     },
     /*4 - Missing Term I*/{
       name: "Missing Term I",
       id: ["subtraction", "fundamentals", 4],
       run: () => subWithin(1, 10, false),
-      test: () => {
-        if (user.subtraction.fundamentals[3]) {
-          return true;
-        }
-        return false;
-      }
+      test: () => user.subtraction.fundamentals[3]
     },
     /*5 - Down to 10 I*/{
       name: "Down to 10 I",
       id: ["subtraction", "fundamentals", 5],
       run: () => downTo(1, 9, 1, 1, 10),
-      test: () => {
-        if (user.subtraction.fundamentals[4]) {
-          return true;
-        }
-        return false;
-      }
+      test: () => user.subtraction.fundamentals[4]
     },
     /*6 - Down to 10 II*/{
       name: "Down to 10 II",
       id: ["subtraction", "fundamentals", 6],
       run: () => downTo(1, 9, 1, 9, 10),
-      test: () => {
-        if (user.subtraction.fundamentals[5]) {
-          return true;
-        }
-        return false;
-      }
+      test: () => user.subtraction.fundamentals[5]
     }
   ],
   partition: [
@@ -620,12 +590,27 @@ let subtraction = {
       run: () => subPartCrossing10s(1, 9, 1, 2),
       test: () => user.subtraction.partition[3]
     }
+  ],
+  decomposition: [
+    /*0*/"Decomposition",
+    /*1 - Decomposition I*/{
+      name: "Decomposition I",
+      id: ["subtraction", "decomposition", 1],
+      run: () => subDecomp(1, 9, 1, 1, 1),
+      test: () => user.subtraction.partition[3]
+    },
+    /*2 - Decomposition II*/{
+      name: "Decomposition II",
+      id: ["subtraction", "decomposition", 2],
+      run: () => subDecomp(1, 9, 2, 9, 2),
+      test: () => user.subtraction.decomposition[1]
+    }
   ]
 }
 
 let skills = {
   "+": [addition.fundamentals, addition.reorder, addition.placeValue, addition.partition, addition.compensation],
-  "-": [subtraction.fundamentals, subtraction.partition],
+  "-": [subtraction.fundamentals, subtraction.partition, subtraction.decomposition],
   "×": [],
   "÷": []
 }

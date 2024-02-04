@@ -337,15 +337,16 @@ let user = {
     return ((this.keyOctave - 2) * 12) + this.keyNote;
   },
   addition: {
-    fundamentals: [1, 1, 1, 1, 1],
+    fundamentals: [],
     placeValue: [],
-    reorder: [1, 1, 1],
+    reorder: [],
     partition: [],
     compensation: []
   },
   subtraction: {
     fundamentals: [],
-    partition: []
+    partition: [],
+    decomposition: []
   },
   tour: false,
   fast: false,

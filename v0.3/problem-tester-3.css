@@ -14,14 +14,11 @@ button {
 }
 
 #problem-output {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  column-gap: 1em;
-  justify-content: center;
   height: 2rem;
   padding: .5rem;
   font-size: 2em;
   font-family: monospace;
+  text-align: center;
 }
 
 #problem-analyzer {
@@ -30,13 +27,13 @@ button {
   align-items: center;
 }
 
-#solution {
+/*#solution {
   text-align: right;
 }
 
 #equation {
   text-align: left;
-}
+}*/
 
 #analysis-inputs {
   display: grid;

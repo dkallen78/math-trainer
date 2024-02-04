@@ -748,3 +748,37 @@ function subPartCrossing10s(aMin, aMax, aMod, mode) {
   return [(a - b), `${(a - b) + c} - ${c} = ${(a - b) + c} - ? - ${b}`];
   //return [(c - b), `${(a - b) + c} - ${c} = ${(a - b) + c} - ? - ${b}`];
 }
+
+function subDecomp(aMin, aMax, tenMin, tenMax, mode) {
+
+  let a = rnd(aMin, aMax);
+  let aTen = rnd(tenMin, tenMax);
+  let b = rnd(a + 1, aMax + 1);
+  let bTen = rnd(aTen, tenMax);
+  aTen *= 10;
+  b += bTen * 10
+  let solutions = [];
+
+  switch(mode) {
+    case 1:
+      solutions = [
+        [a, `${b} - ${a + aTen} = ${b} - ${aTen} - ?`],
+        [a, `${b} - ${aTen} - ? = ${b} - ${a + aTen}`]
+      ];
+      break;
+    case 2:
+      solutions = [
+        [aTen, `${b} - ${a + aTen} = ${b} - ? - ${a}`],
+        [aTen, `${b} - ? - ${a} = ${b} - ${a + aTen}`]
+      ];
+      break;
+    case 3:
+      solutions = [
+        [b, `test`],
+        //[aTen, `${b} - ? - ${a} = ${b} - ${a + aTen}`]
+      ];
+      break;
+  }
+
+  return solutions[rnd(0, solutions.length - 1)];
+}
