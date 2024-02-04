@@ -602,8 +602,20 @@ let subtraction = {
     /*2 - Decomposition II*/{
       name: "Decomposition II",
       id: ["subtraction", "decomposition", 2],
-      run: () => subDecomp(1, 9, 2, 9, 2),
+      run: () => subNoBorrow(1, 8, 0, 0),
       test: () => user.subtraction.decomposition[1]
+    },
+    /*3 - Decomposition III*/{
+      name: "Decomposition III",
+      id: ["subtraction", "decomposition", 3],
+      run: () => subDecomp(1, 9, 2, 9, 2),
+      test: () => user.subtraction.decomposition[2]
+    },
+    /*4 - Decomposition IV*/{
+      name: "Decomposition IV",
+      id: ["subtraction", "decomposition", 4],
+      run: () => subNoBorrow(1, 8, 2, 8),
+      test: () => user.subtraction.decomposition[3]
     }
   ]
 }

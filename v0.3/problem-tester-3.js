@@ -1,7 +1,7 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
 //let testFunc = () => add(1, 1, 1, 1, 9, 0);
-let testFunc = () => subDecomp(1, 9, 1, 1, 3);
+let testFunc = () => subNoBorrow(1, 8, 2, 8);
 
 
 function makeSVG(type, id, ...classes) {

@@ -750,6 +750,26 @@ function subPartCrossing10s(aMin, aMax, aMod, mode) {
 }
 
 function subDecomp(aMin, aMax, tenMin, tenMax, mode) {
+  //----------------------------------------------------//
+  //Creates a subtraction decomposition problem where   //
+  //  the user has to find one of the subtrahends       //
+  //----------------------------------------------------//
+  //aMin(integer): the minimum value of ones place of   //
+  //  the subtrahend to be generated                    //
+  //aMax(integer): the maximum value of ones place of   //
+  //  the subtrahend to be generated                    //
+  //tenMin(integer): the minimum value of the tens place//
+  //  of the subtrahend to be generated                 //
+  //tenMax(integer): the maximum value of the tens place//
+  //  of the subtrahend to be generated                 //
+  //mode(integer):  determines what format the solution //
+  //  will take                                         //
+  //    1: find the missing ones part                   //
+  //    2: find the missing tens part                   //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
 
   let a = rnd(aMin, aMax);
   let aTen = rnd(tenMin, tenMax);
@@ -772,13 +792,41 @@ function subDecomp(aMin, aMax, tenMin, tenMax, mode) {
         [aTen, `${b} - ? - ${a} = ${b} - ${a + aTen}`]
       ];
       break;
-    case 3:
-      solutions = [
-        [b, `test`],
-        //[aTen, `${b} - ? - ${a} = ${b} - ${a + aTen}`]
-      ];
-      break;
   }
+
+  return solutions[rnd(0, solutions.length - 1)];
+}
+
+function subNoBorrow(dMin, dMax, dTenMin, dTenMax) {
+  //----------------------------------------------------//
+  //Creates a two-digit subtraction problem that does   //
+  //  not need borrowing to be solved                   //
+  //----------------------------------------------------//
+  //dMin(integer): the minimum value of the ones place  //
+  //  of the difference                                 //
+  //dMax(integer): the maximum value of the ones place  //
+  //  of the difference                                 //
+  //dTenMin(integer): the minimum value of the tens     //
+  //  place of the difference                           //
+  //dTenMax(integer): the maximum value of the tens     //
+  //  place of the difference                           //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+
+  let d = rnd(dMin, dMax);
+  let dTen = rnd(dTenMin, dTenMax);
+  let s = rnd(dMin, dMax + 1 - d);
+  let sTen = rnd (1, dTenMax + 1 - dTen);
+  d += dTen * 10;
+  s += sTen * 10;
+  let m = d + s;
+
+  let solutions = [
+    [d, `${m} - ${s} = ?`],
+    [d, `? = ${m} - ${s}`]
+  ]
 
   return solutions[rnd(0, solutions.length - 1)];
 }
