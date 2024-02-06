@@ -1017,3 +1017,22 @@ function multiply(mdMin, mdMax, mrMin, mrMax, mode) {
   return solutions[rnd(0, solutions.length - 1)];
 
 }
+
+function distributiveProp(mdMin, mdMax, mrMin, mrMax, splitMin, splitMax) {
+
+  let md = rnd(mdMin, mdMax);
+  let mr = rnd(mrMin, mrMax);
+  let split = rnd(splitMin, splitMax);
+  mr -= split;
+
+  let solutions = [
+    [mr + split, `(${md} ×&nbsp${stroke(split)}) + (${md} ×&nbsp${stroke(mr)}) = ${md} ×&nbsp${stroke("?")}`],
+    [mr + split, `(${stroke(split)}&nbsp× ${md}) + (${stroke(mr)}&nbsp× ${md}) =&nbsp${stroke("?")}&nbsp× ${md}`],
+    [mr + split, `${md} ×&nbsp${stroke("?")}&nbsp= (${md} ×&nbsp${stroke(split)}) + (${md} ×&nbsp${stroke(mr)})`],
+    [mr + split, `${stroke("?")}&nbsp× ${md} = (${stroke(split)}&nbsp× ${md}) + (${stroke(mr)}&nbsp× ${md})`]
+  ];
+
+  return solutions[rnd(0, solutions.length - 1)];
+
+return [mr + split, `(${md} ×&nbsp${stroke(split)}) + (${md} ×&nbsp${stroke(mr)}) = ${md} ×&nbsp${stroke("?")}`];
+}

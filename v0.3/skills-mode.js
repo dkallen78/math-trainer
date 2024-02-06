@@ -624,9 +624,9 @@ let multiplication = {
   fundamentals: [
     //0
     "Fundamentals",
-    //1 - Repeated Addition
+    //1 - Repeated Addition I
     {
-      name: "Repeated Addition",
+      name: "Repeated Addition I",
       id: ["multiplication", "fundamentals", 1],
       run: () => repeatedAddition(),
       test: () => user.addition.fundamentals[7]
@@ -658,6 +658,13 @@ let multiplication = {
       id: ["multiplication", "fundamentals", 5],
       run: () => reorder(1, 9, 3, "×"),
       test: () => user.multiplication.fundamentals[4]
+    },
+    //6 - Repeated Addition II
+    {
+      name: "Repeated Addition II",
+      id: ["multiplication", "fundamentals", 6],
+      run: () => distributiveProp(2, 9, 4, 6, 2, 3),
+      test: () => user.multiplication.fundamentals[5]
     }
   ]
 }

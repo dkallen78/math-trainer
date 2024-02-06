@@ -1,7 +1,7 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
 //let testFunc = () => add(1, 1, 1, 1, 9, 0);
-let testFunc = () => newReorder(1, 9, 2, "×");
+let testFunc = () => reorder(1, 9, 3, "×");
 
 
 function makeSVG(type, id, ...classes) {
@@ -37,17 +37,21 @@ function testOnce() {
 function analyzeFunction() {
 
   console.clear();
-
+  //
+  //Gets the number of times to get an answer from the function
   let iterations = document.getElementById("iterations").value;
-
+  //
+  //The object that will hold our statistics
   let stats = {};
-
+  //
+  //The loop that runs the function
   for (let i = 0; i < iterations; i++) {
 
     let problem = testFunc();
     let answer = problem[0];
-
-
+    //
+    //If we have produced the answer before, increment the count, 
+    //  if not, create an object to track stats for that answer
     if (answer in stats) {
       stats[answer].count++;
     } else {
@@ -58,9 +62,13 @@ function analyzeFunction() {
       }
     }
   }
-
+  //
+  //An array of all the answers produced
   let statKeys = Object.keys(stats);
   stats.keys = statKeys;
+  //
+  //The ideal probability of producing an answer given a
+  //  uniform distribution of answers
   stats.pi_i = stats.keys.length ** -1;
   stats.expected = iterations / stats.keys.length;
   stats.avg = 0;
@@ -69,18 +77,29 @@ function analyzeFunction() {
   stats.chiSquared = 0;
 
   statKeys.forEach((a, i) => {
+    //
+    //The percentage of times an answer was produced
     stats[a].percent = stats[a].count / iterations;
     stats.max = stats.max > stats[a].percent ? stats.max : stats[a].percent;
+    //
+    //The average of all the percentages
     stats.avg = ((stats.avg * i) + stats[a].percent) / (i + 1);
     stats.chiSquared += ((stats[a].count - stats.expected) ** 2) / stats.expected;
   });
 
   statKeys.forEach((a, i) => {
+    //
+    //The squared difference from the mean for each answer
     stats[a].sdm = (stats.avg - stats[a].percent) ** 2;
+    //
+    //The variance of the total set
     stats.var = ((stats.var * i) + stats[a].sdm) / (i + 1);
   });
-
+  //
+  //The standard deviation for the set
   stats.sd = Math.sqrt(stats.var);
+  //
+  //The coefficient of variance for the set
   stats.cv = stats.sd / stats.avg;
 
   makeGraph(stats);
