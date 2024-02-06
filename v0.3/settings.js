@@ -65,6 +65,8 @@ async function makeSettingsScreen() {
             user.subtraction.fundamentals = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             user.subtraction.partition = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             user.subtraction.decomposition = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+
+            user.multiplication.fundamentals = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             
           } else {
             playTone(randomNote());
@@ -79,6 +81,9 @@ async function makeSettingsScreen() {
 
             user.subtraction.fundamentals = [];
             user.subtraction.partition = [];
+            user.subtraction.decomposition = [];
+
+            user.multiplication.fundamentals = [];
           }
         }
       settingsScreen.appendChild(tourButton);

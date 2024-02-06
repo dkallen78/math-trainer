@@ -562,12 +562,14 @@ function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
-function reorder(aMin, aMax) {
+function reorder(aMin, aMax, t, op) {
   //----------------------------------------------------//
   //Creates a reorder problem                           //
   //----------------------------------------------------//
-  //aMin(integer): the minimum addend/                  //
-  //aMax(integer): the maximum addend                   //
+  //aMin(integer): the minimum term                     //
+  //aMax(integer): the maximum term                     //
+  //t(integer): number of terms in the problem          //
+  //op(string): string of the operator to use           //
   //----------------------------------------------------//
   //return(array[float, string]): the correct term and  //
   //  a string representation of it                     //
@@ -575,13 +577,29 @@ function reorder(aMin, aMax) {
 
   let a = rnd(aMin, aMax);
   let b = rnd(aMin, aMax);
+  let solutions = [];
 
-  let solutions = [
-    [a, `${a} + ${b} = ${b} + ?`],
-    [a, `? + ${b} = ${b} + ${a}`],
-    [a, `${b} + ${a} = ? + ${b}`],
-    [a, `${b} + ? = ${a} + ${b}`]
-  ]
+  switch(t) {
+    case 2:
+      solutions = [
+        [a, `${stroke(a)}&nbsp${op} ${b} = ${b} ${op}&nbsp${stroke("?")}`],
+        [a, `${stroke("?")}&nbsp${op} ${b} = ${b} ${op}&nbsp${stroke(a)}`],
+        [a, `${b} ${op}&nbsp${stroke(a)}&nbsp=&nbsp${stroke("?")}&nbsp${op} ${b}`],
+        [a, `${b} ${op}&nbsp${stroke("?")}&nbsp=&nbsp${stroke(a)}&nbsp${op} ${b}`]
+      ];
+      break;
+    case 3:
+      let c = rnd(aMin, aMax);
+      solutions = [
+        [a, `${stroke(a)}&nbsp${op} ${b} ${op} ${c} = ${b} ${op} ${c} ${op}&nbsp${stroke("?")}`],
+        [c, `${a} ${op} ${b} ${op}&nbsp${stroke(c)}&nbsp= ${b} ${op}&nbsp${stroke("?")}&nbsp${op} ${a}`],
+        [b, `${a} ${op}&nbsp${stroke(b)}&nbsp${op} ${c} =&nbsp${stroke("?")}&nbsp${op} ${a} ${op} ${c}`],
+        [c, `${a} ${op} ${b} ${op}&nbsp${stroke("?")}&nbsp= ${a} ${op}&nbsp${stroke(c)}&nbsp${op} ${b}`],
+        [b, `${a} ${op}&nbsp${stroke("?")}&nbsp${op} ${c} =&nbsp${stroke(b)}&nbsp${op} ${c} ${op} ${a}`],
+        [a, `${stroke("?")}&nbsp${op} ${b} ${op} ${c} = ${b} ${op} ${c} ${op}&nbsp${stroke(a)}`],
+      ];
+      break;
+  }
 
   return solutions[rnd(0, solutions.length - 1)];
 }
@@ -829,4 +847,173 @@ function subNoBorrow(dMin, dMax, dTenMin, dTenMax) {
   ]
 
   return solutions[rnd(0, solutions.length - 1)];
+}
+
+//----------------------------------------------------------------
+
+function findFactors(n, max) {
+  
+  let factors = [];
+
+  for (let i = 2; i <= max; i++) {
+
+    if (n % i === 0) factors.push(i);
+  }
+
+  return factors;
+}
+
+function repeatedAddition() {
+  //----------------------------------------------------//
+  //Creates a repeated addition problem on one side of  //
+  //  the equation and a multiplication problem on the  //
+  //  other side                                        //
+  //----------------------------------------------------//
+  //                                                    //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+
+  let a = rnd(2, 9);
+  let m = rnd(1, 3);
+  let addPart = "";
+  let solutions = [];
+
+  for (let i = 1; i <= m; i++) {
+
+    addPart += (i !== m) ? `${a} + ` : `${stroke(a)}`;
+
+    /*if (i !== m) {
+      addPart += `${a} + `;
+    } else {
+      addPart += `${stroke(a)}`;
+    }*/
+  }
+
+  solutions = [
+    [a, `${addPart} = ${stroke("?")} × ${m}`],
+    [a, `${addPart} = ${m} × ${stroke("?")}`],
+    [a, `${stroke("?")} × ${m} = ${addPart}`],
+    [a, `${m} × ${stroke("?")} = ${addPart}`]
+  ];
+
+  return solutions[rnd(0, solutions.length - 1)];
+}
+
+function multiply(mdMin, mdMax, mrMin, mrMax, mode) {
+  //----------------------------------------------------//
+  //Creates a multiplication problem with a min and max //
+  //  product and a min and max multiplier              //
+  //----------------------------------------------------//
+  //mdMin(integer): minimum possible multiplicand       //
+  //mdMax(integer): maximum possible multiplicand       //
+  //mMin(integer): minimum possible multiplier          //
+  //mMax(integer): maximum possible multiplier          //
+  //mode(integer):  determines what format the solution //
+  //  will take                                         //
+  //    1: standard equation                            //
+  //    2: missing-term equation                        //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+  
+  /*let answers = {};
+
+  for (let i = pMin; i <= pMax; i++) {
+
+    for (let j = mMin; j <= mMax; j++) {
+
+      if ((i * j) in answers) {
+        answers[i * j].factors1.push(i, j);
+      } else {
+        answers[i * j] = {
+          factors1: [i, j],
+          factors2: []
+        }
+      }
+    }
+  }
+
+  let keys = Object.keys(answers);
+  keys.forEach((a) => {
+
+    answers[a].factors1.forEach((e) => {
+
+      if (!answers[a].factors2.includes(e)) {
+        answers[a].factors2.push(e);
+      }
+    })
+  })
+
+  let p = parseInt(keys[rnd(0, keys.length - 1)], 10);
+  let mr = answers[p].factors2[rnd(0, answers[p].factors2.length - 1)];
+  let md = p / mr;*/
+  let solutions = [];
+  let p = 0;
+  let mr = 0;
+  let md = 0;
+
+  switch(mode) {
+    case 1:
+      let answers = {};
+
+      for (let i = mdMin; i <= mdMax; i++) {
+
+        for (let j = mrMin; j <= mrMax; j++) {
+
+          if ((i * j) in answers) {
+            answers[i * j].factors1.push(i, j);
+          } else {
+            answers[i * j] = {
+              factors1: [i, j],
+              factors2: []
+            }
+          }
+        }
+      }
+
+      let keys = Object.keys(answers);
+      keys.forEach((a) => {
+
+        answers[a].factors1.forEach((e) => {
+
+          if (!answers[a].factors2.includes(e)) {
+            answers[a].factors2.push(e);
+          }
+        })
+      })
+
+      p = parseInt(keys[rnd(0, keys.length - 1)], 10);
+      mr = answers[p].factors2[rnd(0, answers[p].factors2.length - 1)];
+      md = p / mr;
+
+      solutions = [
+        [p, `${md} × ${mr} = ?`],
+        [p, `${mr} × ${md} = ?`],
+        [p, `? = ${md} × ${mr}`],
+        [p, `? = ${mr} × ${md}`]
+      ];
+      break;
+    case 2:
+      mr = rnd(mrMin, mrMax);
+      md = rnd(mdMin, mdMax);
+      p = md * mr;
+
+      solutions = [
+        [md, `? × ${mr} = ${p}`],
+        [md, `${mr} × ? = ${p}`],
+        [md, `${p} = ? × ${mr}`],
+        [md, `${p} = ${mr} × ?`],
+        //[mr, `${md} × ? = ${p}`],
+        //[mr, `? × ${md} = ${p}`],
+        //[mr, `${p} = ${md} × ?`],
+        //[mr, `${p} = ? × ${md}`]
+      ];
+      break;
+  }
+  
+  return solutions[rnd(0, solutions.length - 1)];
+
 }

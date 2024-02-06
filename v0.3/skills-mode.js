@@ -255,7 +255,7 @@ let addition = {
     /*2 - Reorder*/{
       name: "Reorder",
       id: ["addition", "fundamentals", 2],
-      run: () => reorder(1, 9),
+      run: () => reorder(1, 9, 2, "+"),
       test: () => true
     },
     /*3 - Missing Term*/{
@@ -620,9 +620,51 @@ let subtraction = {
   ]
 }
 
+let multiplication = {
+  fundamentals: [
+    //0
+    "Fundamentals",
+    //1 - Repeated Addition
+    {
+      name: "Repeated Addition",
+      id: ["multiplication", "fundamentals", 1],
+      run: () => repeatedAddition(),
+      test: () => user.addition.fundamentals[7]
+    },
+    //2 - Doubles and Triples I
+    {
+      name: "Doubles and Triples I",
+      id: ["multiplication", "fundamentals", 2],
+      run: () => multiply(1, 9, 2, 3, 1),
+      test: () => user.multiplication.fundamentals[1]
+    },
+    //3 - Doubles and Triples II
+    {
+      name: "Doubles and Triples II",
+      id: ["multiplication", "fundamentals", 3],
+      run: () => multiply(1, 9, 2, 3, 2),
+      test: () => user.multiplication.fundamentals[2]
+    },
+    //4 - Reorder I
+    {
+      name: "Reorder I",
+      id: ["multiplication", "fundamentals", 4],
+      run: () => reorder(1, 9, 2, "×"),
+      test: () => user.multiplication.fundamentals[3]
+    },
+    //5 - Reorder II
+    {
+      name: "Reorder II",
+      id: ["multiplication", "fundamentals", 5],
+      run: () => reorder(1, 9, 3, "×"),
+      test: () => user.multiplication.fundamentals[4]
+    }
+  ]
+}
+
 let skills = {
   "+": [addition.fundamentals, addition.reorder, addition.placeValue, addition.partition, addition.compensation],
   "-": [subtraction.fundamentals, subtraction.partition, subtraction.decomposition],
-  "×": [],
+  "×": [multiplication.fundamentals],
   "÷": []
 }

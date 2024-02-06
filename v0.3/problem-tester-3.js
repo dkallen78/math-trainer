@@ -1,7 +1,7 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
 //let testFunc = () => add(1, 1, 1, 1, 9, 0);
-let testFunc = () => subNoBorrow(1, 8, 2, 8);
+let testFunc = () => newReorder(1, 9, 2, "×");
 
 
 function makeSVG(type, id, ...classes) {
@@ -67,7 +67,6 @@ function analyzeFunction() {
   stats.max = 0;
   stats.var = 0;
   stats.chiSquared = 0;
-
 
   statKeys.forEach((a, i) => {
     stats[a].percent = stats[a].count / iterations;

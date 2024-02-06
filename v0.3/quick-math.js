@@ -128,7 +128,7 @@ function operationUnlock(op) {
       return true;
       break;
     case "×":
-      return false;
+      return true;
       break;
     case "÷":
       return false;
@@ -328,6 +328,7 @@ const scales = {
   in: [0, 1, 5, 7, 8], 
   hungarian: [0, 2, 3, 5, 6, 7, 10]
 }
+
 let user = {
   soundOn: true,
   activeScale: scales.major,
@@ -347,6 +348,9 @@ let user = {
     fundamentals: [],
     partition: [],
     decomposition: []
+  },
+  multiplication: {
+    fundamentals: [],
   },
   tour: false,
   fast: false,
