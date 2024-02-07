@@ -1,7 +1,7 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
 //let testFunc = () => add(1, 1, 1, 1, 9, 0);
-let testFunc = () => multiply(1, 9, 2, 3, 1);
+let testFunc = () => dProp(2, 9, 2, 3, 2, 5);
 
 
 function makeSVG(type, id, ...classes) {
@@ -112,7 +112,7 @@ function makeGraph(stats) {
   //  statistical information                           //
   //----------------------------------------------------//
 
-  console.log(stats.chiSquared);
+  //console.log(stats.chiSquared);
 
   let svgBox = document.getElementById("svgBox");
   clearElement(svgBox);
@@ -166,6 +166,8 @@ function makeGraph(stats) {
         rect.setAttribute("fill", "black");
       });
     });
+
+    console.log(stats.pi_i, stats.avg);
 
     let idealAvgBaseline = 100 - ((stats.pi_i / stats.max) * 100);
     let idealAvgLine = makeSVG("line");

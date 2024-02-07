@@ -1012,7 +1012,7 @@ function multiply(mdMin, mdMax, mrMin, mrMax, mode) {
 
 }
 
-function distributiveProp(mdMin, mdMax, mrMin, mrMax, splitMin, splitMax) {
+function dPropIntro(mdMin, mdMax, mrMin, mrMax, splitMin, splitMax) {
   //----------------------------------------------------//
   //Creates a missing term distributive property        //
   //  multiplication problem                            //
@@ -1045,4 +1045,20 @@ function distributiveProp(mdMin, mdMax, mrMin, mrMax, splitMin, splitMax) {
   return solutions[rnd(0, solutions.length - 1)];
 
 return [mr + split, `(${md} ×&nbsp${stroke(split)}) + (${md} ×&nbsp${stroke(mr)}) = ${md} ×&nbsp${stroke("?")}`];
+}
+
+function dProp(f1Min, f1Max, f2Min, f2Max, f3Min, f3Max) {
+
+  let f1 = rnd(f1Min, f1Max);
+  let products = makeProducts(f2Min, f2Max, f3Min, f3Max);
+  let p = products.randomProduct();
+  let f2 = products.randomFactor(p);
+  let f3 = p / f2;
+  
+  let solutions = [
+    [p, `${f1} × (${stroke(f2)}&nbsp×&nbsp${stroke(f3)}) = ${f1} ×&nbsp${stroke("?")}`],
+    [p, `${f1} ×&nbsp${stroke("?")}&nbsp= ${f1} × (${stroke(f2)}&nbsp×&nbsp${stroke(f3)})`]
+  ];
+
+  return solutions[rnd(0, solutions.length - 1)];
 }
