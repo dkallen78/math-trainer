@@ -1,14 +1,12 @@
 # [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quick-math.html)
 
-## Update 2024-02-03
+## Update 2024-02-06
 
 ### 23:00
 
-I made a new category for Subtraction strategies: Decomposition. Basically, given 17 - 13, you break it down into 17 - 10 - 3 since subtracting 10 and 3 is easier than subtracting 13. If I'm going to finish up subtraction then the next category to tackle would be Compensation which I've already done for Addition, so this will just be a modified version of that function. 
+I've made some decent progress on multiplication problems and made a new function for helping to illustrate the Distributive Property of Multiplication. I also made a helper function to help generate products. With addition and subtraction problems I can generally use a random number generator to create a random answer, but that doesn't work with multiplication because I could randomly generate a prime number. So what I do instead is use nested `for` loops to create a list of possible products as well as the factors used to produce them. This is relatively slow compared to some of my other algorithms but its lack of speed is only an issue when I'm running it thousands of times. So, when I need a random product, I plug in the ranges of my two factors, create a list, and randomly pick a product from the list. It's not stupid if it works. 
 
-I'm always surprised by how much work it can be to make a random problem, the potential answers to which are evenly distributed, and fits the correct form to teach a specific lesson. I mean, it's pretty easy to make up the problems in my head, but making the browser do it is something else sometimes.
-
-I need more. I've got three primary menu items and looking at my base menu screen I feel like I need five or six. When I started this three years ago I didn't think it would take this long or it would have changed this much.
+I want to do something with sequences next but I'm not sure how to fit it in. I should probably read up on how to use them and how best to apply them. Oh well. Issues for tomorrow =P
 
 ### Issues
 

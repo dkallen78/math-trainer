@@ -492,3 +492,19 @@ The more I build this out, the more my past choices frustrate me and the more I 
 * Find a good threshold to unlock multiplication and division
 
 * Look into better ways to structure things
+
+## Update 2024-02-03
+
+### 23:00
+
+I made a new category for Subtraction strategies: Decomposition. Basically, given 17 - 13, you break it down into 17 - 10 - 3 since subtracting 10 and 3 is easier than subtracting 13. If I'm going to finish up subtraction then the next category to tackle would be Compensation which I've already done for Addition, so this will just be a modified version of that function. 
+
+I'm always surprised by how much work it can be to make a random problem, the potential answers to which are evenly distributed, and fits the correct form to teach a specific lesson. I mean, it's pretty easy to make up the problems in my head, but making the browser do it is something else sometimes.
+
+I need more. I've got three primary menu items and looking at my base menu screen I feel like I need five or six. When I started this three years ago I didn't think it would take this long or it would have changed this much.
+
+### Issues
+
+* Find a good threshold to unlock multiplication and division
+
+* Look into better ways to structure things
