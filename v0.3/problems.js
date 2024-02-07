@@ -863,6 +863,56 @@ function findFactors(n, max) {
   return factors;
 }
 
+function makeProducts(f1Min, f1Max, f2Min, f2Max) {
+  //----------------------------------------------------//
+  //Creates an object the keys of which are all the     //
+  //  potential products in the given range; the values //
+  //  of which are all the factors used to make them    //
+  //----------------------------------------------------//
+  //f1Min(integer): minimum value of the first product  //
+  //f1Max(integer): maximum value of the first product  //
+  //f2Min(integer): minimum value of the second product //
+  //f2Max(integer): maximum value of the second product //
+  //----------------------------------------------------//
+  //return(object): a list of potential products and    //
+  //  the factors used to produce them                  //
+  //----------------------------------------------------//
+
+  let answers = {};
+  let p = 0;
+
+  for (let i = f1Min; i <= f1Max; i++) {
+
+    for (let j = f2Min; j <= f2Max; j++) {
+
+      p = i * j;      
+
+      if (p in answers) {
+        answers[p].factors.push(i, j);
+      } else {
+        answers[p] = {
+          factors: [i, j]
+        }
+      }
+    }
+  }
+
+  answers.keys = Object.keys(answers);
+  answers.keys.forEach((p) => {
+    answers[p].factors = Array.from(answers[p].factors);
+  });
+
+  answers.randomProduct = function() {
+    return parseInt(this.keys[rnd(0, this.keys.length - 1)], 10);
+  }
+
+  answers.randomFactor = function(p) {
+    return this[p].factors[rnd(0, this[p].factors.length - 1)];
+  }
+
+  return answers;
+}
+
 function repeatedAddition() {
   //----------------------------------------------------//
   //Creates a repeated addition problem on one side of  //
@@ -908,8 +958,8 @@ function multiply(mdMin, mdMax, mrMin, mrMax, mode) {
   //----------------------------------------------------//
   //mdMin(integer): minimum possible multiplicand       //
   //mdMax(integer): maximum possible multiplicand       //
-  //mMin(integer): minimum possible multiplier          //
-  //mMax(integer): maximum possible multiplier          //
+  //mrMin(integer): minimum possible multiplier         //
+  //mrMax(integer): maximum possible multiplier         //
   //mode(integer):  determines what format the solution //
   //  will take                                         //
   //    1: standard equation                            //
@@ -919,37 +969,6 @@ function multiply(mdMin, mdMax, mrMin, mrMax, mode) {
   //  equation and a string representation of it        //
   //----------------------------------------------------//
   
-  /*let answers = {};
-
-  for (let i = pMin; i <= pMax; i++) {
-
-    for (let j = mMin; j <= mMax; j++) {
-
-      if ((i * j) in answers) {
-        answers[i * j].factors1.push(i, j);
-      } else {
-        answers[i * j] = {
-          factors1: [i, j],
-          factors2: []
-        }
-      }
-    }
-  }
-
-  let keys = Object.keys(answers);
-  keys.forEach((a) => {
-
-    answers[a].factors1.forEach((e) => {
-
-      if (!answers[a].factors2.includes(e)) {
-        answers[a].factors2.push(e);
-      }
-    })
-  })
-
-  let p = parseInt(keys[rnd(0, keys.length - 1)], 10);
-  let mr = answers[p].factors2[rnd(0, answers[p].factors2.length - 1)];
-  let md = p / mr;*/
   let solutions = [];
   let p = 0;
   let mr = 0;
@@ -957,36 +976,11 @@ function multiply(mdMin, mdMax, mrMin, mrMax, mode) {
 
   switch(mode) {
     case 1:
-      let answers = {};
+      
+      let answers = makeProducts(mdMin, mdMax, mrMin, mrMax);
 
-      for (let i = mdMin; i <= mdMax; i++) {
-
-        for (let j = mrMin; j <= mrMax; j++) {
-
-          if ((i * j) in answers) {
-            answers[i * j].factors1.push(i, j);
-          } else {
-            answers[i * j] = {
-              factors1: [i, j],
-              factors2: []
-            }
-          }
-        }
-      }
-
-      let keys = Object.keys(answers);
-      keys.forEach((a) => {
-
-        answers[a].factors1.forEach((e) => {
-
-          if (!answers[a].factors2.includes(e)) {
-            answers[a].factors2.push(e);
-          }
-        })
-      })
-
-      p = parseInt(keys[rnd(0, keys.length - 1)], 10);
-      mr = answers[p].factors2[rnd(0, answers[p].factors2.length - 1)];
+      p = answers.randomProduct();
+      mr = answers.randomFactor(p);
       md = p / mr;
 
       solutions = [
@@ -1019,6 +1013,22 @@ function multiply(mdMin, mdMax, mrMin, mrMax, mode) {
 }
 
 function distributiveProp(mdMin, mdMax, mrMin, mrMax, splitMin, splitMax) {
+  //----------------------------------------------------//
+  //Creates a missing term distributive property        //
+  //  multiplication problem                            //
+  //----------------------------------------------------//
+  //mdMin(integer): minimum possible multiplicand       //
+  //mdMax(integer): maximum possible multiplicand       //
+  //mMin(integer): minimum possible multiplier          //
+  //mMax(integer): maximum possible multiplier          //
+  //splitMin(integer): minimum value by which to split  //
+  //  the multiplier                                    //
+  //splitMax(integer): maximum value by which to split  //
+  //  the multiplier                                    //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
 
   let md = rnd(mdMin, mdMax);
   let mr = rnd(mrMin, mrMax);
