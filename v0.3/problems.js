@@ -851,18 +851,6 @@ function subNoBorrow(dMin, dMax, dTenMin, dTenMax) {
 
 //----------------------------------------------------------------
 
-function findFactors(n, max) {
-  
-  let factors = [];
-
-  for (let i = 2; i <= max; i++) {
-
-    if (n % i === 0) factors.push(i);
-  }
-
-  return factors;
-}
-
 function makeProducts(f1Min, f1Max, f2Min, f2Max) {
   //----------------------------------------------------//
   //Creates an object the keys of which are all the     //
@@ -911,6 +899,26 @@ function makeProducts(f1Min, f1Max, f2Min, f2Max) {
   }
 
   return answers;
+}
+
+function findFactors(n) {
+  //----------------------------------------------------//
+  //Finds all the factors of a number except for itself //
+  //  and 1                                             //
+  //----------------------------------------------------//
+  //n(integer): the number to find the factors of       //
+  //----------------------------------------------------//
+  //return(array[integer]): an array of factors         //
+  //----------------------------------------------------//
+
+  let factors = [];
+
+  for (let i = 2; i <= (n / 2); i++) {
+    
+    if ((n % i) === 0) factors.push(i);
+  }
+
+  return factors;
 }
 
 function repeatedAddition() {
@@ -1014,7 +1022,7 @@ function multiply(mdMin, mdMax, mrMin, mrMax, mode) {
 
 function dPropIntro(mdMin, mdMax, mrMin, mrMax, splitMin, splitMax) {
   //----------------------------------------------------//
-  //Creates a missing term distributive property        //
+  //Creates a missing term associative property         //
   //  multiplication problem                            //
   //----------------------------------------------------//
   //mdMin(integer): minimum possible multiplicand       //
@@ -1043,11 +1051,23 @@ function dPropIntro(mdMin, mdMax, mrMin, mrMax, splitMin, splitMax) {
   ];
 
   return solutions[rnd(0, solutions.length - 1)];
-
-return [mr + split, `(${md} ×&nbsp${stroke(split)}) + (${md} ×&nbsp${stroke(mr)}) = ${md} ×&nbsp${stroke("?")}`];
 }
 
-function dProp(f1Min, f1Max, f2Min, f2Max, f3Min, f3Max) {
+function aPropIntro(f1Min, f1Max, f2Min, f2Max, f3Min, f3Max) {
+  //----------------------------------------------------//
+  //Creates a missing term associative property         //
+  //  multiplication problem                            //
+  //----------------------------------------------------//
+  //f1Min(integer): minimum value for the first term    //
+  //f1Max(integer): maximum value for the first term    //
+  //f2Min(integer): minimum value for the second term   //
+  //f2Max(integer): maximum value for the second term   //
+  //f3Min(integer): minimum value for the third term    //
+  //f3Max(integer): maximum value for the third term    //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
 
   let f1 = rnd(f1Min, f1Max);
   let products = makeProducts(f2Min, f2Max, f3Min, f3Max);
@@ -1060,5 +1080,35 @@ function dProp(f1Min, f1Max, f2Min, f2Max, f3Min, f3Max) {
     [p, `${f1} ×&nbsp${stroke("?")}&nbsp= ${f1} × (${stroke(f2)}&nbsp×&nbsp${stroke(f3)})`]
   ];
 
-  return solutions[rnd(0, solutions.length - 1)];
+  return rnd.index(solutions);
+}
+
+function aProp(f1Min, f1Max, f2) {
+  //----------------------------------------------------//
+  //Creates a problem to solve using the associative    //
+  //  property of multiplication                        //
+  //----------------------------------------------------//
+  //f1Min(integer): minimum value for the first term    //
+  //f1Max(integer): maximum value for the first term    //
+  //f2(integer): value of the second term               //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+
+  let products = makeProducts(f1Min, f1Max, f2, f2);
+
+  let p = products.randomProduct();
+  let f1 = p / f2;
+  let f3 = rnd.index(findFactors(f2));
+  let f4 = f2 / f3;
+
+  let solutions = [
+    [p, `${f1} × ${f2} = (${f1} × ${f3}) × ${f4} = ?`],
+    [p, `(${f1} × ${f3}) × ${f4} = ${f1} × ${f2} = ?`],
+    [p, `? = ${f1} × ${f2} = (${f1} × ${f3}) × ${f4}`],
+    [p, `? = (${f1} × ${f3}) × ${f4} = ${f1} × ${f2}`]
+  ];
+
+  return rnd.index(solutions);
 }

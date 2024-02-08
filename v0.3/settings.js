@@ -68,6 +68,7 @@ async function makeSettingsScreen() {
 
             user.multiplication.fundamentals = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             user.multiplication.distribution = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+            user.multiplication.association = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             
           } else {
             playTone(randomNote());
@@ -86,6 +87,7 @@ async function makeSettingsScreen() {
 
             user.multiplication.fundamentals = [];
             user.multiplication.distribution = [];
+            user.multiplication.association = [];
           }
         }
       settingsScreen.appendChild(tourButton);

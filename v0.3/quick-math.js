@@ -351,7 +351,8 @@ let user = {
   },
   multiplication: {
     fundamentals: [],
-    distribution: []
+    distribution: [],
+    association: []
   },
   tour: false,
   fast: false,

@@ -667,22 +667,33 @@ let multiplication = {
       test: () => user.multiplication.fundamentals[5]
     }
   ],
+  association: [
+    //0
+    "Association",
+    //1 - Association I
+    {
+      name: "Association",
+      id: ["multiplication", "association", 1],
+      run: () =>aPropIntro(2, 9, 2, 3, 2, 5),
+      test: () => user.multiplication.fundamentals[5]
+    },
+    //2 - Fours
+    {
+      name: "Fours",
+      id: ["multiplication", "association", 2],
+      run: () => aProp(2, 9, 4),
+      test: () => user.multiplication.association[1]
+    }
+  ],
   distribution: [
     //0
-    "Distribution",
-    //1 - Distribution I
-    {
-      name: "Distribution",
-      id: ["multiplication", "distribution", 1],
-      run: () =>dProp(2, 9, 2, 3, 2, 5),
-      test: () => user.multiplication.fundamentals[6]
-    }
+    "Distribution"
   ]
 }
 
 let skills = {
   "+": [addition.fundamentals, addition.reorder, addition.placeValue, addition.partition, addition.compensation],
   "-": [subtraction.fundamentals, subtraction.partition, subtraction.decomposition],
-  "×": [multiplication.fundamentals, multiplication.distribution],
+  "×": [multiplication.fundamentals, multiplication.association],
   "÷": []
 }

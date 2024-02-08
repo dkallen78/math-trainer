@@ -14,10 +14,13 @@ button {
 }
 
 #problem-output {
-  height: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 5rem;
   padding: .5rem;
-  font-size: 2em;
-  font-family: monospace;
+  font-size: 25.6px;
+  font-family: sans-serif;
   text-align: center;
 }
 
@@ -27,13 +30,15 @@ button {
   align-items: center;
 }
 
-/*#solution {
-  text-align: right;
+#answer {
+  
 }
 
 #equation {
-  text-align: left;
-}*/
+  height: 96px;
+  width: 304px;
+  border: .1rem solid black;
+}
 
 #analysis-inputs {
   display: grid;
