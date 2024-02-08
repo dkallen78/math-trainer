@@ -41,7 +41,7 @@ function digitCount(num) {
 
 
 function makeElement(type, id, ...classes) {
-  /*
+  //----------------------------------------------------//
   //Returns an HTML element                             //
   //----------------------------------------------------//
   //type(string): type of HTML element to create        //
@@ -49,7 +49,7 @@ function makeElement(type, id, ...classes) {
   //classes(string): classes to add to the element      //
   //----------------------------------------------------//
   //return(element): HTML element                       //
-  */
+  //----------------------------------------------------//
 
   let element = document.createElement(type);
   if (typeof id === "string") {element.id = id}
