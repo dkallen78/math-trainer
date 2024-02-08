@@ -683,6 +683,13 @@ let multiplication = {
       id: ["multiplication", "association", 2],
       run: () => aProp(2, 9, 4),
       test: () => user.multiplication.association[1]
+    },
+    //3 - Sixes
+    {
+      name: "Sixes",
+      id: ["multiplication", "association", 3],
+      run: () => aProp(2, 9, 6),
+      test: () => user.multiplication.association[2]
     }
   ],
   distribution: [
