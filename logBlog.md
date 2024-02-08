@@ -508,3 +508,17 @@ I need more. I've got three primary menu items and looking at my base menu scree
 * Find a good threshold to unlock multiplication and division
 
 * Look into better ways to structure things
+
+## Update 2024-02-06
+
+### 23:00
+
+I've made some decent progress on multiplication problems and made a new function for helping to illustrate the Distributive Property of Multiplication. I also made a helper function to help generate products. With addition and subtraction problems I can generally use a random number generator to create a random answer, but that doesn't work with multiplication because I could randomly generate a prime number. So what I do instead is use nested `for` loops to create a list of possible products as well as the factors used to produce them. This is relatively slow compared to some of my other algorithms but its lack of speed is only an issue when I'm running it thousands of times. So, when I need a random product, I plug in the ranges of my two factors, create a list, and randomly pick a product from the list. It's not stupid if it works. 
+
+I want to do something with sequences next but I'm not sure how to fit it in. I should probably read up on how to use them and how best to apply them. Oh well. Issues for tomorrow =P
+
+### Issues
+
+* Find a good threshold to unlock multiplication and division
+
+* Look into better ways to structure things
