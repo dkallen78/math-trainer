@@ -61,6 +61,7 @@ async function makeSettingsScreen() {
             user.addition.reorder = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             user.addition.partition = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             user.addition.compensation = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+            user.addition.sequence = [1, 1, 1, 1, 1, 1, 1, 1, 1];
 
             user.subtraction.fundamentals = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             user.subtraction.partition = [1, 1, 1, 1, 1, 1, 1, 1, 1];
@@ -80,6 +81,7 @@ async function makeSettingsScreen() {
             user.addition.reorder = [];
             user.addition.partition = [];
             user.addition.compensation = [];
+            user.addition.sequence = [];
 
             user.subtraction.fundamentals = [];
             user.subtraction.partition = [];

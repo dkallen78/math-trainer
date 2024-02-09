@@ -116,11 +116,11 @@ async function makeSkillsDrillsScreen(operation) {
       skillGroupScreen.appendChild(skillGroupScreenInfo);
 
       for (let i = 0; i < skills[operation].length; i++) {
-        let skillButton = makeButton(skills[operation][i][0], null, `op-skills-${i}`, "big-button", "inactive-button");
+        let skillButton = makeButton(skills[operation][i][0], null, `op-skills-${i}`, "medium-button", "inactive-button");
         skillGroupScreen.appendChild(skillButton);
       }
 
-      let backButton = makeButton("Back", null, "skill-group-screen__back-button", "big-button");
+      let backButton = makeButton("Back", null, "skill-group-screen__back-button", "medium-button");
       skillGroupScreen.appendChild(backButton);
 
     await fadeOut(document.body);
@@ -245,29 +245,30 @@ async function makeSkillsScreen(skill) {
 
 let addition = {
   fundamentals: [
-    /*0*/"Fundamentals",
-    /*1 - Single-Digit Addition I*/{
+    //0
+    "Fundamentals",
+    //1 - Single-Digit Addition I
+    {
       name: "Single-Digit Addition I",
       id: ["addition", "fundamentals", 1],
       run: () => singleDigitAddition(1, 9),
       test: () => true
     },
-    /*2 - Reorder*/{
+    //2 - Reorder
+    {
       name: "Reorder",
       id: ["addition", "fundamentals", 2],
       run: () => reorder(1, 9, 2, "+"),
-      test: () => true
+      test: () => user.addition.fundamentals[1],
+      
     },
-    /*3 - Missing Term*/{
+    //3 - Missing Term
+    {
       name: "Missing Term",
       id: ["addition", "fundamentals", 3],
       run: () => addWithin(1, 9, false),
-      test: () => {
-        if (user.addition.fundamentals[1] && user.addition.fundamentals[2]) {
-          return true;
-        }
-        return false;
-      }
+      test: () => user.addition.fundamentals[2],
+      notification: "Addition-Sequence unlocked!"
     },
     /*4 - Up To 10*/{
       name: "Up To 10",
@@ -281,16 +282,12 @@ let addition = {
       },
       notification: "Addition-Reorder unlocked!"
     },
-    /*5 - Doubles I*/{
+    //5 - Doubles I
+    {
       name: "Doubles I",
       id: ["addition", "fundamentals", 5],
       run: () => doubles(1, 5, 1, 0, 0),
-      test: () => {
-        if (user.addition.fundamentals[4]) {
-          return true;
-        }
-        return false;
-      },
+      test: () => user.addition.fundamentals[4],
       notification: "Addition-Place Value unlocked!"
     },
     /*6 - Single-Digit Addition II*/{
@@ -521,6 +518,73 @@ let addition = {
       run: () => addComp(2, 9, 1, 1, 4, 0),
       test: () => user.addition.compensation[5]
     }
+  ],
+  sequence: [
+    //0
+    "Sequence",
+    //1 - Count by 2
+    {
+      name: "Count by 2",
+      id: ["addition", "sequence", 1],
+      run: () => sequence(2, 2, 2, 1),
+      test: () => user.addition.fundamentals[2]
+    },
+    //2 - Count by 5
+    {
+      name: "Count by 5",
+      id: ["addition", "sequence", 2],
+      run: () => sequence(5, 5, 5, 1),
+      test: () => user.addition.sequence[1]
+    },
+    //3 - Count by 10
+    {
+      name: "Count by 10",
+      id: ["addition", "sequence", 3],
+      run: () => sequence(10, 10, 10, 1),
+      test: () => user.addition.sequence[2]
+    },
+    //4 - Count by 3
+    {
+      name: "Count by 3",
+      id: ["addition", "sequence", 4],
+      run: () => sequence(3, 3, 3, 1),
+      test: () => user.addition.sequence[3]
+    },
+    //5 - Count by 4
+    {
+      name: "Count by 4",
+      id: ["addition", "sequence", 5],
+      run: () => sequence(4, 4, 4, 1),
+      test: () => user.addition.sequence[4]
+    },
+    //6 - Count by 6
+    {
+      name: "Count by 6",
+      id: ["addition", "sequence", 6],
+      run: () => sequence(6, 6, 6, 1),
+      test: () => user.addition.sequence[5]
+    },
+    //7 - Count by 7
+    {
+      name: "Count by 7",
+      id: ["addition", "sequence", 7],
+      run: () => sequence(7, 7, 7, 1),
+      test: () => user.addition.sequence[6]
+    },
+    //8 - Count by 8
+    {
+      name: "Count by 8",
+      id: ["addition", "sequence", 8],
+      run: () => sequence(8, 8, 8, 1),
+      test: () => user.addition.sequence[7]
+    },
+    //9 - Count by 9
+    {
+      name: "Count by 9",
+      id: ["addition", "sequence", 9],
+      run: () => sequence(9, 9, 9, 1),
+      test: () => user.addition.sequence[8]
+    },
   ]
 }
 
@@ -727,7 +791,7 @@ let multiplication = {
 }
 
 let skills = {
-  "+": [addition.fundamentals, addition.reorder, addition.placeValue, addition.partition, addition.compensation],
+  "+": [addition.fundamentals, addition.reorder, addition.placeValue, addition.partition, addition.compensation, addition.sequence],
   "-": [subtraction.fundamentals, subtraction.partition, subtraction.decomposition],
   "×": [multiplication.fundamentals, multiplication.association, multiplication.distribution],
   "÷": []

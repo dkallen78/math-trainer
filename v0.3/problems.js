@@ -1144,3 +1144,32 @@ function dPropSingle(f1Min, f1Max, f2, f3Min, f3Max) {
 
   return rnd.index(solutions);
 }
+
+
+
+
+function sequence(gap, startMin, startMax, mod = 1) {
+
+  let start = rnd(startMin, startMax);
+  gap *= mod
+  let g1 = start;
+  let g2 = start + gap;
+  let g3 = g2 + gap;
+  let g4 = g3 + gap;
+  let g5 = g4 + gap;
+  let g6 = g5 + gap;
+  let g7 = g6 + gap;
+
+  let solutions = [
+    [g7, `${g1}, ${g2}, ${g3}, ${g4}, ${g5}, ${g6}, ${stroke("?")}`],
+    [g6, `${g1}, ${g2}, ${g3}, ${g4}, ${g5}, ${stroke("?")}, ${g7}`],
+    [g5, `${g1}, ${g2}, ${g3}, ${g4}, ${stroke("?")}, ${g6}, ${g7}`],
+    [g4, `${g1}, ${g2}, ${g3}, ${stroke("?")}, ${g5}, ${g6}, ${g7}`],
+    [g3, `${g1}, ${g2}, ${stroke("?")}, ${g4}, ${g5}, ${g6}, ${g7}`],
+    [g2, `${g1}, ${stroke("?")}, ${g3}, ${g4}, ${g5}, ${g6}, ${g7}`],
+    [g1, `${stroke("?")}, ${g2}, ${g3}, ${g4}, ${g5}, ${g6}, ${g7}`]
+  ];
+
+  return rnd.index(solutions);
+
+}

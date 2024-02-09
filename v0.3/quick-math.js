@@ -342,7 +342,8 @@ let user = {
     placeValue: [],
     reorder: [],
     partition: [],
-    compensation: []
+    compensation: [],
+    sequence: []
   },
   subtraction: {
     fundamentals: [],
