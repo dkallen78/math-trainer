@@ -659,48 +659,76 @@ let multiplication = {
       run: () => reorder(1, 9, 3, "×"),
       test: () => user.multiplication.fundamentals[4]
     },
-    //6 - Repeated Addition II
+    //6 - Association I
     {
-      name: "Repeated Addition II",
+      name: "Association I",
       id: ["multiplication", "fundamentals", 6],
-      run: () => dPropIntro(2, 9, 4, 6, 2, 3),
+      run: () =>aPropIntro(2, 9, 2, 3, 2, 5),
       test: () => user.multiplication.fundamentals[5]
+    },
+    //7 - Distribution I
+    {
+      name: "Distribution I",
+      id: ["multiplication", "fundamentals", 7],
+      run: () => dPropIntro(2, 9, 4, 6, 2, 3),
+      test: () => user.multiplication.fundamentals[6]
     }
   ],
   association: [
     //0
     "Association",
-    //1 - Association I
-    {
-      name: "Association",
-      id: ["multiplication", "association", 1],
-      run: () =>aPropIntro(2, 9, 2, 3, 2, 5),
-      test: () => user.multiplication.fundamentals[5]
-    },
-    //2 - Fours
+    //1 - Fours
     {
       name: "Fours",
-      id: ["multiplication", "association", 2],
+      id: ["multiplication", "association", 1],
       run: () => aProp(2, 9, 4),
-      test: () => user.multiplication.association[1]
+      test: () => user.multiplication.fundamentals[6]
     },
-    //3 - Sixes
+    //2 - Sixes
     {
       name: "Sixes",
-      id: ["multiplication", "association", 3],
+      id: ["multiplication", "association", 2],
       run: () => aProp(2, 9, 6),
+      test: () => user.multiplication.association[1]
+    },
+    //3 - Eights
+    {
+      name: "Eights",
+      id: ["multiplication", "association", 3],
+      run: () => aProp(2, 9, 8),
       test: () => user.multiplication.association[2]
     }
   ],
   distribution: [
     //0
-    "Distribution"
+    "Distribution",
+    //1 - Fours
+    {
+      name: "Fours",
+      id: ["multiplication", "distribution", 1],
+      run: () => dPropSingle(2, 9, 4, 1, 3),
+      test: () => user.multiplication.fundamentals[7]
+    },
+    //2 - Sixes
+    {
+      name: "Sixes",
+      id: ["multiplication", "distribution", 2],
+      run: () => dPropSingle(2, 9, 6, 1, 5),
+      test: () => user.multiplication.distribution[1]
+    },
+    //3 - Sevens
+    {
+      name: "Sevens",
+      id: ["multiplication", "distribution", 3],
+      run: () => dPropSingle(2, 9, 7, 1, 6),
+      test: () => user.multiplication.distribution[2]
+    }
   ]
 }
 
 let skills = {
   "+": [addition.fundamentals, addition.reorder, addition.placeValue, addition.partition, addition.compensation],
   "-": [subtraction.fundamentals, subtraction.partition, subtraction.decomposition],
-  "×": [multiplication.fundamentals, multiplication.association],
+  "×": [multiplication.fundamentals, multiplication.association, multiplication.distribution],
   "÷": []
 }

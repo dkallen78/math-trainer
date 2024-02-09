@@ -70,12 +70,14 @@ button {
 }
 
 .span-box {
+  display: contents;
   padding: .25rem;
   border: .15rem solid var(--border-color);
   border-radius: .5rem;
 }
 
 .span-stroke {
+  display: contents;
   color: var(--bg-color);
   font-weight: bold;
   -webkit-text-stroke: .05rem var(--text-color);
@@ -305,7 +307,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: clamp(1rem, 2rem, 8vw);
+  font-size: 1.5rem;
   color: var(--text-color);
   transition: padding 50ms;
 }

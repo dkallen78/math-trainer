@@ -17,9 +17,9 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 5rem;
+  height: 8rem;
   padding: .5rem;
-  font-size: 25.6px;
+  font-size: 1.5rem;
   font-family: sans-serif;
   text-align: center;
 }
@@ -31,7 +31,7 @@ button {
 }
 
 #answer {
-  
+  height: 2rem;
 }
 
 #equation {

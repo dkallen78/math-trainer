@@ -1104,10 +1104,42 @@ function aProp(f1Min, f1Max, f2) {
   let f4 = f2 / f3;
 
   let solutions = [
-    [p, `${f1} × ${f2} = (${f1} × ${f3}) × ${f4} = ?`],
-    [p, `(${f1} × ${f3}) × ${f4} = ${f1} × ${f2} = ?`],
-    [p, `? = ${f1} × ${f2} = (${f1} × ${f3}) × ${f4}`],
-    [p, `? = (${f1} × ${f3}) × ${f4} = ${f1} × ${f2}`]
+    [p, `${f1} × ${stroke(f2)} = (${f1} × ${stroke(f3)}) × ${stroke(f4)} = ?`],
+    [p, `(${f1} × ${stroke(f3)}) × ${stroke(f4)} = ${f1} × ${stroke(f2)} = ?`],
+    [p, `? = ${f1} × ${stroke(f2)} = (${f1} × ${stroke(f3)}) × ${stroke(f4)}`],
+    [p, `? = (${f1} × ${stroke(f3)}) × ${stroke(f4)} = ${f1} × ${stroke(f2)}`]
+  ];
+
+  return rnd.index(solutions);
+}
+
+function dPropSingle(f1Min, f1Max, f2, f3Min, f3Max) {
+  //----------------------------------------------------//
+  //Creates a missing term associative property         //
+  //  multiplication problem                            //
+  //----------------------------------------------------//
+  //mdMin(integer): minimum possible multiplicand       //
+  //mdMax(integer): maximum possible multiplicand       //
+  //mMin(integer): minimum possible multiplier          //
+  //mMax(integer): maximum possible multiplier          //
+  //splitMin(integer): minimum value by which to split  //
+  //  the multiplier                                    //
+  //splitMax(integer): maximum value by which to split  //
+  //  the multiplier                                    //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+
+  let products = makeProducts(f1Min, f1Max, f2, f2);
+  let p = products.randomProduct();
+  let f1 = p / f2;
+  let f3 = rnd(f3Min, f3Max);
+  let f4 = f2 - f3;
+  
+
+  let solutions = [
+    [p, `${f1} × ${stroke(f2)} = ?<br>(${f1} × ${stroke(f3)}) + (${f1} × ${stroke(f4)}) = ?`],
   ];
 
   return rnd.index(solutions);

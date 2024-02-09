@@ -1,7 +1,7 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
 //let testFunc = () => add(1, 1, 1, 1, 9, 0);
-let testFunc = () => aProp(2, 9, 6);
+let testFunc = () => aProp(2, 9, 60);
 
 
 function makeSVG(type, id, ...classes) {
@@ -34,6 +34,7 @@ function testOnce() {
   let equation = document.getElementById("equation");
   answer.innerHTML = `Answer: ${problem[0]}`;
   equation.innerHTML = `${problem[1]}`;
+  console.log(equation.innerText, equation.innerText.length);
 }
 
 function analyzeFunction() {
