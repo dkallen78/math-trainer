@@ -1,15 +1,18 @@
 # [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quick-math.html)
 
-## Update 2024-02-07
+## Update 2024-02-09
 
-### 22:45
+### 23:00
 
-I made a new problem function and two new helper functions! The problem function makes multiplication problems designed to be solved with the associative property of multiplication (`a × b × c = c × b × a`). Part of making that more palettable involves finding the factors of a number so I made a very rudimentary function to do that. It's not a good solution for large numbers but it works fine for the numbers I'll be working with. Finally, I figured out a way to improve a line of code I've been reusing to make it easier to remember. In my problem functions, I create an array of possible answers to output and I return one of them at random: `return solutions[rnd(0, solutions.length - 1)]`. I don't like typing it and I don't particularly like looking at it and it's in nearly every problem function I write. I looked into making a custom method for the Array object but it turns out that's not a good idea. What I did instead was add a function to my `rnd()` function so now I can call `rnd.index(array)` and get the same result as my previous line. I have no idea why it took me so long to come up with this >< I might do something similar with `rnd.f()` when I have to start generating floating point numbers but I can think of other solutions so we'll cross that bridge at a later date.
+Today I made a simple repeated addition/subtraction sequence function. Pretty simple but really quick and easy to implement. 
 
+I'm trying to figure out a way to introduce division. The nature of this program limits what options I have. I don't have explanatory text. So far I've just limited myself to numbers and I'd like to stick with that going forward because I feel like thinks will get messy if I try to get too far out of my lane. I'm not sure how I'm going to do it. All I can think of so far is to introduce it as the opposite of multiplication but that feels insufficient somehow. 
+
+I'm also thinking of soliciting math teachers to look at it and tell me what sucks and what works. I've been on my own for too long; I need to get anchored.
 
 ### Issues
 
-* Find a good threshold to unlock multiplication and division
+* Find a good method of introducing division
 
 * Look into better ways to structure things
 
@@ -32,11 +35,11 @@ https://docs.google.com/spreadsheets/d/17vwSJWGRL2A5TwsRnspX6qdaLeBSmVft7JT1ZNvB
 
 - [ ] Different modes
 
-   * Speed mode (automaticity trainer)
+   * ~~Speed mode (automaticity trainer)~~
 
    * Rename number (eg, 5 = 2 + 3 = 1 + 1 + 3 = ... [number sense])
 
-   * Sequences (count bys)
+   * ~~Sequences (count bys)~~
 
    * Mental strategy practice
 

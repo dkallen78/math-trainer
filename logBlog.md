@@ -522,3 +522,16 @@ I want to do something with sequences next but I'm not sure how to fit it in. I 
 * Find a good threshold to unlock multiplication and division
 
 * Look into better ways to structure things
+
+## Update 2024-02-07
+
+### 22:45
+
+I made a new problem function and two new helper functions! The problem function makes multiplication problems designed to be solved with the associative property of multiplication (`a × b × c = c × b × a`). Part of making that more palettable involves finding the factors of a number so I made a very rudimentary function to do that. It's not a good solution for large numbers but it works fine for the numbers I'll be working with. Finally, I figured out a way to improve a line of code I've been reusing to make it easier to remember. In my problem functions, I create an array of possible answers to output and I return one of them at random: `return solutions[rnd(0, solutions.length - 1)]`. I don't like typing it and I don't particularly like looking at it and it's in nearly every problem function I write. I looked into making a custom method for the Array object but it turns out that's not a good idea. What I did instead was add a function to my `rnd()` function so now I can call `rnd.index(array)` and get the same result as my previous line. I have no idea why it took me so long to come up with this >< I might do something similar with `rnd.f()` when I have to start generating floating point numbers but I can think of other solutions so we'll cross that bridge at a later date.
+
+
+### Issues
+
+* Find a good threshold to unlock multiplication and division
+
+* Look into better ways to structure things
