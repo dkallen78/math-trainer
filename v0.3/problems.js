@@ -1145,13 +1145,29 @@ function dPropSingle(f1Min, f1Max, f2, f3Min, f3Max) {
   return rnd.index(solutions);
 }
 
+//-------------------------------------------------------
 
+function sequence(gap, startMin, startMax, gapMod = 1, startMod = 1) {
+  //----------------------------------------------------//
+  //Creates a missing term sequence problem             //
+  //----------------------------------------------------//
+  //gap(integer): the difference between each number in //
+  //  the sequence                                      //
+  //startMin(integer): the minimum starting value of    //
+  //  the sequence                                      //
+  //startMax(integer): the maximum starting value of    //
+  //  the sequence                                      //
+  //gapMod(integer): 1 or -1 to determine wither the    //
+  //  sequence is additive or subtractive               //
+  //startMod(integer): multiplicitive modifier to set   //
+  //  the factor of the starting value                  //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
 
-
-function sequence(gap, startMin, startMax, mod = 1) {
-
-  let start = rnd(startMin, startMax);
-  gap *= mod
+  let start = rnd(startMin, startMax) * startMod;
+  gap *= gapMod
   let g1 = start;
   let g2 = start + gap;
   let g3 = g2 + gap;

@@ -66,6 +66,7 @@ async function makeSettingsScreen() {
             user.subtraction.fundamentals = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             user.subtraction.partition = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             user.subtraction.decomposition = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+            user.subtraction.sequence = [1, 1, 1, 1, 1, 1, 1, 1, 1];
 
             user.multiplication.fundamentals = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             user.multiplication.distribution = [1, 1, 1, 1, 1, 1, 1, 1, 1];
@@ -86,6 +87,7 @@ async function makeSettingsScreen() {
             user.subtraction.fundamentals = [];
             user.subtraction.partition = [];
             user.subtraction.decomposition = [];
+            user.subtraction.sequence = [];
 
             user.multiplication.fundamentals = [];
             user.multiplication.distribution = [];

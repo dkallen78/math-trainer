@@ -348,7 +348,8 @@ let user = {
   subtraction: {
     fundamentals: [],
     partition: [],
-    decomposition: []
+    decomposition: [],
+    sequence: []
   },
   multiplication: {
     fundamentals: [],
