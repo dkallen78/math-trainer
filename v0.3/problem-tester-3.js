@@ -1,7 +1,7 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
 //let testFunc = () => add(1, 1, 1, 1, 9, 0);
-let testFunc = () => sequence(2, 2, 2);
+let testFunc = () => testSVG(2, 15, 30);
 
 
 function makeSVG(type, id, ...classes) {
@@ -28,7 +28,7 @@ function testOnce() {
   //----------------------------------------------------*/
   
   let problem = testFunc();
-  console.log(problem);
+  //console.log(problem);
   //let solution = document.getElementById("problem-output");
   let answer = document.getElementById("answer");
   let equation = document.getElementById("equation");

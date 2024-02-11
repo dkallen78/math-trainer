@@ -24,6 +24,25 @@ button {
   text-align: center;
 }
 
+math {
+  font-family: sans-serif;
+}
+
+#div-svg {
+  height: 98%;
+}
+
+path {
+  /*fill-opacity: 0%;*/
+  stroke: black;
+}
+
+g {
+  fill-opacity: 0%;
+  stroke: black;
+}
+
+
 #problem-analyzer {
   display: flex;
   flex-flow: column;
@@ -35,6 +54,9 @@ button {
 }
 
 #equation {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   height: 96px;
   width: 304px;
   border: .1rem solid black;

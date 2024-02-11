@@ -1189,3 +1189,187 @@ function sequence(gap, startMin, startMax, gapMod = 1, startMod = 1) {
   return rnd.index(solutions);
 
 }
+
+function mathML(type) {
+
+}
+
+mathML.mover = function(bottom, top) {
+  return `<mover><mn>${bottom}</mn><mn>${stroke(top)}</mn></mover>`;
+}
+
+mathML.mfrac = function(num, denom) {
+  return `<mfrac><mn>${num}</mn><mn>${denom}</mn></mfrac>`;
+}
+
+mathML.mo = function() {
+  
+}
+
+function makeDivCircle(n, group) {
+  //----------------------------------------------------//
+  //Creates a number of wedges to form a circle         //
+  //----------------------------------------------------//
+  //n(integer): number of wedges to make                //
+  //group(integer): number of wedges per group          //
+  //----------------------------------------------------//
+  //return(SVG element): SVG element with the wedges    //
+  //----------------------------------------------------//
+
+  let svg = makeSVG("svg", "svg-box");
+  //
+  //Change in angle between each wedge
+  let angleDelta = 360 / n;
+  //
+  //Distance from center to inner-most point
+  let radius1 = 5;
+  //
+  //Distance from center to outer edge
+  let radius2 = 48;
+  //
+  //I don't know why this works but it keeps my gaps consistent
+  let gap = (angleDelta / 360) / 4;
+  let gap2 = toDeg(2 * (Math.asin((100 * (gap / 2)) / radius2)));
+  //
+  //Angle off center of the inner-most point
+  let angle0 = -90 + (angleDelta / 2);
+  //
+  //Angle of the outer counter-clockwise point
+  let angle1 = -90 + (gap2 / 2);
+  //
+  //Angle of the outer clockwise point
+  let angle2 = angle1 + angleDelta - gap2;
+  
+  let p1 = new Point(0, 0);
+  let p2 = new Point(0, 0);
+  let p3 = new Point(0, 0);
+
+  let path;
+  let g;
+
+  for (let i = 0; i < n; i++) {
+    //
+    //Defines where the three points are
+    p1.x = 50 + (Math.cos(toRad(angle0)) * radius1);
+    p1.y = 50 + (Math.sin(toRad(angle0)) * radius1);
+    p2.x = 50 + (Math.cos(toRad(angle1)) * radius2);
+    p2.y = 50 + (Math.sin(toRad(angle1)) * radius2);
+    p3.x = 50 + (Math.cos(toRad(angle2)) * radius2);
+    p3.y = 50 + (Math.sin(toRad(angle2)) * radius2);
+    //
+    //M -> move to inner-most point
+    //L -> line to ccw corner
+    //A -> arc to cw corner
+    //L -> line to inner-most point
+    path = makeSVG("path");
+    path.setAttribute("d", `
+      M ${p1.x} ${p1.y}
+      L ${p2.x} ${p2.y}
+      A ${radius2} ${radius2} 0 0 1 ${p3.x} ${p3.y}
+      L ${p1.x} ${p1.y}
+    `);
+
+    //
+    //Groups the wedges into equal numbered groups
+    if ((i % group) === 0) {
+      g = makeSVG("g");
+    }
+    if ((i % group) !== (group - 1)) {
+      g.appendChild(path);
+    } else {
+      //
+      //number of groups of wedges
+      let groups = n / group;
+      let groupMod = (groups * 2);
+      let ani = makeSVG("animate");
+      ani.setAttribute("attributeName", "fill-opacity");
+      ani.setAttribute("dur", `${groups}s`);
+      ani.setAttribute("repeatCount", "indefinite");
+      let aniVal = "";
+      let aniKey = "";
+      //
+      //Creates the animation timings for the groups of wedges
+      for (let j = 1; j <= groups; j++) {
+        
+        if (j === ((i + 1) / group)) {
+          aniVal += "100;0";
+        } else {
+          aniVal += "0;0"
+        }
+
+        aniKey += `${((2 * j) - 2) / (groupMod)};${((2 * j) - 1) / (groupMod)}`;
+
+        if (j < groups) {
+          aniVal += ";";
+          aniKey += ";";
+        }
+      }
+      aniKey += `;1`;
+      if (i + 1 === group) {
+        aniVal += ";100";
+      } else {
+        aniVal += ";0";
+      }
+      ani.setAttribute("values", aniVal);
+      ani.setAttribute("keyTimes", aniKey);
+      g.appendChild(ani);
+      g.appendChild(path);
+      svg.appendChild(g);
+    }
+
+    angle0 += angleDelta;
+    angle1 = angle2 + gap2;
+    angle2 = angle1 + angleDelta - gap2;
+  }
+
+  return svg;
+
+}
+
+function circleDiv(qMin, qMax, t1Max) {
+  //----------------------------------------------------//
+  //Creates a division problem that uses a pie array    //
+  //  as a hint                                         //
+  //----------------------------------------------------//
+  //qMin(integer): minimum value of the quotient        //
+  //  ** should be at least 2 **  ----------------------//
+  //qMax(integer): maximum value of the quotient        //
+  //t1Max(integer): maximum value of the dividend       //
+  //  ** should be at least qMax * 2 **  ---------------//
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+
+  let q = rnd(qMin, qMax);
+  let t2s = [];
+  for (let i = (t1Max / 2); i >= 2; i--) {
+
+    if (i * q <= t1Max) {
+      t2s.push(i);
+    }
+  }
+  let t2 = rnd.index(t2s);
+  let t1 = q * t2;
+  
+  let svg = makeDivCircle(t1, q);
+  let svg1 = `<svg viewBox="0 0 100 100" id="div-svg">`;
+  let svg2 = `</svg>`;
+
+  return [q, `${svg1}${svg.innerHTML}${svg2} ${t1} ÷ ${t2} = ?`]
+}
+
+function divIdent(t1Min, t1Max) {
+
+  let t1 = rnd(t1Min, t1Max);
+
+  let exp1 = `${t1} ÷ 1`;
+  let exp2 = `<math>${mathML.mfrac(t1, 1)}</math>`
+
+  let solutions = [
+    [t1, `${t1} × 1 = ${exp1} = ?`],
+    [t1, `${t1} × 1 = ${exp2} = ?`]
+  ];
+
+  return rnd.index(solutions);
+}
