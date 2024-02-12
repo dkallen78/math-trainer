@@ -1,18 +1,14 @@
 # [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quick-math.html)
 
-## Update 2024-02-09
+## Update 2024-02-11
 
-### 23:00
+### 23:45
 
-Today I made a simple repeated addition/subtraction sequence function. Pretty simple but really quick and easy to implement. 
+I think I've got intro to division. I start it off *really* simple by just doing stuff like `0/7`, `7/1`, and `7/7` to get zeroes, ones, and identities covered and introduce the new language of fractions because I use MathML to put fractions along side the traditional `÷` operator. The next thing I introduce is dividing by two because splitting things in two is pretty straight forward as far as mental load is concerned. But I pushed myself to make something a bit different. I've got a function that will make a sort of pie chart with a set number of wedges (dividend), and then those wedges are divided up into groups (divisor), and those groups are animated so each one shows changes color one at a time. The number of wedges in each group is the quotient. I don't know if it works from a didactic perspective, but I am pretty proud of myself for making it work.
 
-I'm trying to figure out a way to introduce division. The nature of this program limits what options I have. I don't have explanatory text. So far I've just limited myself to numbers and I'd like to stick with that going forward because I feel like thinks will get messy if I try to get too far out of my lane. I'm not sure how I'm going to do it. All I can think of so far is to introduce it as the opposite of multiplication but that feels insufficient somehow. 
-
-I'm also thinking of soliciting math teachers to look at it and tell me what sucks and what works. I've been on my own for too long; I need to get anchored.
+Next up I need to study up on some mental strategies for solving division problems. All I have right now is "turn it into a missing term multiplication problem" and I'm sure there has to be more out there that I'm just not remembering.
 
 ### Issues
-
-* Find a good method of introducing division
 
 * Look into better ways to structure things
 

@@ -535,3 +535,19 @@ I made a new problem function and two new helper functions! The problem function
 * Find a good threshold to unlock multiplication and division
 
 * Look into better ways to structure things
+
+## Update 2024-02-09
+
+### 23:00
+
+Today I made a simple repeated addition/subtraction sequence function. Pretty simple but really quick and easy to implement. 
+
+I'm trying to figure out a way to introduce division. The nature of this program limits what options I have. I don't have explanatory text. So far I've just limited myself to numbers and I'd like to stick with that going forward because I feel like things will get messy if I try to get too far out of my lane. I'm not sure how I'm going to do it. All I can think of so far is to introduce it as the opposite of multiplication but that feels insufficient somehow. 
+
+I'm also thinking of soliciting math teachers to look at it and tell me what sucks and what works. I've been on my own for too long; I need to get anchored.
+
+### Issues
+
+* Find a good method of introducing division
+
+* Look into better ways to structure things
