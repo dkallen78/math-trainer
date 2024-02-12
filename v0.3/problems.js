@@ -1441,7 +1441,7 @@ function divIdent(t1Min, t1Max) {
   return rnd.index(solutions);
 }
 
-function makeCircleTest(n) {
+function makeFracCircle(n) {
   //----------------------------------------------------//
   //Creates a number of wedges to form a circle         //
   //----------------------------------------------------//
@@ -1515,22 +1515,44 @@ function makeCircleTest(n) {
 }
 
 function groupPaths(svg, n) {
-
+  //----------------------------------------------------//
+  //Animates a fraction circle to highlight groups of   //
+  //  size n                                            //
+  //----------------------------------------------------//
+  //svg(element): the element with the paths to be      //
+  //  grouped and animated                              //
+  //n(integer): number of items in each group           //
+  //----------------------------------------------------//
+  //return(SVG element): SVG element with the wedges    //
+  //----------------------------------------------------//
   let paths = svg.querySelectorAll(".frac-paths-clear");
   let g;
 
   paths.forEach((p, i) => {
+    //
+    //removes the class so that the wedges can be animated
     p.classList.remove("frac-paths-clear");
-
+    //
+    //creates a new <g> element if the <path> is the 
+    //  first in a group
     if ((i % n) === 0) {
       g = makeSVG("g");
     } 
+    //
+    //adds the <path> to the <g> if it is not the 
+    //  last in the group
     if ((i % n) !== (n - 1)) {
       g.appendChild(p);
+    //
+    //creates the <animate> attributes if it is the 
+    //  last <path> in the <g>
     } else {
-
+      //
+      //number of groups
       let groups = paths.length / n;
       let groupMod = (groups * 2);
+      //
+      //sets up the basic attributes for the <animate> element
       let ani = makeSVG("animate");
       ani.setAttribute("attributeName", "fill-opacity");
       ani.setAttribute("dur", `${groups}s`);
@@ -1562,6 +1584,9 @@ function groupPaths(svg, n) {
       }
       ani.setAttribute("values", aniVal);
       ani.setAttribute("keyTimes", aniKey);
+      //
+      //adds the <path> and <animate> elements to the <g>
+      //  then adds the <g> element to the <svg>
       g.appendChild(ani);
       g.appendChild(p);
       svg.appendChild(g);
@@ -1569,10 +1594,25 @@ function groupPaths(svg, n) {
   });
 }
 
+function fillWedges(svg, n) {
+
+  let paths = svg.querySelectorAll(".frac-paths-clear");
+  let g = makeSVG("g");
+  //g.setAttribute("fill-opacity", "100");
+
+  for (let i = 0; i < n; i++) {
+    //g.appendChild(paths[i]);
+    paths[i].classList.remove("frac-paths-clear");
+  }
+
+  //paths[n].before(g);
+}
+
 function circleTest(n) {
 
-  let svg = makeCircleTest(n);
-  groupPaths(svg, 2);
+  let svg = makeFracCircle(n);
+  //groupPaths(svg, 2);
+  fillWedges(svg, 4);
   let svg1 = `<svg viewBox="0 0 100 100" id="div-svg">`;
   let svg2 = `</svg>`;
   console.log(svg1)
