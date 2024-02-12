@@ -1190,6 +1190,7 @@ function sequence(gap, startMin, startMax, gapMod = 1, startMod = 1) {
 
 }
 
+//-------------------------------------------------------
 function mathML(type) {
 
 }
@@ -1199,11 +1200,63 @@ mathML.mover = function(bottom, top) {
 }
 
 mathML.mfrac = function(num, denom) {
-  return `<mfrac><mn>${num}</mn><mn>${denom}</mn></mfrac>`;
+  if (typeof num === "number") {
+    num = `<mn>${num}</mn>`;
+  } else {
+    num = `<mi>${num}</mi>`;
+  }
+
+  if (typeof denom === "number") {
+    denom = `<mn>${denom}</mn>`;
+  } else {
+    denom = `<mi>${denom}</mi>`;
+  }
+
+  return `<mfrac>${num}${denom}</mfrac>`;
 }
 
-mathML.mo = function() {
+mathML.mo = {
   
+}
+
+function divIntro() {
+  //----------------------------------------------------//
+  //Creates simple, introductory division problems      //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+
+  let t1 = rnd(0, 9);
+  let t2 = 0;
+  let solutions = [];
+
+  if (t1 === 0) {
+    t2 = rnd(1, 9);
+    solutions = [
+      [0, `<math>${mathML.mfrac(stroke(0), t2)}</math>&nbsp=&nbsp${stroke("?")}&nbsp÷ ${t2} = 0`],
+      [0, `<math>${mathML.mfrac(stroke("?"), t2)}</math>&nbsp=&nbsp${stroke(0)}&nbsp÷ ${t2} = 0`],
+      [0, `${stroke("?")}&nbsp÷ ${t2} =&nbsp<math>${mathML.mfrac(stroke(0), t2)}</math>&nbsp= 0`],
+      [0, `${stroke(0)}&nbsp÷ ${t2} =&nbsp<math>${mathML.mfrac(stroke("?"), t2)}</math>&nbsp= 0`],
+    ];
+  } else {
+    solutions = [
+      [t1, `<math>${mathML.mfrac(t1, stroke(t1))}</math>&nbsp= ${t1} ÷&nbsp${stroke("?")}&nbsp= 1`],
+      [t1, `<math>${mathML.mfrac(stroke(t1), t1)}</math>&nbsp=&nbsp${stroke("?")}&nbsp÷ ${t1} = 1`],
+      [t1, `<math>${mathML.mfrac(stroke(t1), 1)}</math>&nbsp=&nbsp${stroke("?")}&nbsp÷ 1 = ${t1}`],
+      [t1, `<math>${mathML.mfrac(t1, stroke("?"))}</math>&nbsp= ${t1} ÷&nbsp${stroke(t1)}&nbsp= 1`],
+      [t1, `<math>${mathML.mfrac(stroke("?"), t1)}</math>&nbsp=&nbsp${stroke(t1)}&nbsp÷ ${t1} = 1`],
+      [t1, `<math>${mathML.mfrac(stroke("?"), 1)}</math>&nbsp=&nbsp${stroke(t1)}&nbsp÷ 1 = ${t1}`],
+      [t1, `${t1} ÷&nbsp${stroke("?")}&nbsp=&nbsp<math>${mathML.mfrac(t1, stroke(t1))}</math>&nbsp= 1`],
+      [t1, `${stroke("?")}&nbsp÷ ${t1} =&nbsp<math>${mathML.mfrac(stroke(t1), t1)}</math>&nbsp= 1`],
+      [t1, `${stroke("?")}&nbsp÷ 1 =&nbsp<math>${mathML.mfrac(stroke(t1), 1)}</math>&nbsp= ${t1}`],
+      [t1, `${t1} ÷&nbsp${stroke(t1)}&nbsp=&nbsp<math>${mathML.mfrac(t1, stroke("?"))}</math>&nbsp= 1`],
+      [t1, `${stroke(t1)}&nbsp÷ ${t1} =&nbsp<math>${mathML.mfrac(stroke("?"), t1)}</math>&nbsp= 1`],
+      [t1, `${stroke(t1)}&nbsp÷ 1 =&nbsp<math>${mathML.mfrac(stroke("?"), 1)}</math>&nbsp= ${t1}`],
+    ];
+  }
+
+  return rnd.index(solutions);
 }
 
 function makeDivCircle(n, group) {
@@ -1326,7 +1379,7 @@ function makeDivCircle(n, group) {
 
 }
 
-function circleDiv(qMin, qMax, t1Max) {
+function circleDiv(qMin, qMax, t1Max, t2 = 0) {
   //----------------------------------------------------//
   //Creates a division problem that uses a pie array    //
   //  as a hint                                         //
@@ -1336,27 +1389,40 @@ function circleDiv(qMin, qMax, t1Max) {
   //qMax(integer): maximum value of the quotient        //
   //t1Max(integer): maximum value of the dividend       //
   //  ** should be at least qMax * 2 **  ---------------//
+  //t2(integer): optional value for the second term     //
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
   //----------------------------------------------------//
 
   let q = rnd(qMin, qMax);
-  let t2s = [];
-  for (let i = (t1Max / 2); i >= 2; i--) {
+  
 
-    if (i * q <= t1Max) {
-      t2s.push(i);
+  if (t2 === 0) {
+
+    let t2s = [];
+    
+    for (let i = (t1Max / 2); i >= 2; i--) {
+
+      if (i * q <= t1Max) {
+        t2s.push(i);
+      }
     }
-  }
-  let t2 = rnd.index(t2s);
+    t2 = rnd.index(t2s);
+  } 
+  
   let t1 = q * t2;
   
   let svg = makeDivCircle(t1, q);
   let svg1 = `<svg viewBox="0 0 100 100" id="div-svg">`;
   let svg2 = `</svg>`;
 
-  return [q, `${svg1}${svg.innerHTML}${svg2} ${t1} ÷ ${t2} = ?`]
+  let solutions = [
+    //[q, `${svg1}${svg.innerHTML}${svg2} ${t1} ÷ ${t2} = ?`],
+    [q, `${svg1}${svg.innerHTML}${svg2} <math>${mathML.mfrac(t1, t2)}</math>&nbsp= ${t1} ÷ ${t2} = ?`]
+  ];
+
+  return rnd.index(solutions);
 }
 
 function divIdent(t1Min, t1Max) {

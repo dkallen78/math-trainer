@@ -880,9 +880,30 @@ let multiplication = {
   ]
 }
 
+let division = {
+  fundamentals: [
+    //0
+    "Fundamentals",
+    //1 - Zeroes and Ones
+    {
+      name: "Zeroes and Ones",
+      id: ["division", "fundamentals", 1],
+      run: () => divIntro(),
+      test: () => user.multiplication.fundamentals[1],
+    },
+    //2 - Halves
+    {
+      name: "Halves",
+      id: ["division", "fundamentals", 2],
+      run: () => circleDiv(2, 10, 20, 2),
+      test: () => user.division.fundamentals[1]
+    }
+  ]
+}
+
 let skills = {
   "+": [addition.fundamentals, addition.reorder, addition.placeValue, addition.partition, addition.compensation, addition.sequence],
   "-": [subtraction.fundamentals, subtraction.partition, subtraction.decomposition, subtraction.sequence],
   "×": [multiplication.fundamentals, multiplication.association, multiplication.distribution],
-  "÷": []
+  "÷": [division.fundamentals,]
 }

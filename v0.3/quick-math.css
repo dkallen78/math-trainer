@@ -312,6 +312,24 @@ button {
   transition: padding 50ms;
 }
 
+#div-svg {
+  height: 90%;
+  margin-right: .5rem;
+}
+
+g {
+  fill-opacity: 0;
+  stroke: black;
+}
+
+path {
+  stroke: black;
+}
+
+math {
+  font-family: sans-serif;
+}
+
 .solution-display {
   display: flex;
   justify-content: center;

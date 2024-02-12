@@ -30,6 +30,7 @@ math {
 
 #div-svg {
   height: 98%;
+  margin-right: .5rem;
 }
 
 path {
@@ -41,7 +42,6 @@ g {
   fill-opacity: 0%;
   stroke: black;
 }
-
 
 #problem-analyzer {
   display: flex;
@@ -55,7 +55,7 @@ g {
 
 #equation {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   height: 96px;
   width: 304px;

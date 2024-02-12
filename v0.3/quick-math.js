@@ -131,7 +131,7 @@ function operationUnlock(op) {
       return true;
       break;
     case "÷":
-      return false;
+      return true;
       break;
   }
 }
@@ -355,6 +355,9 @@ let user = {
     fundamentals: [],
     distribution: [],
     association: []
+  },
+  division: {
+    fundamentals: []
   },
   tour: false,
   fast: false,
