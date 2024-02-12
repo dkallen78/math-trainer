@@ -247,10 +247,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-#skill-group-screen__info {
-  margin: 5vh 0 5vh 0;
+  height: 98vh;
 }
 
 /*
@@ -319,11 +316,11 @@ button {
 
 g {
   fill-opacity: 0;
-  stroke: black;
+  stroke: var(--text-color);
 }
 
 path {
-  stroke: black;
+  stroke: var(--text-color);
 }
 
 math {

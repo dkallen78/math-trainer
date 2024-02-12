@@ -1,6 +1,6 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
-let testFunc = () => circleDiv2(1, 6, 12);
+let testFunc = () => idFractions(1, 9, 2, 9, 1);
 //let testFunc = () => circleTest(6);
 
 

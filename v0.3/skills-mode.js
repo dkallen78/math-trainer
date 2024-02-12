@@ -111,10 +111,6 @@ async function makeSkillsDrillsScreen(operation) {
 
     let skillGroupScreen = makeElement("main", "skill-group-screen", "screen");
 
-      let skillGroupScreenInfo = makeElement("header", "skill-group-screen__info", "marquee");
-        skillGroupScreenInfo.innerHTML = "Skills Drills";
-      skillGroupScreen.appendChild(skillGroupScreenInfo);
-
       for (let i = 0; i < skills[operation].length; i++) {
         let skillButton = makeButton(skills[operation][i][0], null, `op-skills-${i}`, "medium-button", "inactive-button");
         skillGroupScreen.appendChild(skillButton);
@@ -589,6 +585,9 @@ let addition = {
       run: () => sequence(9, 9, 9, 1),
       test: () => user.addition.sequence[8]
     }
+  ],
+  fractions: [
+    
   ]
 }
 
@@ -923,7 +922,7 @@ let division = {
 }
 
 let skills = {
-  "+": [addition.fundamentals, addition.reorder, addition.placeValue, addition.partition, addition.compensation, addition.sequence],
+  "+": [addition.fundamentals, addition.reorder, addition.placeValue, addition.partition, addition.compensation, addition.sequence, addition.fractions],
   "-": [subtraction.fundamentals, subtraction.partition, subtraction.decomposition, subtraction.sequence],
   "×": [multiplication.fundamentals, multiplication.association, multiplication.distribution],
   "÷": [division.fundamentals,]

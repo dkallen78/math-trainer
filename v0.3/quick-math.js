@@ -343,7 +343,8 @@ let user = {
     reorder: [],
     partition: [],
     compensation: [],
-    sequence: []
+    sequence: [],
+    fractions: []
   },
   subtraction: {
     fundamentals: [],
