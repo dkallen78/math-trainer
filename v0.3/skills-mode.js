@@ -895,8 +895,29 @@ let division = {
     {
       name: "Halves",
       id: ["division", "fundamentals", 2],
-      run: () => circleDiv(2, 10, 20, 2),
+      run: () => circleDiv(1, 6, 20, 2),
       test: () => user.division.fundamentals[1]
+    },
+    //3 - Thirds
+    {
+      name: "Thirds",
+      id: ["division", "fundamentals", 3],
+      run: () => circleDiv(1, 6, 18, 3),
+      test: () => user.division.fundamentals[2]
+    },
+    //4 - Fourths
+    {
+      name: "Fourths",
+      id: ["division", "fundamentals", 4],
+      run: () => circleDiv(1, 6, 24, 4),
+      test: () => user.division.fundamentals[3]
+    },
+    //5 - Fifths
+    {
+      name: "Fifths",
+      id: ["division", "fundamentals", 5],
+      run: () => circleDiv(1, 4, 20, 5),
+      test: () => user.division.fundamentals[4],
     }
   ]
 }

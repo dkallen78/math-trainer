@@ -1385,10 +1385,11 @@ function circleDiv(qMin, qMax, t1Max, t2 = 0) {
   //  as a hint                                         //
   //----------------------------------------------------//
   //qMin(integer): minimum value of the quotient        //
-  //  ** should be at least 2 **  ----------------------//
+  //  ** should be at least 2 unless t2 is set          //
   //qMax(integer): maximum value of the quotient        //
   //t1Max(integer): maximum value of the dividend       //
-  //  ** should be at least qMax * 2 **  ---------------//
+  //  ** only used if t2 isn't set                      //
+  //  ** should be at least qMax * 2                    //
   //t2(integer): optional value for the second term     //
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
