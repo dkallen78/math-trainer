@@ -1,7 +1,7 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
-//let testFunc = () => add(1, 1, 1, 1, 9, 0);
-let testFunc = () => circleDiv(1, 4, 21, 5);
+//let testFunc = () => circleDiv(1, 6, 24, 4);
+let testFunc = () => circleTest(6);
 
 
 function makeSVG(type, id, ...classes) {

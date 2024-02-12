@@ -38,8 +38,12 @@ path {
   stroke: black;
 }
 
+.frac-paths-clear {
+  fill-opacity: 0;
+}
+
 g {
-  fill-opacity: 0%;
+  fill-opacity: 0;
   stroke: black;
 }
 
