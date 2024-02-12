@@ -1379,53 +1379,6 @@ function makeDivCircle(n, group) {
 
 }
 
-function circleDiv(qMin, qMax, t1Max, t2 = 0) {
-  //----------------------------------------------------//
-  //Creates a division problem that uses a pie array    //
-  //  as a hint                                         //
-  //----------------------------------------------------//
-  //qMin(integer): minimum value of the quotient        //
-  //  ** should be at least 2 unless t2 is set          //
-  //qMax(integer): maximum value of the quotient        //
-  //t1Max(integer): maximum value of the dividend       //
-  //  ** only used if t2 isn't set                      //
-  //  ** should be at least qMax * 2                    //
-  //t2(integer): optional value for the second term     //
-  //----------------------------------------------------//
-  //return(array[float, string]): the answer to the     //
-  //  equation and a string representation of it        //
-  //----------------------------------------------------//
-
-  let q = rnd(qMin, qMax);
-  
-
-  if (t2 === 0) {
-
-    let t2s = [];
-    
-    for (let i = (t1Max / 2); i >= 2; i--) {
-
-      if (i * q <= t1Max) {
-        t2s.push(i);
-      }
-    }
-    t2 = rnd.index(t2s);
-  } 
-  
-  let t1 = q * t2;
-  
-  let svg = makeDivCircle(t1, q);
-  let svg1 = `<svg viewBox="0 0 100 100" id="div-svg">`;
-  let svg2 = `</svg>`;
-
-  let solutions = [
-    //[q, `${svg1}${svg.innerHTML}${svg2} ${t1} ÷ ${t2} = ?`],
-    [q, `${svg1}${svg.innerHTML}${svg2} <math>${mathML.mfrac(t1, t2)}</math>&nbsp= ${t1} ÷ ${t2} = ?`]
-  ];
-
-  return rnd.index(solutions);
-}
-
 function divIdent(t1Min, t1Max) {
 
   let t1 = rnd(t1Min, t1Max);
@@ -1523,8 +1476,7 @@ function groupPaths(svg, n) {
   //  grouped and animated                              //
   //n(integer): number of items in each group           //
   //----------------------------------------------------//
-  //return(SVG element): SVG element with the wedges    //
-  //----------------------------------------------------//
+
   let paths = svg.querySelectorAll(".frac-paths-clear");
   let g;
 
@@ -1595,17 +1547,69 @@ function groupPaths(svg, n) {
 }
 
 function fillWedges(svg, n) {
+  //----------------------------------------------------//
+  //Fills in n wedges of the fraction circle in svg     //
+  //----------------------------------------------------//
+  //svg(element): the element with the paths to be      //
+  //  filled in                                         //
+  //n(integer): number of wedges to be filled in        //
+  //----------------------------------------------------//
 
   let paths = svg.querySelectorAll(".frac-paths-clear");
-  let g = makeSVG("g");
-  //g.setAttribute("fill-opacity", "100");
 
   for (let i = 0; i < n; i++) {
-    //g.appendChild(paths[i]);
     paths[i].classList.remove("frac-paths-clear");
   }
+}
 
-  //paths[n].before(g);
+function circleDiv(qMin, qMax, t1Max, t2 = 0) {
+  //----------------------------------------------------//
+  //Creates a division problem that uses a pie array    //
+  //  as a hint                                         //
+  //----------------------------------------------------//
+  //qMin(integer): minimum value of the quotient        //
+  //  ** should be at least 2 unless t2 is set          //
+  //qMax(integer): maximum value of the quotient        //
+  //t1Max(integer): maximum value of the dividend       //
+  //  ** only used if t2 isn't set                      //
+  //  ** should be at least qMax * 2                    //
+  //t2(integer): optional value for the second term     //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+
+  let q = rnd(qMin, qMax);
+  //
+  //If no divisor is specified, creates an array of 
+  //  potential divisors given a maximum dividend (t1Max)
+  if (t2 === 0) {
+
+    let t2s = [];
+    
+    for (let i = (t1Max / 2); i >= 2; i--) {
+
+      if (i * q <= t1Max) {
+        t2s.push(i);
+      }
+    }
+    //
+    //Picks a divisor at random from the array
+    t2 = rnd.index(t2s);
+  } 
+  
+  let t1 = q * t2;
+  
+  let svg = makeFracCircle(t1);
+  groupPaths(svg, q);
+  let svg1 = `<svg viewBox="0 0 100 100" id="div-svg">`;
+  let svg2 = `</svg>`;
+
+  let solutions = [
+    [q, `${svg1}${svg.innerHTML}${svg2} <math>${mathML.mfrac(t1, t2)}</math>&nbsp= ${t1} ÷ ${t2} = ?`]
+  ];
+
+  return rnd.index(solutions);
 }
 
 function circleTest(n) {
