@@ -653,12 +653,25 @@ function upTo(aMin, cap) {
 }
 
 function idFractions(nMin, nMax, dMin, dMax, mode) {
-  
-  //let num = rnd(nMin, nMax);
-  //dMin = num > 1 ? num : dMin;
-  //let denom = rnd(dMin, dMax);
-  //nMax = nMax > denom ? denom : nMax;
-  //let num = rnd(nMin, nMax);
+  //----------------------------------------------------//
+  //Creates a fraction identification problem           //
+  //----------------------------------------------------//
+  //nMin(integer): minimum potential value for the      //
+  //  numerator                                         //
+  //nMax(integer): maximum potential value for the      //
+  //  numerator                                         //
+  //dMin(integer): minimum potential value for the      //
+  //  denominator                                       //
+  //dMax(integer): maximum potential value for the      //
+  //  denominator                                       //
+  //mode(integer): determines the type of problem       //
+  //    0: missing denominator problem                  //
+  //    1: missing numerator problem                    //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+
   let num = 0;
   let denom = 0;
   let answer = 0;
@@ -1542,15 +1555,39 @@ function circleDiv(qMin, qMax, t1Max, t2 = 0) {
   return rnd.index(solutions);
 }
 
-function circleTest(n) {
+function makeFractionLine(n) {
 
-  let svg = makeFracCircle(n);
-  //groupPaths(svg, 2);
-  fillWedges(svg, 4);
-  let svg1 = `<svg viewBox="0 0 100 100" id="div-svg">`;
-  let svg2 = `</svg>`;
-  console.log(svg1)
-  
+  let svg = makeSVG("svg");
+  svg.setAttribute("viewBox", "0 0 200 10");
+  svg.id = "svg-line";
+  let rect;
+  let x = 0;
+  let y = 0;
+  let w = ((1/ n) * 200) - 3;
+  let h = 10;
 
-  return [9, `${svg1}${svg.innerHTML}${svg2}`]
+  for (let i = 0; i < n; i++) {
+
+    x = ((i / n) * 200) + 1.5;
+    rect = makeSVG.rect(x, y, w, h);
+    rect.classList.add("frac-paths-clear", "frac-rec");
+    rect.setAttribute("fill", "var(--text-color)");
+    svg.appendChild(rect);
+  }
+
+  return svg;
+}
+
+function lineTest() {
+
+  let num = rnd(1, 9);
+  denom = rnd(num + 1, 10)
+  let svg = makeFractionLine(denom);
+  fillWedges(svg, num);
+  let svgExp = `${svg.outerHTML}`;
+
+  let fraction = mathML.mfrac("?", denom);
+  let fracExp = `<math>${fraction}</math>`;
+
+  return [num, `<div id="column">${fracExp} ${svgExp}</div>`];
 }

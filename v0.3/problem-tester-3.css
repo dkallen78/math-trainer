@@ -1,3 +1,11 @@
+:root {
+  --bg-color: hsla(0, 0%, 100%, 1);
+  --text-color: hsla(0, 0%, 0%, 1);
+  --border-color: hsla(0, 0%, 0%, 1);
+  --inactive-color: hsla(0, 0%, 50%, 0.5);
+  --button-bg-color: hsla(0, 0%, 0%, 0);
+}
+
 #problem-tester, #problem-analyzer {
   margin: .2em;
   padding: .5em;
@@ -34,6 +42,14 @@ math {
   margin-right: .5rem;
 }
 
+#svg-line {
+  width: 100%;
+}
+
+.frac-rec {
+  stroke: black;
+}
+
 path {
   /*fill-opacity: 0%;*/
   stroke: black;
@@ -41,6 +57,14 @@ path {
 
 .frac-paths-clear {
   fill-opacity: 0;
+}
+
+#column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%
 }
 
 g {

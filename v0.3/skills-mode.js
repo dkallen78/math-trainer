@@ -589,20 +589,20 @@ let addition = {
   fractions: [
     //0
     "Fractions",
-    //1 - Denominator
-    {
-      name: "Denominator",
-      id: ["addition", "fractions", 1],
-      run: () => idFractions(1, 1, 2, 9, 0),
-      test: () => user.division.fundamentals[1],
-    },
-    //2 - Numerator
+    //1 - Numerator
     {
       name: "Numerator",
-      id: ["addition", "fractions", 2],
+      id: ["addition", "fractions", 1],
       run: () => idFractions(1, 9, 2, 9, 1),
+      test: () => user.division.fundamentals[1],
+    },
+    //2 - Denominator
+    {
+      name: "Denominator",
+      id: ["addition", "fractions", 2],
+      run: () => idFractions(1, 1, 2, 6, 0),
       test: () => user.addition.fractions[1],
-    }
+    },
   ]
 }
 

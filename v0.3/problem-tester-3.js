@@ -1,6 +1,6 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
-let testFunc = () => idFractions(1, 9, 2, 9, 1);
+let testFunc = () => lineTest();
 //let testFunc = () => circleTest(6);
 
 
@@ -19,6 +19,18 @@ function makeSVG(type, id, ...classes) {
   if (typeof id === "string") {svg.id = id}
   classes.forEach(x => svg.classList.add(x));
   return svg;
+}
+
+makeSVG.rect = function(x, y, w, h, id, ...classes) {
+
+  let rect = makeSVG("rect");
+  rect.setAttribute("x", x);
+  rect.setAttribute("y", y);
+  rect.setAttribute("width", w);
+  rect.setAttribute("height", h);
+  if (typeof id === "string") {rect.id = id}
+  classes.forEach(x => rect.classList.add(x));
+  return rect;
 }
 
 function testOnce() {

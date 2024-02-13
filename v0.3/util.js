@@ -157,6 +157,18 @@ function makeSVG(type, id, ...classes) {
   return svg;
 }
 
+makeSVG.rect = function(x, y, w, h, id, ...classes) {
+
+  let rect = makeSVG("rect");
+  rect.setAttribute("x", x);
+  rect.setAttribute("y", y);
+  rect.setAttribute("width", w);
+  rect.setAttribute("height", h);
+  if (typeof id === "string") {rect.id = id}
+  classes.forEach(x => rect.classList.add(x));
+  return rect;
+}
+
 class Point {
 	//----------------------------------------------------//
 	//A data structure to make managing and representing	//
