@@ -314,6 +314,10 @@ button {
   margin-right: .5rem;
 }
 
+.frac-paths-clear {
+  fill-opacity: 0;
+}
+
 g {
   fill-opacity: 0;
   stroke: var(--text-color);

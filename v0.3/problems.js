@@ -654,39 +654,43 @@ function upTo(aMin, cap) {
 
 function idFractions(nMin, nMax, dMin, dMax, mode) {
   
-  let num = rnd(nMin, nMax);
-  dMin = num > 1 ? num : dMin;
-  let denom = rnd(dMin, dMax);
+  //let num = rnd(nMin, nMax);
+  //dMin = num > 1 ? num : dMin;
+  //let denom = rnd(dMin, dMax);
   //nMax = nMax > denom ? denom : nMax;
   //let num = rnd(nMin, nMax);
+  let num = 0;
+  let denom = 0;
+  let answer = 0;
   let solutions = [];
-
-  let svg = makeFracCircle(denom);
-  fillWedges(svg, num);
-  let svgExp = `<svg viewBox="0 0 100 100" id="div-svg">${svg.innerHTML}</svg>`;
-
   let fraction = "";
 
   switch(mode) {
     //
     //Unknown denominator problem
     case 0:
-      fraction = mathML.mfrac(num, stroke("?"));
-      return [denom, `${svgExp} <math>${fraction}</math>`];
+      denom = rnd(dMin, dMax);
+      nMax = nMax > denom ? denom : nMax;
+      num = rnd(nMin, nMax);
+      fraction = `<math>${mathML.mfrac(num, "?")}</math>`;
+      answer = denom;
       break;
     //
     //Unknown numerator problem
     case 1:
-      
-      fraction = mathML.mfrac("?", denom);
-      return [num, `${svgExp} <math>${fraction}</math>`];
-      break;
-    //
-    //Unknown numerator or denominator problem
-    case 2:
+      num = rnd(nMin, nMax);
+      dMin = dMin < num ? num : dMin;
+      denom = rnd(dMin, dMax)
+      fraction = `<math>${mathML.mfrac("?", denom)}</math>`;
+      answer = num;
       break;
   }
 
+  let svg = makeFracCircle(denom);
+  negWedges(svg, num);
+  let svgExp = `<svg viewBox="0 0 100 100" id="div-svg">${svg.innerHTML}</svg>`;
+
+  return [answer, `${svgExp} ${fraction}`];
 }
 
 //----------------------------------------------------------------
@@ -1476,6 +1480,15 @@ function fillWedges(svg, n) {
 
   for (let i = 0; i < n; i++) {
     paths[i].classList.remove("frac-paths-clear");
+  }
+}
+
+function negWedges(svg, n) {
+
+  let paths = svg.querySelectorAll(".frac-paths-clear");
+
+  for (let i = paths.length - 1; i >= n; i--) {
+    paths[i].setAttribute("stroke-dasharray", "3 3");
   }
 }
 
