@@ -699,11 +699,17 @@ function idFractions(nMin, nMax, dMin, dMax, mode) {
       break;
   }
 
-  let svg = makeFracCircle(denom);
-  negWedges(svg, num);
-  let svgExp = `<svg viewBox="0 0 100 100" id="div-svg">${svg.innerHTML}</svg>`;
+  let svgP = makeFracCircle(denom);
+  negWedges(svgP, num);
 
-  return [answer, `${svgExp} ${fraction}`];
+  let svgL = makeFractionLine(denom);
+  fillWedges(svgL, num);
+  solutions = [
+    [answer, `${svgP.outerHTML} ${fraction}`],
+    [answer, `<div id="column">${fraction} ${svgL.outerHTML}</div>`]
+  ];
+
+  return rnd.index(solutions);
 }
 
 //----------------------------------------------------------------
@@ -1337,6 +1343,8 @@ function makeFracCircle(n) {
   //----------------------------------------------------//
 
   let svg = makeSVG("svg", "svg-box");
+  svg.setAttribute("viewBox", "0 0 100 100");
+  svg.id = "svg-pie";
   //
   //Change in angle between each wedge
   let angleDelta = 360 / n;
@@ -1581,7 +1589,7 @@ function makeFractionLine(n) {
 function lineTest() {
 
   let num = rnd(1, 9);
-  denom = rnd(num + 1, 10)
+  denom = rnd(num + 1, 10);
   let svg = makeFractionLine(denom);
   fillWedges(svg, num);
   let svgExp = `${svg.outerHTML}`;
