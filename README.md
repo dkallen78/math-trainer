@@ -1,12 +1,16 @@
 # [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quick-math.html)
 
-## Update 2024-02-11
+## Update 2024-02-12
 
-### 23:45
+### 23:30
 
-I think I've got intro to division. I start it off *really* simple by just doing stuff like `0/7`, `7/1`, and `7/7` to get zeroes, ones, and identities covered and introduce the new language of fractions because I use MathML to put fractions along side the traditional `÷` operator. The next thing I introduce is dividing by two because splitting things in two is pretty straight forward as far as mental load is concerned. But I pushed myself to make something a bit different. I've got a function that will make a sort of pie chart with a set number of wedges (dividend), and then those wedges are divided up into groups (divisor), and those groups are animated so each one shows changes color one at a time. The number of wedges in each group is the quotient. I don't know if it works from a didactic perspective, but I am pretty proud of myself for making it work.
+Having gotten started on division, it seemed that I needed to tackle fractions. Fortunately fractions are usually taught before decimals because I'm not up for decimals at the moment. I've made a good start on fractions. The difficult part has been not just dynamically making the SVG elements based on random numbers, but making it all fit into the window I've been using to display my problems. It's kind of funny because last week I was stressing about fitting longer equations into my display, now I'm trying to get SVG and numbers. So far it's all going swimmingly but we'll see if I'm still optimistic when I'm trying to cover fraction arithmetic — everything so far has just been focused on identifying fractions.
 
-Next up I need to study up on some mental strategies for solving division problems. All I have right now is "turn it into a missing term multiplication problem" and I'm sure there has to be more out there that I'm just not remembering.
+One thing I discovered today that's going to make me go back and simplify my code is the `element.outerHTML` method. Because everything is set up to just inject raw HTML into the problem display area, I've been struggling to get my SVG and MathML elements into the problem display without being super janky, but `outerHTML` lets me build a shadow DOM and just shoot it into the live DOM with `innerHTML`. Totally rad.
+
+Tomorrow, more fractions. 
+
+And I feel like I'm getting close to a refactorization and reorganization. But before I do that, I want to clean up my Git as well so that it doesn't look so shabby around here =P
 
 ### Issues
 
