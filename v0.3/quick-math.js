@@ -5,16 +5,16 @@ function makeTitleScreen() {
 
   clearElement(document.body);
 
-  let titleScreen = makeElement("main", "title-screen", "screen");
+  let titleScreen = make.main("title-screen", "screen");
 
-    let titleScreenHeader = makeElement("header", "title-screen__header", "marquee");
+    let titleScreenHeader = make.header("title-screen__header", "marquee");
       titleScreenHeader.innerHTML = "QuickMath";
     titleScreen.appendChild(titleScreenHeader);
 
-    let launchButton = makeButton("Let's Go!", () => {
+    let launchButton = make.button("Let's Go!", "title-screen__launch-button", "big-button", () => {
       playTone(randomNote());
       makeModeSelectScreen();
-    }, "title-screen__launch-button", "big-button");
+    });
     titleScreen.appendChild(launchButton);
 
   document.body.appendChild(titleScreen);
@@ -37,26 +37,27 @@ async function makeModeSelectScreen() {
   async function waitForButton() {
     
     return new Promise((resolve, reject) => {
-      let challengeButton = document.getElementById("mode-select-screen__challenge-button");
-      challengeButton.onclick = async () => {
+      //let challengeButton = document.getElementById("mode-select-screen__challenge-button");
+      let challengeButton = get("mode-select-screen__challenge-button");
+      set.click(challengeButton, async () => {
         playTone(randomNote());
         await makeChallengeBaseScreen();
         resolve();
-      }
+      });
 
-      let skillsButton = document.getElementById("mode-select-screen__skills-button");
-      skillsButton.onclick = async () => {
+      let skillsButton = get("mode-select-screen__skills-button");
+      set.click(skillsButton, async () => {
         playTone(randomNote());
         await makeSkillsStartScreen();
         resolve();
-      }
+      })
 
-      let settingsButton = document.getElementById("mode-select-screen__settings-button");
-      settingsButton.onclick = async () => {
+      let settingsButton = get("mode-select-screen__settings-button");
+      set.click(settingsButton, async () => {
         playTone(randomNote());
         await makeSettingsScreen();
         resolve();
-      }
+      })
 
       if (document.getElementById("resumeButton")) {
         let resumeButton = document.getElementById("resumeButton");
@@ -88,15 +89,15 @@ async function makeModeSelectScreen() {
 
   while (!quit) {
 
-    let modeSelectScreen = makeElement("main", "mode-select-screen", "screen");
+    let modeSelectScreen = make.main("mode-select-screen", "screen");
 
-      let challengeButton = makeButton("Challenge", null, "mode-select-screen__challenge-button", "big-button");
+      let challengeButton = make.button("Challenge", "mode-select-screen__challenge-button", "big-button");
       modeSelectScreen.appendChild(challengeButton);
 
-      let skillsButton = makeButton("Skills", null, "mode-select-screen__skills-button", "big-button");
+      let skillsButton = make.button("Skills", "mode-select-screen__skills-button", "big-button");
       modeSelectScreen.appendChild(skillsButton);
 
-      let settingsButton = makeButton("Settings", null, "mode-select-screen__settings-button", "big-button");
+      let settingsButton = make.button("Settings", "mode-select-screen__settings-button", "big-button");
       modeSelectScreen.appendChild(settingsButton);
 
       /*if (localStorage.getItem("userData")) {
