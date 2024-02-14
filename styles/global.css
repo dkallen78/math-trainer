@@ -16,6 +16,7 @@ body {
 }
 
 button {
+  margin: 1vh;
   color: var(--text-color);
   background-color: var(--button-bg-color);
   font-family: sans-serif;
@@ -24,10 +25,14 @@ button {
   transition: all 250ms;
 }
 
+
 .big-button {
-  margin: 1vh;
   padding: 1vh;
   font-size: 2rem;
+}
+
+.button-medium {
+  font-size: 1.5rem;
 }
 
 .flex-column {

@@ -286,7 +286,7 @@ async function makeScaleScreen() {
 
   function makeScaleButton(scale, name) {
 
-    let button = make.button(name, `${name}-Button`, "medium-button", () => {
+    let button = make.button(name, `${name}-Button`, "button-medium", () => {
       user.activeScale = scale;
       playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
     });
@@ -295,7 +295,7 @@ async function makeScaleScreen() {
 
   return new Promise (async (resolve, reject) => {
 
-    let scaleSelectionScreen = make.main("scale-selection-screen", "screen");
+    let scaleSelectionScreen = make.main("scale-selection-screen", ["screen", "flex-column"]);
 
       let majorButton = makeScaleButton(scales.major, "Major");
       scaleSelectionScreen.appendChild(majorButton);
@@ -318,7 +318,7 @@ async function makeScaleScreen() {
       let hungarianButton = makeScaleButton(scales.hungarian, "Hungarian");
       scaleSelectionScreen.appendChild(hungarianButton);
 
-      let backButton = make.button("Back", "scale-selection-screen__back-button", "medium-button", () => {
+      let backButton = make.button("Back", "scale-selection-screen__back-button", "button-medium", () => {
         playTone(randomNote());
         resolve();
       });
