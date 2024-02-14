@@ -44,7 +44,7 @@ async function makeModeSelectScreen() {
       const settingsButton = get("mode-select-screen__settings-button");
       set.click(settingsButton, async () => {
         playTone(randomNote());
-        //await makeSettingsScreen();
+        await makeSettingsScreen();
         resolve();
       })
     })
@@ -52,7 +52,6 @@ async function makeModeSelectScreen() {
 
   let quit = false;
   while (!quit) {
-    console.log("mode")
     const modeSelectScreen = make.main("mode-select-screen", ["screen", "flex-column"]);
     
       const challengeButton = make.button("Challenge", "mode-select-screen__challenge-button", "big-button");
