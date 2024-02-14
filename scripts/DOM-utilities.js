@@ -91,6 +91,11 @@ make.button = function(name, id, classes, fnc) {
   return button;
 }
 
+make.div = function(id, classes) {
+  let div = make("div", id, classes);
+  return div;
+}
+
 make.header = function(id, classes) {
   let header = make("header", id, classes);
   return header;
@@ -99,6 +104,11 @@ make.header = function(id, classes) {
 make.main = function(id, classes) {
   let main = make("main", id, classes);
   return main;
+}
+
+make.section = function(id, classes) {
+  let section = make("section", id, classes);
+  return section;
 }
 
 function set(elem, ...pairs) {

@@ -116,7 +116,7 @@ async function makeSoundScreen() {
       let selectKey = get("sound-options-screen__select-key-button");
       set.click(selectKey, async () => {
         playTone(randomNote());
-        //await makeKeyScreen();
+        await makeKeyScreen();
         resolve(false);
       })
 
@@ -176,4 +176,105 @@ async function makeSoundScreen() {
     await waitForButton()
       .then((exit) => {quit = exit});
   }
+}
+
+async function makeKeyScreen() {
+  //----------------------------------------------------//
+	//Makes the screen to let the user change the key     //
+	//----------------------------------------------------//
+
+  let allNotes = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
+
+  function chooseKey(key, elem) {
+
+    user.keyNote = key;
+    const activeKeyDisplay = get("key-selection-screen__active-key-display");
+    activeKeyDisplay.innerHTML = `${allNotes[user.keyNote]}${user.keyOctave} ${notes[user.activeKey]}`;
+    
+    playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
+
+  }
+
+  function chooseOctave(octave, elem) {
+
+    user.keyOctave = octave;
+    const activeKeyDisplay = get("key-selection-screen__active-key-display");
+    activeKeyDisplay.innerHTML = `${allNotes[user.keyNote]}${user.keyOctave} ${notes[user.activeKey]}`;
+
+    playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
+  }
+
+  return new Promise (async (resolve, reject) => {
+    const keySelectionScreen = make.main(-"key-selection-screen", ["screen", "flex-column"]);
+
+      const activeKeyDisplay = make.header("key-selection-screen__active-key-display", "marquee");
+        activeKeyDisplay.innerHTML = `${allNotes[user.keyNote]}${user.keyOctave} ${notes[user.activeKey]}`;
+      keySelectionScreen.appendChild(activeKeyDisplay);
+      //
+      //Displays the buttons for selecting the different keys
+      const selectKey = make.section("key-selection-screen__select-key");
+        //
+        //Header for the key selection section
+        const keyHed = make.header("key-selection-screen__select-key__key-hed", "marquee-small");
+          keyHed.innerHTML = "Select Key";
+        selectKey.appendChild(keyHed);
+        //
+        //The 5 black keys
+        const blackKeys = make.div("key-selection-screen__select-key__black-keys");
+
+          const blackNotes = ["C♯/\nD♭", "D♯/\nE♭", "F♯/\nG♭", "G♯/\nA♭", "A♯/\nB♭"];
+          const blackIntervals = [1, 3, 6, 8, 10];
+
+          for (let i = 0; i < blackNotes.length; i++) {
+            const noteButton = make.button(blackNotes[i], `key-${blackIntervals[i]}`, "key-buttons", () => {
+              chooseKey(blackIntervals[i], noteButton);
+            });
+            blackKeys.appendChild(noteButton);
+          }
+        selectKey.appendChild(blackKeys);
+        //
+        //the 7 white keys
+        const whiteKeys = make.div("key-selection-screen__select-key__white-keys");
+          const whiteNotes = ["C", "D", "E", "F", "G", "A", "B"];
+          const whiteIntervals = [0, 2, 4, 5, 7, 9, 11];
+          for (let i = 0; i < whiteNotes.length; i++) {
+            const noteButton = make.button(whiteNotes[i], `key-${whiteIntervals[i]}`, "key-buttons", () => {
+              chooseKey(whiteIntervals[i], noteButton);
+            });
+            whiteKeys.appendChild(noteButton);
+          }
+        selectKey.appendChild(whiteKeys);
+
+      keySelectionScreen.appendChild(selectKey);
+      //
+      //Displays the buttons for selecting the different octaves
+      const selectOctave = make.section("key-selection-screen__select-octave");
+        //
+        //Header for the octave selection section
+        const octaveHed = make.div("key-selection-screen__select-octave__octave-hed", "marquee-small");
+          octaveHed.innerHTML = "Select Octave";
+        selectOctave.appendChild(octaveHed);
+        //
+        //The four octave buttons
+        const octaves = make.div("key-selction-screen__select-octave__octaves");
+          for (let i = 3; i < 7; i++) {
+            const octaveButton = make.button(i, `octave-${i}`, "key-buttons", () => {
+              chooseOctave(i, octaveButton);
+            });
+            octaves.appendChild(octaveButton);
+          }
+        selectOctave.appendChild(octaves);
+
+      keySelectionScreen.appendChild(selectOctave);
+      //
+      //The Back button
+      const keyBackButton = make.button("Back", "key-selection-screen__back-button", "big-button", () => {
+        playTone(randomNote());
+        resolve();
+      });
+      keySelectionScreen.appendChild(keyBackButton);
+
+    await fadeTransition(keySelectionScreen);
+    
+  })
 }

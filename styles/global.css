@@ -30,11 +30,6 @@ button {
   font-size: 2rem;
 }
 
-.screen {
-  width: 100vw;
-  height: 95vh;
-}
-
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -49,6 +44,18 @@ button {
   font-size: 10vw;
   text-align: center;
   color: var(--text-color);
+}
+
+.marquee-small {
+  font-size: clamp(1em, 8vw, 2em);
+  text-align: center;
+  color: var(--text-color);
+  margin: 1rem;
+}
+
+.screen {
+  width: 100vw;
+  height: 95vh;
 }
 
 @media screen and (orientation:landscape) {
