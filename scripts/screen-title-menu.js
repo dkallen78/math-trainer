@@ -3,13 +3,13 @@ async function makeTitleScreen() {
 	//Makes the title screen                              //
 	//----------------------------------------------------//
 
-  let titleScreen = make.main("title-screen", ["screen", "grid"]);
+  const titleScreen = make.main("title-screen", ["screen", "grid"]);
 
-    let header = make.header("title-screen__header", "marquee");
+    const header = make.header("title-screen__header", "marquee");
       header.innerHTML = "QuickMath";
     titleScreen.appendChild(header);
 
-    let launchButton = make.button("Let's Go!", "title-screen__launch-button", "big-button", () => {
+    const launchButton = make.button("Let's Go!", "title-screen__launch-button", "big-button", () => {
       playTone(randomNote());
       makeModeSelectScreen();
     });
