@@ -5,7 +5,7 @@ function makeTitleScreen() {
 
   clear(document.body);
 
-  let titleScreen = make.main("title-screen", "screen-flex");
+  let titleScreen = make.main("title-screen", ["screen", "grid"]);
 
     let header = make.header("title-screen__header", "marquee");
       header.innerHTML = "QuickMath";

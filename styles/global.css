@@ -30,11 +30,13 @@ button {
   font-size: 2rem;
 }
 
-.screen-flex {
-  display: flex;
-  flex-direction: column;
+.screen {
   width: 100vw;
   height: 95vh;
+}
+
+.grid {
+  display: grid;
 }
 
 .marquee {
