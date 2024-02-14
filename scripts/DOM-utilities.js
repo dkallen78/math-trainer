@@ -8,6 +8,13 @@ function clear(...elements) {
   elements.forEach(x => x.innerHTML = "");
 }
 
+async function fadeTransition(element) {
+  await fadeOut(document.body);
+  clear(document.body);  
+  document.body.appendChild(element);
+  await fadeIn(document.body);
+}
+
 async function fadeOut(element) {
   //----------------------------------------------------//
   //Sets the opacity of an element to 0%                //

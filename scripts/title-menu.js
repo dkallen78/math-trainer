@@ -14,10 +14,12 @@ async function makeTitleScreen() {
     });
     titleScreen.appendChild(launchButton);
 
-  await fadeOut(document.body);
+  await fadeTransition(titleScreen);
+
+  /*await fadeOut(document.body);
   clear(document.body);  
   document.body.appendChild(titleScreen);
-  await fadeIn(document.body);
+  await fadeIn(document.body);*/
 }
 
 async function makeModeSelectScreen() {
