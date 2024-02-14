@@ -18,3 +18,21 @@ function makeTitleScreen() {
 
   document.body.appendChild(titleScreen);
 }
+
+async function makeModeSelectScreen() {
+  //----------------------------------------------------//
+	//Makes the mode select screen. This is also the base //
+  //  to which the program returns when all other loops //
+  //  have ended                                        //
+	//----------------------------------------------------//
+
+  async function waitForButton() {
+
+  }
+
+  let quit = false;
+  while (!quit) {
+    let modeSelectScreen = make.main("mode-select-screen", "screen");
+    
+  }
+}

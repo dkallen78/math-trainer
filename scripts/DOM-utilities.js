@@ -8,6 +8,50 @@ function clear(...elements) {
   elements.forEach(x => x.innerHTML = "");
 }
 
+async function fadeOut(element) {
+  //----------------------------------------------------//
+  //Sets the opacity of an element to 0%                //
+  //----------------------------------------------------//
+  //elements(DOM element): elements to be faded         //
+  //----------------------------------------------------//
+  //return: Promise                                     //
+  //----------------------------------------------------//
+
+  return new Promise((resolve, reject) => {
+    const event = new AbortController();
+
+    element.style.filter = "opacity(0%)";
+
+    element.addEventListener("transitionend", (e) => {
+      e.stopImmediatePropagation();
+      event.abort();
+      resolve();
+    }, {signal: event.signal})
+  })
+}
+
+async function fadeIn(element) {
+  //----------------------------------------------------//
+  //Sets the opacity of an element to 100%              //
+  //----------------------------------------------------//
+  //elements(DOM element): elements to be shown         //
+  //----------------------------------------------------//
+  //return: Promise                                     //
+  //----------------------------------------------------//
+
+  return new Promise((resolve, reject) => {
+    const event = new AbortController();
+
+    element.style.filter = "opacity(100%)";
+
+    element.addEventListener("transitionend", (e) => {
+      e.stopImmediatePropagation();
+      event.abort();
+      resolve();
+    }, {signal: event.signal})
+  })
+}
+
 function make(type, id, classes) {
   //----------------------------------------------------//
   //Returns an DOM element                              //
