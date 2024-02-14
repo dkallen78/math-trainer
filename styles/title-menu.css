@@ -1,0 +1,11 @@
+#title-screen {
+  grid-template-rows: auto auto;
+}
+
+#title-screen__header {
+  align-self: center;
+}
+
+#title-screen__launch-button {
+  align-self: start;
+}
