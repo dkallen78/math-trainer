@@ -27,7 +27,7 @@ async function makeModeSelectScreen() {
 
   async function waitForButton() {
     return new Promise((resolve, reject) => {
-      
+      const challengeButton = get("mode-select-screen__challenge-button");
     })
   }
 

@@ -59,6 +59,10 @@ async function fadeIn(element) {
   })
 }
 
+function get(id) {
+  return document.getElementById(id);
+}
+
 function make(type, id, classes) {
   //----------------------------------------------------//
   //Returns an DOM element                              //
@@ -95,4 +99,16 @@ make.header = function(id, classes) {
 make.main = function(id, classes) {
   let main = make("main", id, classes);
   return main;
+}
+
+function set(elem, ...pairs) {
+  pairs.forEach(pair => elem.setAttribute(pair[0], pair[1]))
+}
+
+set.class = function(elem, ...classes) {
+  classes.forEach(c => elem.classList.add(c));
+}
+
+set.click = function(elem, fnc) {
+  elem.addEventListener("click", fnc);
 }
