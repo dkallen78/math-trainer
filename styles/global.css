@@ -1,0 +1,41 @@
+:root {
+  --bg-color: hsla(0, 0%, 100%, 1);
+  --text-color: hsla(0, 0%, 0%, 1);
+  --border-color: hsla(0, 0%, 0%, 1);
+  --inactive-color: hsla(0, 0%, 50%, 0.5);
+  --button-bg-color: hsla(0, 0%, 0%, 0);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  background-color: var(--bg-color);
+  font-family: sans-serif;
+  transition: all 250ms;
+}
+
+.marquee {
+  font-size: 10vw;
+  text-align: center;
+  color: var(--text-color);
+}
+
+@media screen and (orientation:landscape) {
+
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  .screen-flex {
+    width: 30vw !important;
+    min-width: 20rem;
+  }
+
+  .marquee {
+    font-size: 3em;
+    text-align: center;
+    color: var(--text-color);
+  }
+}
