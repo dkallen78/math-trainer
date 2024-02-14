@@ -1,11 +1,11 @@
 async function makeSkillInputScreen(problemSet) {
 
-  let inputScreen = makeElement("main", "skill-input-screen", "screen");
+  let inputScreen = make.main("skill-input-screen", "screen");
 
-    let problemDisplay = makeElement("section", "skill-input-screen__problem-display", "problem-display");
+    let problemDisplay = make.section("skill-input-screen__problem-display", "problem-display");
     inputScreen.appendChild(problemDisplay)
 
-    let solutionDisplay = makeElement("section", "skill-input-screen__solution-display", "solution-display");
+    let solutionDisplay = make.section("skill-input-screen__solution-display", "solution-display");
     inputScreen.appendChild(solutionDisplay);
 
     let numberPad = makeNumberPad()
@@ -28,8 +28,8 @@ async function mathLoop(problemSet) {
   let quit = false;
   let newProblem = true;
   let problem;
-  let problemDisplay = document.getElementById("skill-input-screen__problem-display");
-  let solutionDisplay = document.getElementById("skill-input-screen__solution-display");
+  let problemDisplay = get("skill-input-screen__problem-display");
+  let solutionDisplay = get("skill-input-screen__solution-display");
   let startTime, totalTime;
 
   //
@@ -40,7 +40,6 @@ async function mathLoop(problemSet) {
   let queue = new ProgressQueue(user.qDepth, user.maxAvg);
 
   while (!quit) {
-
     //
     //Gets a new problem and establishes a start time to track
     //  how long it took to solve
@@ -48,7 +47,6 @@ async function mathLoop(problemSet) {
       problem = getNewProblem(problemSet);
       startTime = Date.now();
     }
-
     //
     //Displays the problem on the screen and activates the number pad buttons
     problemDisplay.innerHTML = problem.equation;
@@ -199,12 +197,12 @@ async function waitForAnswer(problem) {
       event.preventDefault();
     }
 
-    document.getElementById("number-pad__button-quit").onclick = () => {
+    get("number-pad__button-quit").onclick = () => {
       playTone(randomNote());
       reject(true);
     }
       
-    document.getElementById("number-pad__button-submit").onclick = () => {
+    get("number-pad__button-submit").onclick = () => {
       
       let solution = parseFloat(solutionDisplay.innerHTML, 10);
       clearElement(solutionDisplay);

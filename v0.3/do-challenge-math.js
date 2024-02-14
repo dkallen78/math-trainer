@@ -32,27 +32,20 @@ async function makeChallengeInputScreen(challengeOperations) {
   //  number input                                      //
   //----------------------------------------------------//
 
-  let inputScreen = makeElement("main", "challenge-input-screen", "screen");
+  let inputScreen = make.main("challenge-input-screen", "screen");
 
-    let problemDisplay = makeElement("section", "challenge-input-screen__problem-display", "problem-display");
-      
+    let problemDisplay = make.section("challenge-input-screen__problem-display", "problem-display");
     inputScreen.appendChild(problemDisplay)
 
-    let solutionDisplay = makeElement("section", "challenge-input-screen__solution-display", "solution-display");
+    let solutionDisplay = make.section("challenge-input-screen__solution-display", "solution-display");
     inputScreen.appendChild(solutionDisplay);
 
     let numberPad = makeNumberPad()
     inputScreen.appendChild(numberPad);
 
-    let svg = makeSVG("svg", "challenge-input-screen__svg");
-      let rect = makeSVG("rect", "challenge-input-screen__svg__countdownRect");
-        rect.setAttribute("x", "1.5%");
-        rect.setAttribute("width", "97%");
-        rect.setAttribute("y", "1.5%");
-        rect.setAttribute("height", "97%");
-        rect.setAttribute("rx", "3%");
-        rect.setAttribute("fill-opacity", "0%");
-        //rect.setAttribute("stroke-width", "2%");
+    let svg = make.svg("challenge-input-screen__svg");
+      let rect = make.rect("1.5%", "1.5%", "97%", "97%", "challenge-input-screen__svg__countdownRect");
+        set(rect, ["rx", "3%"], ["fill-opacity", "0%"]);
       svg.appendChild(rect);
     inputScreen.appendChild(svg);
 
@@ -73,17 +66,17 @@ async function challengeMathLoop(challengeOperations) {
   //The loop that handles all of the challenge logic    //
   //----------------------------------------------------//
 
-  let problemDisplay = document.getElementById("challenge-input-screen__problem-display");
-  let solutionDisplay = document.getElementById("challenge-input-screen__solution-display");
+  let problemDisplay = get("challenge-input-screen__problem-display");
+  let solutionDisplay = get("challenge-input-screen__solution-display");
   let newProblem = true;
   let problem;
   challengeDeets.init();
   //
   //The elements I need the exact measures of to animate the
   //  <rect> stroke
-  let svg = document.getElementById("challenge-input-screen__svg");
+  let svg = get("challenge-input-screen__svg");
   let svgBox = svg.getBoundingClientRect();
-  let rect = document.getElementById("challenge-input-screen__svg__countdownRect");
+  let rect = get("challenge-input-screen__svg__countdownRect");
   let rectBox = rect.getBoundingClientRect();
   //
   //The measurements I need to animate the <rect> stroke
@@ -114,7 +107,6 @@ async function challengeMathLoop(challengeOperations) {
 
     await waitForChallengeAnswer(problem)
       .then(() => {
-        //playChord(makeChord(chords.I, user.activeKey));
         playChord(makeChord(randomChord(), user.activeKey));
         newProblem = true;
         if (challengeTimer.elapsed > 2000) {
@@ -209,7 +201,7 @@ async function waitForChallengeAnswer(problem) {
   //----------------------------------------------------//
 
   return new Promise((resolve, reject) => {
-    let solutionDisplay = document.getElementById("challenge-input-screen__solution-display");
+    let solutionDisplay = get("challenge-input-screen__solution-display");
 
     let timeCheck = setInterval(() => {
       if (challengeTimer.elapsed > challengeTimer.max) {
@@ -244,13 +236,13 @@ async function waitForChallengeAnswer(problem) {
     }
     //
     //When the user presses the Quit button
-    document.getElementById("number-pad__button-quit").onclick = () => {
+    get("number-pad__button-quit").onclick = () => {
       playTone(randomNote());
       reject("quit");
     }
     //
     //When the user submits an answer
-    document.getElementById("number-pad__button-submit").onclick = () => {
+    get("number-pad__button-submit").onclick = () => {
       
       let solution = parseFloat(solutionDisplay.innerHTML, 10);
       clearElement(solutionDisplay);
@@ -269,26 +261,26 @@ async function makeChallengeSummaryScreen() {
   //Makes the summary screen post challenge             //
   //----------------------------------------------------//
 
-  let summaryScreen = makeElement("main", "summary-screen", "screen");
+  let summaryScreen = make.main("summary-screen", "screen");
 
-    let summaryDisplay = makeElement("header", "summary-screen__summary-display", "marquee");
+    let summaryDisplay = make.header("summary-screen__summary-display", "marquee");
       summaryDisplay.innerHTML = "Challenge Complete!";
     summaryScreen.appendChild(summaryDisplay);
 
-    let challengeStats = makeElement("section", "summary-screen__challenge-stats");
+    let challengeStats = make.section("summary-screen__challenge-stats");
 
-      let challengeScore = makeElement("div", "summary-display__challenge-stats__challenge-score");
+      let challengeScore = make.div("summary-display__challenge-stats__challenge-score");
         challengeScore.innerHTML = `Score: ${challengeDeets.score}`;
       challengeStats.appendChild(challengeScore);
 
-      let challengeTime = makeElement("div", "summary-display__challenge-stats__challenge-score");
+      let challengeTime = make.div("summary-display__challenge-stats__challenge-score");
         let displayTime = (challengeDeets.totalTime / 1000).toPrecision(4)
         challengeTime.innerHTML = `Total Time: ${displayTime} s`;
       challengeStats.appendChild(challengeTime);
 
     summaryScreen.appendChild(challengeStats);
 
-    let doneButton = makeButton("Done", null, "summary-screen__done-button", "big-button");
+    let doneButton = make.button("Done", "summary-screen__done-button", "big-button");
     summaryScreen.appendChild(doneButton);
 
     await fadeOut(document.body);
@@ -298,10 +290,10 @@ async function makeChallengeSummaryScreen() {
 
   return new Promise ((resolve, reject) => {
     
-    let doneButton = document.getElementById("summary-screen__done-button");
-    doneButton.onclick = () => {
+    let doneButton = get("summary-screen__done-button");
+    set.click(doneButton, () => {
       playTone(randomNote());
       resolve();
-    }
+    });
   })
 }

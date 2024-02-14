@@ -1342,9 +1342,7 @@ function makeFracCircle(n) {
   //return(SVG element): SVG element with the wedges    //
   //----------------------------------------------------//
 
-  let svg = makeSVG("svg", "svg-box");
-  svg.setAttribute("viewBox", "0 0 100 100");
-  svg.id = "svg-pie";
+  let svg = make.svg("svg-pie", "svg-pie", "0 0 100 100");
   //
   //Change in angle between each wedge
   let angleDelta = 360 / n;
@@ -1389,15 +1387,22 @@ function makeFracCircle(n) {
     //L -> line to ccw corner
     //A -> arc to cw corner
     //L -> line to inner-most point
-    path = makeSVG("path");
-    path.classList.add("frac-paths-clear");
-    path.setAttribute("fill", "var(--text-color)");
-    path.setAttribute("d", `
+    path = make.path(`path${i}`, "frac-paths-clear");
+    //path.classList.add("frac-paths-clear");
+    set(path, ["fill", "var(--text-color)"]);
+    //path.setAttribute("fill", "var(--text-color)");
+    set(path, ["d", `
       M ${p1.x} ${p1.y}
       L ${p2.x} ${p2.y}
       A ${radius2} ${radius2} 0 0 1 ${p3.x} ${p3.y}
       L ${p1.x} ${p1.y}
-    `);
+    `]);
+    /*path.setAttribute("d", `
+      M ${p1.x} ${p1.y}
+      L ${p2.x} ${p2.y}
+      A ${radius2} ${radius2} 0 0 1 ${p3.x} ${p3.y}
+      L ${p1.x} ${p1.y}
+    `);*/
 
     svg.appendChild(path);
 
@@ -1419,7 +1424,8 @@ function groupPaths(svg, n) {
   //n(integer): number of items in each group           //
   //----------------------------------------------------//
 
-  let paths = svg.querySelectorAll(".frac-paths-clear");
+  //let paths = svg.querySelectorAll(".frac-paths-clear");
+  let paths = get.all(svg, ".frac-paths-clear");
   let g;
 
   paths.forEach((p, i) => {
@@ -1430,7 +1436,7 @@ function groupPaths(svg, n) {
     //creates a new <g> element if the <path> is the 
     //  first in a group
     if ((i % n) === 0) {
-      g = makeSVG("g");
+      g = make.g();
     } 
     //
     //adds the <path> to the <g> if it is not the 
@@ -1553,11 +1559,9 @@ function circleDiv(qMin, qMax, t1Max, t2 = 0) {
   
   let svg = makeFracCircle(t1);
   groupPaths(svg, q);
-  let svg1 = `<svg viewBox="0 0 100 100" id="div-svg">`;
-  let svg2 = `</svg>`;
 
   let solutions = [
-    [q, `${svg1}${svg.innerHTML}${svg2} <math>${mathML.mfrac(t1, t2)}</math>&nbsp= ${t1} ÷ ${t2} = ?`]
+    [q, `${svg.outerHTML} <math>${mathML.mfrac(t1, t2)}</math>&nbsp= ${t1} ÷ ${t2} = ?`]
   ];
 
   return rnd.index(solutions);
@@ -1565,9 +1569,8 @@ function circleDiv(qMin, qMax, t1Max, t2 = 0) {
 
 function makeFractionLine(n) {
 
-  let svg = makeSVG("svg");
-  svg.setAttribute("viewBox", "0 0 200 10");
-  svg.id = "svg-line";
+  let svg = make.svg("svg-line");
+  set(svg, ["viewBox", "0 0 200 10"]);
   let rect;
   let x = 0;
   let y = 0;
@@ -1577,9 +1580,8 @@ function makeFractionLine(n) {
   for (let i = 0; i < n; i++) {
 
     x = ((i / n) * 200) + 1.5;
-    rect = makeSVG.rect(x, y, w, h);
-    rect.classList.add("frac-paths-clear", "frac-rec");
-    rect.setAttribute("fill", "var(--text-color)");
+    rect = make.rect(x, y, w, h, null, "frac-paths-clear", "frac-rec");
+    set(rect, ["fill", "var(--text-color)"]);
     svg.appendChild(rect);
   }
 

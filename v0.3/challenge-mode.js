@@ -9,19 +9,18 @@ async function makeChallengeBaseScreen() {
 
     return new Promise((resolve, reject) => {
 
-      let survivalButton = document.getElementById("challenge-select-screen__menu__survival-button");
-
-      survivalButton.onclick = async () => {
+      let survivalButton = get("challenge-select-screen__menu__survival-button");
+      set.click(survivalButton, async () => {
         playTone(randomNote());
         await makeSurvivalBaseScreen();
         resolve(false);
-      }
+      });
 
-      let backButton = document.getElementById("challenge-select-screen__menu__back-button");
-      backButton.onclick = async () => {
+      let backButton = get("challenge-select-screen__menu__back-button");
+      set.click(backButton, async () => {
         playTone(randomNote());
         resolve(true);
-      }
+      });
     })
   }
 
@@ -29,18 +28,18 @@ async function makeChallengeBaseScreen() {
 
   while (!quit) {
 
-    let challengeBaseScreen = makeElement("main", "challenge-base-screen", "screen");
+    let challengeBaseScreen = make.main("challenge-base-screen", "screen");
 
-      let challengeBaseScreenInfo = makeElement("header", "challenge-select-screen__info", "marquee");
+      let challengeBaseScreenInfo = make.header("challenge-select-screen__info", "marquee");
         challengeBaseScreenInfo.innerHTML = "Select a Challenge";
       challengeBaseScreen.appendChild(challengeBaseScreenInfo);
 
-      let challengeMenu = makeElement("nav", "challenge-select-screen__menu");
+      let challengeMenu = make.nav("challenge-select-screen__menu");
 
-        let survivalButton = makeButton("Survival", null, "challenge-select-screen__menu__survival-button", "big-button");
+        let survivalButton = make.button("Survival", "challenge-select-screen__menu__survival-button", "big-button");
         challengeMenu.appendChild(survivalButton);
 
-        let backButton = makeButton("Back", null, "challenge-select-screen__menu__back-button", "big-button");
+        let backButton = make.button("Back", "challenge-select-screen__menu__back-button", "big-button");
         challengeMenu.appendChild(backButton);
 
       challengeBaseScreen.appendChild(challengeMenu);
@@ -65,8 +64,8 @@ async function makeSurvivalBaseScreen() {
     //  adds the inactive-button class to the startButton //
     //----------------------------------------------------//
 
-    let startButton = document.getElementById("survival-base-screen__menu__start-button");
-    let operationButtons = document.getElementById("survival-base-screen__menu").childNodes;
+    let startButton = get("survival-base-screen__menu__start-button");
+    let operationButtons = get("survival-base-screen__menu").childNodes;
 
     for (let i = 0; i < operationButtons.length; i++) {
       if (operationButtons[i].classList.contains("selected-button")) {
@@ -99,7 +98,7 @@ async function makeSurvivalBaseScreen() {
 
     return new Promise((resolve, reject) => {
 
-      let operationButtons = document.getElementById("survival-base-screen__menu").childNodes;
+      let operationButtons = get("survival-base-screen__menu").childNodes;
       //
       //Iterates over the operationButtons, turning them
       //  on if the user is elibigle
@@ -110,7 +109,7 @@ async function makeSurvivalBaseScreen() {
 
           operationButtons[i].classList.remove("inactive-button");
 
-          operationButtons[i].onclick = async () => {
+          set.click(operationButtons[i], async () => {
 
             playTone(randomNote());
             //
@@ -121,10 +120,9 @@ async function makeSurvivalBaseScreen() {
             //If an operationButton is toggled, checks to
             //  see if the startButton should be enabled 
             //  or not
-            let startButton = document.getElementById("survival-base-screen__menu__start-button");
+            let startButton = get("survival-base-screen__menu__start-button");
             if (checkStartState()) {
               startButton.onclick = async () => {
-
                 playTone(randomNote());
                 await makeChallengeInputScreen(challengeOperations);
                 resolve(false);
@@ -132,16 +130,15 @@ async function makeSurvivalBaseScreen() {
             } else {
               startButton.onclick = "";
             }
-
-          }
+          })
         }
       }
 
-      let backButton = document.getElementById("survival-base-screen__menu__back-button");
-      backButton.onclick = async () => {
+      let backButton = get("survival-base-screen__menu__back-button");
+      set.click(backButton, async () => {
         playTone(randomNote());
         resolve(true);
-      }
+      })
     })
   }
 
@@ -149,30 +146,30 @@ async function makeSurvivalBaseScreen() {
 
   while (!quit) {
 
-    let survivalBaseScreen = makeElement("main", "survival-base-screen", "screen");
+    let survivalBaseScreen = make.main("survival-base-screen", "screen");
 
-    let survivalBaseScreenHeader = makeElement("header", "survival-base-screen__header", "marquee");
+    let survivalBaseScreenHeader = make.header("survival-base-screen__header", "marquee");
       survivalBaseScreenHeader.innerHTML = "Select Operations<br>for Challenge";
     survivalBaseScreen.appendChild(survivalBaseScreenHeader);
 
-    let survivalMenu = makeElement("nav", "survival-base-screen__menu");
+    let survivalMenu = make.nav("survival-base-screen__menu");
 
-      let additionButton = makeButton("+", null, "survival-base-screen__menu__addition-button", "inactive-button");
+      let additionButton = make.button("+", "survival-base-screen__menu__addition-button", "inactive-button");
       survivalMenu.appendChild(additionButton);
 
-      let subtractionButton = makeButton("-", null, "survival-base-screen__menu__subtraction-button", "inactive-button");
+      let subtractionButton = make.button("-", "survival-base-screen__menu__subtraction-button", "inactive-button");
       survivalMenu.appendChild(subtractionButton);
 
-      let multiplicationButton = makeButton("×", null, "survival-base-screen__menu__multiplication-button", "inactive-button");
+      let multiplicationButton = make.button("×", "survival-base-screen__menu__multiplication-button", "inactive-button");
       survivalMenu.appendChild(multiplicationButton);
 
-      let divisionButton = makeButton("÷", null, "survival-base-screen__menu__division-button", "inactive-button");
+      let divisionButton = make.button("÷", "survival-base-screen__menu__division-button", "inactive-button");
       survivalMenu.appendChild(divisionButton);
 
-      let startButton = makeButton("Start", null, "survival-base-screen__menu__start-button", "inactive-button");
+      let startButton = make.button("Start", "survival-base-screen__menu__start-button", "inactive-button");
       survivalMenu.appendChild(startButton);
 
-      let backButton = makeButton("Back", null, "survival-base-screen__menu__back-button");
+      let backButton = make.button("Back", "survival-base-screen__menu__back-button");
       survivalMenu.appendChild(backButton);
 
     survivalBaseScreen.appendChild(survivalMenu);

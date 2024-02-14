@@ -35,6 +35,7 @@ async function makeModeSelectScreen() {
 	//----------------------------------------------------//
 
   async function waitForButton() {
+
     
     return new Promise((resolve, reject) => {
       //let challengeButton = document.getElementById("mode-select-screen__challenge-button");
