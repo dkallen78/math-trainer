@@ -123,7 +123,7 @@ async function makeSoundScreen() {
       const selectScale = get("sound-options-screen__select-scale-button");
       set.click(selectScale, async () => {
         playTone(randomNote());
-        //await makeScaleScreen();
+        await makeScaleScreen();
         resolve(false);
       })
 
@@ -276,5 +276,54 @@ async function makeKeyScreen() {
 
     await fadeTransition(keySelectionScreen);
     
+  })
+}
+
+async function makeScaleScreen() {
+  //----------------------------------------------------//
+	//Makes the screen to let the user change the scale   //
+	//----------------------------------------------------//
+
+  function makeScaleButton(scale, name) {
+
+    let button = make.button(name, `${name}-Button`, "medium-button", () => {
+      user.activeScale = scale;
+      playArpeggio(makeChord(user.activeScale, user.activeKey), 200);
+    });
+    return button;
+  }
+
+  return new Promise (async (resolve, reject) => {
+
+    let scaleSelectionScreen = make.main("scale-selection-screen", "screen");
+
+      let majorButton = makeScaleButton(scales.major, "Major");
+      scaleSelectionScreen.appendChild(majorButton);
+
+      let minorButton = makeScaleButton(scales.minor, "Minor");
+      scaleSelectionScreen.appendChild(minorButton);
+
+      let mongolianButton = makeScaleButton(scales.mongolian, "Mongolian");
+      scaleSelectionScreen.appendChild(mongolianButton);
+
+      let hiroButton = makeScaleButton(scales.hirojoshi, "Hirojoshi");
+      scaleSelectionScreen.appendChild(hiroButton);
+
+      let yoButton = makeScaleButton(scales.yo, "Yo");
+      scaleSelectionScreen.appendChild(yoButton);
+      
+      let inButton = makeScaleButton(scales.in, "In");
+      scaleSelectionScreen.appendChild(inButton);
+
+      let hungarianButton = makeScaleButton(scales.hungarian, "Hungarian");
+      scaleSelectionScreen.appendChild(hungarianButton);
+
+      let backButton = make.button("Back", "scale-selection-screen__back-button", "medium-button", () => {
+        playTone(randomNote());
+        resolve();
+      });
+      scaleSelectionScreen.appendChild(backButton);
+
+    await fadeTransition(scaleSelectionScreen);
   })
 }
