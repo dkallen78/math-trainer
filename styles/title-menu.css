@@ -9,3 +9,7 @@
 #title-screen__launch-button {
   align-self: start;
 }
+
+#mode-select-screen {
+  justify-content: center;
+}
