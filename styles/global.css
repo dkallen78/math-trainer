@@ -23,10 +23,10 @@ body {
 
 @media screen and (orientation:landscape) {
 
-  body {
+  /*body {
     display: flex;
     justify-content: center;
-  }
+  }*/
 
   .screen-flex {
     width: 30vw !important;
@@ -34,8 +34,6 @@ body {
   }
 
   .marquee {
-    font-size: 3em;
-    text-align: center;
-    color: var(--text-color);
+    font-size: calc(.1 * 30vw);
   }
 }
