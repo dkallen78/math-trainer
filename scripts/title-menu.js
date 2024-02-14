@@ -11,5 +11,10 @@ function makeTitleScreen() {
       header.innerHTML = "QuickMath";
     titleScreen.appendChild(header);
 
+    let launchButton = make.button("Let's Go!", "title-screen__launch-button", "big-button", () => {
+
+    });
+    titleScreen.appendChild(launchButton);
+
   document.body.appendChild(titleScreen);
 }

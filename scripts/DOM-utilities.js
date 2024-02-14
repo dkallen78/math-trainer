@@ -29,6 +29,13 @@ function make(type, id, classes) {
   return element;
 }
 
+make.button = function(name, id, classes, fnc) {
+  let button = make("button", id, classes);
+  button.innerHTML = name;
+  button.addEventListener("click", fnc)
+  return button;
+}
+
 make.header = function(id, classes) {
   let header = make("header", id, classes);
   return header;

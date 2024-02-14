@@ -15,6 +15,28 @@ body {
   transition: all 250ms;
 }
 
+button {
+  color: var(--text-color);
+  background-color: var(--button-bg-color);
+  font-family: sans-serif;
+  border: .2rem solid var(--border-color);
+  border-radius: 1rem;
+  transition: all 250ms;
+}
+
+.big-button {
+  margin: 1vh;
+  padding: 1vh;
+  font-size: 2rem;
+}
+
+.screen-flex {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 95vh;
+}
+
 .marquee {
   font-size: 10vw;
   text-align: center;
