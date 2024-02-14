@@ -33,10 +33,6 @@ async function makeSettingsScreen() {
 
     const settingsScreen = make.main("settings-screen", ["screen", "flex-column"]);
       
-      const settingsScreenInfo = make.header("settings-screen__info", "marquee");
-        settingsScreenInfo.innerHTML = "Settings Menu"; 
-      settingsScreen.appendChild(settingsScreenInfo);
-
       const themeButton = make.button("Theme", "settings-screen__theme-button", "big-button");
       settingsScreen.appendChild(themeButton);
 
