@@ -1,9 +1,7 @@
-function makeTitleScreen() {
+async function makeTitleScreen() {
   //----------------------------------------------------//
 	//Makes the title screen                              //
 	//----------------------------------------------------//
-
-  clear(document.body);
 
   let titleScreen = make.main("title-screen", ["screen", "grid"]);
 
@@ -16,7 +14,10 @@ function makeTitleScreen() {
     });
     titleScreen.appendChild(launchButton);
 
+  await fadeOut(document.body);
+  clear(document.body);  
   document.body.appendChild(titleScreen);
+  await fadeIn(document.body);
 }
 
 async function makeModeSelectScreen() {
@@ -34,5 +35,9 @@ async function makeModeSelectScreen() {
   while (!quit) {
     let modeSelectScreen = make.main("mode-select-screen", "screen");
     
+    await fadeOut(document.body);
+    clearElement(document.body);  
+    document.body.appendChild(modeSelectScreen);
+    await fadeIn(document.body);
   }
 }
