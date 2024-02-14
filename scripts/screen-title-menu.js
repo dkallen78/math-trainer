@@ -28,21 +28,40 @@ async function makeModeSelectScreen() {
   async function waitForButton() {
     return new Promise((resolve, reject) => {
       const challengeButton = get("mode-select-screen__challenge-button");
+      set.click(challengeButton, async () => {
+        playTone(randomNote());
+        //await makeChallengeBaseScreen();
+        resolve();
+      });
+
+      const skillsButton = get("mode-select-screen__skills-button");
+      set.click(skillsButton, async () => {
+        playTone(randomNote());
+        //await makeSkillsStartScreen();
+        resolve();
+      })
+
+      const settingsButton = get("mode-select-screen__settings-button");
+      set.click(settingsButton, async () => {
+        playTone(randomNote());
+        //await makeSettingsScreen();
+        resolve();
+      })
     })
   }
 
   let quit = false;
   while (!quit) {
     console.log("mode")
-    let modeSelectScreen = make.main("mode-select-screen", ["screen", "flex-column"]);
+    const modeSelectScreen = make.main("mode-select-screen", ["screen", "flex-column"]);
     
-      let challengeButton = make.button("Challenge", "mode-select-screen__challenge-button", "big-button");
+      const challengeButton = make.button("Challenge", "mode-select-screen__challenge-button", "big-button");
       modeSelectScreen.appendChild(challengeButton);
 
-      let skillsButton = make.button("Skills", "mode-select-screen__skills-button", "big-button");
+      const skillsButton = make.button("Skills", "mode-select-screen__skills-button", "big-button");
       modeSelectScreen.appendChild(skillsButton);
 
-      let settingsButton = make.button("Settings", "mode-select-screen__settings-button", "big-button");
+      const settingsButton = make.button("Settings", "mode-select-screen__settings-button", "big-button");
       modeSelectScreen.appendChild(settingsButton);
 
     await fadeTransition(modeSelectScreen);
