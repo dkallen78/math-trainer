@@ -10,6 +10,7 @@ async function makeTitleScreen() {
     titleScreen.appendChild(header);
 
     let launchButton = make.button("Let's Go!", "title-screen__launch-button", "big-button", () => {
+      playTone(randomNote());
       makeModeSelectScreen();
     });
     titleScreen.appendChild(launchButton);
@@ -44,11 +45,7 @@ async function makeModeSelectScreen() {
       let settingsButton = make.button("Settings", "mode-select-screen__settings-button", "big-button");
       modeSelectScreen.appendChild(settingsButton);
 
-    //await fadeTransition(modeSelectScreen);
-    await fadeOut(document.body);
-    clear(document.body);  
-    document.body.appendChild(modeSelectScreen);
-    await fadeIn(document.body);
+    await fadeTransition(modeSelectScreen);
 
     await waitForButton();
   }
