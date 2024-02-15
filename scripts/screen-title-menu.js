@@ -34,10 +34,10 @@ async function makeModeSelectScreen() {
         resolve();
       });
 
-      const skillsButton = get("mode-select-screen__skills-button");
+      const skillsButton = get("mode-select-screen__strategies-button");
       set.click(skillsButton, async () => {
         playTone(randomNote());
-        //await makeSkillsStartScreen();
+        await makeStrategiesStartScreen();
         resolve();
       })
 
@@ -57,8 +57,8 @@ async function makeModeSelectScreen() {
       const challengeButton = make.button("Challenge", "mode-select-screen__challenge-button", "big-button");
       modeSelectScreen.appendChild(challengeButton);
 
-      const skillsButton = make.button("Skills", "mode-select-screen__skills-button", "big-button");
-      modeSelectScreen.appendChild(skillsButton);
+      const strategiesButton = make.button("Strategies", "mode-select-screen__strategies-button", "big-button");
+      modeSelectScreen.appendChild(strategiesButton);
 
       const settingsButton = make.button("Settings", "mode-select-screen__settings-button", "big-button");
       modeSelectScreen.appendChild(settingsButton);

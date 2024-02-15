@@ -31,8 +31,17 @@ button {
   font-size: 2rem;
 }
 
+.button-big {
+  padding: 1vh;
+  font-size: 2rem;
+}
+
 .button-medium {
   font-size: 1.5rem;
+}
+
+.button-inactive {
+  filter: opacity(25%);
 }
 
 .flex-column {

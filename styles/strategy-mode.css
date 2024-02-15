@@ -1,0 +1,18 @@
+#select-operation-screen__operation-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: center;
+}
+
+#select-operation-screen__operation-grid::before {
+  content: '';
+  width: 0;
+  padding-bottom: 100%;
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+}
+
+#select-operation-screen__operation-grid > *:first-child{
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+}
+

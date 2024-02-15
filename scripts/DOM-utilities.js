@@ -111,6 +111,20 @@ make.section = function(id, classes) {
   return section;
 }
 
+function remove(...elements) {
+  //----------------------------------------------------//
+  //Removes elements from the DOM                       //
+  //----------------------------------------------------//
+  //elements(DOM element): elements to be removed       //
+  //----------------------------------------------------//
+
+  elements.forEach(x => x.parentNode.removeChild(x));
+}
+
+remove.class = function(elem, ...classes) {
+  classes.forEach(x => elem.classList.remove(x));
+}
+
 function set(elem, ...pairs) {
   pairs.forEach(pair => elem.setAttribute(pair[0], pair[1]))
 }
