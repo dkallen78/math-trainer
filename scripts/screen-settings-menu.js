@@ -33,13 +33,13 @@ async function makeSettingsScreen() {
 
     const settingsScreen = make.main("settings-screen", ["screen", "flex-column"]);
       
-      const themeButton = make.button("Theme", "settings-screen__theme-button", "big-button");
+      const themeButton = make.button("Theme", "settings-screen__theme-button", "button-big");
       settingsScreen.appendChild(themeButton);
 
-      const soundButton = make.button("Sound", "settings-screen__sound-button", "big-button");
+      const soundButton = make.button("Sound", "settings-screen__sound-button", "button-big");
       settingsScreen.appendChild(soundButton);
 
-      const backButton = make.button("Back", "settings-screen__back-button", "big-button");
+      const backButton = make.button("Back", "settings-screen__back-button", "button-big");
       settingsScreen.appendChild(backButton);
 
     await fadeTransition(settingsScreen);
@@ -60,7 +60,7 @@ async function makeThemeScreen() {
   return new Promise (async (resolve, reject) => {
     const themeMenuScreen = make.main("theme-menu-screen", ["screen", "flex-column"]);
 
-      const defaultThemeButton = make.button("Default", "theme-menu-screen__default-theme-button", "big-button");
+      const defaultThemeButton = make.button("Default", "theme-menu-screen__default-theme-button", "button-big");
         set.click(defaultThemeButton, () => {
           playTone(randomNote());
           root.style.setProperty("--text-color", "hsla(0, 0%, 0%, 1)");
@@ -70,7 +70,7 @@ async function makeThemeScreen() {
         });
       themeMenuScreen.appendChild(defaultThemeButton);
 
-      const vaporWaveThemeButton = make.button("Vapor Wave", "theme-menu-screen__vapor-wave-theme-button", "big-button");
+      const vaporWaveThemeButton = make.button("Vapor Wave", "theme-menu-screen__vapor-wave-theme-button", "button-big");
         set.click(vaporWaveThemeButton, () => {
           playTone(randomNote());
           root.style.setProperty("--text-color", "hsla(190, 100%, 50%, 1)");
@@ -80,7 +80,7 @@ async function makeThemeScreen() {
         });
       themeMenuScreen.appendChild(vaporWaveThemeButton);
 
-      const chalkThemeButton = make.button("Chalk Board", "theme-menu-screen__chalk-theme-button", "big-button");
+      const chalkThemeButton = make.button("Chalk Board", "theme-menu-screen__chalk-theme-button", "button-big");
         set.click(chalkThemeButton, () => {
           playTone(randomNote());
           root.style.setProperty("--text-color", "hsla(0, 0%, 100%, 1)");
@@ -90,7 +90,7 @@ async function makeThemeScreen() {
         });
       themeMenuScreen.appendChild(chalkThemeButton);
 
-      const backButton = make.button("Back", "theme-menu-screen__back-button", "big-button");
+      const backButton = make.button("Back", "theme-menu-screen__back-button", "button-big");
         set.click(backButton, () => {
           playTone(randomNote());
           resolve();
@@ -136,7 +136,7 @@ async function makeSoundScreen() {
 
     const soundScreen = make.main("sound-screen", ["screen", "flex-column"]);
 
-      const soundToggleButton = make.button("Sound On", "sound-options-screen__sound-toggle-button", "big-button");
+      const soundToggleButton = make.button("Sound On", "sound-options-screen__sound-toggle-button", "button-big");
         if (user.soundOn === false) {
           soundToggleButton.innerHTML = "Sound Off";
         }
@@ -152,19 +152,19 @@ async function makeSoundScreen() {
         });
         soundScreen.appendChild(soundToggleButton);
 
-      const selectKeyButton = make.button("Select Key", "sound-options-screen__select-key-button", "big-button");
+      const selectKeyButton = make.button("Select Key", "sound-options-screen__select-key-button", "button-big");
       soundScreen.appendChild(selectKeyButton);
 
-      const selectScaleButton = make.button("Select Scale", "sound-options-screen__select-scale-button", "big-button");
+      const selectScaleButton = make.button("Select Scale", "sound-options-screen__select-scale-button", "button-big");
       soundScreen.appendChild(selectScaleButton);
 
-      const playRandomNoteButton = make.button("Random Note", "sound-options-screen__play-random-note-button", "big-button");
+      const playRandomNoteButton = make.button("Random Note", "sound-options-screen__play-random-note-button", "button-big");
         set.click(playRandomNoteButton, () => {
           playTone(randomNote());
         });
         soundScreen.appendChild(playRandomNoteButton);
 
-      const backButton = make.button("Back", "sound-options-screen__back-button", "big-button");
+      const backButton = make.button("Back", "sound-options-screen__back-button", "button-big");
       soundScreen.appendChild(backButton);
 
     await fadeTransition(soundScreen);
@@ -264,7 +264,7 @@ async function makeKeyScreen() {
       keySelectionScreen.appendChild(selectOctave);
       //
       //The Back button
-      const keyBackButton = make.button("Back", "key-selection-screen__back-button", "big-button", () => {
+      const keyBackButton = make.button("Back", "key-selection-screen__back-button", "button-big", () => {
         playTone(randomNote());
         resolve();
       });

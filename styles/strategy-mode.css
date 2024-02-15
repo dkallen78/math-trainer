@@ -3,6 +3,8 @@
   justify-content: center;
 }
 
+/*These two work CSS magic to make my buttons square*/
+
 #select-operation-screen__operation-grid::before {
   content: '';
   width: 0;
