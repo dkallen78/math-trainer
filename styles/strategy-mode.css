@@ -18,3 +18,22 @@
   grid-column: 1 / 1;
 }
 
+
+#strategy-detail-screen {
+  grid-template-rows: 10% 15% auto auto auto;
+  align-content: start;
+}
+
+#strategy-detail-screen__strategy-detail {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#strategy-detail-screen__strategy-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#strategy-detail-screen__strategy-grid > button {
+  font-size: 1.5rem;
+  border-radius: .75rem;
+}

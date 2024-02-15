@@ -39,6 +39,19 @@ button {
   filter: opacity(25%);
 }
 
+.button-ready {
+  animation-name: buttonPulse;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes buttonPulse {
+  20%   {
+    filter: invert(100%);
+    background-color: var(--bg-color);    
+  }
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
