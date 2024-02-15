@@ -48,9 +48,9 @@ async function fadeIn(element) {
 
   return new Promise((resolve, reject) => {
     const event = new AbortController();
-
+    
     element.style.filter = "opacity(100%)";
-
+    
     element.addEventListener("transitionend", (e) => {
       e.stopImmediatePropagation();
       event.abort();
