@@ -23,6 +23,7 @@ async function doMathStrategy(strategy) {
     //The loop that runs until the user completes the     //
     //  strategy or quits                                 //
     //----------------------------------------------------//
+
     let newProblem = true;
     let problem;
     let startTime = 0;
@@ -36,43 +37,66 @@ async function doMathStrategy(strategy) {
 
     let quit = false;
     while(!quit) {
-
+      //
+      //Gets a new problem if the user is just starting or 
+      //  they correctly answered the previous one
       if (newProblem) {
         problem = getNewProblem();
+        //
+        //starts the timer
         startTime = performance.now();
       }
-
+      //
+      //displays the problem
       problemDisplay.innerHTML = problem.equation;
+      //
+      //enables the number pad
       numPad.on(inputDisplay);
-
+      //
+      //Waits for the user to input an answer and submit it
+      //  or quit
       await waitForAnswer(problem)
+      //
+      //If the answer is correct
       .then(() => {
+        //
+        //stops the timer
         totalTime = performance.now() - startTime;
-
+        //
+        //adds the time and digit data to the queue
         queue.push(totalTime, digitCount(problem.answer));
-
+        //
+        //If the user has demonstrated "mastery" of the strategy
         if (queue.pass) {
           playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
-
+          //
+          //Check for notifications associated with passing the strategy
           if ("notification" in strategy && !user[strategy.id[0]][strategy.id[1]][strategy.id[2]]) {
             notify.push(strategy.notification);
           }
-
+          //
+          //Mark the strategy as completed in the user variable
           user[strategy.id[0]][strategy.id[1]][strategy.id[2]] = true;
 
           quit = true;
+        //
+        //If the user has not demonstrated "mastery" of the strategy
         } else {
           playChord(makeChord(chords.I, user.activeKey));
         }
 
         newProblem = true;
       })
+      //
+      //If the answer is incorrect or the user quits
       .catch((exitLoop) => {
-        
+        //
+        //If the user quits
         if (exitLoop) {
           quit = true;
+        //
+        //If the user inputs an incorrect answer
         } else {
-
           playChord(makeChord(chords.TT, user.activeKey));
 
           newProblem = false;
@@ -88,15 +112,20 @@ async function doMathStrategy(strategy) {
           }, (interval * 2));  
         }
       })
+      //
+      //Temporarily disables  keyboard input
       document.onkeydown = "";
     }
-    //return true;
   }
 
   async function waitForAnswer(problem) {
+    //----------------------------------------------------//
+    //Listens for input                                   //
+    //----------------------------------------------------//
 
     return new Promise((resolve, reject) => {
-
+      //
+      //Enables keyboard support
       document.onkeydown = (event) => {
         let key = parseInt(event.key, 10);
         if ((key >= 0 && key <= 9 || event.key === ".")) {
@@ -140,6 +169,9 @@ async function doMathStrategy(strategy) {
   }
 
   function getNewProblem() {
+    //----------------------------------------------------//
+    //Gets new problems                                   //
+    //----------------------------------------------------//
 
     let problem = {};
     problem.answer = 0;
