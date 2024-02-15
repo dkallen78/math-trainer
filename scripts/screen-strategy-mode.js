@@ -86,3 +86,22 @@ async function makeStrategiesStartScreen() {
       .then((exit) => {quit = exit});
   }
 }
+
+async function makeStrategyGroupsScreen(operation) {
+  //----------------------------------------------------//
+  //Makes the screen with the groups of strageties      //
+  //----------------------------------------------------//
+  //operation(string): +, -, ×, or ÷                    //
+  //----------------------------------------------------//
+
+  async function waitForButton() {
+
+  }
+
+  let quit = false;
+  while(!quit) {
+
+    const strategyGroupsScreen = make.main("strategy-groups-screen", ["screen", "flex-column"]);
+    
+  }
+}
