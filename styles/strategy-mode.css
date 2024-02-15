@@ -1,24 +1,3 @@
-#select-operation-screen__operation-grid {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  justify-content: center;
-}
-
-/*These two work CSS magic to make my buttons square*/
-
-#select-operation-screen__operation-grid::before {
-  content: '';
-  width: 0;
-  padding-bottom: 100%;
-  grid-row: 1 / 1;
-  grid-column: 1 / 1;
-}
-
-#select-operation-screen__operation-grid > *:first-child{
-  grid-row: 1 / 1;
-  grid-column: 1 / 1;
-}
-
-
 #strategy-detail-screen {
   grid-template-rows: 10% 15% auto auto auto;
   align-content: start;

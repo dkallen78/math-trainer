@@ -45,6 +45,11 @@ button {
   animation-iteration-count: infinite;
 }
 
+.button-selected {
+  filter: invert(100%);
+  background-color: var(--bg-color);
+}
+
 @keyframes buttonPulse {
   20%   {
     filter: invert(100%);
@@ -60,6 +65,24 @@ button {
 
 .grid {
   display: grid;
+}
+
+.operator-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: center;
+}
+
+.operator-grid::before {
+  content: '';
+  width: 0;
+  padding-bottom: 100%;
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
+}
+
+.operator-grid > *:first-child {
+  grid-row: 1 / 1;
+  grid-column: 1 / 1;
 }
 
 .marquee {

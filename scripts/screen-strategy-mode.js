@@ -61,7 +61,7 @@ async function makeStrategiesStartScreen() {
     
     const selectOperationScreen = make.main("select-operation-screen", ["screen", "flex-column"]);
 
-      const operationGrid = make.section("select-operation-screen__operation-grid", "grid");
+      const operationGrid = make.section("select-operation-screen__operation-grid", ["grid", "operator-grid"]);
 
         const additionButton = make.button("+", "select-operation-screen__operation-grid__addition-button", ["button-inactive", "button-big"]);
         operationGrid.appendChild(additionButton);

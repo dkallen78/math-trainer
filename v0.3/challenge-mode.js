@@ -155,9 +155,11 @@ async function makeSurvivalBaseScreen() {
     let survivalMenu = make.nav("survival-base-screen__menu");
 
       let additionButton = make.button("+", "survival-base-screen__menu__addition-button", "inactive-button");
+        additionButton.dataset.unlock = "true";
       survivalMenu.appendChild(additionButton);
 
       let subtractionButton = make.button("-", "survival-base-screen__menu__subtraction-button", "inactive-button");
+
       survivalMenu.appendChild(subtractionButton);
 
       let multiplicationButton = make.button("×", "survival-base-screen__menu__multiplication-button", "inactive-button");
