@@ -9,7 +9,7 @@ async function makeTitleScreen() {
       header.innerHTML = "QuickMath";
     titleScreen.appendChild(header);
 
-    const launchButton = make.button("Let's Go!", "title-screen__launch-button", "big-button", () => {
+    const launchButton = make.button("Let's Go!", "title-screen__launch-button", "button-big", () => {
       playTone(randomNote());
       makeModeSelectScreen();
     });
@@ -54,13 +54,13 @@ async function makeModeSelectScreen() {
   while (!quit) {
     const modeSelectScreen = make.main("mode-select-screen", ["screen", "flex-column"]);
     
-      const challengeButton = make.button("Challenge", "mode-select-screen__challenge-button", "big-button");
+      const challengeButton = make.button("Challenge", "mode-select-screen__challenge-button", "button-big");
       modeSelectScreen.appendChild(challengeButton);
 
-      const strategiesButton = make.button("Strategies", "mode-select-screen__strategies-button", "big-button");
+      const strategiesButton = make.button("Strategies", "mode-select-screen__strategies-button", "button-big");
       modeSelectScreen.appendChild(strategiesButton);
 
-      const settingsButton = make.button("Settings", "mode-select-screen__settings-button", "big-button");
+      const settingsButton = make.button("Settings", "mode-select-screen__settings-button", "button-big");
       modeSelectScreen.appendChild(settingsButton);
 
     await fadeTransition(modeSelectScreen);
