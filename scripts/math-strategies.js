@@ -1,5 +1,8 @@
 async function doMathStrategy(strategy) {
-
+  //----------------------------------------------------//
+  //Builds the math interface screen for strategy       //
+  //  problems                                          //
+  //----------------------------------------------------//
   const interface = make.main("math-strategy-interface", ["screen", "grid", "math-interface"]);
 
     const problemDisplay = make.section("math-strategy-interface__problem-display", "problem-display");
@@ -16,7 +19,10 @@ async function doMathStrategy(strategy) {
   await mathLoop();
 
   async function mathLoop() {
-
+    //----------------------------------------------------//
+    //The loop that runs until the user completes the     //
+    //  strategy or quits                                 //
+    //----------------------------------------------------//
     let newProblem = true;
     let problem;
     let startTime = 0;
