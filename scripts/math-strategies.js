@@ -94,16 +94,16 @@ async function doMathStrategy(strategy) {
       document.onkeydown = (event) => {
         let key = parseInt(event.key, 10);
         if ((key >= 0 && key <= 9 || event.key === ".")) {
-          inputNumber(event.key, solutionDisplay);
+          inputNumber(event.key, inputDisplay);
         } else if (event.key === "Backspace") {
-          inputNumber("-1", solutionDisplay);
+          inputNumber("-1", inputDisplay);
         } else if (event.key === "Escape") {
           playTone(randomNote());
           reject(true);
         } else if (event.key === "Enter") {
                 
-          let solution = parseFloat(solutionDisplay.innerHTML, 10);
-          clearElement(solutionDisplay);
+          let solution = parseFloat(inputDisplay.innerHTML, 10);
+          clear(inputDisplay);
         
           if (problem.answer === solution) {
             resolve();
@@ -121,8 +121,8 @@ async function doMathStrategy(strategy) {
         
       get("number-pad__button-submit").onclick = () => {
         
-        let solution = parseFloat(solutionDisplay.innerHTML, 10);
-        clearElement(solutionDisplay);
+        let solution = parseFloat(inputDisplay.innerHTML, 10);
+        clear(inputDisplay);
         
         if (problem.answer === solution) {
           resolve();
