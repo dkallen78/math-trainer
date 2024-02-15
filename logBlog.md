@@ -563,3 +563,19 @@ Next up I need to study up on some mental strategies for solving division proble
 ### Issues
 
 * Look into better ways to structure things
+
+## Update 2024-02-12
+
+### 23:30
+
+Having gotten started on division, it seemed that I needed to tackle fractions. Fortunately fractions are usually taught before decimals because I'm not up for decimals at the moment. I've made a good start on fractions. The difficult part has been not just dynamically making the SVG elements based on random numbers, but making it all fit into the window I've been using to display my problems. It's kind of funny because last week I was stressing about fitting longer equations into my display, now I'm trying to get SVG and numbers. So far it's all going swimmingly but we'll see if I'm still optimistic when I'm trying to cover fraction arithmetic — everything so far has just been focused on identifying fractions.
+
+One thing I discovered today that's going to make me go back and simplify my code is the `element.outerHTML` method. Because everything is set up to just inject raw HTML into the problem display area, I've been struggling to get my SVG and MathML elements into the problem display without being super janky, but `outerHTML` lets me build a shadow DOM and just shoot it into the live DOM with `innerHTML`. Totally rad.
+
+Tomorrow, more fractions. 
+
+And I feel like I'm getting close to a refactorization and reorganization. But before I do that, I want to clean up my Git as well so that it doesn't look so shabby around here =P
+
+### Issues
+
+* Look into better ways to structure things

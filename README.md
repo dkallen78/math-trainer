@@ -4,17 +4,15 @@
 
 ### 23:30
 
-Having gotten started on division, it seemed that I needed to tackle fractions. Fortunately fractions are usually taught before decimals because I'm not up for decimals at the moment. I've made a good start on fractions. The difficult part has been not just dynamically making the SVG elements based on random numbers, but making it all fit into the window I've been using to display my problems. It's kind of funny because last week I was stressing about fitting longer equations into my display, now I'm trying to get SVG and numbers. So far it's all going swimmingly but we'll see if I'm still optimistic when I'm trying to cover fraction arithmetic — everything so far has just been focused on identifying fractions.
+I've started "the big update." Basically I want this repo to look more professional. Part of that is cleaning up my file structure and naming conventions. Scripts go in the script folder, styles in the style folder. I've started separating style sheets based on where in the program they're used. I'm being more liberal with how many js files I have as well. I've got most of the basic menu screens done (still missing a few) but the big problem I want to solve are the math loop files. The two I've made share 90% of their code but I can't quite figure out a way to consolidate them. 
 
-One thing I discovered today that's going to make me go back and simplify my code is the `element.outerHTML` method. Because everything is set up to just inject raw HTML into the problem display area, I've been struggling to get my SVG and MathML elements into the problem display without being super janky, but `outerHTML` lets me build a shadow DOM and just shoot it into the live DOM with `innerHTML`. Totally rad.
+Oh, and part of this big update/clean-up is a more consistent visual style for my UI. Hopefully it all works out for me!
 
-Tomorrow, more fractions. 
-
-And I feel like I'm getting close to a refactorization and reorganization. But before I do that, I want to clean up my Git as well so that it doesn't look so shabby around here =P
+Tomorrow, in addition to finishing up my menus and trying to get the math up and running, I'm also going to rejigger this readme page and try to organize my past updates better.
 
 ### Issues
 
-* Look into better ways to structure things
+* integrate my two `do-math` files
 
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 
