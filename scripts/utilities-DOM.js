@@ -125,6 +125,10 @@ remove.class = function(elem, ...classes) {
   classes.forEach(x => elem.classList.remove(x));
 }
 
+remove.click = function(elem, fnc) {
+  elem.removeEventListener("click", fnc);
+}
+
 function set(elem, ...pairs) {
   pairs.forEach(pair => elem.setAttribute(pair[0], pair[1]))
 }
