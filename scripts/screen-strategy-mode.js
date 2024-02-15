@@ -178,7 +178,7 @@ async function makeStrategyDetailScreen(group) {
             remove.class(startButton, "button-inactive");
             set.click(startButton, async () => {
               playTone(randomNote());
-
+              await doMathStrategy(group[i]);
               resolve(false);
             })
           })

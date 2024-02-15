@@ -25,3 +25,16 @@ rnd.index = function(array) {
 
   return array[rnd(0, array.length - 1)];
 }
+
+function digitCount(num) {
+  /*
+  //Finds the number of digits in a number              //
+  //----------------------------------------------------//
+  //num(integer/float) the number whose digits are to   //
+  //  be found                                          //
+  //----------------------------------------------------//
+  //return(integer): the number of digits               //
+  */
+
+  return num.toString(10).replace(".", "").length;
+}

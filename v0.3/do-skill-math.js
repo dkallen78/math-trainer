@@ -126,7 +126,6 @@ async function mathLoop(problemSet) {
             problemDisplay.style.padding = "";
           }, (interval * 2));          
         }
-
       })
 
     document.onkeydown = "";
@@ -217,7 +216,7 @@ async function waitForAnswer(problem) {
 }
 
 class ProgressQueue {
-  /*
+  //----------------------------------------------------//
   //A queue data structure designed to hold the average //
   //  time per digit taken to answer a fixed number of  //
   //  previous questions                                //
@@ -237,7 +236,7 @@ class ProgressQueue {
   //push(undefined): adds a new time/digit pair to the  //
   //  queue and removes the oldest one if the size of   //
   //  the queue is greater than [size]                  //
-  */
+  //----------------------------------------------------//
 
   constructor(size, limit) {
     this.size = size;
@@ -249,11 +248,11 @@ class ProgressQueue {
   }
   get avg() {
     return Math.round(this.q.reduce((average, current) => {
-      let oldTotal = average[0] * average[1];
-      let newTotal = oldTotal + current[0];
-      let newCount = average[1] + current[1];
-      return [(newTotal / newCount), newCount];
-    }, [0, 0])[0]);
+      const previousAverage = average.time * average.digits;
+      const newTotalTime = previousAverage + current.time;
+      const newDigitCount = average.digits + current.digits
+      return {time: (newTotalTime / newDigitCount), digits: newDigitCount}
+    }, {time: 0, digits: 0}).time);
   }
   get pass() {
     if (this.length < this.size || this.avg > this.limit) {

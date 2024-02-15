@@ -140,3 +140,7 @@ set.class = function(elem, ...classes) {
 set.click = function(elem, fnc) {
   elem.addEventListener("click", fnc);
 }
+
+set.press = function(elem, fnc) {
+  elem.addEventListener("keydown", fnc);
+}
