@@ -106,6 +106,11 @@ make.main = function(id, classes) {
   return main;
 }
 
+make.nav = function(id, classes) {
+  let nav = make("nav", id, classes);
+  return nav;
+}
+
 make.section = function(id, classes) {
   let section = make("section", id, classes);
   return section;

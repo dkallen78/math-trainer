@@ -30,7 +30,7 @@ async function makeModeSelectScreen() {
       const challengeButton = get("mode-select-screen__challenge-button");
       set.click(challengeButton, async () => {
         playTone(randomNote());
-        //await makeChallengeBaseScreen();
+        await makeChallengesStartScreen();
         resolve();
       });
 
