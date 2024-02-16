@@ -4,7 +4,7 @@ let testFunc = () => idFractions(1, 1, 2, 9, 0);
 //let testFunc = () => circleTest(6);
 
 
-function makeSVG(type, id, ...classes) {
+/*function makeSVG(type, id, ...classes) {
   //----------------------------------------------------//
   //Returns an SVG element of the type indicated        //
   //----------------------------------------------------//
@@ -31,13 +31,13 @@ makeSVG.rect = function(x, y, w, h, id, ...classes) {
   if (typeof id === "string") {rect.id = id}
   classes.forEach(x => rect.classList.add(x));
   return rect;
-}
+}*/
 
 function testOnce() {
-  /*----------------------------------------------------//
+  //----------------------------------------------------//
   //Runs the function to be tested one time and outputs //
   //  the answer and the equation                       //
-  //----------------------------------------------------*/
+  //----------------------------------------------------//
   
   let problem = testFunc();
   //console.log(problem);
