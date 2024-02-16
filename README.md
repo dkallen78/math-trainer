@@ -37,6 +37,7 @@ I've also drastically updated my file structure and file-naming conventions. I h
 * what would keyboard support look like?
 * what would a working memory exercise look like?
 * achievements?
+* what is the optimal order for unlocking strategies/skills?
 
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 

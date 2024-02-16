@@ -10,4 +10,6 @@ This is baked into self-determination theory. [Valås, et al (1994)](https://sel
 
 * The key to intrinsic motivation seems to be a perception of competence
 
-It also seems that there *can* be a place extrinsic motivation, but that it has a negative effect on performance as students get older ([Lemos and Veríssimo, 2014]()). 
+It also seems that there *can* be a place extrinsic motivation, but that it has a negative effect on performance as students get older ([Lemos and Veríssimo, 2014](https://dkallen78.github.io/math-trainer/Refs/lemos-and-verissimo-2014.pdf)).
+
+* I would wager that this is at least partially due to the fact that self-determination and autonomy become more important as one ages, and ties back into the fundamentals of self-tetermination theory. 
