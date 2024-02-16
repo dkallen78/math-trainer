@@ -119,11 +119,6 @@ button {
 
 @media screen and (orientation:landscape) {
 
-  /*body {
-    display: flex;
-    justify-content: center;
-  }*/
-
   .screen {
     width: 30vw !important;
     min-width: 20rem;
