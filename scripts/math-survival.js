@@ -238,26 +238,26 @@ async function doMathSurvival(operations) {
     //Makes the summary screen post challenge             //
     //----------------------------------------------------//
   
-    let summaryScreen = make.main("summary-screen", ["screen", "flex-column"]);
+    const summaryScreen = make.main("summary-screen", ["screen", "flex-column"]);
   
-      let summaryDisplay = make.header("summary-screen__summary-display", "marquee");
+      const summaryDisplay = make.header("summary-screen__summary-display", "marquee");
         summaryDisplay.innerHTML = "Challenge Complete!";
       summaryScreen.appendChild(summaryDisplay);
   
-      let challengeStats = make.section("summary-screen__challenge-stats");
+      const challengeStats = make.section("summary-screen__challenge-stats");
   
-        let challengeScore = make.div("summary-display__challenge-stats__challenge-score");
+        const challengeScore = make.div("summary-display__challenge-stats__challenge-score");
           challengeScore.innerHTML = `Score: ${challengeDeets.score}`;
         challengeStats.appendChild(challengeScore);
   
-        let challengeTime = make.div("summary-display__challenge-stats__challenge-score");
-          let displayTime = (challengeDeets.totalTime / 1000).toPrecision(4)
+        const challengeTime = make.div("summary-display__challenge-stats__challenge-score");
+          const displayTime = (challengeDeets.totalTime / 1000).toPrecision(4)
           challengeTime.innerHTML = `Total Time: ${displayTime} s`;
         challengeStats.appendChild(challengeTime);
   
       summaryScreen.appendChild(challengeStats);
   
-      let doneButton = make.button("Done", "summary-screen__done-button", "button-big");
+      const doneButton = make.button("Done", "summary-screen__done-button", "button-big");
       summaryScreen.appendChild(doneButton);
   
       await fadeTransition(summaryScreen);

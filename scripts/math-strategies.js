@@ -59,7 +59,7 @@ async function doMathStrategy(strategy) {
       await waitForAnswer(problem)
       //
       //If the answer is correct
-      .then(() => {
+      .then(async () => {
         //
         //stops the timer
         totalTime = performance.now() - startTime;
@@ -73,7 +73,8 @@ async function doMathStrategy(strategy) {
           //
           //Check for notifications associated with passing the strategy
           if ("notification" in strategy && !user[strategy.id[0]][strategy.id[1]][strategy.id[2]]) {
-            notify.push(strategy.notification);
+
+            await displayNotification();
           }
           //
           //Mark the strategy as completed in the user variable
@@ -181,6 +182,26 @@ async function doMathStrategy(strategy) {
     [problem.answer, problem.equation] = strategy.run();
 
     return problem;
+  }
+
+  async function displayNotification() {
+
+    return new Promise((resolve) => {
+
+      const notificationScreen = make.main("notification-screen", ["screen", "flex-column"]);
+
+      const notificationDisplay = make.header("notification-screen__display", "marquee");
+        notificationDisplay.innerHTML = strategy.notification;
+      notificationScreen.appendChild(notificationDisplay);
+
+      const doneButton = make.button("Done", "notification-screen__done-button", "button-big", () => {
+        playTone(randomNote());
+        resolve();
+      })
+      notificationScreen.appendChild(doneButton);
+
+      fadeTransition(notificationScreen);
+    })
   }
 }
 
