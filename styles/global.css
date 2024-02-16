@@ -132,5 +132,9 @@ button {
   .marquee {
     font-size: calc(.1 * 30vw);
   }
+
+  .math-interface {
+    grid-template-rows: 6rem 20% 40% !important;
+  }
 }
 
