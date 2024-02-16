@@ -7,7 +7,7 @@ let user = {
     return ((this.keyOctave - 2) * 12) + this.keyNote;
   },
   addition: {
-    fundamentals: [1, 1, 1],
+    fundamentals: [],
     placeValue: [],
     reorder: [],
     partition: [],
@@ -29,6 +29,6 @@ let user = {
   division: {
     fundamentals: []
   },
-  qDepth: 2,
+  qDepth: 10,
   maxAvg: 5000
 }
