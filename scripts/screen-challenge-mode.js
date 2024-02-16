@@ -61,6 +61,7 @@ async function makeSurvivalBaseScreen() {
   }
 
   async function waitForButton() {
+    
     let operatorStates = {
       "+": 0,
       "-": 0,
@@ -106,7 +107,7 @@ async function makeSurvivalBaseScreen() {
             if (checkStartState()) {
               startButton.onclick = async () => {
                 playTone(randomNote());
-                //await makeChallengeInputScreen(operatorStates);
+                await doMathSurvival(operatorStates);
                 resolve(false);
               }
             } else {

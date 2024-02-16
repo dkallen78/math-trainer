@@ -3,6 +3,7 @@ async function doMathStrategy(strategy) {
   //Builds the math interface screen for strategy       //
   //  problems                                          //
   //----------------------------------------------------//
+  
   const interface = make.main("math-strategy-interface", ["screen", "grid", "math-interface"]);
 
     const problemDisplay = make.section("math-strategy-interface__problem-display", "problem-display");

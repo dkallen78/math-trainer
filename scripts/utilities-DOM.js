@@ -116,6 +116,49 @@ make.section = function(id, classes) {
   return section;
 }
 
+
+make.svg = function(id, classes, viewBox) {
+  let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  if (typeof id === "string") {svg.id = id}
+  if (typeof classes === "string") {
+    svg.classList.add(classes);
+  } else if (typeof classes === "object") {
+    classes.forEach(x => svg.classList.add(x));
+  }
+  if (typeof viewBox === "string") {
+    svg.setAttribute("viewBox", viewBox);
+  }
+  return svg;
+}
+
+make.g = function() {
+  let g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  return g;
+}
+
+make.path = function(id, classes) {
+  let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  if (typeof id === "string") {path.id = id}
+  if (typeof classes === "string") {
+    path.classList.add(classes);
+  } else if (typeof classes === "object") {
+    classes.forEach(x => path.classList.add(x));
+  }
+  return path;
+}
+
+make.rect = function(x, y, w, h, id, ...classes) {
+
+  let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  rect.setAttribute("x", x);
+  rect.setAttribute("y", y);
+  rect.setAttribute("width", w);
+  rect.setAttribute("height", h);
+  if (typeof id === "string") {rect.id = id}
+  classes.forEach(x => rect.classList.add(x));
+  return rect;
+}
+
 function remove(...elements) {
   //----------------------------------------------------//
   //Removes elements from the DOM                       //
