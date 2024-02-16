@@ -29,8 +29,6 @@ let user = {
   division: {
     fundamentals: []
   },
-  tour: false,
-  fast: false,
   qDepth: 10,
   maxAvg: 5000
 }

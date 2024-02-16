@@ -1453,7 +1453,7 @@ function groupPaths(svg, n) {
       let groupMod = (groups * 2);
       //
       //sets up the basic attributes for the <animate> element
-      let ani = makeSVG("animate");
+      let ani = make.animate();
       ani.setAttribute("attributeName", "fill-opacity");
       ani.setAttribute("dur", `${groups}s`);
       ani.setAttribute("repeatCount", "indefinite");

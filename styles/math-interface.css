@@ -1,3 +1,17 @@
+math {
+  font-family: sans-serif;
+  font-size: 2rem;
+}
+
+path {
+  stroke: var(--text-color);
+}
+
+g {
+  fill-opacity: 0;
+  stroke: var(--text-color);
+}
+
 .math-interface {
   grid-template-columns: 95%;
   grid-template-rows: 6rem 20% 60%;
@@ -25,6 +39,32 @@
   font-size: 2rem;
   color: var(--text-color);
 }
+
+.frac-rec {
+  stroke: var(--text-color);
+}
+
+.frac-paths-clear {
+  fill-opacity: 0;
+}
+
+#svg-pie {
+  height: 90%;
+  margin-right: .5rem;
+}
+
+#svg-line {
+  width: 100%;
+}
+
+#column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%
+}
+
 
 #number-pad {
   display: grid;

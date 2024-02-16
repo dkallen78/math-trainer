@@ -323,6 +323,11 @@ make.svg = function(id, classes, viewBox) {
   return svg;
 }
 
+make.animate = function() {
+  let animate = document.createElementNS("http://www.w3.org/2000/svg", "animnate");
+  return animate;
+}
+
 make.g = function() {
   let g = document.createElementNS("http://www.w3.org/2000/svg", "g");
   return g;

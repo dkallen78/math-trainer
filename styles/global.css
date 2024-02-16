@@ -103,6 +103,20 @@ button {
   height: 95vh;
 }
 
+.span-box {
+  display: contents;
+  padding: .25rem;
+  border: .15rem solid var(--border-color);
+  border-radius: .5rem;
+}
+
+.span-stroke {
+  display: contents;
+  color: var(--bg-color);
+  font-weight: bold;
+  -webkit-text-stroke: .05rem var(--text-color);
+}
+
 @media screen and (orientation:landscape) {
 
   /*body {
@@ -119,3 +133,4 @@ button {
     font-size: calc(.1 * 30vw);
   }
 }
+

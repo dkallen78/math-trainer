@@ -63,6 +63,10 @@ function get(id) {
   return document.getElementById(id);
 }
 
+get.all = function(elem, selector) {
+  return elem.querySelectorAll(selector);
+}
+
 function make(type, id, classes) {
   //----------------------------------------------------//
   //Returns an DOM element                              //
@@ -129,6 +133,11 @@ make.svg = function(id, classes, viewBox) {
     svg.setAttribute("viewBox", viewBox);
   }
   return svg;
+}
+
+make.animate = function() {
+  let animate = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+  return animate;
 }
 
 make.g = function() {
