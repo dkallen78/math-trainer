@@ -7,7 +7,9 @@ Working as a substitute teacher I saw an unmet need for mental math skills. Ther
 
 ## Description
 
-QuickMath is a tool for anyone who wants to practice their mental math. The "meat" of the program is a progression of different skills and strategies designed to build from foundations to more advanced arithmetic. 
+QuickMath is a tool for anyone who wants to practice their mental math. The "meat" of the program is a progression of different skills and strategies designed to build from foundations to more advanced arithmetic. There is also a challenge mode where users can test their skills against arithemtic problems of increasing difficulty.
+
+Although the UI is simple by design, users can also change the colors of the layout via different preset themes.
 
 The layout is mobile-first because smartphones are the primary technological tool of the modern world.
 
@@ -21,17 +23,21 @@ I've also drastically updated my file structure and file-naming conventions. I h
 
 ### To-do
 
-* incorporate notifications
 * add more problem types 
 * add more challenges
+  * 60-second countdown
 * save user data between sessions
   * import/export data
   * reset data
 * add multi-language support
+* add more themes
 
 ### Investigate
 
-* what would keyboard support look like
+* what would keyboard support look like?
+* what would a working memory exercise look like?
+* achievements?
+
 
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 
@@ -56,7 +62,7 @@ Zachary Hawes, spatial development
 
 I set out to make this program sparse. I had gone with the game aesthetic in the Mathemagicus game and I wanted this to be more utilitarian. But there is research that indicates that color is almost universally preferred to black and white. I still want to maintain the "clean" aesthetic of the program as it stands now, but I think it could benefit from limited color. One question is where and how to use it. Another is which colors to use. Pett & Wilson (1996, it's on JSTOR) mention that it can be used to draw attention to something, which I think would work really well in an otherwise color-sparse environment. They also mention that humans in general are really good at using colors for identifying things (like resistors). Maybe I could use color to subtly indicate which skill is being shown?
 
-I think it's important to acknowledge that, according to [Castell et al (2018)](https://dkallen78.github.io/math-trainer/Refs/Castell-et-al-2018.pdf) there doesn't seem to be an inherent connection between a specific color and either cognitive performance or emotional state. I had pondered using a pulse of green for correct answers and a pulse of red for a wrong one, but it might be better to let the user pick their preferred color for correct input and its color complement for incorrect input.
+I think it's important to acknowledge that, according to [Castell et al (2018)](https://dkallen78.github.io/math-trainer/Refs/Castell-et-al-2018.pdf), there doesn't seem to be an inherent connection between a specific color and either cognitive performance or emotional state. I had pondered using a pulse of green for correct answers and a pulse of red for a wrong one, but it might be better to let the user pick their preferred color for correct input and its color complement for incorrect input.
 
 ### [Interleaving](https://dkallen78.github.io/math-trainer/blob/main/research/interleaving.md)
 

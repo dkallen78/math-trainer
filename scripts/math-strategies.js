@@ -73,7 +73,6 @@ async function doMathStrategy(strategy) {
           //
           //Check for notifications associated with passing the strategy
           if ("notification" in strategy && !user[strategy.id[0]][strategy.id[1]][strategy.id[2]]) {
-
             await displayNotification();
           }
           //

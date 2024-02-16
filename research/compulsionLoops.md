@@ -1,7 +1,6 @@
 ## Compulsion Loops
 
-According to [Wikipedia](https://en.wikipedia.org/wiki/Compulsion_loop), compulsion
-loops consist of three parts:
+According to [Wikipedia](https://en.wikipedia.org/wiki/Compulsion_loop), compulsion loops consist of three parts:
 
 1. Anticipation
 
@@ -9,15 +8,12 @@ loops consist of three parts:
 
 3. Reward
 
-They work in a cycle to incentivize users to continue completing a task. Anticipation
-is first because
+They work in a cycle to incentivize users to continue completing a task. 
+
+> The challenge (completing a math strategy) is baked into the program. I need to "rewardify" things and make it clear that there are things to unlock.
 
 ---
 
-Blogger and game developer [Sebastien Samson (2017)](https://www.gamedeveloper.com/design/compulsion-loops-dopamine-in-games-and-gamification) says that it's vital to establish
-extrinsic and intrinsic rewards for users but cautions that a designer shouldn't
-give extrinsic rewards for tasks that users would do for their intrinsic value, because
-it's nearly impossible to replace an extrinsic reward for an intrinsic one and keep
-the user motivated. This is related to the [overjustification effect](https://en.wikipedia.org/wiki/Overjustification_effect).
+Blogger and game developer [Sebastien Samson (2017)](https://www.gamedeveloper.com/design/compulsion-loops-dopamine-in-games-and-gamification) says that it's vital to establish extrinsic and intrinsic rewards for users but cautions that a designer shouldn't give extrinsic rewards for tasks that users would do for their intrinsic value, because it's nearly impossible to replace an extrinsic reward for an intrinsic one and keep the user motivated. This is related to the [overjustification effect](https://en.wikipedia.org/wiki/Overjustification_effect).
 
 intrinsic vs extrinsic motivation
