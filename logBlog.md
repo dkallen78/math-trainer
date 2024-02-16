@@ -4,16 +4,13 @@ It's been a while and I'm getting back into the swing of things. Today's update 
 
 ## Update 2023-02-18
 
-I tweaked the method of calculating the average so it calculates number of correct digits per millisecond. I've seen fluency calculated this way in a couple of papers, 
-notably [VanDerHeyden & Solomon (2023)](https://www.researchgate.net/publication/368242548_Valid_Outcomes_for_Screening_and_Progress-Monitoring_Fluency_is_Superior_to_Accuracy_in_Curriculum-Based_Measurement). I haven't read anything about the rigor 
-of that metric but it makes sense to accomodate more time for problems that have answers with more digits to compensate for the extra time to calculate a larger number.
+I tweaked the method of calculating the average so it calculates number of correct digits per millisecond. I've seen fluency calculated this way in a couple of papers, notably [VanDerHeyden & Solomon (2023)](https://www.researchgate.net/publication/368242548_Valid_Outcomes_for_Screening_and_Progress-Monitoring_Fluency_is_Superior_to_Accuracy_in_Curriculum-Based_Measurement). I haven't read anything about the rigor of that metric but it makes sense to accomodate more time for problems that have answers with more digits to compensate for the extra time to calculate a larger number.
 
 I also made it so my averages were integers just because those floats can get a little long after the decimal. 
 
 I fixed a bug where the timer would reset after every wrong answer instead of continuing to run until a correct answer was submitted.
 
-Finally, I removed the getAverage function from my util.js file and made it a method of my user object. It makes my code a bit uglier in some places, but more readable in others. 
-I'm not sure it's an improvement, but it doesn't take away from anything.
+Finally, I removed the getAverage function from my util.js file and made it a method of my user object. It makes my code a bit uglier in some places, but more readable in others. I'm not sure it's an improvement, but it doesn't take away from anything.
 
 Next up, I'm going to implement a way for the levels to progress.
 
@@ -21,8 +18,7 @@ Next up, I'm going to implement a way for the levels to progress.
 
 ### 16:00
 
-I've changed the level paradigm. Previously I had regular levels and "test" levels that would unlock the regular level. That's too complicated. It can work, but there's 
-no reason to force it to work. Instead I'm just going to have 12 levels (for now) and when you achieve a certain degree of mastery, the next level will be made available. 
+I've changed the level paradigm. Previously I had regular levels and "test" levels that would unlock the regular level. That's too complicated. It can work, but there's no reason to force it to work. Instead I'm just going to have 12 levels (for now) and when you achieve a certain degree of mastery, the next level will be made available. 
 
 Having said that, I've just updated the interface for now and I'll be uploading the internal functionality later tonight I hope.
 
@@ -30,22 +26,17 @@ Having said that, I've just updated the interface for now and I'll be uploading 
 
 It works. The "test" levels are now just normal levels. 
 
-Now I need to decide what the metric for mastery is in a particular skill. My first instinct is at least 40 digits correct with an average correct response time per digit less than 
-2000 ms but I worry that the means of number input can have a big effect on that time. I have great typing speed so my hands can keep up with the answers, but if a user is inputing 
-numbers on the number pad with a mouse, then it might be hard to achieve that time. I'll get something working before I worry about it much more.
+Now I need to decide what the metric for mastery is in a particular skill. My first instinct is at least 40 digits correct with an average correct response time per digit less than 2000 ms but I worry that the means of number input can have a big effect on that time. I have great typing speed so my hands can keep up with the answers, but if a user is inputing numbers on the number pad with a mouse, then it might be hard to achieve that time. I'll get something working before I worry about it much more.
 
 ### 22:00
 
-I can now evaluate "mastery/fluency" based on correct digits per millisecond. Once a skill has been "mastered" it stops being selected by the getProblem function due to a new 
-weight system I added as well. As things are now, when the user masters all skills in a level, the app crashes =P My next task is to figure out what to do when the player has 
-conquered a skill. Should I have a progress bar? Should I fall back to the level menu when a level is mastered? Decisions, decisions...
+I can now evaluate "mastery/fluency" based on correct digits per millisecond. Once a skill has been "mastered" it stops being selected by the getProblem function due to a new weight system I added as well. As things are now, when the user masters all skills in a level, the app crashes =P My next task is to figure out what to do when the player has conquered a skill. Should I have a progress bar? Should I fall back to the level menu when a level is mastered? Decisions, decisions...
 
 ## Update 2023-02-20
 
 ### 23:00
 
-I shifted gears a little bit today. I wanted to have some kind of sonic feedback when pressing the keys and I've been experimenting with the Web Audio API and having each key press 
-generate a random note on the pentatonic scale. It works and it doesn't sound too bad but something's off with it. You should be able to play with it to see where it's at right now. 
+I shifted gears a little bit today. I wanted to have some kind of sonic feedback when pressing the keys and I've been experimenting with the Web Audio API and having each key press generate a random note on the pentatonic scale. It works and it doesn't sound too bad but something's off with it. You should be able to play with it to see where it's at right now. 
 
 It's currently set to the pentatonic major scale in A. I'm thinking of having correct answers play a pleasing chord and incorrect answers play a dissonant chord. I've got a little practice program where I'm experimenting with the combinatiosn of sounds. Hopefully I can finalize something this week.
 
@@ -79,102 +70,76 @@ The big thing I'm still pondering is how to show progression. Should I have a ci
 
 I've actually got progression in the game! Now if you start at level 1 and you complete the level, you unlock level 2!
 
-Another big thing I did was add dynamic compression to my sfx because the four tones of my chords were making sound on my mobile sound like trash. There's still some weird 
-clicking going on that I need to figure out but I'm going to come back to that.
+Another big thing I did was add dynamic compression to my sfx because the four tones of my chords were making sound on my mobile sound like trash. There's still some weird clicking going on that I need to figure out but I'm going to come back to that.
 
-I made a new problem type for level 11 but I'm stuck for the moment because I want to know how different missing-term problems are from "standard" problems. Should they be in the 
-same category or should they each have their own functions? It's a very specific question and I'm not sure I'll be able to find a good scholarly answer but I'll dig for a few days 
-before I settle on anything.
+I made a new problem type for level 11 but I'm stuck for the moment because I want to know how different missing-term problems are from "standard" problems. Should they be in the same category or should they each have their own functions? It's a very specific question and I'm not sure I'll be able to find a good scholarly answer but I'll dig for a few days before I settle on anything.
 
 ## Update 2023-02-25
 
 ### 22:00
 
-I've added a new level and one new problem type, as well as making a small change to another problem function that 
-gives it a bit more flexibility at the cost of another parameter. 
+I've added a new level and one new problem type, as well as making a small change to another problem function that gives it a bit more flexibility at the cost of another parameter. 
 
-I still haven't come up with a good way to visualize progression through a level but I want to completely overhaul 
-the math skill tree before I approach that again. I'd like each level to have the same number of skills/problem types before I put a ton of thought into it again.
+I still haven't come up with a good way to visualize progression through a level but I want to completely overhaul the math skill tree before I approach that again. I'd like each level to have the same number of skills/problem types before I put a ton of thought into it again.
 
-In addition to redoing the math skill tree, I want to start tackling user metrics and tracking student progress 
-over multiple sessions. I'm going to start working on that next while trying to figure out what data is most 
-valuable to educators and how I'm going to manage and present the data I do collect. 
+In addition to redoing the math skill tree, I want to start tackling user metrics and tracking student progress over multiple sessions. I'm going to start working on that next while trying to figure out what data is most valuable to educators and how I'm going to manage and present the data I do collect. 
 
 ## Update 2023-02-26
 
 ### 22:30
 
-No changes to the program today. Instead I've started a new .md file that will have the mental math progression listed out and I'm going to invite professionals 
-to comment on it and suggest changes. There's not rush on that. What I'm pouring my mental energy into now is a way to keep a record of the user's progress in web 
-storage. I want data!
+No changes to the program today. Instead I've started a new .md file that will have the mental math progression listed out and I'm going to invite professionals to comment on it and suggest changes. There's not rush on that. What I'm pouring my mental energy into now is a way to keep a record of the user's progress in web storage. I want data!
 
 ## Update 2023-03-02
 
 ### 21:45
 
-The program can now save data between sessions. As of not it's just the player's level but expanding that to include all of the player's stats is relatively trivial. I'm at the point 
-where I think I need to rebuild it. I am envisioning a new way of progressing through skills but I need to build a skill tree. of sorts. Instead of progressing through levels that 
-were based on grade-level skills outlined in the mentalStrategies.pdf, I'd like the user to be able to progress through skills more organically. Everyone starts off with the simple 
-addition and as the user shows proficiency then the skills expand and unlock. I'm not sure how I could integrate interleaving into a progression like that but it feels more natural 
+The program can now save data between sessions. As of not it's just the player's level but expanding that to include all of the player's stats is relatively trivial. I'm at the point where I think I need to rebuild it. I am envisioning a new way of progressing through skills but I need to build a skill tree. of sorts. Instead of progressing through levels that were based on grade-level skills outlined in the mentalStrategies.pdf, I'd like the user to be able to progress through skills more organically. Everyone starts off with the simple addition and as the user shows proficiency then the skills expand and unlock. I'm not sure how I could integrate interleaving into a progression like that but it feels more natural 
 to me.
 
 ## Update 2023-03-05
 
 ### 22:45
 
-I have a better idea of the direction I want to take the program and how I want things to progress. I'm going to start from the beginning and cannibalize the parts that worked 
-from the previous version. I added two new functions to the utility library for fading in and fading out elements. They're asynchronous because I didn't want to worry about callback 
-functions and this way I can just call it with await then do the function I want after it's done running.
+I have a better idea of the direction I want to take the program and how I want things to progress. I'm going to start from the beginning and cannibalize the parts that worked from the previous version. I added two new functions to the utility library for fading in and fading out elements. They're asynchronous because I didn't want to worry about callback functions and this way I can just call it with await then do the function I want after it's done running.
 
 ## Update 2023-03-07
 
 ### 23:30
 
-I'm starting to put together the v0.3 into a usable program. It's not "functional" but there are some buttons you can press and you can start to get an idea of how it's going to 
-be different. The big thing is you'll only be working on three skills at a time instead of up to seven, so that should make the sessions shorter.
+I'm starting to put together the v0.3 into a usable program. It's not "functional" but there are some buttons you can press and you can start to get an idea of how it's going to be different. The big thing is you'll only be working on three skills at a time instead of up to seven, so that should make the sessions shorter.
 
 ## Update 2023-03-08
 
 ### 23:00
 
-Version 0.3 has a rough functionality. Since I had been away from this project for around a year before coming back, I'm trying to understand what I did before by putting the pieces 
-back together as I need them. That's making everything go slow. And what I have now is kind of janky and it needs some basic commenting which I'll do tomorrow. 
+Version 0.3 has a rough functionality. Since I had been away from this project for around a year before coming back, I'm trying to understand what I did before by putting the pieces back together as I need them. That's making everything go slow. And what I have now is kind of janky and it needs some basic commenting which I'll do tomorrow. 
 
 ## Update 2023-03-09
 
 ### 22:00
 
-Things are moving slowly but steadily. I addressed all the obvious bugs I had yesterday and even through some comments in. Now that answering questions and progressing through 
-the different parts of the application are coming together, I'm working on the actual act of progressing. One oversight I had from v0.2 is how I tallied the averages. In v0.3 I'm 
-still keeping track of the total average per skill over all, I'm now specifically keeping track of the average of the last 20 questions to determine progression so that each play 
-through will require 60 questions and I'm thinking of capping it at 100 questions per session. Maybe that's too much, I'll have to dig through Google Scholar some more I suppose.
+Things are moving slowly but steadily. I addressed all the obvious bugs I had yesterday and even through some comments in. Now that answering questions and progressing through the different parts of the application are coming together, I'm working on the actual act of progressing. One oversight I had from v0.2 is how I tallied the averages. In v0.3 I'm still keeping track of the total average per skill over all, I'm now specifically keeping track of the average of the last 20 questions to determine progression so that each play through will require 60 questions and I'm thinking of capping it at 100 questions per session. Maybe that's too much, I'll have to dig through Google Scholar some more I suppose.
 
 ## Update 2023-03-11
 
 ### 11:30
 
-I've got basic progression! It took me a while to work out the best way to do it but what I've got should scale up 
-as I add more skills to the program. 
+I've got basic progression! It took me a while to work out the best way to do it but what I've got should scale up as I add more skills to the program. 
 
 ## Update 2023-03-12
 
 ### 22:15
 
-The big thing I did this weekend was make a mini program to kind of check my problem functions. I've been using 
-a basic version to just check that the functions were outputting the right data but I had a feeling that at least 
-one of the ones I've been using was weighted to a particular answer. I'm not very good in statistics so I had 
-to kind of wing it. What I do, is run the function 20 times (maybe I should do 50...) and tally how many times each answer comes up and store that percentage in an array. Then I do that 1,000 times and get an average of all of those percentages to make it "fair." Then I get fancy. I take those broad averages and make an SVG chart to visualize the data and overlay it with a green SVG line to demarcate the average. It's kind of overkill but it lets me see right away if one answer is coming up a lot more than the average. 
+The big thing I did this weekend was make a mini program to kind of check my problem functions. I've been using a basic version to just check that the functions were outputting the right data but I had a feeling that at least one of the ones I've been using was weighted to a particular answer. I'm not very good in statistics so I had to kind of wing it. What I do, is run the function 20 times (maybe I should do 50...) and tally how many times each answer comes up and store that percentage in an array. Then I do that 1,000 times and get an average of all of those percentages to make it "fair." Then I get fancy. I take those broad averages and make an SVG chart to visualize the data and overlay it with a green SVG line to demarcate the average. It's kind of overkill but it lets me see right away if one answer is coming up a lot more than the average. 
 
-I'm glad I did this because one of them is throwing some answers more than others. I need to address this and 
-flatten the distribution curve.
+I'm glad I did this because one of them is throwing some answers more than others. I need to address this and flatten the distribution curve.
 
 The small thing I did was add a new skill to see if my system could scale. It can!
 
 I also addressed some design stuff and made my responsive layout a bit nicer. I'm happy with my progress. 
 
-Next, I'm going to iron out that bump in my within() function. I'm going to try and improve my mental math skill 
-tree as well but I haven't gotten any meaningful input on that. I also have an idea on how to "level lock" certain skills so they only become available when the user has advanced a certain degree. I should probably put a link to 
-my mental math progression spread sheet. I'll do that lower in the readme.
+Next, I'm going to iron out that bump in my within() function. I'm going to try and improve my mental math skill tree as well but I haven't gotten any meaningful input on that. I also have an idea on how to "level lock" certain skills so they only become available when the user has advanced a certain degree. I should probably put a link to my mental math progression spread sheet. I'll do that lower in the readme.
 
 ## Update 2023-03-13
 
@@ -358,7 +323,7 @@ I'm not having the same luck with the addition reordering problems. It just look
 
 ### 22:30
 
-A random post on Reddit made me come back and tweak my sound until I got it how I liked it. It's not longer popping at the end of the sound on my phone but there's still some weirdness that pops up that I haven't identified yet. After playing with it, it still feels too punchy on the way in. Maybe it's my speakers?
+A random post on Reddit made me come back and tweak my sound until I got it how I liked it. It's no longer popping at the end of the sound on my phone but there's still some weirdness that pops up that I haven't identified yet. After playing with it, it still feels too punchy on the way in. Maybe it's my speakers?
 
 I've also gone through and addressed some of the style issues I've had with presenting the problems so that they're more intuitive for users to understand (I hope). Some of my output HTML is pretty ugly but I'm not sure of a good way to clean it up.
 
@@ -579,3 +544,25 @@ And I feel like I'm getting close to a refactorization and reorganization. But b
 ### Issues
 
 * Look into better ways to structure things
+
+## Update 2024-02-14
+
+### 23:30
+
+I've started "the big update." Basically I want this repo to look more professional. Part of that is cleaning up my file structure and naming conventions. Scripts go in the script folder, styles in the style folder. I've started separating style sheets based on where in the program they're used. I'm being more liberal with how many js files I have as well. I've got most of the basic menu screens done (still missing a few) but the big problem I want to solve are the math loop files. The two I've made share 90% of their code but I can't quite figure out a way to consolidate them. 
+
+Oh, and part of this big update/clean-up is a more consistent visual style for my UI. Hopefully it all works out for me!
+
+Tomorrow, in addition to finishing up my menus and trying to get the math up and running, I'm also going to rejigger this readme page and try to organize my past updates better.
+
+### Issues
+
+* integrate my two `do-math` files
+
+## Update 2024-02-15
+
+### 22:30
+
+I've finished the "big update." Except for the notifications at least. I'm thinking of having an intermediate page between when a user completes a strategy and when they are booted back to the Strategy Details screen, similar to how the Survival Challenge works. That would give me more space to work with and let the user dismiss it at their leisure instead of having it pop up and disappear after a bit. 
+
+I've also drastically updated my file structure and file-naming conventions. I have more files now, but they are easier to navigate and it's clearer what they do. Hopefully that means I can be more productive =P 

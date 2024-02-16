@@ -1,57 +1,46 @@
-# [Untitled Math Trainer v0.3](https://dkallen78.github.io/math-trainer/v0.3/quick-math.html)
-
-## Update 2024-02-14
-
-### 23:30
-
-I've started "the big update." Basically I want this repo to look more professional. Part of that is cleaning up my file structure and naming conventions. Scripts go in the script folder, styles in the style folder. I've started separating style sheets based on where in the program they're used. I'm being more liberal with how many js files I have as well. I've got most of the basic menu screens done (still missing a few) but the big problem I want to solve are the math loop files. The two I've made share 90% of their code but I can't quite figure out a way to consolidate them. 
-
-Oh, and part of this big update/clean-up is a more consistent visual style for my UI. Hopefully it all works out for me!
-
-Tomorrow, in addition to finishing up my menus and trying to get the math up and running, I'm also going to rejigger this readme page and try to organize my past updates better.
-
-### Issues
-
-* integrate my two `do-math` files
-
-[Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
+# [QuickMath v0.4](https://dkallen78.github.io/math-trainer/index.html)
+### [All strategies unlocked: ](https://dkallen78.github.io/math-trainer/unlocked.html)
 
 ## Purpose
 
-Working as a substitute teacher I saw an unmet need for mental math skills. There is a lot of good work being done on number fluency which is a foundational math skill, but mental 
-math and automaticity have received a bad name due to how tedious memorizing the multiplication tables can be. I'm trying to make a tool (not a game) for developing those skills 
-incorporating elements of game design and based on rigorous academic research into learning and mathematics. It's not flashy by design so as to foster an appreciation of math on an 
-intrinsic level.
+Working as a substitute teacher I saw an unmet need for mental math skills. There is a lot of good work being done on number fluency which is a foundational math skill, but mental math and automaticity have received a bad name due to how tedious memorizing the multiplication tables can be. I'm trying to make a tool (not a game) for developing those skills incorporating elements of game design and based on rigorous academic research into learning and mathematics. It's not flashy by design so as to foster an appreciation of math on an intrinsic level.
+
+## Description
+
+QuickMath is a tool for anyone who wants to practice their mental math. The "meat" of the program is a progression of different skills and strategies designed to build from foundations to more advanced arithmetic. 
+
+The layout is mobile-first because smartphones are the primary technological tool of the modern world.
+
+## Update 2024-02-15
+
+### 22:30
+
+I've finished the "big update." Except for the notifications at least. I'm thinking of having an intermediate page between when a user completes a strategy and when they are booted back to the Strategy Details screen, similar to how the Survival Challenge works. That would give me more space to work with and let the user dismiss it at their leisure instead of having it pop up and disappear after a bit. 
+
+I've also drastically updated my file structure and file-naming conventions. I have more files now, but they are easier to navigate and it's clearer what they do. Hopefully that means I can be more productive =P 
+
+### To-do
+
+* incorporate notifications
+* add more problem types 
+* add more challenges
+* save user data between sessions
+  * import/export data
+  * reset data
+* add multi-language support
+
+### Investigate
+
+* what would keyboard support look like
+
+[Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
+
+
 
 ## Mental Math progressions spread sheet (please contribute!)
 
 https://docs.google.com/spreadsheets/d/17vwSJWGRL2A5TwsRnspX6qdaLeBSmVft7JT1ZNvBSrs/edit?usp=sharing
 
-## Things to Add
-
-- [ ] Keep track of user data
-
-- [ ] Different modes
-
-   * ~~Speed mode (automaticity trainer)~~
-
-   * Rename number (eg, 5 = 2 + 3 = 1 + 1 + 3 = ... [number sense])
-
-   * ~~Sequences (count bys)~~
-
-   * Mental strategy practice
-
-- [ ] Setup menu
-
-   * ~~Change color palette~~
-
-   * ~~Change sound options~~
-
-   * Change language
-
-   * Import data
-
-   * Reset progress
 
 ## Experts to Seek Out
 
