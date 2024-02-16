@@ -36,12 +36,6 @@ I've also drastically updated my file structure and file-naming conventions. I h
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 
 
-
-## Mental Math progressions spread sheet (please contribute!)
-
-https://docs.google.com/spreadsheets/d/17vwSJWGRL2A5TwsRnspX6qdaLeBSmVft7JT1ZNvBSrs/edit?usp=sharing
-
-
 ## Experts to Seek Out
 
 Doug Rohrer, interleaving - drohrer@usf.edu
