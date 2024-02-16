@@ -1,5 +1,5 @@
 # [QuickMath v0.4](https://dkallen78.github.io/math-trainer/index.html)
-### [All strategies unlocked: ](https://dkallen78.github.io/math-trainer/unlocked.html)
+[QuickMath v0.4 with all strategies unlocked](https://dkallen78.github.io/math-trainer/unlocked.html)
 
 ## Purpose
 
