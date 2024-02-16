@@ -38,17 +38,11 @@ I've also drastically updated my file structure and file-naming conventions. I h
 * what would a working memory exercise look like?
 * achievements?
 
-
 [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
 
-
-## Experts to Seek Out
-
-Doug Rohrer, interleaving - drohrer@usf.edu
-
-Zachary Hawes, spatial development
-
 ## Lines of Investigation
+
+### [Intrinsic Motivation](https://dkallen78.github.io/math-trainer/blob/main/research/intrinsic-motivation.md)
 
 ### [Compulsion Loops](https://dkallen78.github.io/math-trainer/blob/main/research/compulsionLoops.md)
 
@@ -80,19 +74,14 @@ What is my core loop?
 
 ### Historical Research
 
-I'm reading through some 19th century articles right now and it's striking how passionate
-the writers are in their advocacy for mental math. I feel like these advocates are
-the source for the timed multiplication table tests I had to take in the 4th grade.
-Although none of the authors I've read so far have called for timed testing, their
-means for improving mental calculation are left unsaid.
+I'm reading through some 19th century articles right now and it's striking how passionate the writers are in their advocacy for mental math. I feel like these advocates are the source for the timed multiplication table tests I had to take in the 4th grade. Although none of the authors I've read so far have called for timed testing, their means for improving mental calculation are left unsaid.
 
-> Apparently the timed tests to which I (and many others) was subjected were not a
-direct result of the 19th century educational fad of mental math. Many schools switched
-to a program of oral math. There was a backlash to this that lasted until the middle
-of the 20th century when there was a revival in interest. And here we are again.
-"Everything old is new again."
+Apparently the timed tests to which I (and many others) was subjected were not a direct result of the 19th century educational fad of mental math. Many schools switched to a program of oral math. There was a backlash to this that lasted until the middle of the 20th century when there was a revival in interest. And here we are again. "Everything old is new again."
 
-The exception is [Haskins, (1887)](https://www.jstor.org/stable/44464091) who gives
-examples that would be familiar to teachers today, such as counting by 2s up and down
-the number line.
+The exception is [Haskins, (1887)](https://www.jstor.org/stable/44464091) who gives examples that would be familiar to teachers today, such as counting by 2s up and down the number line.
 
+## Experts to Seek Out
+
+Doug Rohrer, interleaving - drohrer@usf.edu
+
+Zachary Hawes, spatial development

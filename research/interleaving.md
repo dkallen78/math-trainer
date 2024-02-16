@@ -5,7 +5,7 @@
  The study (which was a replication of a previous study) found that among high-skilled students there was little positive effect of interleaving but there was a significant
  benefit for the low-skilled students.
 
- > I was questioning whether it was better to present problems by subject or randomly. This leads me to believe that random problems are better and would benefit a greater number of users. 
+ * I was questioning whether it was better to present problems by subject or randomly. This leads me to believe that random problems are better and would benefit a greater number of users. 
 
  ---
 
