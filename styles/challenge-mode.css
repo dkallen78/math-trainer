@@ -25,6 +25,7 @@
 }
 
 #summary-screen__challenge-stats {
+  color: var(--text-color);
   text-align: center;
   font-size: 1.5rem;
 }
