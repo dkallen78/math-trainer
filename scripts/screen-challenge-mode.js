@@ -5,17 +5,22 @@ async function makeChallengesStartScreen() {
     return new Promise((resolve, reject) => {
 
       const survivalButton = get("challenge-select-screen__survival-button");
-      set.click(survivalButton, async () => {
+      survivalButton.onclick = async () => {
+        survivalButton.onclick = null;
         playTone(randomNote());
         await makeSurvivalBaseScreen();
         resolve(false);
-      });
+      };
+
+      const countDownButton = get("challenge-select-screen__count-down-button");
+      
 
       const backButton = get("challenge-select-screen__back-button");
-      set.click(backButton, async () => {
+      backButton.onclick = async () => {
+        backButton.onclick = null;
         playTone(randomNote());
         resolve(true);
-      });
+      };
     })
   }
 
@@ -26,6 +31,9 @@ async function makeChallengesStartScreen() {
 
       const survivalButton = make.button("Survival", "challenge-select-screen__survival-button", "button-big");
       challengeBaseScreen.appendChild(survivalButton);
+
+      const countDownButton = make.button("Count Down", "challenge-select-screen__count-down-button", "button-big");
+      challengeBaseScreen.appendChild(countDownButton);
 
       const backButton = make.button("Back", "challenge-select-screen__back-button", "button-big");
       challengeBaseScreen.appendChild(backButton);
@@ -92,7 +100,7 @@ async function makeSurvivalBaseScreen() {
 
           operationButtons[i].classList.remove("button-inactive");
 
-          set.click(operationButtons[i], async () => {
+          operationButtons[i].onclick = async () => {
 
             playTone(randomNote());
             //
@@ -113,15 +121,16 @@ async function makeSurvivalBaseScreen() {
             } else {
               startButton.onclick = "";
             }
-          })
+          }
         }
       }
 
       let backButton = get("survival-base-screen__back-button");
-      set.click(backButton, async () => {
+      backButton.onclick = async () => {
+        backButton.onclick = null;
         playTone(randomNote());
         resolve(true);
-      })
+      }
     })
   }
 

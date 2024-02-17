@@ -194,6 +194,7 @@ async function doMathStrategy(strategy) {
       notificationScreen.appendChild(notificationDisplay);
 
       const doneButton = make.button("Done", "notification-screen__done-button", "button-big", () => {
+        doneButton.onclick = null;
         playTone(randomNote());
         resolve();
       })

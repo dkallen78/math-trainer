@@ -265,10 +265,11 @@ async function doMathSurvival(operations) {
     return new Promise ((resolve, reject) => {
       
       let doneButton = get("summary-screen__done-button");
-      set.click(doneButton, () => {
+      doneButton.onclick = () => {
+        doneButton.onclick = null;
         playTone(randomNote());
         resolve();
-      });
+      };
     })
   }
 }

@@ -11,47 +11,52 @@ async function makeStrategiesStartScreen() {
       
       const additionButton = get("select-operation-screen__operation-grid__addition-button");
       remove.class(additionButton, "button-inactive");
-      set.click(additionButton, async () => {
+      additionButton.onclick = async () => {
+        additionButton.onclick = null;
         playTone(randomNote());
         await makeStrategyGroupsScreen(addition);
         resolve(false);
-      });
+      };
 
       const subtractionButton = get("select-operation-screen__operation-grid__subtraction-button");
       if (user.subtraction.fundamentals[1]) {
         remove.class(subtractionButton, "button-inactive");
-        set.click(subtractionButton, async () => {
+        subtractionButton.onclick = async () => {
+          subtractionButton.onclick = null;
           playTone(randomNote());
           await makeStrategyGroupsScreen(subtraction);
           resolve(false);
-        });
+        };
       }
 
       const multiplicationButton = get("select-operation-screen__operation-grid__multiplication-button");
       if (user.multiplication.fundamentals[1]) {
         remove.class(multiplicationButton, "button-inactive");
-        set.click(multiplicationButton, async () => {
+        multiplicationButton.onclick = async () => {
+          multiplicationButton.onclick = null;
           playTone(randomNote());
           await makeStrategyGroupsScreen(multiplication);
           resolve(false);
-        });
+        };
       }
 
       const divisionButton = get("select-operation-screen__operation-grid__division-button");
       if (user.division.fundamentals[1]) {
         remove.class(divisionButton, "button-inactive");
-        set.click(divisionButton, async () => {
+        divisionButton.onclick = async () => {
+          divisionButton.onclick = null;
           playTone(randomNote());
           await makeStrategyGroupsScreen(division);
           resolve(false);
-        });
+        };
       }
 
       const backButton = get("select-operation-screen__back-button");
-      set.click(backButton, async () => {
+      backButton.onclick = async () => {
+        backButton.onclick = null;
         playTone(randomNote());
         resolve(true);
-      });
+      };
     })
 
   }
@@ -106,19 +111,21 @@ async function makeStrategyGroupsScreen(operation) {
         if (operation[group][1].test()) {
           const groupButton = get(`strategy-groups-screen__${operation[group][0]}-button`);
           remove.class(groupButton, "button-inactive");
-          set.click(groupButton, async () => {
+          groupButton.onclick = async () => {
+            groupButton.onclick = null;
             playTone(randomNote());
             await makeStrategyDetailScreen(operation[group]);
             resolve(false);
-          });
+          };
         }
       }
 
       const backButton = get("strategy-groups-screen__back-button");
-      set.click(backButton, async () => {
+      backButton.onclick = async () => {
+        backButton.onclick = null;
         playTone(randomNote());
         resolve(true);
-      });
+      };
     })
   }
 
@@ -170,26 +177,28 @@ async function makeStrategyDetailScreen(group) {
             set.class(strategyButton, "button-ready");
           }
 
-          set.click(strategyButton, async () => {
+          strategyButton.onclick = async () => {
             playTone(randomNote());
             strategyDetail.innerHTML = group[i].name;
 
             const startButton = get("strategy-detail-screen__start-button");
             remove.class(startButton, "button-inactive");
-            set.click(startButton, async () => {
+            startButton.onclick = async () => {
+              startButton.onclick = null;
               playTone(randomNote());
               await doMathStrategy(group[i]);
               resolve(false);
-            })
-          })
+            }
+          }
         }
       }
 
       const backButton = get("strategy-detail-screen__back-button");
-      set.click(backButton, () => {
+      backButton.onclick = () => {
+        backButton.onclick = null;
         playTone(randomNote());
         resolve(true);
-      })
+      }
     })
   }
 

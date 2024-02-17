@@ -59,19 +59,6 @@ numPad.on = function(display) {
   get("number-pad__button-0").onclick = () => {inputNumber("0", display)}
   get("number-pad__button-back").onclick = () => {inputNumber("-1", display)}
   get("number-pad__button-decimal").onclick = () => {inputNumber(".", display)}
-
-  /*get("number-pad__button-1").onclick = function() {inputNumber("1", display)}
-  get("number-pad__button-2").onclick = function() {inputNumber("2", display)}
-  get("number-pad__button-3").onclick = function() {inputNumber("3", display)}
-  get("number-pad__button-4").onclick = function() {inputNumber("4", display)}
-  get("number-pad__button-5").onclick = function() {inputNumber("5", display)}
-  get("number-pad__button-6").onclick = function() {inputNumber("6", display)}
-  get("number-pad__button-7").onclick = function() {inputNumber("7", display)}
-  get("number-pad__button-8").onclick = function() {inputNumber("8", display)}
-  get("number-pad__button-9").onclick = function() {inputNumber("9", display)}
-  get("number-pad__button-0").onclick = function() {inputNumber("0", display)}
-  get("number-pad__button-back").onclick = function() {inputNumber("-1", display)}
-  get("number-pad__button-decimal").onclick = function() {inputNumber(".", display)}*/
   
   return null;
 }

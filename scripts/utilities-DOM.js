@@ -91,7 +91,7 @@ function make(type, id, classes) {
 make.button = function(name, id, classes, fnc) {
   let button = make("button", id, classes);
   button.innerHTML = name;
-  button.addEventListener("click", fnc)
+  button.onclick = fnc;
   return button;
 }
 
@@ -182,20 +182,12 @@ remove.class = function(elem, ...classes) {
   classes.forEach(x => elem.classList.remove(x));
 }
 
-remove.click = function(elem, fnc) {
-  elem.removeEventListener("click", fnc);
-}
-
 function set(elem, ...pairs) {
   pairs.forEach(pair => elem.setAttribute(pair[0], pair[1]))
 }
 
 set.class = function(elem, ...classes) {
   classes.forEach(c => elem.classList.add(c));
-}
-
-set.click = function(elem, fnc) {
-  elem.addEventListener("click", fnc);
 }
 
 set.press = function(elem, fnc) {
