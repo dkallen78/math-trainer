@@ -13,19 +13,22 @@ Although the UI is simple by design, users can also change the colors of the lay
 
 The layout is mobile-first because smartphones are the primary technological tool of the modern world.
 
-## Update 2024-02-15
+## Update 2024-02-16
 
-### 22:30
+### 22:45
 
-I've finished the "big update." Except for the notifications at least. I'm thinking of having an intermediate page between when a user completes a strategy and when they are booted back to the Strategy Details screen, similar to how the Survival Challenge works. That would give me more space to work with and let the user dismiss it at their leisure instead of having it pop up and disappear after a bit. 
+I added a challenge that only lasts 60 seconds and the user has to answer as many questions as possible as they slowly get harder. A lot of it was just copy/pasting which makes me think I need to look at how to condense some of my work. I'm not going to worry about it in the short term because it's just a distraction, but I really feel good when I can refactor stuff down to one function. 
 
-I've also drastically updated my file structure and file-naming conventions. I have more files now, but they are easier to navigate and it's clearer what they do. Hopefully that means I can be more productive =P 
+I indulged a conceit for a week or two that I've now abandonned. It all started with condensing `document.getElementById` down to just `get`. I also shrunk my `makeElement` function to just `make` and made a lot of methods for individual elements like `make.button()` and `make.svg`, and I like all of those a lot. I got it in my head though that it should be a set of helper functions and `set` should be a part of it. Indulging myself, I made a `set.click` function that used `element.addEventListener` instead of `element.onclick` because I heard the former was "better" than the latter. That may be true but `addEventListener` does not work so well with anonymous functions or functions with parameters. So I've abandonned `set.click` and I'm back to `onclick`.
+
+I've got a lot of other stuff to do in the upcoming week, but hopefully I can expand the division or multiplication portions of the strategies mode in some spare moments.
 
 ### To-do
 
 * add more problem types 
 * add more challenges
-  * 60-second countdown
+  * answer as fast as possible (Fast 50?)
+* mode/challenge where user goes through number facts (eg, multiplication table)
 * save user data between sessions
   * import/export data
   * reset data
@@ -39,7 +42,7 @@ I've also drastically updated my file structure and file-naming conventions. I h
 * achievements?
 * what is the optimal order for unlocking strategies/skills?
 
-[Previous updates](https://github.com/dkallen78/math-trainer/blob/main/logBlog.md)
+### [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/devlog/devlog-2024.md)
 
 ## Lines of Investigation
 
