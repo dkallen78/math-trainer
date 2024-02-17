@@ -7,27 +7,27 @@ let user = {
     return ((this.keyOctave - 2) * 12) + this.keyNote;
   },
   addition: {
-    fundamentals: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    placeValue: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    reorder: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    partition: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    compensation: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    sequence: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    fractions: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    fundamentals: [true, true, true, true, true, true, true, true, true, true],
+    placeValue: [true, true, true, true, true, true, true, true, true, true],
+    reorder: [true, true, true, true, true, true, true, true, true, true],
+    partition: [true, true, true, true, true, true, true, true, true, true],
+    compensation: [true, true, true, true, true, true, true, true, true, true],
+    sequence: [true, true, true, true, true, true, true, true, true, true],
+    fractions: [true, true, true, true, true, true, true, true, true, true]
   },
   subtraction: {
-    fundamentals: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    partition: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    decomposition: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    sequence: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    fundamentals: [true, true, true, true, true, true, true, true, true, true],
+    partition: [true, true, true, true, true, true, true, true, true, true],
+    decomposition: [true, true, true, true, true, true, true, true, true, true],
+    sequence: [true, true, true, true, true, true, true, true, true, true]
   },
   multiplication: {
-    fundamentals: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    distribution: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    association: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    fundamentals: [true, true, true, true, true, true, true, true, true, true],
+    distribution: [true, true, true, true, true, true, true, true, true, true],
+    association: [true, true, true, true, true, true, true, true, true, true]
   },
   division: {
-    fundamentals: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    fundamentals: [true, true, true, true, true, true, true, true, true, true]
   },
   qDepth: 2,
   maxAvg: 5000

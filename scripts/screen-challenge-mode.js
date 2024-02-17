@@ -8,12 +8,17 @@ async function makeChallengesStartScreen() {
       survivalButton.onclick = async () => {
         survivalButton.onclick = null;
         playTone(randomNote());
-        await makeSurvivalBaseScreen();
+        await makeSelectChallengeOperationsScreen(doMathSurvival)
         resolve(false);
       };
 
-      const countDownButton = get("challenge-select-screen__count-down-button");
-      
+      const countDownButton = get("challenge-select-screen__countdown-button");
+      countDownButton.onclick = async () => {
+        countDownButton.onclick = null;
+        playTone(randomNote());
+        await makeSelectChallengeOperationsScreen(doMathCountdown)
+        resolve(false);
+      }
 
       const backButton = get("challenge-select-screen__back-button");
       backButton.onclick = async () => {
@@ -32,8 +37,8 @@ async function makeChallengesStartScreen() {
       const survivalButton = make.button("Survival", "challenge-select-screen__survival-button", "button-big");
       challengeBaseScreen.appendChild(survivalButton);
 
-      const countDownButton = make.button("Count Down", "challenge-select-screen__count-down-button", "button-big");
-      challengeBaseScreen.appendChild(countDownButton);
+      const countdownButton = make.button("Countdown", "challenge-select-screen__countdown-button", "button-big");
+      challengeBaseScreen.appendChild(countdownButton);
 
       const backButton = make.button("Back", "challenge-select-screen__back-button", "button-big");
       challengeBaseScreen.appendChild(backButton);
@@ -45,7 +50,7 @@ async function makeChallengesStartScreen() {
   }
 }
 
-async function makeSurvivalBaseScreen() {
+async function makeSelectChallengeOperationsScreen(mathFunction) {
 
   function checkStartState() {
     //----------------------------------------------------//
@@ -55,8 +60,8 @@ async function makeSurvivalBaseScreen() {
     //  adds the inactive-button class to the startButton //
     //----------------------------------------------------//
 
-    let startButton = get("survival-base-screen__start-button");
-    let operationButtons = get("survival-base-screen__operation-grid").childNodes;
+    const startButton = get("select-operations-screen__start-button");
+    const operationButtons = get("select-operations-screen__operation-grid").childNodes;
 
     for (let i = 0; i < operationButtons.length; i++) {
       if (operationButtons[i].classList.contains("button-selected")) {
@@ -69,7 +74,7 @@ async function makeSurvivalBaseScreen() {
   }
 
   async function waitForButton() {
-    
+
     let operatorStates = {
       "+": 0,
       "-": 0,
@@ -89,13 +94,13 @@ async function makeSurvivalBaseScreen() {
 
     return new Promise((resolve, reject) => {
 
-      let operationButtons = get("survival-base-screen__operation-grid").childNodes;
+      const operationButtons = get("select-operations-screen__operation-grid").childNodes;
       //
       //Iterates over the operationButtons, turning them
       //  on if the user is elibigle
       for (let i = 0; i < operationButtons.length; i++) {
 
-        let op = operationButtons[i].innerHTML;
+        const op = operationButtons[i].innerHTML;
         if (operationButtons[i].dataset.unlock === "true") {
 
           operationButtons[i].classList.remove("button-inactive");
@@ -111,11 +116,11 @@ async function makeSurvivalBaseScreen() {
             //If an operationButton is toggled, checks to
             //  see if the startButton should be enabled 
             //  or not
-            let startButton = get("survival-base-screen__start-button");
+            const startButton = get("select-operations-screen__start-button");
             if (checkStartState()) {
               startButton.onclick = async () => {
                 playTone(randomNote());
-                await doMathSurvival(operatorStates);
+                await mathFunction(operatorStates);
                 resolve(false);
               }
             } else {
@@ -125,7 +130,7 @@ async function makeSurvivalBaseScreen() {
         }
       }
 
-      let backButton = get("survival-base-screen__back-button");
+      const backButton = get("select-operations-screen__back-button");
       backButton.onclick = async () => {
         backButton.onclick = null;
         playTone(randomNote());
@@ -137,37 +142,37 @@ async function makeSurvivalBaseScreen() {
   let quit = false;
   while(!quit) {
 
-    const survivalBaseScreen = make.main("survival-base-screen", ["screen", "flex-column"]);
+    const selectOperationsScreen = make.main("select-operations-screen", ["screen", "flex-column"]);
 
-      const operationGrid = make.section("survival-base-screen__operation-grid", ["grid", "operator-grid"]);
+      const operationGrid = make.section("select-operations-screen__operation-grid", ["grid", "operator-grid"]);
 
-        const additionButton = make.button("+", "survival-base-screen__operation-grid__addition-button", ["button-inactive", "button-big"]);
+        const additionButton = make.button("+", "select-operations-screen__operation-grid__addition-button", ["button-inactive", "button-big"]);
           additionButton.dataset.unlock = "true";
         operationGrid.appendChild(additionButton);
 
-        const subtractionButton = make.button("-", "survival-base-screen__operation-grid__subtraction-button", ["button-inactive", "button-big"]);
+        const subtractionButton = make.button("-", "select-operations-screen__operation-grid__subtraction-button", ["button-inactive", "button-big"]);
           subtractionButton.dataset.unlock = user.subtraction.fundamentals[1];
         operationGrid.appendChild(subtractionButton);
 
-        const multiplicationButton = make.button("×", "survival-base-screen__operation-grid__multiplication-button", ["button-inactive", "button-big"]);
+        const multiplicationButton = make.button("×", "select-operations-screen__operation-grid__multiplication-button", ["button-inactive", "button-big"]);
           multiplicationButton.dataset.unlock = user.multiplication.fundamentals[1];
         operationGrid.appendChild(multiplicationButton);
 
-        const divisionButton = make.button("÷", "survival-base-screen__operation-grid__division-button", ["button-inactive", "button-big"]);
+        const divisionButton = make.button("÷", "select-operations-screen__operation-grid__division-button", ["button-inactive", "button-big"]);
           divisionButton.dataset.unlock = user.division.fundamentals[1];
         operationGrid.appendChild(divisionButton);
 
-      survivalBaseScreen.appendChild(operationGrid);
+      selectOperationsScreen.appendChild(operationGrid);
 
-      let startButton = make.button("Start", "survival-base-screen__start-button", ["button-inactive", "button-big"]);
-      survivalBaseScreen.appendChild(startButton);
+      const startButton = make.button("Start", "select-operations-screen__start-button", ["button-inactive", "button-big"]);
+      selectOperationsScreen.appendChild(startButton);
 
-      let backButton = make.button("Back", "survival-base-screen__back-button", "button-big");
-      survivalBaseScreen.appendChild(backButton);
+      const backButton = make.button("Back", "select-operations-screen__back-button", "button-big");
+      selectOperationsScreen.appendChild(backButton);
 
-    await fadeTransition(survivalBaseScreen);
+    await fadeTransition(selectOperationsScreen);
 
     await waitForButton()
-      .then((exit) => {quit = exit});
+    .then((exit) => {quit = exit});
   }
 }

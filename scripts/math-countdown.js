@@ -1,56 +1,40 @@
-async function doMathSurvival(operations) {
-  //----------------------------------------------------//
-  //Builds the math interface screen for Survival       //
-  //  Challenge problems                                //
-  //----------------------------------------------------//
+async function doMathCountdown(operations) {
 
-  let challengeTimer = {
+  let countdownTimer = {
     start: 0,
-    rawStart: 0,
-    max: 5_000,
-    add: (time) => {
-      this.max += time;
-    },
+    limit: 60_000,
     timeStart: function() {
       this.start = performance.now();
-      this.rawStart = this.start;
     },
     get elapsed() {
       return performance.now() - this.start;
-    },
-    get rawElapsed() {
-      return performance.now() - this.rawStart;
     }
   }
-  
-  let challengeDeets = {
-    score: 0,
-    totalTime: 0,
-  }
 
-  const interface = make.main("math-survival-interface", ["screen", "grid", "math-interface", "timer-interface"]);
+  let score = 0;
 
-    const problemDisplay = make.section("math-survival-interface__problem-display", "problem-display");
+  const interface = make.main("math-countdown-interface", ["screen", "grid", "math-interface", "timer-interface"]);
+
+    const problemDisplay = make.section("math-countdown-interface__problem-display", "problem-display");
     interface.appendChild(problemDisplay)
 
-    const inputDisplay = make.section("math-survival-interface__input-display", "input-display");
+    const inputDisplay = make.section("math-countdown-interface__input-display", "input-display");
     interface.appendChild(inputDisplay);
 
     const numberPad = numPad();
     interface.appendChild(numberPad);
 
-    const svg = make.svg("math-survival-interface__svg");
-      const rect = make.rect("1.5%", "1.5%", "97%", "97%", "math-survival-interface__svg__countdownRect");
+    const svg = make.svg("math-countdown-interface__svg");
+      const rect = make.rect("1.5%", "1.5%", "97%", "97%", "math-countdown-interface__svg__countdownRect");
         set(rect, ["rx", "3%"], ["fill-opacity", "0%"]);
       svg.appendChild(rect);
     interface.appendChild(svg);
 
   await fadeTransition(interface);
 
-  await mathLoop();
+  await mathLoop(); 
 
   async function mathLoop() {
-
     let newProblem = true;
     let problem;
     //
@@ -69,9 +53,9 @@ async function doMathSurvival(operations) {
     //
     //Animates the countdown by reducing the percentage of 
     //  stroke around the <rect>
-    challengeTimer.timeStart();
+    countdownTimer.timeStart();
     let challengeTimerCountdown = setInterval(() => {
-      let timePercent = (challengeTimer.max - challengeTimer.elapsed) / challengeTimer.max;
+      let timePercent = (countdownTimer.limit - countdownTimer.elapsed) / countdownTimer.limit;
       rect.setAttribute("stroke-dasharray", `${timePercent * perimeterPercent}% ${perimeterPercent}%`);
     }, 10);
 
@@ -89,13 +73,7 @@ async function doMathSurvival(operations) {
       .then(() => {
         playChord(makeChord(randomChord(), user.activeKey));
         newProblem = true;
-        if (challengeTimer.elapsed > 2000) {
-          challengeTimer.start += 2000;
-        } else {
-          challengeTimer.start += challengeTimer.elapsed;
-        }
-        
-        challengeDeets.score += digitCount(problem.answer);
+        score += digitCount(problem.answer);
       })
       .catch(async (reject) => {
         switch(reject) {
@@ -129,9 +107,8 @@ async function doMathSurvival(operations) {
           case "time":
             clearInterval(challengeTimerCountdown);
             playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
-            challengeDeets.totalTime = challengeTimer.rawElapsed;
             quit = true;
-            await makeSurvivalSummaryScreen();
+            await makeCountdownSummaryScreen();
             break;
         }
       })
@@ -147,7 +124,7 @@ async function doMathSurvival(operations) {
     return new Promise((resolve, reject) => {
 
       let timeCheck = setInterval(() => {
-        if (challengeTimer.elapsed > challengeTimer.max) {
+        if (countdownTimer.elapsed > countdownTimer.limit) {
           clearInterval(timeCheck);
           reject("time");
         }
@@ -203,9 +180,9 @@ async function doMathSurvival(operations) {
     //gets the problem for the challenge                  //
     //----------------------------------------------------//
 
-    const elapsed = Math.floor(challengeTimer.rawElapsed / 1000);
+    const elapsed = Math.floor(countdownTimer.elapsed / 1000);
 
-    let survivalProblems = {
+    let countdownProblems = {
       "+": () => addWithin(Math.ceil(elapsed / 5), elapsed),
       "-": () => subWithin(1, elapsed),
       "×": 0,
@@ -220,7 +197,7 @@ async function doMathSurvival(operations) {
 
     operations.keys.forEach((e) => {
       if (operations[e]) {
-        problemSet.push(survivalProblems[e]);
+        problemSet.push(countdownProblems[e]);
       }
     });
 
@@ -229,7 +206,7 @@ async function doMathSurvival(operations) {
     return problem;
   }
 
-  async function makeSurvivalSummaryScreen() {
+  async function makeCountdownSummaryScreen() {
     //----------------------------------------------------//
     //Makes the summary screen post challenge             //
     //----------------------------------------------------//
@@ -243,14 +220,9 @@ async function doMathSurvival(operations) {
       const challengeStats = make.section("summary-screen__challenge-stats");
   
         const challengeScore = make.div("summary-display__challenge-stats__challenge-score");
-          challengeScore.innerHTML = `Score: ${challengeDeets.score}`;
+          challengeScore.innerHTML = `Score: ${score}`;
         challengeStats.appendChild(challengeScore);
-  
-        const challengeTime = make.div("summary-display__challenge-stats__challenge-score");
-          const displayTime = (challengeDeets.totalTime / 1000).toPrecision(4)
-          challengeTime.innerHTML = `Total Time: ${displayTime} s`;
-        challengeStats.appendChild(challengeTime);
-  
+    
       summaryScreen.appendChild(challengeStats);
   
       const doneButton = make.button("Done", "summary-screen__done-button", "button-big");
