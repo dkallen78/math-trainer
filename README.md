@@ -25,6 +25,7 @@ I've got a lot of other stuff to do in the upcoming week, but hopefully I can ex
 
 ### To-do
 
+* add stroke to Subtraction - Decomposition problems
 * add more problem types 
 * add more challenges
   * answer as fast as possible (Fast 50?)
