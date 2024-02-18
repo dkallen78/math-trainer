@@ -145,6 +145,17 @@ make.g = function() {
   return g;
 }
 
+make.line = function(x1, y1, x2, y2, id, ...classes) {
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  line.setAttribute("x1", x1);
+  line.setAttribute("y1", y1);
+  line.setAttribute("x2", x2);
+  line.setAttribute("y2", y2);
+  if (typeof id === "string") {this.rect.id = id}
+  classes.forEach(x => line.classList.add(x));
+  return line;
+}
+
 make.path = function(id, classes) {
   let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
   if (typeof id === "string") {path.id = id}
