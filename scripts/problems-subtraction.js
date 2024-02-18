@@ -39,14 +39,14 @@ function subDecomp(aMin, aMax, tenMin, tenMax, mode) {
   switch(mode) {
     case 1:
       solutions = [
-        [a, `${b} - ${a + aTen} = ${b} - ${aTen} - ?`],
-        [a, `${b} - ${aTen} - ? = ${b} - ${a + aTen}`]
+        [a, `${b} -&nbsp${stroke(a + aTen)}&nbsp= ${b} -&nbsp${stroke(aTen)}&nbsp-&nbsp${stroke("?")}`],
+        [a, `${b} -&nbsp${stroke(aTen)}&nbsp-&nbsp${stroke("?")}&nbsp= ${b} -&nbsp${stroke(a + aTen)}`]
       ];
       break;
     case 2:
       solutions = [
-        [aTen, `${b} - ${a + aTen} = ${b} - ? - ${a}`],
-        [aTen, `${b} - ? - ${a} = ${b} - ${a + aTen}`]
+        [aTen, `${b} -&nbsp${stroke(a + aTen)}&nbsp= ${b} -&nbsp${stroke("?")}&nbsp-&nbsp${stroke(a)}`],
+        [aTen, `${b} -&nbsp${stroke("?")}&nbsp-&nbsp${stroke(a)}&nbsp= ${b} -&nbsp${stroke(a + aTen)}`]
       ];
       break;
   }
