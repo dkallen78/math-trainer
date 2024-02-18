@@ -25,10 +25,12 @@ I've got a lot of other stuff to do in the upcoming week, but hopefully I can ex
 
 ### To-do
 
-* add stroke to Subtraction - Decomposition problems
 * add more problem types 
+  * fill out division beyond Fundamentals
+  * expand on the introduction to fractions
 * add more challenges
-  * answer as fast as possible (Fast 50?)
+  * answer a fixed number of problems (digits?) as fast as possible (Fast 50?)
+* add functions for multiplication and division to the challenges
 * mode/challenge where user goes through number facts (eg, multiplication table)
 * save user data between sessions
   * import/export data
@@ -38,9 +40,12 @@ I've got a lot of other stuff to do in the upcoming week, but hopefully I can ex
 
 ### Investigate
 
+* should fractions be its own section or built into the basic operations? Likewise, what about decimals?
+* how to improve the functions in the challenges?
 * what would keyboard support look like?
 * what would a working memory exercise look like?
 * achievements?
+  * basic achievements for the challenges (3 each based on performance?) and strategies, plus secret achievements based on math trivia?
 * what is the optimal order for unlocking strategies/skills?
 
 ### [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/devlog/devlog-2024.md)
