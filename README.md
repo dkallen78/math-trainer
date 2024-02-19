@@ -13,15 +13,13 @@ Although the UI is simple by design, users can also change the colors of the lay
 
 The layout is mobile-first because smartphones are the primary technological tool of the modern world.
 
-## Update 2024-02-16
+## Update 2024-02-18
 
-### 22:45
+### 23:00
 
-I added a challenge that only lasts 60 seconds and the user has to answer as many questions as possible as they slowly get harder. A lot of it was just copy/pasting which makes me think I need to look at how to condense some of my work. I'm not going to worry about it in the short term because it's just a distraction, but I really feel good when I can refactor stuff down to one function. 
+Nothing to brag about today. I rewrote the code that handles how the theme page is built so it's more automatic and I created a new file with theme data so it's easier to make new ones. I did all this after making a Blue theme. I might make a green and black "Matrix" theme before I crash tonight.
 
-I indulged a conceit for a week or two that I've now abandonned. It all started with condensing `document.getElementById` down to just `get`. I also shrunk my `makeElement` function to just `make` and made a lot of methods for individual elements like `make.button()` and `make.svg`, and I like all of those a lot. I got it in my head though that it should be a set of helper functions and `set` should be a part of it. Indulging myself, I made a `set.click` function that used `element.addEventListener` instead of `element.onclick` because I heard the former was "better" than the latter. That may be true but `addEventListener` does not work so well with anonymous functions or functions with parameters. So I've abandonned `set.click` and I'm back to `onclick`.
-
-I've got a lot of other stuff to do in the upcoming week, but hopefully I can expand the division or multiplication portions of the strategies mode in some spare moments.
+I reached out on reddit for feedback on how I'm doing but noone responded. Either I'm missing the mark by a lot or teachers don't have the bandwidth to play with new software. I'm kind of bummed about it but getting ignored on the internet is no big deal. I do need to find a source of feedback though. Maybe I should be looking internationally...
 
 ### To-do
 

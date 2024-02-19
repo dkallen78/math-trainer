@@ -168,3 +168,13 @@ I've finished the "big update." Except for the notifications at least. I'm think
 
 I've also drastically updated my file structure and file-naming conventions. I have more files now, but they are easier to navigate and it's clearer what they do. Hopefully that means I can be more productive =P 
 
+## Update 2024-02-16
+
+### 22:45
+
+I added a challenge that only lasts 60 seconds and the user has to answer as many questions as possible as they slowly get harder. A lot of it was just copy/pasting which makes me think I need to look at how to condense some of my work. I'm not going to worry about it in the short term because it's just a distraction, but I really feel good when I can refactor stuff down to one function. 
+
+I indulged a conceit for a week or two that I've now abandonned. It all started with condensing `document.getElementById` down to just `get`. I also shrunk my `makeElement` function to just `make` and made a lot of methods for individual elements like `make.button()` and `make.svg`, and I like all of those a lot. I got it in my head though that it should be a set of helper functions and `set` should be a part of it. Indulging myself, I made a `set.click` function that used `element.addEventListener` instead of `element.onclick` because I heard the former was "better" than the latter. That may be true but `addEventListener` does not work so well with anonymous functions or functions with parameters. So I've abandonned `set.click` and I'm back to `onclick`.
+
+I've got a lot of other stuff to do in the upcoming week, but hopefully I can expand the division or multiplication portions of the strategies mode in some spare moments.
+
