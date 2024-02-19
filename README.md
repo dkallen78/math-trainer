@@ -23,7 +23,6 @@ I reached out on reddit for feedback on how I'm doing but noone responded. Eithe
 
 ### To-do
 
-* change button highlight from `filter: invert(100%);` to something more intentional
 * add more problem types 
   * fill out division beyond Fundamentals
   * expand on the introduction to fractions
