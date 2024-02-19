@@ -23,7 +23,7 @@ let addition = {
       id: ["addition", "fundamentals", 3],
       run: () => addWithin(1, 9, false),
       test: () => user.addition.fundamentals[2],
-      notification: "Unlocked New Addition Strategy!<br>Sequence"
+      notification: "Unlocked New Addition Strategy!<br><br>Sequence"
     },
     //4 - Up To 10 - *
     {
@@ -31,7 +31,7 @@ let addition = {
       id: ["addition", "fundamentals", 4],
       run: () => upTo(1, 10),
       test: () => user.addition.fundamentals[3],
-      notification: "Unlocked New Addition Strategy!<br>Reorder"
+      notification: "Unlocked New Addition Strategy!<br><br>Reorder"
     },
     //5 - Doubles I - *
     {
@@ -39,7 +39,7 @@ let addition = {
       id: ["addition", "fundamentals", 5],
       run: () => doubles(1, 5, 1, 0, 0),
       test: () => user.addition.fundamentals[4],
-      notification: "Unlocked New Addition Strategy!<br>Place Value"
+      notification: "Unlocked New Addition Strategy!<br><br>Place Value"
     },
     //6 - Single-Digit Addition II
     {
@@ -72,7 +72,7 @@ let addition = {
       id: ["addition", "reorder", 1],
       run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 1),
       test: () => user.addition.fundamentals[4],
-      notification: "Unlocked New Addition Strategy!<br>Partition"
+      notification: "Unlocked New Addition Strategy!<br><br>Partition"
     },
     //2 - Broken 10 II
     {
@@ -157,7 +157,7 @@ let addition = {
     },
     //5 - 10s and 1s
     {
-      name: "10s an 1s",
+      name: "10s and 1s",
       id: ["addition", "placeValue", 5],
       run: () => add(1, 9, 1, 1, 9, 0),
       test: () => user.addition.placeValue[4]
@@ -179,7 +179,7 @@ let addition = {
       id: ["addition", "partition", 1],
       run: () => addPartCrossing10s(1, 1, 1, 1),
       test: () => user.addition.reorder[1],
-      notification: "Unlocked New Operation!<br>Subtraction"
+      notification: "Unlocked New Operation!<br><br>Subtraction"
     },
     //2 - Crossing 10 II*/
     {
@@ -396,7 +396,7 @@ let subtraction = {
       id: ["subtraction", "fundamentals", 4],
       run: () => subWithin(1, 10, false),
       test: () => user.subtraction.fundamentals[3],
-      notification: "Unlocked New Subtraction Strategy!<br>Sequence"
+      notification: "Unlocked New Subtraction Strategy!<br><br>Sequence"
     },
     //5 - Down to 10 I
     {

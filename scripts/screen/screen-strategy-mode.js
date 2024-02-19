@@ -19,7 +19,7 @@ async function makeStrategiesStartScreen() {
       };
 
       const subtractionButton = get("select-operation-screen__operation-grid__subtraction-button");
-      if (user.subtraction.fundamentals[1]) {
+      if (user.addition.partition[1]) {
         remove.class(subtractionButton, "button-inactive");
         subtractionButton.onclick = async () => {
           subtractionButton.onclick = null;
@@ -90,7 +90,6 @@ async function makeStrategiesStartScreen() {
     await waitForButton()
       .then((exit) => {
         quit = exit;
-        console.log("returned", exit);
       });
   }
 }
