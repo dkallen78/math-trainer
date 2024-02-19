@@ -31,4 +31,12 @@ const themes = {
     buttonBgColor: "hsla(0, 0%, 0%, 0)",
     inactiveColor: "hsla(200, 0%, 50%, 0.5)"
   },
+  matrix: {
+    name: "Matrix",
+    textColor: "hsla(100, 100%, 75%, 1)",
+    bgColor: "hsla(0, 0%, 0%, 1)",
+    borderColor: "hsla(100, 100%, 50%, 1)",
+    buttonBgColor: "hsla(0, 0%, 0%, 0)",
+    inactiveColor: "hsla(0, 0%, 50%, 0.5)"
+  },
 }
