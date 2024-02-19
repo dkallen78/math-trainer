@@ -104,7 +104,6 @@ button {
 }
 
 .span-box {
-  display: contents;
   padding: .25rem;
   border: .15rem solid var(--border-color);
   border-radius: .5rem;

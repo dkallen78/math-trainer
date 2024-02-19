@@ -1,4 +1,4 @@
-let addition = {
+const addition = {
   fundamentals: [
     //0
     "Fundamentals",
@@ -365,7 +365,7 @@ let addition = {
   ]
 }
 
-let subtraction = {
+const subtraction = {
   fundamentals: [
     //0
     "Fundamentals",
@@ -547,7 +547,7 @@ let subtraction = {
   ]
 }
 
-let multiplication = {
+const multiplication = {
   fundamentals: [
     //0
     "Fundamentals",
@@ -653,7 +653,7 @@ let multiplication = {
   ]
 }
 
-let division = {
+const division = {
   fundamentals: [
     //0
     "Fundamentals",

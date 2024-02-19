@@ -185,11 +185,11 @@ function addComp(aMin, aMax, aMod, cMin, cMax, cMod) {
   let b = rnd(c + (1 * cMod), 9 * cMod);
 
   let solutions = [
-    [c, `${a} +&nbsp${stroke(b)}&nbsp=&nbsp${box(`${a} +&nbsp${stroke("?")}`)}&nbsp+&nbsp${stroke(b - c)}`],
-    [c, `${box(`${a} +&nbsp${stroke("?")}`)}&nbsp+&nbsp${stroke(b - c)}&nbsp= ${a} +&nbsp${stroke(b)}`]
+    [c, `${a} + ${b} = (${a} +&nbsp${stroke("?")}) + (${b} -&nbsp${stroke(c)})`],
+    [c, `(${a} +&nbsp${stroke("?")}) + (${b} -&nbsp${stroke(c)}) = ${a} + ${b}`]
   ]
 
-  return solutions[rnd(0, solutions.length - 1)];
+  return rnd.index(solutions);
 }
 //
 function addPartCrossing10s(aMin, aMax, aMod, mode) {
