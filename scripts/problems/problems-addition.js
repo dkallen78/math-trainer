@@ -263,7 +263,11 @@ function addWithin(aMin, aMax, simple = true) {
       break;
     case true:
       b = rnd(0, a);
-      solutions.push([a, `${b} + ${a - b} = ?`]);
+      solutions = [
+        [a, `${b} + ${a - b} = ?`],
+        [a, `? = ${b} + ${a - b}`] 
+      ];
+      break;
   }
 
   return rnd.index(solutions);

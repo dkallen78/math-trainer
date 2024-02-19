@@ -203,12 +203,12 @@ async function doMathSurvival(operations) {
     //gets the problem for the challenge                  //
     //----------------------------------------------------//
 
-    const elapsed = Math.floor(challengeTimer.rawElapsed / 1000);
+    const elapsed = Math.ceil(challengeTimer.rawElapsed / 1000);
 
     let survivalProblems = {
       "+": () => addWithin(Math.ceil(elapsed / 5), elapsed),
       "-": () => subWithin(1, elapsed),
-      "×": 0,
+      "×": () => multiply(1, elapsed, 1, elapsed, 1),
       "÷": 0
     }
 
