@@ -602,7 +602,7 @@ const multiplication = {
       id: ["multiplication", "fundamentals", 7],
       run: () => dPropIntro(2, 9, 4, 6, 2, 3),
       test: () => user.multiplication.fundamentals[6],
-      notification: "Unlocked New Multiplication Strategy<br><br>Distribution"
+      notification: "Unlocked New Multiplication Strategy!<br><br>Distribution"
     }
   ],
   association: [
