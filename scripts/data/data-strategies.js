@@ -7,7 +7,7 @@ let addition = {
       name: "Single-Digit Addition I",
       id: ["addition", "fundamentals", 1],
       run: () => singleDigitAddition(1, 9),
-      test: () => true
+      test: () => true,
     },
     //2 - Reorder
     {
@@ -17,29 +17,29 @@ let addition = {
       test: () => user.addition.fundamentals[1],
       
     },
-    //3 - Missing Term
+    //3 - Missing Term - *
     {
       name: "Missing Term",
       id: ["addition", "fundamentals", 3],
       run: () => addWithin(1, 9, false),
       test: () => user.addition.fundamentals[2],
-      notification: "Addition-Sequence unlocked!"
+      notification: "Unlocked New Addition Strategy!<br>Sequence"
     },
-    //4 - Up To 10
+    //4 - Up To 10 - *
     {
       name: "Up To 10",
       id: ["addition", "fundamentals", 4],
       run: () => upTo(1, 10),
       test: () => user.addition.fundamentals[3],
-      notification: "Addition-Reorder unlocked!"
+      notification: "Unlocked New Addition Strategy!<br>Reorder"
     },
-    //5 - Doubles I
+    //5 - Doubles I - *
     {
       name: "Doubles I",
       id: ["addition", "fundamentals", 5],
       run: () => doubles(1, 5, 1, 0, 0),
       test: () => user.addition.fundamentals[4],
-      notification: "Addition-Place Value unlocked!"
+      notification: "Unlocked New Addition Strategy!<br>Place Value"
     },
     //6 - Single-Digit Addition II
     {
@@ -48,14 +48,14 @@ let addition = {
       run: () => singleDigitAddition(11, 18),
       test: () => user.addition.fundamentals[5],
     },
-    /*7 - Doubles II*/
+    //7 - Doubles II
     {
       name: "Doubles II",
       id: ["addition", "fundamentals", 7],
       run: () => doubles(1, 10, 1, 0, 0),
       test: () => user.addition.fundamentals[6]
     },
-    /*8 - Three-Term Addition I*/
+    //8 - Three-Term Addition I
     {
       name: "Three-Term Addition I",
       id: ["addition", "fundamentals", 8],
@@ -66,13 +66,13 @@ let addition = {
   reorder: [
     //0*/
     "Reorder",
-    //1 - Broken 10 I
+    //1 - Broken 10 I - *
     {
       name: "Broken 10 I",
       id: ["addition", "reorder", 1],
       run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 1),
       test: () => user.addition.fundamentals[4],
-      notification: "Addition-Partition unlocked!"
+      notification: "Unlocked New Addition Strategy!<br>Partition"
     },
     //2 - Broken 10 II
     {
@@ -173,13 +173,13 @@ let addition = {
   partition: [
     /*0*/
     "Partition",
-    //1 - Crossing 10 I*/
+    //1 - Crossing 10 I - *
     {
       name: "Crossing 10 I",
       id: ["addition", "partition", 1],
       run: () => addPartCrossing10s(1, 1, 1, 1),
       test: () => user.addition.reorder[1],
-      notification: "Subtraction unlocked!"
+      notification: "Unlocked New Operation!<br>Subtraction"
     },
     //2 - Crossing 10 II*/
     {
@@ -390,13 +390,13 @@ let subtraction = {
       run: () => takeFrom(1, 1, 1),
       test: () => user.subtraction.fundamentals[2]
     },
-    //4 - Missing Term I
+    //4 - Missing Term I - *
     {
       name: "Missing Term I",
       id: ["subtraction", "fundamentals", 4],
       run: () => subWithin(1, 10, false),
       test: () => user.subtraction.fundamentals[3],
-      notification: "Subtraction Sequence unlocked!"
+      notification: "Unlocked New Subtraction Strategy!<br>Sequence"
     },
     //5 - Down to 10 I
     {

@@ -23,6 +23,12 @@ I reached out on reddit for feedback on how I'm doing but noone responded. Eithe
 
 ### To-do
 
+* add unlock for Addition-Compensation strategies
+* add unlock for Addition-Fractions strategies
+* add unlock for Subtraction Partition and Decomposition strategies
+* add unlock for Multiplication and all Multiplication strategies
+* add unlock for Division
+* fix output on AC.5 and 6
 * improve the clarity of the notification screen
 * add more problem types 
   * fill out division beyond Fundamentals
@@ -46,6 +52,8 @@ I reached out on reddit for feedback on how I'm doing but noone responded. Eithe
 * achievements?
   * basic achievements for the challenges (3 each based on performance?) and strategies, plus secret achievements based on math trivia?
 * what is the optimal order for unlocking strategies/skills?
+* find a way to simplify the changing and reordering of notifications
+* find a way to simplify the changing and reordering of problems in data-strategies.js
 
 ### [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/devlog/devlog-2024.md)
 
