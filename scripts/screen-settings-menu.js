@@ -70,6 +70,7 @@ async function makeThemeScreen() {
           root.style.setProperty("--bg-color", "hsla(0, 0%, 100%, 1)");
           root.style.setProperty("--border-color", "hsla(0, 0%, 0%, 1)");
           root.style.setProperty("--button-bg-color", "hsla(0, 0%, 0%, 0)");
+          root.style.setProperty("--inactive-color", "hsla(0, 0%, 50%, 0.5)");
         };
       themeMenuScreen.appendChild(defaultThemeButton);
 
@@ -80,6 +81,7 @@ async function makeThemeScreen() {
           root.style.setProperty("--bg-color", "hsla(0, 0%, 0%, 1)");
           root.style.setProperty("--border-color", "hsla(300, 100%, 50%, 1)");
           root.style.setProperty("--button-bg-color", "hsla(0, 0%, 0%, 0)");
+          root.style.setProperty("--inactive-color", "hsla(0, 0%, 50%, 0.5)");
         };
       themeMenuScreen.appendChild(vaporWaveThemeButton);
 
@@ -90,8 +92,20 @@ async function makeThemeScreen() {
           root.style.setProperty("--bg-color", "hsla(100, 95%, 35%, 1)");
           root.style.setProperty("--border-color", "hsla(0, 0%, 100%, 1)");
           root.style.setProperty("--button-bg-color", "hsla(100, 95%, 35%, 1)");
+          root.style.setProperty("--inactive-color", "hsla(0, 0%, 50%, 0.5)");
         };
       themeMenuScreen.appendChild(chalkThemeButton);
+
+      const blueThemeButton = make.button("Blue", "theme-menu-screen__blue-theme-button", "button-big");
+        blueThemeButton.onclick = () => {
+          playTone(randomNote());
+          root.style.setProperty("--text-color", "hsla(200, 40%, 75%, 1)");
+          root.style.setProperty("--bg-color", "hsla(200, 80%, 25%, 1)");
+          root.style.setProperty("--border-color", "hsla(200, 70%, 45%, 1)");
+          root.style.setProperty("--button-bg-color", "hsla(0, 0%, 0%, 0)");
+          root.style.setProperty("--inactive-color", "hsla(200, 0%, 50%, 0.5)");
+        };
+      themeMenuScreen.appendChild(blueThemeButton);
 
       const backButton = make.button("Back", "theme-menu-screen__back-button", "button-big");
         backButton.onclick = () => {
