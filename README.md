@@ -50,13 +50,13 @@ I reached out on reddit for feedback on how I'm doing but noone responded. Eithe
 
 ## Lines of Investigation
 
-### [Intrinsic Motivation](https://dkallen78.github.io/math-trainer/blob/main/research/intrinsic-motivation.md)
+### [Intrinsic Motivation](https://github.com/dkallen78/math-trainer/blob/main/research/intrinsic-motivation.md)
 
-### [Compulsion Loops](https://dkallen78.github.io/math-trainer/blob/main/research/compulsionLoops.md)
+### [Compulsion Loops](https://github.com/dkallen78/math-trainer/blob/main/research/compulsionLoops.md)
 
-### [Behavioral Psychology](https://dkallen78.github.io/math-trainer/blob/main/research/behavioralPsych.md)
+### [Behavioral Psychology](https://github.com/dkallen78/math-trainer/blob/main/research/behavioralPsych.md)
 
-### [Self-Determination Theory (SDT)](https://dkallen78.github.io/math-trainer/blob/main/research/selfDeterminationTheory.md)
+### [Self-Determination Theory (SDT)](https://github.com/dkallen78/math-trainer/blob/main/research/selfDeterminationTheory.md)
 
 ### Emotional Induction
 
@@ -66,7 +66,7 @@ I set out to make this program sparse. I had gone with the game aesthetic in the
 
 I think it's important to acknowledge that, according to [Castell et al (2018)](https://dkallen78.github.io/math-trainer/Refs/Castell-et-al-2018.pdf), there doesn't seem to be an inherent connection between a specific color and either cognitive performance or emotional state. I had pondered using a pulse of green for correct answers and a pulse of red for a wrong one, but it might be better to let the user pick their preferred color for correct input and its color complement for incorrect input.
 
-### [Interleaving](https://dkallen78.github.io/math-trainer/blob/main/research/interleaving.md)
+### [Interleaving](https://github.com/dkallen78/math-trainer/blob/main/research/interleaving.md)
 
 ### Gameplay/UX
 
@@ -74,11 +74,11 @@ Clearly defined objectives
 
 What is my core loop?
 
-### [Timed versus Untimed Assessment](https://dkallen78.github.io/math-trainer/blob/main/research/timedAssessment.md)
+### [Timed versus Untimed Assessment](https://github.com/dkallen78/math-trainer/blob/main/research/timedAssessment.md)
 
-### [Effect of Math Anxiety on Performance](https://dkallen78.github.io/math-trainer/blob/main/research/mathAnxiety.md)
+### [Effect of Math Anxiety on Performance](https://github.com/dkallen78/math-trainer/blob/main/research/mathAnxiety.md)
 
-### [How to Train Working Memory (WM)?](https://dkallen78.github.io/math-trianer/blob/main/research/workingMemory.md)
+### [How to Train Working Memory (WM)?](https://github.com/dkallen78/math-trianer/blob/main/research/workingMemory.md)
 
 ### Historical Research
 
