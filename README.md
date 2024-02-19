@@ -23,6 +23,7 @@ I reached out on reddit for feedback on how I'm doing but noone responded. Eithe
 
 ### To-do
 
+* improve the clarity of the notification screen
 * add more problem types 
   * fill out division beyond Fundamentals
   * expand on the introduction to fractions
