@@ -70,15 +70,17 @@ async function doMathStrategy(strategy) {
         //If the user has demonstrated "mastery" of the strategy
         if (queue.pass) {
           playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
-          //
-          //Check for notifications associated with passing the strategy
-          if ("notification" in strategy && !user[strategy.id[0]][strategy.id[1]][strategy.id[2]]) {
-            await displayNotification();
+          
+          if (!user[strategy.id[0]][strategy.id[1]][strategy.id[2]]) {
+            //
+            //Mark the strategy as completed in the user variable
+            user[strategy.id[0]][strategy.id[1]][strategy.id[2]] = true;
+            //
+            //Check for notifications and display them if valid
+            if ("notification" in strategy && strategy.notification().test) {
+              await displayNotification(strategy.notification());
+            }
           }
-          //
-          //Mark the strategy as completed in the user variable
-          user[strategy.id[0]][strategy.id[1]][strategy.id[2]] = true;
-
           quit = true;
         //
         //If the user has not demonstrated "mastery" of the strategy
@@ -183,15 +185,19 @@ async function doMathStrategy(strategy) {
     return problem;
   }
 
-  async function displayNotification() {
+  async function displayNotification(notification) {
 
     return new Promise((resolve) => {
 
       const notificationScreen = make.main("notification-screen", ["screen", "flex-column"]);
 
-      const notificationDisplay = make.header("notification-screen__display", "marquee");
-        notificationDisplay.innerHTML = strategy.notification;
-      notificationScreen.appendChild(notificationDisplay);
+      const notificationAcclaim = make.section("notification-screen__acclaim", "marquee");
+        notificationAcclaim.innerHTML = notification.acclaim;
+      notificationScreen.appendChild(notificationAcclaim);
+
+      const notificationUnlock = make.section("notification-screen__unlock", "marquee");
+        notificationUnlock.innerHTML = notification.unlock;
+      notificationScreen.appendChild(notificationUnlock)
 
       const doneButton = make.button("Done", "notification-screen__done-button", "button-big", () => {
         doneButton.onclick = null;

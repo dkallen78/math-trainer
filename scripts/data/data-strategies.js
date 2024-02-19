@@ -23,7 +23,7 @@ const addition = {
       id: ["addition", "fundamentals", 3],
       run: () => addWithin(1, 9, false),
       test: () => user.addition.fundamentals[2],
-      notification: "Unlocked New Addition Strategy!<br><br>Sequence"
+      notification: () => notifications.addition.sequence
     },
     //4 - Up To 10 - *
     {
@@ -31,7 +31,7 @@ const addition = {
       id: ["addition", "fundamentals", 4],
       run: () => upTo(1, 10),
       test: () => user.addition.fundamentals[3],
-      notification: "Unlocked New Addition Strategy!<br><br>Reorder"
+      notification: () => notifications.addition.reorder
     },
     //5 - Doubles I - *
     {
