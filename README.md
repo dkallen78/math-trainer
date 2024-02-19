@@ -28,7 +28,7 @@ I reached out on reddit for feedback on how I'm doing but noone responded. Eithe
 * add unlock for Subtraction Partition and Decomposition strategies
 * add unlock for Multiplication and all Multiplication strategies
 * add unlock for Division
-* improve the clarity of the notification screen
+* update `brokenDoubles()` to use both sidese of the `=`
 * add more problem types 
   * fill out division beyond Fundamentals
   * expand on the introduction to fractions
