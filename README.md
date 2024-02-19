@@ -23,11 +23,6 @@ I reached out on reddit for feedback on how I'm doing but noone responded. Eithe
 
 ### To-do
 
-* add unlock for Addition-Compensation strategies
-* add unlock for Addition-Fractions strategies
-* add unlock for Subtraction Partition and Decomposition strategies
-* add unlock for Multiplication and all Multiplication strategies
-* add unlock for Division
 * update `brokenDoubles()` to use both sidese of the `=`
 * add more problem types 
   * fill out division beyond Fundamentals
@@ -45,6 +40,7 @@ I reached out on reddit for feedback on how I'm doing but noone responded. Eithe
 
 ### Investigate
 
+* find a better place to unlock Multiplication and Division
 * should fractions be its own section or built into the basic operations? Likewise, what about decimals?
 * what would keyboard support look like?
 * what would a working memory exercise look like?

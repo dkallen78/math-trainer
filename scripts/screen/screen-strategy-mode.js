@@ -30,7 +30,7 @@ async function makeStrategiesStartScreen() {
       }
 
       const multiplicationButton = get("select-operation-screen__operation-grid__multiplication-button");
-      if (user.multiplication.fundamentals[1]) {
+      if (user.addition.fundamentals[7]) {
         remove.class(multiplicationButton, "button-inactive");
         multiplicationButton.onclick = async () => {
           multiplicationButton.onclick = null;
