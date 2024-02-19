@@ -46,14 +46,14 @@ button {
 }
 
 .button-selected {
-  filter: invert(100%);
-  background-color: var(--bg-color);
+  color: var(--bg-color);
+  background-color: var(--text-color);
 }
 
 @keyframes buttonPulse {
   20%   {
-    filter: invert(100%);
-    background-color: var(--bg-color);    
+    color: var(--bg-color);
+    background-color: var(--text-color);
   }
 }
 
