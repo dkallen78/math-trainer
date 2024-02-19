@@ -23,12 +23,14 @@ I reached out on reddit for feedback on how I'm doing but noone responded. Eithe
 
 ### To-do
 
+* change button highlight from `filter: invert(100%);` to something more intentional
 * add more problem types 
   * fill out division beyond Fundamentals
   * expand on the introduction to fractions
 * add more challenges
+  * fix balance on challenge problem functions
   * answer a fixed number of problems (digits?) as fast as possible (Fast 50?)
-* add functions for multiplication and division to the challenges
+  * add functions for multiplication and division to the challenges
 * mode/challenge where user goes through number facts (eg, multiplication table)
 * save user data between sessions
   * import/export data
@@ -39,7 +41,6 @@ I reached out on reddit for feedback on how I'm doing but noone responded. Eithe
 ### Investigate
 
 * should fractions be its own section or built into the basic operations? Likewise, what about decimals?
-* how to improve the functions in the challenges?
 * what would keyboard support look like?
 * what would a working memory exercise look like?
 * achievements?
