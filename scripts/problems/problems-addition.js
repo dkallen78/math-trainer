@@ -101,7 +101,7 @@ function add(aMin, aMax, aMod, bMin, bMax, bMod) {
     [(a + b), `? = ${b} + ${a}`]
   ]
 
-  return solutions[rnd(0, solutions.length - 1)];
+  return rnd.index(solutions);
 }
 
 function add2(minSum, maxSum, sumMod, aMin, aMod) {
@@ -129,7 +129,7 @@ function add2(minSum, maxSum, sumMod, aMin, aMod) {
     [sum, `${a} + ${sum - a} = ?`]
   ];
 
-  return solutions[rnd(0, solutions.length - 1)];
+  return rnd.index(solutions);
 }
 
 function add3(minSum, maxSum) {
@@ -153,7 +153,7 @@ function add3(minSum, maxSum) {
     [sum, `? = ${a} + ${b} + ${c}`]
   ];
 
-  return solutions[rnd(0, solutions.length - 1)];
+  return rnd.index(solutions);
 }
 //
 function addComp(aMin, aMax, aMod, cMin, cMax, cMod) {
@@ -234,7 +234,7 @@ function addPartCrossing10s(aMin, aMax, aMod, mode) {
       ]
   }
 
-  return solutions[rnd(0, solutions.length - 1)];
+  return rnd.index(solutions);
 }
 //
 function addWithin(aMin, aMax, simple = true) {
@@ -266,8 +266,7 @@ function addWithin(aMin, aMax, simple = true) {
       solutions.push([a, `${b} + ${a - b} = ?`]);
   }
 
-  return solutions[rnd(0, solutions.length - 1)];
-
+  return rnd.index(solutions);
 }
 //
 function broken10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax, mode) {
@@ -413,8 +412,7 @@ function compIntro(mode) {
     
   }
 
-  return solutions[rnd(0, solutions.length - 1)];
-
+  return rnd.index(solutions);
 }
 //
 function decompose(numDigits) {
@@ -456,7 +454,7 @@ function decompose(numDigits) {
     [answer, `${output} = ${number}`]
   ];
 
-  return solutions[rnd(0, solutions.length - 1)];
+  return rnd.index(solutions);
 }
 //
 function doubles(aLow, aHigh, aMod, rLow, rHigh) {
@@ -526,7 +524,7 @@ function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
   }
   
 
-  return solutions[rnd(0, solutions.length - 1)];
+  return rnd.index(solutions);
 }
 
 
@@ -555,7 +553,7 @@ function singleDigitAddition(minSum, maxSum, mode) {
     [sum, `? = ${a} + ${sum - a}`]
   ];
 
-  return solutions[rnd(0, solutions.length - 1)];
+  return rnd.index(solutions);
 }
 //
 function upTo(aMin, cap) {
@@ -576,5 +574,5 @@ function upTo(aMin, cap) {
     [(cap - a), `? + ${a} = ${cap}`]
   ]
 
-  return solutions[rnd(0, solutions.length - 1)];
+  return rnd.index(solutions);
 }
