@@ -77,7 +77,7 @@ async function doMathStrategy(strategy) {
             user[strategy.id[0]][strategy.id[1]][strategy.id[2]] = true;
             //
             //Check for notifications and display them if valid
-            if ("notification" in strategy && strategy.notification().test) {
+            if ("notification" in strategy && strategy.notification().test()) {
               await displayNotification(strategy.notification());
             }
           }

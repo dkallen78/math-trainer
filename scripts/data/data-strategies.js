@@ -39,7 +39,7 @@ const addition = {
       id: ["addition", "fundamentals", 5],
       run: () => doubles(1, 5, 1, 0, 0),
       test: () => user.addition.fundamentals[4],
-      notification: "Unlocked New Addition Strategy!<br><br>Place Value"
+      notification: () => notifications.addition.placeValue
     },
     //6 - Single-Digit Addition II
     {
@@ -54,7 +54,7 @@ const addition = {
       id: ["addition", "fundamentals", 7],
       run: () => doubles(1, 10, 1, 0, 0),
       test: () => user.addition.fundamentals[6],
-      notification: "Unlocked New Operation!<br><br>Multiplication"
+      notification: () => notifications.multiplication,
     },
     //8 - Three-Term Addition I
     {
@@ -67,13 +67,12 @@ const addition = {
   reorder: [
     //0*/
     "Reorder",
-    //1 - Broken 10 I - *
+    //1 - Broken 10 I
     {
       name: "Broken 10 I",
       id: ["addition", "reorder", 1],
       run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 1),
       test: () => user.addition.fundamentals[4],
-      notification: "Unlocked New Addition Strategy!<br><br>Partition"
     },
     //2 - Broken 10 II
     {
@@ -89,12 +88,13 @@ const addition = {
       run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 1),
       test: () => user.addition.reorder[2]
     },
-    //4 - Broken 20 II
+    //4 - Broken 20 II - *
     {
       name: "Broken 20 II",
       id: ["addition", "reorder", 4],
       run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 2),
-      test: () => user.addition.reorder[3]
+      test: () => user.addition.reorder[3],
+      notification: () => notifications.addition.partition
     },
     //5 - Broken Doubles I
     {
@@ -174,13 +174,12 @@ const addition = {
   partition: [
     /*0*/
     "Partition",
-    //1 - Crossing 10 I - *
+    //1 - Crossing 10 I
     {
       name: "Crossing 10 I",
       id: ["addition", "partition", 1],
       run: () => addPartCrossing10s(1, 1, 1, 1),
-      test: () => user.addition.reorder[1],
-      notification: "Unlocked New Operation!<br><br>Subtraction"
+      test: () => user.addition.reorder[4],
     },
     //2 - Crossing 10 II
     {
@@ -196,12 +195,13 @@ const addition = {
       run: () => partitionNearDoubles(2, 9, 0, 1, 1),
       test: () => user.addition.partition[2]
     },
-    //4 - Near Doubles II
+    //4 - Near Doubles II - *
     {
       name: "Near Doubles II",
       id: ["addition", "partition", 4],
       run: () => partitionNearDoubles(2, 9, 0, 1, 2),
-      test: () => user.addition.partition[3]
+      test: () => user.addition.partition[3], 
+      notification: () => notifications.subtraction,
     },
     //5 - Crossing 20 I
     {
@@ -310,12 +310,13 @@ const addition = {
       run: () => sequence(3, 3, 3, 1),
       test: () => user.addition.sequence[3]
     },
-    //5 - Count by 4
+    //5 - Count by 4 - *
     {
       name: "Count by 4",
       id: ["addition", "sequence", 5],
       run: () => sequence(4, 4, 4, 1),
-      test: () => user.addition.sequence[4]
+      test: () => user.addition.sequence[4],
+      notification: () => notifications.multiplication,
     },
     //6 - Count by 6
     {
@@ -383,14 +384,15 @@ const subtraction = {
       id: ["subtraction", "fundamentals", 2],
       run: () => subWithin(1, 10, true),
       test: () => user.subtraction.fundamentals[1],
-      notification: "Unlocked New Addition Strategy!<br><br>Compensation"
+      notification: () => notifications.addition.compensation,
     },
-    //3 - Take from 10
+    //3 - Take from 10 - *
     {
       name: "Take from 10",
       id: ["subtraction", "fundamentals", 3],
       run: () => takeFrom(1, 1, 1),
-      test: () => user.subtraction.fundamentals[2]
+      test: () => user.subtraction.fundamentals[2],
+      notification: () => notifications.subtraction.partition,
     },
     //4 - Missing Term I - *
     {
@@ -398,7 +400,7 @@ const subtraction = {
       id: ["subtraction", "fundamentals", 4],
       run: () => subWithin(1, 10, false),
       test: () => user.subtraction.fundamentals[3],
-      notification: "Unlocked New Subtraction Strategy!<br><br>Sequence"
+      notification: () => notifications.subtraction.sequence
     },
     //5 - Down to 10 I
     {
@@ -439,12 +441,13 @@ const subtraction = {
       run: () => subPartCrossing10s(1, 9, 1, 1),
       test: () => user.subtraction.partition[2]
     },
-    //4 - Crossing 10s II
+    //4 - Crossing 10s II - *
     {
       name: "crossing 10s II",
       id: ["subtraction", "partition", 4],
       run: () => subPartCrossing10s(1, 9, 1, 2),
-      test: () => user.subtraction.partition[3]
+      test: () => user.subtraction.partition[3],
+      notification: notifications.subtraction.decomposition
     }
   ],
   decomposition: [
@@ -455,7 +458,7 @@ const subtraction = {
       name: "Decomposition I",
       id: ["subtraction", "decomposition", 1],
       run: () => subDecomp(1, 9, 1, 1, 1),
-      test: () => user.subtraction.partition[3]
+      test: () => user.subtraction.partition[4]
     },
     //2 - Decomposition II
     {
@@ -558,7 +561,7 @@ const multiplication = {
       name: "Repeated Addition I",
       id: ["multiplication", "fundamentals", 1],
       run: () => repeatedAddition(),
-      test: () => user.addition.fundamentals[7]
+      test: () => user.addition.fundamentals[7] && user.addition.sequence[5]
     },
     //2 - Doubles and Triples I
     {
@@ -567,12 +570,13 @@ const multiplication = {
       run: () => multiply(1, 9, 2, 3, 1),
       test: () => user.multiplication.fundamentals[1]
     },
-    //3 - Doubles and Triples II
+    //3 - Doubles and Triples II - *
     {
       name: "Doubles and Triples II",
       id: ["multiplication", "fundamentals", 3],
       run: () => multiply(1, 9, 2, 3, 2),
-      test: () => user.multiplication.fundamentals[2]
+      test: () => user.multiplication.fundamentals[2],
+      notifications: () => notifications.division
     },
     //4 - Reorder I
     {
@@ -594,7 +598,7 @@ const multiplication = {
       id: ["multiplication", "fundamentals", 6],
       run: () =>aPropIntro(2, 9, 2, 3, 2, 5),
       test: () => user.multiplication.fundamentals[5],
-      notification: "Unlocked New Multiplication Strategy!<br><br>Association"
+      notification: () => notifications.multiplication.association
     },
     //7 - Distribution I - *
     {
@@ -602,7 +606,7 @@ const multiplication = {
       id: ["multiplication", "fundamentals", 7],
       run: () => dPropIntro(2, 9, 4, 6, 2, 3),
       test: () => user.multiplication.fundamentals[6],
-      notification: "Unlocked New Multiplication Strategy!<br><br>Distribution"
+      notification: () => notifications.multiplication.distribution
     }
   ],
   association: [
@@ -666,8 +670,8 @@ const division = {
       name: "Zeroes and Ones",
       id: ["division", "fundamentals", 1],
       run: () => divIntro(),
-      test: () => user.multiplication.fundamentals[1],
-      notification: "Unlocked New Addition Strategy!<br><br>Fractions"
+      test: () => user.multiplication.fundamentals[3],
+      notification: () => notifications.addition.fractions
     },
     //2 - Halves
     {
