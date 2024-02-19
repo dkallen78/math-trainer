@@ -138,7 +138,7 @@ let addition = {
     {
       name: "Add 10s",
       id: ["addition", "placeValue", 2],
-      run: () => add2(1, 9, 1, 1),
+      run: () => add2(1, 9, 1, 1, 1),
       test: () => user.addition.placeValue[1]
     }, 
     //3 - 10 More I

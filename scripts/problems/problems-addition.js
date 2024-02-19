@@ -104,7 +104,7 @@ function add(aMin, aMax, aMod, bMin, bMax, bMod) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
-function add2(minSum, maxSum, sumMod, aMod) {
+function add2(minSum, maxSum, sumMod, aMin, aMod) {
   //----------------------------------------------------//
   //Creates an addition problem with two terms          //
   //----------------------------------------------------//
@@ -121,7 +121,7 @@ function add2(minSum, maxSum, sumMod, aMod) {
 
   let sumSeed = rnd(minSum, maxSum);
   let sum = sumSeed * (10 ** sumMod);
-  let aSeed = rnd(0, sumSeed);
+  let aSeed = rnd(aMin, sumSeed - aMin);
   let a = aSeed * (10 ** aMod);
 
 
