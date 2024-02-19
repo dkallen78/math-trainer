@@ -62,7 +62,8 @@ async function makeThemeScreen() {
 
   return new Promise (async (resolve) => {
     const themeMenuScreen = make.main("theme-menu-screen", ["screen", "flex-column"]);
-
+      //
+      //Takes theme data from data-themes.js to make the theme buttons
       for (const theme in themes) {
         const themeButton = make.button(themes[theme].name, `theme-menu-screen__${theme}-theme-button`, "button-medium", () => {
           playTone(randomNote());
