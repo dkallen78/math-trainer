@@ -1,9 +1,9 @@
 :root {
-  --bg-color: hsla(0, 0%, 100%, 1);
   --text-color: hsla(0, 0%, 0%, 1);
+  --bg-color: hsla(0, 0%, 100%, 1);
   --border-color: hsla(0, 0%, 0%, 1);
-  --inactive-color: hsla(0, 0%, 50%, 0.5);
   --button-bg-color: hsla(0, 0%, 0%, 0);
+  --inactive-color: hsla(0, 0%, 50%, 0.5);
 }
 
 body {

@@ -39,4 +39,12 @@ const themes = {
     buttonBgColor: "hsla(0, 0%, 0%, 0)",
     inactiveColor: "hsla(0, 0%, 50%, 0.5)"
   },
+  joker: {
+    name: "Joker",
+    textColor: "hsla(0, 0%, 100%, 1)",
+    bgColor: "hsla(270, 100%, 40%, 1)",
+    borderColor: "hsla(120, 100%, 50%, 1)",
+    buttonBgColor: "hsla(300, 0%, 50%, 0.5)",
+    inactiveColor: "hsla(0, 100%, 50%, 0.5)"
+  },
 }
