@@ -1,5 +1,5 @@
 function toOrFrom(aMin, base) {
-  /*
+  //----------------------------------------------------//
   //Creates a mixed operations problem with a fixed     //
   //  addend or minuend                                 //
   //----------------------------------------------------//
@@ -9,7 +9,7 @@ function toOrFrom(aMin, base) {
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------//
 
   let a = rnd(aMin, (base - 1));
 
@@ -24,7 +24,7 @@ function toOrFrom(aMin, base) {
 }
 
 function within(aMin, aMax) {
-  /*
+  //----------------------------------------------------//
   //Creates a mixed operations problem with a maximum   //
   //  sum/minuend                                       //
   //----------------------------------------------------//
@@ -32,7 +32,7 @@ function within(aMin, aMax) {
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
-  */
+  //----------------------------------------------------//
 
   let a = rnd(aMin, aMax);
 
@@ -66,7 +66,7 @@ function within(aMin, aMax) {
 }
 
 
-//
+
 function add(aMin, aMax, aMod, bMin, bMax, bMod) {
   //----------------------------------------------------//
   //Creates an addition problem based on the parameters //
@@ -103,7 +103,7 @@ function add(aMin, aMax, aMod, bMin, bMax, bMod) {
 
   return solutions[rnd(0, solutions.length - 1)];
 }
-//
+
 function add2(minSum, maxSum, sumMod, aMod) {
   //----------------------------------------------------//
   //Creates an addition problem with two terms          //
@@ -131,7 +131,7 @@ function add2(minSum, maxSum, sumMod, aMod) {
 
   return solutions[rnd(0, solutions.length - 1)];
 }
-//
+
 function add3(minSum, maxSum) {
   //----------------------------------------------------//
   //Creates an addition problem with three terms        //
@@ -528,7 +528,7 @@ function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
 
   return solutions[rnd(0, solutions.length - 1)];
 }
-//
+
 
 //
 function singleDigitAddition(minSum, maxSum, mode) {
