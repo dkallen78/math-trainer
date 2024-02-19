@@ -60,54 +60,22 @@ async function makeThemeScreen() {
 
   const root = document.documentElement;
 
-  return new Promise (async (resolve, reject) => {
+  return new Promise (async (resolve) => {
     const themeMenuScreen = make.main("theme-menu-screen", ["screen", "flex-column"]);
 
-      const defaultThemeButton = make.button("Default", "theme-menu-screen__default-theme-button", "button-big");
-        defaultThemeButton.onclick = () => {
+      for (const theme in themes) {
+        const themeButton = make.button(themes[theme].name, `theme-menu-screen__${theme}-theme-button`, "button-medium", () => {
           playTone(randomNote());
-          root.style.setProperty("--text-color", "hsla(0, 0%, 0%, 1)");
-          root.style.setProperty("--bg-color", "hsla(0, 0%, 100%, 1)");
-          root.style.setProperty("--border-color", "hsla(0, 0%, 0%, 1)");
-          root.style.setProperty("--button-bg-color", "hsla(0, 0%, 0%, 0)");
-          root.style.setProperty("--inactive-color", "hsla(0, 0%, 50%, 0.5)");
-        };
-      themeMenuScreen.appendChild(defaultThemeButton);
+          root.style.setProperty("--text-color", themes[theme].textColor);
+          root.style.setProperty("--bg-color", themes[theme].bgColor);
+          root.style.setProperty("--border-color", themes[theme].borderColor);
+          root.style.setProperty("--button-bg-color", themes[theme].buttonBgColor);
+          root.style.setProperty("--inactive-color", themes[theme].inactiveColor);
+        })
+        themeMenuScreen.appendChild(themeButton);
+      }
 
-      const vaporWaveThemeButton = make.button("Vapor Wave", "theme-menu-screen__vapor-wave-theme-button", "button-big");
-        vaporWaveThemeButton.onclick = () => {
-          playTone(randomNote());
-          root.style.setProperty("--text-color", "hsla(190, 100%, 50%, 1)");
-          root.style.setProperty("--bg-color", "hsla(0, 0%, 0%, 1)");
-          root.style.setProperty("--border-color", "hsla(300, 100%, 50%, 1)");
-          root.style.setProperty("--button-bg-color", "hsla(0, 0%, 0%, 0)");
-          root.style.setProperty("--inactive-color", "hsla(0, 0%, 50%, 0.5)");
-        };
-      themeMenuScreen.appendChild(vaporWaveThemeButton);
-
-      const chalkThemeButton = make.button("Chalk Board", "theme-menu-screen__chalk-theme-button", "button-big");
-        chalkThemeButton.onclick = () => {
-          playTone(randomNote());
-          root.style.setProperty("--text-color", "hsla(0, 0%, 100%, 1)");
-          root.style.setProperty("--bg-color", "hsla(100, 95%, 35%, 1)");
-          root.style.setProperty("--border-color", "hsla(0, 0%, 100%, 1)");
-          root.style.setProperty("--button-bg-color", "hsla(100, 95%, 35%, 1)");
-          root.style.setProperty("--inactive-color", "hsla(0, 0%, 50%, 0.5)");
-        };
-      themeMenuScreen.appendChild(chalkThemeButton);
-
-      const blueThemeButton = make.button("Blue", "theme-menu-screen__blue-theme-button", "button-big");
-        blueThemeButton.onclick = () => {
-          playTone(randomNote());
-          root.style.setProperty("--text-color", "hsla(200, 40%, 75%, 1)");
-          root.style.setProperty("--bg-color", "hsla(200, 80%, 25%, 1)");
-          root.style.setProperty("--border-color", "hsla(200, 70%, 45%, 1)");
-          root.style.setProperty("--button-bg-color", "hsla(0, 0%, 0%, 0)");
-          root.style.setProperty("--inactive-color", "hsla(200, 0%, 50%, 0.5)");
-        };
-      themeMenuScreen.appendChild(blueThemeButton);
-
-      const backButton = make.button("Back", "theme-menu-screen__back-button", "button-big");
+      const backButton = make.button("Back", "theme-menu-screen__back-button", "button-medium");
         backButton.onclick = () => {
           backButton.onclick = null;
           playTone(randomNote());
