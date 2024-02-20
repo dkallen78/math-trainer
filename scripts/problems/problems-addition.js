@@ -338,13 +338,19 @@ function brokenDoubles(aLow, aHigh, bLow, bHigh, mode) {
   //----------------------------------------------------//
 
   let a, b;
+  let solutions = [];
 
   switch(mode) {
     case 1:
       a = rnd(aLow, aHigh);
       b = rnd(bLow, bHigh);
 
-      return [a, `${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}&nbsp= (${stroke(a)}&nbsp+&nbsp${stroke("?")}) + ${b}`];
+      solutions = [
+        [a, `${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}&nbsp= (${stroke(a)}&nbsp+&nbsp${stroke("?")}) + ${b}`],
+        [a, `(${stroke(a)}&nbsp+&nbsp${stroke("?")}) + ${b} =&nbsp${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}`],
+        [a, `${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}&nbsp= ${b} + (${stroke(a)}&nbsp+&nbsp${stroke("?")})`],
+        [a, `${b} + (${stroke(a)}&nbsp+&nbsp${stroke("?")}) =&nbsp${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}`]
+      ]
       break;
     case 2:
       let sum = rnd(((2 * aLow) + bLow), ((2 * aHigh) + bHigh));
@@ -352,9 +358,14 @@ function brokenDoubles(aLow, aHigh, bLow, bHigh, mode) {
       a = rnd(2, (dubMax < aHigh ? dubMax : aHigh));
       b = sum - (2 * a);
 
-      return [sum, `${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}&nbsp= ?`];
+      solutions = [
+        [sum, `${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}&nbsp= ?`],
+        [sum, `? =&nbsp${stroke(a)}&nbsp+ ${b} +&nbsp${stroke(a)}`]
+      ]
       break;
   }
+
+  return rnd.index(solutions);
 }
 //
 function compIntro(mode) {

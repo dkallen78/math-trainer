@@ -26,7 +26,6 @@ I also added a new problem function for division that illustrates the connection
 ## To-do
 
 * track down the bug that prevents the numbers from showing sometimes in the `doubles()` problems
-* update `brokenDoubles()` to use both sidese of the `=`
 * add more problem types 
   * fill out division beyond Fundamentals
   * expand on the introduction to fractions
