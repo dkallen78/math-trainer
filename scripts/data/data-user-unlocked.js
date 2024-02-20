@@ -27,7 +27,8 @@ let user = {
     association: [true, true, true, true, true, true, true, true, true, true]
   },
   division: {
-    fundamentals: [true, true, true, true, true, true, true, true, true, true]
+    fundamentals: [true, true, true, true, true, true, true, true, true, true],
+    multiply: [true, true, true, true, true, true, true, true, true, true]
   },
   qDepth: 2,
   maxAvg: 5000

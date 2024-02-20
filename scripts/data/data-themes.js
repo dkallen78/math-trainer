@@ -23,12 +23,12 @@ const themes = {
     buttonBgColor: "hsla(100, 95%, 35%, 1)",
     inactiveColor: "hsla(0, 0%, 50%, 0.5)"
   },
-  blue: {
-    name: "Blue",
-    textColor: "hsla(200, 40%, 75%, 1)",
-    bgColor: "hsla(200, 80%, 25%, 1)",
-    borderColor: "hsla(200, 70%, 45%, 1)",
-    buttonBgColor: "hsla(0, 0%, 0%, 0)",
+  cherenkov: {
+    name: "Cherenkov",
+    textColor: "hsla(185, 100%, 50%, 1)",
+    bgColor: "hsla(210, 100%, 5%, 1)",
+    borderColor: "hsla(185, 100%, 50%, 1)",
+    buttonBgColor: "hsla(210, 100%, 50%, 0.1)",
     inactiveColor: "hsla(200, 0%, 50%, 0.5)"
   },
   matrix: {

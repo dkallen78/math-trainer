@@ -447,7 +447,7 @@ const subtraction = {
       id: ["subtraction", "partition", 4],
       run: () => subPartCrossing10s(1, 9, 1, 2),
       test: () => user.subtraction.partition[3],
-      notification: notifications.subtraction.decomposition
+      notification: () => notifications.subtraction.decomposition
     }
   ],
   decomposition: [
@@ -687,19 +687,38 @@ const division = {
       run: () => circleDiv(1, 6, 18, 3),
       test: () => user.division.fundamentals[2]
     },
-    //4 - Fourths
+    //4 - Quarters
     {
-      name: "Fourths",
+      name: "Quarters",
       id: ["division", "fundamentals", 4],
       run: () => circleDiv(1, 6, 24, 4),
       test: () => user.division.fundamentals[3]
     },
-    //5 - Fifths
+    //5 - Fifths - *
     {
       name: "Fifths",
       id: ["division", "fundamentals", 5],
       run: () => circleDiv(1, 4, 20, 5),
       test: () => user.division.fundamentals[4],
+      notification: () => notifications.division.multiply
+    }
+  ],
+  multiply: [
+    //0
+    "Multiply",
+    //1 - Inverse Operation I
+    {
+      name: "Inverse Operation I",
+      id: ["division", "multiply", 1],
+      run: () => divisionMultiply(2, 5, 3, 9),
+      test: () => user.division.fundamentals[5]
+    },
+    //2 - Inverse Operation II
+    {
+      name: "Inverse Operation II",
+      id: ["division", "multiply", 2],
+      run: () => divisionMultiply(4, 9, 4, 9),
+      test: () => user.division.multiply[1],
     }
   ]
 }

@@ -86,3 +86,16 @@ function divIntro() {
 
   return rnd.index(solutions);
 }
+
+function divisionMultiply(qMin, qMax, dMin, dMax) {
+
+  let q = rnd(qMin, qMax);
+  let t2 = rnd(dMin, dMax);
+  let t1 = q * t2;
+
+  let solutions = [
+    [q, `${t1} ÷ ${t2} = ?<br>${t1} = ${t2} × ? `]
+  ];
+
+  return rnd.index(solutions);
+}

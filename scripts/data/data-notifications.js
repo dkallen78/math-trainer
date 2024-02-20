@@ -77,6 +77,10 @@ const notifications = {
     acclaim: "Unlocked New Operation!",
     unlock: "Division",
 
-    
+    multiplication: {
+      test: () => division.multiplication[1].test(),
+      acclaim: "Unlocked New Division Strategy!",
+      unlock: "Multiplication"
+    }
   }
 }
