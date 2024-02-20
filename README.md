@@ -21,7 +21,9 @@ I did a minor tweak to the notifications system that makes them easier to mainta
 
 I also added a new problem function for division that illustrates the connection between division and multiplication and how to use that to help solve problems. I'm not sure how to develop it beyond the very basics but it's a start. Division is tricky for me because I don't really remember any division tricks from school, so I have to relearn them and then find a way to make them intuitive given my limited UI vocabulary.
 
-### To-do
+### [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/devlog/devlog-2024.md)
+
+## To-do
 
 * track down the bug that prevents the numbers from showing sometimes in the `doubles()` problems
 * update `brokenDoubles()` to use both sidese of the `=`
@@ -39,7 +41,7 @@ I also added a new problem function for division that illustrates the connection
 * add multi-language support
 * add more themes
 
-### Investigate
+## Investigate
 
 * find a better place to unlock Multiplication and Division
 * should fractions be its own section or built into the basic operations? Likewise, what about decimals?
@@ -51,7 +53,7 @@ I also added a new problem function for division that illustrates the connection
 * find a way to simplify the changing and reordering of notifications
 * find a way to simplify the changing and reordering of problems in data-strategies.js
 
-### [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/devlog/devlog-2024.md)
+
 
 ## Lines of Investigation
 
