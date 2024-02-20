@@ -710,14 +710,14 @@ const division = {
     {
       name: "Inverse Operation I",
       id: ["division", "multiply", 1],
-      run: () => divisionMultiply(2, 5, 3, 9),
+      run: () => divisionMultiply(2, 5, 3, 9, 1),
       test: () => user.division.fundamentals[5]
     },
     //2 - Inverse Operation II
     {
       name: "Inverse Operation II",
       id: ["division", "multiply", 2],
-      run: () => divisionMultiply(4, 9, 4, 9),
+      run: () => divisionMultiply(4, 9, 4, 9, 1),
       test: () => user.division.multiply[1],
     }
   ]

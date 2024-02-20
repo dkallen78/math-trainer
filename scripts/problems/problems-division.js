@@ -87,15 +87,29 @@ function divIntro() {
   return rnd.index(solutions);
 }
 
-function divisionMultiply(qMin, qMax, dMin, dMax) {
+function divisionMultiply(qMin, qMax, dMin, dMax, mode) {
 
   let q = rnd(qMin, qMax);
   let t2 = rnd(dMin, dMax);
   let t1 = q * t2;
+  let solutions = [];
 
-  let solutions = [
-    [q, `${t1} ÷ ${t2} = ?<br>${t1} = ${t2} × ? `]
-  ];
+  switch(mode) {
+    case 1:
+      solutions = [
+        [q, `${t1} ÷ ${t2} = ?<br>${t1} = ${t2} × ?`],
+        [q, `? = ${t1} ÷ ${t2}<br>? × ${t2} = ${t1}`]
+      ];
+      break;
+    case 2:
+      solutions = [
+        [q, `${t1} ÷ ? = ${t2}<br>${t1} = ? × ${t2}`],
+        [q, `${t2} = ${t1} ÷ ?<br>${t2} × ? = ${t1}`]
+      ];
+      break;
+  }
+
+  
 
   return rnd.index(solutions);
 }
