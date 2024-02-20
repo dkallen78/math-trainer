@@ -114,6 +114,7 @@ button {
   color: var(--bg-color);
   font-weight: bold;
   -webkit-text-stroke: .05rem var(--text-color);
+  paint-order: stroke fill;
 }
 
 @media screen and (orientation:landscape) {

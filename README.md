@@ -13,16 +13,17 @@ Although the UI is simple by design, users can also change the colors of the lay
 
 The layout is mobile-first because smartphones are the primary technological tool of the modern world.
 
-## Update 2024-02-18
+## Update 2024-02-19
 
-### 23:00
+### 22:30
 
-Nothing to brag about today. I rewrote the code that handles how the theme page is built so it's more automatic and I created a new file with theme data so it's easier to make new ones. I did all this after making a Blue theme. I might make a green and black "Matrix" theme before I crash tonight.
+I did a minor tweak to the notifications system that makes them easier to maintain but I'm still not happy with it. The big improvement it has over what I was doing is that it lets me check for more than one condition before giving a notification. Changing where the notification is, is still kind of a pain in the butt, but I no longer have to do that to change what it says. I'd still rather have a system that can listen for the right changes to take place but that feels complicated and probably not worth it. At least not yet.
 
-I reached out on reddit for feedback on how I'm doing but noone responded. Either I'm missing the mark by a lot or teachers don't have the bandwidth to play with new software. I'm kind of bummed about it but getting ignored on the internet is no big deal. I do need to find a source of feedback though. Maybe I should be looking internationally...
+I also added a new problem function for division that illustrates the connection between division and multiplication and how to use that to help solve problems. I'm not sure how to develop it beyond the very basics but it's a start. Division is tricky for me because I don't really remember any division tricks from school, so I have to relearn them and then find a way to make them intuitive given my limited UI vocabulary.
 
 ### To-do
 
+* track down the bug that prevents the numbers from showing sometimes in the `doubles()` problems
 * update `brokenDoubles()` to use both sidese of the `=`
 * add more problem types 
   * fill out division beyond Fundamentals
