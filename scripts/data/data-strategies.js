@@ -706,18 +706,18 @@ const division = {
   multiply: [
     //0
     "Multiply",
-    //1 - Inverse Operation I
+    //1 - Halves and Thirds
     {
-      name: "Inverse Operation I",
+      name: "Halves and Thirds",
       id: ["division", "multiply", 1],
-      run: () => divisionMultiply(2, 5, 3, 9, 1),
+      run: () => divisionMultiply(2, 3, 3, 9, 1),
       test: () => user.division.fundamentals[5]
     },
-    //2 - Inverse Operation II
+    //2 - Quarters and Fifths
     {
-      name: "Inverse Operation II",
+      name: "Quarters and Fifths",
       id: ["division", "multiply", 2],
-      run: () => divisionMultiply(4, 9, 4, 9, 1),
+      run: () => divisionMultiply(4, 5, 3, 9, 1),
       test: () => user.division.multiply[1],
     }
   ]

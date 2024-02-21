@@ -1,6 +1,6 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
-let testFunc = () => brokenDoubles(2, 5, 1, 9, 2);
+let testFunc = () => divisionMultiply(2, 3, 2, 9, 1);
 //let testFunc = () => circleTest(6);
 
 function testOnce() {
