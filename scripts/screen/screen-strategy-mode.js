@@ -160,6 +160,14 @@ async function makeStrategyDetailScreen(group) {
 
   async function waitForButton() {
 
+    function unselectButtons() {
+
+      for (let i = 1; i < group.length; i++) {
+        const strategyButton = get(`strategy-detail-screen__strategy-grid__button-${i}`);
+        remove.class(strategyButton, "button-selected");
+      }
+    }
+
     return new Promise((resolve, reject) => {
       const strategyDetail = get("strategy-detail-screen__strategy-detail");
 
@@ -182,6 +190,8 @@ async function makeStrategyDetailScreen(group) {
 
             const startButton = get("strategy-detail-screen__start-button");
             remove.class(startButton, "button-inactive");
+            unselectButtons();
+            set.class(strategyButton, "button-selected");
             startButton.onclick = async () => {
               startButton.onclick = null;
               playTone(randomNote());
