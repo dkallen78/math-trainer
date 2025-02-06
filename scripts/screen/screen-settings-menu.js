@@ -7,24 +7,27 @@ async function makeSettingsScreen() {
   async function waitForButton() {
     return new Promise ((resolve, reject) => {
       const themeButton = get("settings-screen__theme-button");
-      set.click(themeButton, async () => {
+      themeButton.onclick = async () => {
+        themeButton.onclick = null;
         playTone(randomNote());
-          await makeThemeScreen();
-          resolve(false);
-      })
+        await makeThemeScreen();
+        resolve(false);
+      }
 
       const soundButton = get("settings-screen__sound-button");
-      set.click(soundButton, async () => {
+      soundButton.onclick = async () => {
+        soundButton.onclick = null;
         playTone(randomNote());
         await makeSoundScreen();
         resolve(false);
-      })
+      }
 
       const backButton = get("settings-screen__back-button");
-      set.click(backButton, async () => {
+      backButton.onclick = async () => {
+        backButton.onclick = null;
         playTone(randomNote());
         resolve(true);
-      })
+      }
   })
   }
 
@@ -57,44 +60,28 @@ async function makeThemeScreen() {
 
   const root = document.documentElement;
 
-  return new Promise (async (resolve, reject) => {
+  return new Promise (async (resolve) => {
     const themeMenuScreen = make.main("theme-menu-screen", ["screen", "flex-column"]);
-
-      const defaultThemeButton = make.button("Default", "theme-menu-screen__default-theme-button", "button-big");
-        set.click(defaultThemeButton, () => {
+      //
+      //Takes theme data from data-themes.js to make the theme buttons
+      for (const theme in themes) {
+        const themeButton = make.button(themes[theme].name, `theme-menu-screen__${theme}-theme-button`, "button-medium", () => {
           playTone(randomNote());
-          root.style.setProperty("--text-color", "hsla(0, 0%, 0%, 1)");
-          root.style.setProperty("--bg-color", "hsla(0, 0%, 100%, 1)");
-          root.style.setProperty("--border-color", "hsla(0, 0%, 0%, 1)");
-          root.style.setProperty("--button-bg-color", "hsla(0, 0%, 0%, 0)");
-        });
-      themeMenuScreen.appendChild(defaultThemeButton);
+          root.style.setProperty("--text-color", themes[theme].textColor);
+          root.style.setProperty("--bg-color", themes[theme].bgColor);
+          root.style.setProperty("--border-color", themes[theme].borderColor);
+          root.style.setProperty("--button-bg-color", themes[theme].buttonBgColor);
+          root.style.setProperty("--inactive-color", themes[theme].inactiveColor);
+        })
+        themeMenuScreen.appendChild(themeButton);
+      }
 
-      const vaporWaveThemeButton = make.button("Vapor Wave", "theme-menu-screen__vapor-wave-theme-button", "button-big");
-        set.click(vaporWaveThemeButton, () => {
-          playTone(randomNote());
-          root.style.setProperty("--text-color", "hsla(190, 100%, 50%, 1)");
-          root.style.setProperty("--bg-color", "hsla(0, 0%, 0%, 1)");
-          root.style.setProperty("--border-color", "hsla(300, 100%, 50%, 1)");
-          root.style.setProperty("--button-bg-color", "hsla(0, 0%, 0%, 0)");
-        });
-      themeMenuScreen.appendChild(vaporWaveThemeButton);
-
-      const chalkThemeButton = make.button("Chalk Board", "theme-menu-screen__chalk-theme-button", "button-big");
-        set.click(chalkThemeButton, () => {
-          playTone(randomNote());
-          root.style.setProperty("--text-color", "hsla(0, 0%, 100%, 1)");
-          root.style.setProperty("--bg-color", "hsla(100, 95%, 35%, 1)");
-          root.style.setProperty("--border-color", "hsla(0, 0%, 100%, 1)");
-          root.style.setProperty("--button-bg-color", "hsla(100, 95%, 35%, 1)");
-        });
-      themeMenuScreen.appendChild(chalkThemeButton);
-
-      const backButton = make.button("Back", "theme-menu-screen__back-button", "button-big");
-        set.click(backButton, () => {
+      const backButton = make.button("Back", "theme-menu-screen__back-button", "button-medium");
+        backButton.onclick = () => {
+          backButton.onclick = null;
           playTone(randomNote());
           resolve();
-        });
+        };
       themeMenuScreen.appendChild(backButton);
 
     await fadeTransition(themeMenuScreen);
@@ -110,24 +97,27 @@ async function makeSoundScreen() {
     return new Promise ((resolve, reject) => {
 
       let selectKey = get("sound-options-screen__select-key-button");
-      set.click(selectKey, async () => {
+      selectKey.onclick = async () => {
+        selectKey.onclick = null;
         playTone(randomNote());
         await makeKeyScreen();
         resolve(false);
-      })
+      }
 
       const selectScale = get("sound-options-screen__select-scale-button");
-      set.click(selectScale, async () => {
+      selectScale.onclick = async () => {
+        selectScale.onclick = null;
         playTone(randomNote());
         await makeScaleScreen();
         resolve(false);
-      })
+      }
 
       const backButton = get("sound-options-screen__back-button");
-      set.click(backButton, () => {
+      backButton.onclick = () => {
+        backButton.onclick = null;
         playTone(randomNote());
         resolve(true);
-      })
+      }
     })
   }
 
@@ -140,7 +130,7 @@ async function makeSoundScreen() {
         if (user.soundOn === false) {
           soundToggleButton.innerHTML = "Sound Off";
         }
-        set.click(soundToggleButton, () => {
+        soundToggleButton.onclick = () => {
           if (user.soundOn) {
             user.soundOn = false;
             soundToggleButton.innerHTML = "Sound Off";
@@ -149,7 +139,7 @@ async function makeSoundScreen() {
             soundToggleButton.innerHTML = "Sound On";
             playTone(randomNote());
           }
-        });
+        };
         soundScreen.appendChild(soundToggleButton);
 
       const selectKeyButton = make.button("Select Key", "sound-options-screen__select-key-button", "button-big");
@@ -159,9 +149,9 @@ async function makeSoundScreen() {
       soundScreen.appendChild(selectScaleButton);
 
       const playRandomNoteButton = make.button("Random Note", "sound-options-screen__play-random-note-button", "button-big");
-        set.click(playRandomNoteButton, () => {
+        playRandomNoteButton.onclick = () => {
           playTone(randomNote());
-        });
+        };
         soundScreen.appendChild(playRandomNoteButton);
 
       const backButton = make.button("Back", "sound-options-screen__back-button", "button-big");
@@ -265,6 +255,7 @@ async function makeKeyScreen() {
       //
       //The Back button
       const keyBackButton = make.button("Back", "key-selection-screen__back-button", "button-big", () => {
+        keyBackButton.onclick = null;
         playTone(randomNote());
         resolve();
       });
@@ -315,6 +306,7 @@ async function makeScaleScreen() {
       scaleSelectionScreen.appendChild(hungarianButton);
 
       let backButton = make.button("Back", "scale-selection-screen__back-button", "button-medium", () => {
+        backButton.onclick = null;
         playTone(randomNote());
         resolve();
       });

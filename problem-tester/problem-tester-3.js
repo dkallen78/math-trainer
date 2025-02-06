@@ -1,43 +1,13 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
-let testFunc = () => idFractions(1, 1, 2, 9, 0);
+let testFunc = () => divisionMultiply(2, 3, 2, 9, 1);
 //let testFunc = () => circleTest(6);
 
-
-function makeSVG(type, id, ...classes) {
-  //----------------------------------------------------//
-  //Returns an SVG element of the type indicated        //
-  //----------------------------------------------------//
-  //type(string): type of SVG element to create         //
-  //id(string): id of the element                       //
-  //classes(string): classes to add to the element      //
-  //----------------------------------------------------//
-  //return(element): SVG element                        //
-  //----------------------------------------------------//
-
-  let svg = document.createElementNS("http://www.w3.org/2000/svg", type);
-  if (typeof id === "string") {svg.id = id}
-  classes.forEach(x => svg.classList.add(x));
-  return svg;
-}
-
-makeSVG.rect = function(x, y, w, h, id, ...classes) {
-
-  let rect = makeSVG("rect");
-  rect.setAttribute("x", x);
-  rect.setAttribute("y", y);
-  rect.setAttribute("width", w);
-  rect.setAttribute("height", h);
-  if (typeof id === "string") {rect.id = id}
-  classes.forEach(x => rect.classList.add(x));
-  return rect;
-}
-
 function testOnce() {
-  /*----------------------------------------------------//
+  //----------------------------------------------------//
   //Runs the function to be tested one time and outputs //
   //  the answer and the equation                       //
-  //----------------------------------------------------*/
+  //----------------------------------------------------//
   
   let problem = testFunc();
   //console.log(problem);
@@ -130,11 +100,11 @@ function makeGraph(stats) {
 
   //console.log(stats.chiSquared);
 
-  let svgBox = document.getElementById("svgBox");
-  clearElement(svgBox);
+  const svgBox = get("svgBox");
+  clear(svgBox);
   //
   //Makes an SVG element to put a graph in
-  let svg = makeSVG("svg", "svgGraph");
+  const svg = make.svg("svgGraph");
     //
     //Sets the length of the SVG element to the number 
     //  of answers to be graphed and the height to half that
@@ -144,36 +114,28 @@ function makeGraph(stats) {
     svg.setAttribute("viewBox", `0 0 ${stats.keys.length} ${stats.keys.length / 2}`);
     //
     //Draws the range of the standard deviation on the graph
-    let sdTop = 100 - (((stats.avg + stats.sd) / stats.max) * 100);
-    let sdHeight = ((stats.sd * 2) / stats.max) * 100;
-    let sdRect = makeSVG("rect");
-      sdRect.setAttribute("x", "0%");
-      sdRect.setAttribute("y", `${sdTop}%`);
-      sdRect.setAttribute("width", "100%");
-      sdRect.setAttribute("height", `${sdHeight}%`);
+    const sdTop = 100 - (((stats.avg + stats.sd) / stats.max) * 100);
+    const sdHeight = ((stats.sd * 2) / stats.max) * 100;
+    const sdRect = make.rect("0%", `${sdTop}%`, "100%", `${sdHeight}%`);
       let color = stats.cv > 0.25 ? "red" : "green";
       sdRect.setAttribute("fill", color);
       sdRect.setAttribute("fill-opacity", "12.5%");
     svg.appendChild(sdRect);
 
-    let analysisDeets = document.getElementById("analysis-deets");
+    const analysisDeets = get("analysis-deets");
     //
     //Iterates through statsAvg building a bar graph 
     //  based on the answer averages
     stats.keys.forEach((a, i) => {
-      let percent = (stats[a].percent / stats.max) * 100;
-      let rect = makeSVG("rect");
+      const percent = (stats[a].percent / stats.max) * 100;
+      const rect = make.rect(`${i + 0.1}`, `${100 - percent}%`, 0.8, `${percent}%`);
         rect.id = `rect-${i}`;
-        rect.setAttribute("x", `${i + 0.1}`);
-        rect.setAttribute("y", `${100 - percent}%`);
-        rect.setAttribute("width", 0.8);
-        rect.setAttribute("height", `${percent}%`);
         rect.setAttribute("fill", "black");
       svg.appendChild(rect);
       rect.addEventListener("mouseenter", (e) => {
-        let deetAns = `Answer: ${a}, `;
-        let deetOcc = `Occurrences: ${stats[a].count}, `;
-        let deetPercent = `Percentage: ${(stats[a].percent * 100).toPrecision(4)}%, `;
+        const deetAns = `Answer: ${a}, `;
+        const deetOcc = `Occurrences: ${stats[a].count}, `;
+        const deetPercent = `Percentage: ${(stats[a].percent * 100).toPrecision(4)}%, `;
         analysisDeets.innerHTML = deetAns + deetOcc + deetPercent;
         rect.setAttribute("fill", "chartreuse");
       });
@@ -185,17 +147,13 @@ function makeGraph(stats) {
 
     console.log(stats.pi_i, stats.avg);
 
-    let idealAvgBaseline = 100 - ((stats.pi_i / stats.max) * 100);
-    let idealAvgLine = makeSVG("line");
-      idealAvgLine.setAttribute("x1", "0%");
-      idealAvgLine.setAttribute("y1", `${idealAvgBaseline}%`);
-      idealAvgLine.setAttribute("x2", "100%");
-      idealAvgLine.setAttribute("y2", `${idealAvgBaseline}%`);
+    const idealAvgBaseline = 100 - ((stats.pi_i / stats.max) * 100);
+    const idealAvgLine = make.line("0%", `${idealAvgBaseline}%`, "100%", `${idealAvgBaseline}%`);
       idealAvgLine.setAttribute("stroke", "LawnGreen");
       idealAvgLine.setAttribute("stroke-width", ".25%");
     svg.appendChild(idealAvgLine);
     idealAvgLine.addEventListener("mouseenter", (e) => {
-      let deetAvgPercent = `Ideal Average: ${(stats.pi_i * 100).toPrecision(4)}%, `;
+      const deetAvgPercent = `Ideal Average: ${(stats.pi_i * 100).toPrecision(4)}%, `;
       analysisDeets.innerHTML = deetAvgPercent;
       idealAvgLine.setAttribute("stroke", "chartreuse");
     });
@@ -206,18 +164,14 @@ function makeGraph(stats) {
 
     //
     //Draws a green bar to indicate where the average is
-    let avgBaseline = 100 - ((stats.avg / stats.max) * 100);
-    let avgLine = makeSVG("line");
-      avgLine.setAttribute("x1", "0%");
-      avgLine.setAttribute("y1", `${avgBaseline}%`);
-      avgLine.setAttribute("x2", "100%");
-      avgLine.setAttribute("y2", `${avgBaseline}%`);
+    const avgBaseline = 100 - ((stats.avg / stats.max) * 100);
+    const avgLine = make.line("0%", `${avgBaseline}%`, "100%", `${avgBaseline}%`);
       avgLine.setAttribute("stroke", "green");
       avgLine.setAttribute("stroke-width", ".25%");
       avgLine.setAttribute("stroke-dasharray", "2% 2%");
     svg.appendChild(avgLine);
     avgLine.addEventListener("mouseenter", (e) => {
-      let deetAvgPercent = `Average: ${(stats.avg * 100).toPrecision(4)}%, `;
+      const deetAvgPercent = `Average: ${(stats.avg * 100).toPrecision(4)}%, `;
       analysisDeets.innerHTML = deetAvgPercent;
       avgLine.setAttribute("stroke", "chartreuse");
     });

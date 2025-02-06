@@ -27,10 +27,9 @@ let user = {
     association: []
   },
   division: {
-    fundamentals: []
+    fundamentals: [],
+    multiply: []
   },
-  tour: false,
-  fast: false,
   qDepth: 10,
   maxAvg: 5000
 }

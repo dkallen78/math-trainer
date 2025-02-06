@@ -63,6 +63,10 @@ function get(id) {
   return document.getElementById(id);
 }
 
+get.all = function(elem, selector) {
+  return elem.querySelectorAll(selector);
+}
+
 function make(type, id, classes) {
   //----------------------------------------------------//
   //Returns an DOM element                              //
@@ -87,7 +91,7 @@ function make(type, id, classes) {
 make.button = function(name, id, classes, fnc) {
   let button = make("button", id, classes);
   button.innerHTML = name;
-  button.addEventListener("click", fnc)
+  button.onclick = fnc;
   return button;
 }
 
@@ -116,6 +120,65 @@ make.section = function(id, classes) {
   return section;
 }
 
+
+make.svg = function(id, classes, viewBox) {
+  let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  if (typeof id === "string") {svg.id = id}
+  if (typeof classes === "string") {
+    svg.classList.add(classes);
+  } else if (typeof classes === "object") {
+    classes.forEach(x => svg.classList.add(x));
+  }
+  if (typeof viewBox === "string") {
+    svg.setAttribute("viewBox", viewBox);
+  }
+  return svg;
+}
+
+make.animate = function() {
+  let animate = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+  return animate;
+}
+
+make.g = function() {
+  let g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  return g;
+}
+
+make.line = function(x1, y1, x2, y2, id, ...classes) {
+  const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  line.setAttribute("x1", x1);
+  line.setAttribute("y1", y1);
+  line.setAttribute("x2", x2);
+  line.setAttribute("y2", y2);
+  if (typeof id === "string") {this.rect.id = id}
+  classes.forEach(x => line.classList.add(x));
+  return line;
+}
+
+make.path = function(id, classes) {
+  let path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  if (typeof id === "string") {path.id = id}
+  if (typeof classes === "string") {
+    path.classList.add(classes);
+  } else if (typeof classes === "object") {
+    classes.forEach(x => path.classList.add(x));
+  }
+  return path;
+}
+
+make.rect = function(x, y, w, h, id, ...classes) {
+
+  let rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+  rect.setAttribute("x", x);
+  rect.setAttribute("y", y);
+  rect.setAttribute("width", w);
+  rect.setAttribute("height", h);
+  if (typeof id === "string") {rect.id = id}
+  classes.forEach(x => rect.classList.add(x));
+  return rect;
+}
+
 function remove(...elements) {
   //----------------------------------------------------//
   //Removes elements from the DOM                       //
@@ -130,20 +193,12 @@ remove.class = function(elem, ...classes) {
   classes.forEach(x => elem.classList.remove(x));
 }
 
-remove.click = function(elem, fnc) {
-  elem.removeEventListener("click", fnc);
-}
-
 function set(elem, ...pairs) {
   pairs.forEach(pair => elem.setAttribute(pair[0], pair[1]))
 }
 
 set.class = function(elem, ...classes) {
   classes.forEach(c => elem.classList.add(c));
-}
-
-set.click = function(elem, fnc) {
-  elem.addEventListener("click", fnc);
 }
 
 set.press = function(elem, fnc) {

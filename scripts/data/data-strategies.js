@@ -1,4 +1,4 @@
-let addition = {
+const addition = {
   fundamentals: [
     //0
     "Fundamentals",
@@ -7,7 +7,7 @@ let addition = {
       name: "Single-Digit Addition I",
       id: ["addition", "fundamentals", 1],
       run: () => singleDigitAddition(1, 9),
-      test: () => true
+      test: () => true,
     },
     //2 - Reorder
     {
@@ -17,29 +17,29 @@ let addition = {
       test: () => user.addition.fundamentals[1],
       
     },
-    //3 - Missing Term
+    //3 - Missing Term - *
     {
       name: "Missing Term",
       id: ["addition", "fundamentals", 3],
       run: () => addWithin(1, 9, false),
       test: () => user.addition.fundamentals[2],
-      notification: "Addition-Sequence unlocked!"
+      notification: () => notifications.addition.sequence
     },
-    //4 - Up To 10
+    //4 - Up To 10 - *
     {
       name: "Up To 10",
       id: ["addition", "fundamentals", 4],
       run: () => upTo(1, 10),
       test: () => user.addition.fundamentals[3],
-      notification: "Addition-Reorder unlocked!"
+      notification: () => notifications.addition.reorder
     },
-    //5 - Doubles I
+    //5 - Doubles I - *
     {
       name: "Doubles I",
       id: ["addition", "fundamentals", 5],
       run: () => doubles(1, 5, 1, 0, 0),
       test: () => user.addition.fundamentals[4],
-      notification: "Addition-Place Value unlocked!"
+      notification: () => notifications.addition.placeValue
     },
     //6 - Single-Digit Addition II
     {
@@ -48,14 +48,15 @@ let addition = {
       run: () => singleDigitAddition(11, 18),
       test: () => user.addition.fundamentals[5],
     },
-    /*7 - Doubles II*/
+    //7 - Doubles II - *
     {
       name: "Doubles II",
       id: ["addition", "fundamentals", 7],
       run: () => doubles(1, 10, 1, 0, 0),
-      test: () => user.addition.fundamentals[6]
+      test: () => user.addition.fundamentals[6],
+      notification: () => notifications.multiplication,
     },
-    /*8 - Three-Term Addition I*/
+    //8 - Three-Term Addition I
     {
       name: "Three-Term Addition I",
       id: ["addition", "fundamentals", 8],
@@ -72,7 +73,6 @@ let addition = {
       id: ["addition", "reorder", 1],
       run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 1),
       test: () => user.addition.fundamentals[4],
-      notification: "Addition-Partition unlocked!"
     },
     //2 - Broken 10 II
     {
@@ -88,12 +88,13 @@ let addition = {
       run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 1),
       test: () => user.addition.reorder[2]
     },
-    //4 - Broken 20 II
+    //4 - Broken 20 II - *
     {
       name: "Broken 20 II",
       id: ["addition", "reorder", 4],
       run: () => broken10s(2, 2, 1, 1, 9, 1, 9, 2),
-      test: () => user.addition.reorder[3]
+      test: () => user.addition.reorder[3],
+      notification: () => notifications.addition.partition
     },
     //5 - Broken Doubles I
     {
@@ -138,7 +139,7 @@ let addition = {
     {
       name: "Add 10s",
       id: ["addition", "placeValue", 2],
-      run: () => add2(1, 9, 1, 1),
+      run: () => add2(1, 9, 1, 1, 1),
       test: () => user.addition.placeValue[1]
     }, 
     //3 - 10 More I
@@ -157,7 +158,7 @@ let addition = {
     },
     //5 - 10s and 1s
     {
-      name: "10s an 1s",
+      name: "10s and 1s",
       id: ["addition", "placeValue", 5],
       run: () => add(1, 9, 1, 1, 9, 0),
       test: () => user.addition.placeValue[4]
@@ -173,57 +174,57 @@ let addition = {
   partition: [
     /*0*/
     "Partition",
-    //1 - Crossing 10 I*/
+    //1 - Crossing 10 I
     {
       name: "Crossing 10 I",
       id: ["addition", "partition", 1],
       run: () => addPartCrossing10s(1, 1, 1, 1),
-      test: () => user.addition.reorder[1],
-      notification: "Subtraction unlocked!"
+      test: () => user.addition.reorder[4],
     },
-    //2 - Crossing 10 II*/
+    //2 - Crossing 10 II
     {
       name: "Crossing 10 II",
       id: ["addition", "partition", 2],
       run: () => addPartCrossing10s(1, 1, 1, 2),
       test: () => user.addition.partition[1]
     },
-    //3 - Near Doubles I*/
+    //3 - Near Doubles I
     {
       name: "Near Doubles I",
       id: ["addition", "partition", 3],
       run: () => partitionNearDoubles(2, 9, 0, 1, 1),
       test: () => user.addition.partition[2]
     },
-    //4 - Near Doubles II*/
+    //4 - Near Doubles II - *
     {
       name: "Near Doubles II",
       id: ["addition", "partition", 4],
       run: () => partitionNearDoubles(2, 9, 0, 1, 2),
-      test: () => user.addition.partition[3]
+      test: () => user.addition.partition[3], 
+      notification: () => notifications.subtraction,
     },
-    //5 - Crossing 20 I*/
+    //5 - Crossing 20 I
     {
       name: "Crossing 20 I",
       id: ["addition", "partition", 5],
       run: () => addPartCrossing10s(2, 2, 1, 1),
       test: () => user.addition.partition[4]
     },
-    //6 - Crossing 20 II*/
+    //6 - Crossing 20 II
     {
       name: "Crossing 20 II",
       id: ["addition", "partition", 6],
       run: () => addPartCrossing10s(2, 2, 1, 2),
       test: () => user.addition.partition[5]
     },
-    //7 - Crossing 10s I*/
+    //7 - Crossing 10s I
     {
       name: "Crossing 10s I",
       id: ["addition", "partition", 7],
       run: () => addPartCrossing10s(3, 9, 1, 1),
       test: () => user.addition.partition[6]
     },
-    //8 - Crossing 10s II*/
+    //8 - Crossing 10s II
     {
       name: "Crossing 10s II",
       id: ["addition", "partition", 8],
@@ -240,7 +241,7 @@ let addition = {
       name: "Give and Take I",
       id: ["addition", "compensation", 1],
       run: () => compIntro(1),
-      test: () => user.subtraction.fundamentals[1]
+      test: () => user.subtraction.fundamentals[2]
     },
     //2 - Give and Take II
     {
@@ -309,12 +310,13 @@ let addition = {
       run: () => sequence(3, 3, 3, 1),
       test: () => user.addition.sequence[3]
     },
-    //5 - Count by 4
+    //5 - Count by 4 - *
     {
       name: "Count by 4",
       id: ["addition", "sequence", 5],
       run: () => sequence(4, 4, 4, 1),
-      test: () => user.addition.sequence[4]
+      test: () => user.addition.sequence[4],
+      notification: () => notifications.multiplication,
     },
     //6 - Count by 6
     {
@@ -365,7 +367,7 @@ let addition = {
   ]
 }
 
-let subtraction = {
+const subtraction = {
   fundamentals: [
     //0
     "Fundamentals",
@@ -376,27 +378,29 @@ let subtraction = {
       run: () => subWithin(1, 5),
       test: () => user.addition.partition[1]
     },
-    //2 - Single-Digit Subraction II
+    //2 - Single-Digit Subraction II - *
     {
       name: "Single-Digit Subtraction II",
       id: ["subtraction", "fundamentals", 2],
       run: () => subWithin(1, 10, true),
-      test: () => user.subtraction.fundamentals[1]
+      test: () => user.subtraction.fundamentals[1],
+      notification: () => notifications.addition.compensation,
     },
-    //3 - Take from 10
+    //3 - Take from 10 - *
     {
       name: "Take from 10",
       id: ["subtraction", "fundamentals", 3],
       run: () => takeFrom(1, 1, 1),
-      test: () => user.subtraction.fundamentals[2]
+      test: () => user.subtraction.fundamentals[2],
+      notification: () => notifications.subtraction.partition,
     },
-    //4 - Missing Term I
+    //4 - Missing Term I - *
     {
       name: "Missing Term I",
       id: ["subtraction", "fundamentals", 4],
       run: () => subWithin(1, 10, false),
       test: () => user.subtraction.fundamentals[3],
-      notification: "Subtraction Sequence unlocked!"
+      notification: () => notifications.subtraction.sequence
     },
     //5 - Down to 10 I
     {
@@ -437,12 +441,13 @@ let subtraction = {
       run: () => subPartCrossing10s(1, 9, 1, 1),
       test: () => user.subtraction.partition[2]
     },
-    //4 - Crossing 10s II
+    //4 - Crossing 10s II - *
     {
       name: "crossing 10s II",
       id: ["subtraction", "partition", 4],
       run: () => subPartCrossing10s(1, 9, 1, 2),
-      test: () => user.subtraction.partition[3]
+      test: () => user.subtraction.partition[3],
+      notification: () => notifications.subtraction.decomposition
     }
   ],
   decomposition: [
@@ -453,7 +458,7 @@ let subtraction = {
       name: "Decomposition I",
       id: ["subtraction", "decomposition", 1],
       run: () => subDecomp(1, 9, 1, 1, 1),
-      test: () => user.subtraction.partition[3]
+      test: () => user.subtraction.partition[4]
     },
     //2 - Decomposition II
     {
@@ -547,7 +552,7 @@ let subtraction = {
   ]
 }
 
-let multiplication = {
+const multiplication = {
   fundamentals: [
     //0
     "Fundamentals",
@@ -556,7 +561,7 @@ let multiplication = {
       name: "Repeated Addition I",
       id: ["multiplication", "fundamentals", 1],
       run: () => repeatedAddition(),
-      test: () => user.addition.fundamentals[7]
+      test: () => user.addition.fundamentals[7] && user.addition.sequence[5]
     },
     //2 - Doubles and Triples I
     {
@@ -565,12 +570,13 @@ let multiplication = {
       run: () => multiply(1, 9, 2, 3, 1),
       test: () => user.multiplication.fundamentals[1]
     },
-    //3 - Doubles and Triples II
+    //3 - Doubles and Triples II - *
     {
       name: "Doubles and Triples II",
       id: ["multiplication", "fundamentals", 3],
       run: () => multiply(1, 9, 2, 3, 2),
-      test: () => user.multiplication.fundamentals[2]
+      test: () => user.multiplication.fundamentals[2],
+      notifications: () => notifications.division
     },
     //4 - Reorder I
     {
@@ -586,19 +592,21 @@ let multiplication = {
       run: () => reorder(1, 9, 3, "×"),
       test: () => user.multiplication.fundamentals[4]
     },
-    //6 - Association I
+    //6 - Association I - *
     {
       name: "Association I",
       id: ["multiplication", "fundamentals", 6],
       run: () =>aPropIntro(2, 9, 2, 3, 2, 5),
-      test: () => user.multiplication.fundamentals[5]
+      test: () => user.multiplication.fundamentals[5],
+      notification: () => notifications.multiplication.association
     },
-    //7 - Distribution I
+    //7 - Distribution I - *
     {
       name: "Distribution I",
       id: ["multiplication", "fundamentals", 7],
       run: () => dPropIntro(2, 9, 4, 6, 2, 3),
-      test: () => user.multiplication.fundamentals[6]
+      test: () => user.multiplication.fundamentals[6],
+      notification: () => notifications.multiplication.distribution
     }
   ],
   association: [
@@ -653,16 +661,17 @@ let multiplication = {
   ]
 }
 
-let division = {
+const division = {
   fundamentals: [
     //0
     "Fundamentals",
-    //1 - Zeroes and Ones
+    //1 - Zeroes and Ones - *
     {
       name: "Zeroes and Ones",
       id: ["division", "fundamentals", 1],
       run: () => divIntro(),
-      test: () => user.multiplication.fundamentals[1],
+      test: () => user.multiplication.fundamentals[3],
+      notification: () => notifications.addition.fractions
     },
     //2 - Halves
     {
@@ -678,19 +687,38 @@ let division = {
       run: () => circleDiv(1, 6, 18, 3),
       test: () => user.division.fundamentals[2]
     },
-    //4 - Fourths
+    //4 - Quarters
     {
-      name: "Fourths",
+      name: "Quarters",
       id: ["division", "fundamentals", 4],
       run: () => circleDiv(1, 6, 24, 4),
       test: () => user.division.fundamentals[3]
     },
-    //5 - Fifths
+    //5 - Fifths - *
     {
       name: "Fifths",
       id: ["division", "fundamentals", 5],
       run: () => circleDiv(1, 4, 20, 5),
       test: () => user.division.fundamentals[4],
+      notification: () => notifications.division.multiply
+    }
+  ],
+  multiply: [
+    //0
+    "Multiply",
+    //1 - Halves and Thirds
+    {
+      name: "Halves and Thirds",
+      id: ["division", "multiply", 1],
+      run: () => divisionMultiply(2, 3, 3, 9, 1),
+      test: () => user.division.fundamentals[5]
+    },
+    //2 - Quarters and Fifths
+    {
+      name: "Quarters and Fifths",
+      id: ["division", "multiply", 2],
+      run: () => divisionMultiply(4, 5, 3, 9, 1),
+      test: () => user.division.multiply[1],
     }
   ]
 }

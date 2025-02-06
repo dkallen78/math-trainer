@@ -1,9 +1,9 @@
 :root {
-  --bg-color: hsla(0, 0%, 100%, 1);
   --text-color: hsla(0, 0%, 0%, 1);
+  --bg-color: hsla(0, 0%, 100%, 1);
   --border-color: hsla(0, 0%, 0%, 1);
-  --inactive-color: hsla(0, 0%, 50%, 0.5);
   --button-bg-color: hsla(0, 0%, 0%, 0);
+  --inactive-color: hsla(0, 0%, 50%, 0.5);
 }
 
 body {
@@ -46,18 +46,14 @@ button {
 }
 
 .button-selected {
-  filter: invert(100%);
-  background-color: var(--bg-color);
+  color: var(--bg-color);
+  background-color: var(--text-color);
 }
 
 @keyframes buttonPulse {
   20%   {
     filter: invert(100%);
-    background-color: var(--bg-color);  
-    transform: rotate(10deg);  
-  }
-  40% {
-    transform: rotate(-10deg);
+    background-color: var(--bg-color);    
   }
 }
 
@@ -104,15 +100,24 @@ button {
 
 .screen {
   width: 100vw;
-  height: 95vh;
+  height: 95svh;
+}
+
+.span-box {
+  padding: .25rem;
+  border: .15rem solid var(--border-color);
+  border-radius: .5rem;
+}
+
+.span-stroke {
+  display: contents;
+  color: var(--bg-color);
+  font-weight: bold;
+  -webkit-text-stroke: .05rem var(--text-color);
+  paint-order: stroke fill;
 }
 
 @media screen and (orientation:landscape) {
-
-  /*body {
-    display: flex;
-    justify-content: center;
-  }*/
 
   .screen {
     width: 30vw !important;
@@ -122,4 +127,9 @@ button {
   .marquee {
     font-size: calc(.1 * 30vw);
   }
+
+  .math-interface {
+    grid-template-rows: 6rem 20% 40% !important;
+  }
 }
+

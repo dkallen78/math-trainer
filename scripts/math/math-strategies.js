@@ -3,6 +3,7 @@ async function doMathStrategy(strategy) {
   //Builds the math interface screen for strategy       //
   //  problems                                          //
   //----------------------------------------------------//
+  
   const interface = make.main("math-strategy-interface", ["screen", "grid", "math-interface"]);
 
     const problemDisplay = make.section("math-strategy-interface__problem-display", "problem-display");
@@ -58,7 +59,7 @@ async function doMathStrategy(strategy) {
       await waitForAnswer(problem)
       //
       //If the answer is correct
-      .then(() => {
+      .then(async () => {
         //
         //stops the timer
         totalTime = performance.now() - startTime;
@@ -69,15 +70,17 @@ async function doMathStrategy(strategy) {
         //If the user has demonstrated "mastery" of the strategy
         if (queue.pass) {
           playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
-          //
-          //Check for notifications associated with passing the strategy
-          if ("notification" in strategy && !user[strategy.id[0]][strategy.id[1]][strategy.id[2]]) {
-            notify.push(strategy.notification);
+          
+          if (!user[strategy.id[0]][strategy.id[1]][strategy.id[2]]) {
+            //
+            //Mark the strategy as completed in the user variable
+            user[strategy.id[0]][strategy.id[1]][strategy.id[2]] = true;
+            //
+            //Check for notifications and display them if valid
+            if ("notification" in strategy && strategy.notification().test()) {
+              await displayNotification(strategy.notification());
+            }
           }
-          //
-          //Mark the strategy as completed in the user variable
-          user[strategy.id[0]][strategy.id[1]][strategy.id[2]] = true;
-
           quit = true;
         //
         //If the user has not demonstrated "mastery" of the strategy
@@ -180,6 +183,31 @@ async function doMathStrategy(strategy) {
     [problem.answer, problem.equation] = strategy.run();
 
     return problem;
+  }
+
+  async function displayNotification(notification) {
+
+    return new Promise((resolve) => {
+
+      const notificationScreen = make.main("notification-screen", ["screen", "flex-column"]);
+
+      const notificationAcclaim = make.section("notification-screen__acclaim", "marquee");
+        notificationAcclaim.innerHTML = notification.acclaim;
+      notificationScreen.appendChild(notificationAcclaim);
+
+      const notificationUnlock = make.section("notification-screen__unlock", "marquee");
+        notificationUnlock.innerHTML = notification.unlock;
+      notificationScreen.appendChild(notificationUnlock)
+
+      const doneButton = make.button("Done", "notification-screen__done-button", "button-big", () => {
+        doneButton.onclick = null;
+        playTone(randomNote());
+        resolve();
+      })
+      notificationScreen.appendChild(doneButton);
+
+      fadeTransition(notificationScreen);
+    })
   }
 }
 
