@@ -187,7 +187,7 @@ function multiply(mdMin, mdMax, mrMin, mrMax, mode) {
 
 }
 //
-function repeatedAddition() {
+function repeatedAddition(aMin, aMax, mMin, mMax, mode) {
   //----------------------------------------------------//
   //Creates a repeated addition problem on one side of  //
   //  the equation and a multiplication problem on the  //
@@ -199,28 +199,39 @@ function repeatedAddition() {
   //  equation and a string representation of it        //
   //----------------------------------------------------//
 
-  let a = rnd(2, 9);
-  let m = rnd(1, 3);
+  let a = rnd(aMin, aMax);
+  let m = rnd(mMin, mMax);
   let addPart = "";
   let solutions = [];
 
   for (let i = 1; i <= m; i++) {
 
-    addPart += (i !== m) ? `${a} + ` : `${stroke(a)}`;
-
-    /*if (i !== m) {
-      addPart += `${a} + `;
-    } else {
-      addPart += `${stroke(a)}`;
-    }*/
+    addPart += (i !== m) ? `${a} +&nbsp` : (mode === 1) ? `${stroke(a)}` : `${a}`;
   }
 
-  solutions = [
-    [a, `${addPart} = ${stroke("?")} × ${m}`],
-    [a, `${addPart} = ${m} × ${stroke("?")}`],
-    [a, `${stroke("?")} × ${m} = ${addPart}`],
-    [a, `${m} × ${stroke("?")} = ${addPart}`]
-  ];
+  switch(mode) {
+    case 1: 
+      solutions = [
+        [a, `${addPart}&nbsp=&nbsp${stroke("?")}&nbsp× ${m}`],  // a + a + a = ? × m
+        [a, `${addPart}&nbsp= ${m} ×&nbsp${stroke("?")}`],      // a + a + a = m × ?
+        [a, `${stroke("?")}&nbsp× ${m} =&nbsp${addPart}`],      // ? × m = a + a + a
+        [a, `${m} ×&nbsp${stroke("?")}&nbsp=&nbsp${addPart}`]   // m × ? = a + a + a
+      ];
+      break;
+    case 2:
+      solutions = [
+        [a * m, `${addPart}&nbsp=&nbsp${a}&nbsp× ${m} = ?`],    // a + a + a = b × m = ?
+        [a * m, `${addPart}&nbsp= ${m} ×&nbsp${a} = ?`],        // a + a + a = m × b = ?
+        [a * m, `${a}&nbsp× ${m} =&nbsp${addPart} = ?`],        // b × m = a + a + a = ?
+        [a * m, `${m} ×&nbsp${a}&nbsp=&nbsp${addPart} = ?`]     // m × b = a + a + a = ?
+        [a * m, `? = ${addPart}&nbsp=&nbsp${a}&nbsp× ${m}`],    // ? = a + a + a = b × m
+        [a * m, `? = ${addPart}&nbsp= ${m} ×&nbsp${a}`],        // ? = a + a + a = m × b
+        [a * m, `? = ${a}&nbsp× ${m} =&nbsp${addPart}`],        // ? = b × m = a + a + a
+        [a * m, `? = ${m} ×&nbsp${a}&nbsp=&nbsp${addPart}`]     // ? = m × b = a + a + a
+      ];
+      break;
+  }
+  
 
   return solutions[rnd(0, solutions.length - 1)];
 }

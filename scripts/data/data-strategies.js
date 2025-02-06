@@ -560,7 +560,7 @@ const multiplication = {
     {
       name: "Repeated Addition I",
       id: ["multiplication", "fundamentals", 1],
-      run: () => repeatedAddition(),
+      run: () => repeatedAddition(2, 9, 1, 3, 1),
       test: () => user.addition.fundamentals[7] && user.addition.sequence[5]
     },
     //2 - Doubles and Triples I
