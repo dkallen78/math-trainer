@@ -40,7 +40,7 @@ button {
 }
 
 .button-ready {
-  animation-name: buttonPulse;
+  animation-name: buttonShake;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
 }
@@ -50,10 +50,21 @@ button {
   background-color: var(--text-color);
 }
 
-@keyframes buttonPulse {
-  20%   {
-    filter: invert(100%);
-    background-color: var(--bg-color);    
+@keyframes buttonShake {
+  5%   {  
+    transform: rotate(10deg); 
+  }
+  10% {
+    transform: rotate(-10deg);
+  }
+  15%   {  
+    transform: rotate(10deg); 
+  }
+  20% {
+    transform: rotate(-10deg);
+  }
+  30% {
+    transform: rotate(0deg);
   }
 }
 
