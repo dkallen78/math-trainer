@@ -148,7 +148,7 @@ async function makeStrategyDetailScreen(group) {
   //  to practice. This is the screen right before the  //
   //  primary math loop                                 //
   //----------------------------------------------------//
-  //skill(array[objects]): the array of skills to be    //
+  //group(array[objects]): the array of skills to be    //
   //  displayed                                         //
   //----------------------------------------------------//
 
