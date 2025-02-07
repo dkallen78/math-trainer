@@ -601,8 +601,10 @@ function upTo(aMin, cap) {
   let a = rnd(aMin, cap);
 
   let solutions = [
-    [(cap - a), `${a} + ? = ${cap}`],
-    [(cap - a), `? + ${a} = ${cap}`]
+    [(cap - a), `${a} + ? = ${cap}`],   // a + ? = b
+    [(cap - a), `? + ${a} = ${cap}`],   // ? + a = b
+    [(cap - a), `${cap} = ${a} + ?`],   // b = a + ?
+    [(cap - a), `${cap} = ? + ${a}`]    // b = ? + a
   ]
 
   return rnd.index(solutions);
