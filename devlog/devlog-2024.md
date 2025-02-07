@@ -186,3 +186,10 @@ Nothing to brag about today. I rewrote the code that handles how the theme page 
 
 I reached out on reddit for feedback on how I'm doing but noone responded. Either I'm missing the mark by a lot or teachers don't have the bandwidth to play with new software. I'm kind of bummed about it but getting ignored on the internet is no big deal. I do need to find a source of feedback though. Maybe I should be looking internationally...
 
+## Update 2024-02-19
+
+### 22:30
+
+I did a minor tweak to the notifications system that makes them easier to maintain but I'm still not happy with it. The big improvement it has over what I was doing is that it lets me check for more than one condition before giving a notification. Changing where the notification is, is still kind of a pain in the butt, but I no longer have to do that to change what it says. I'd still rather have a system that can listen for the right changes to take place but that feels complicated and probably not worth it. At least not yet.
+
+I also added a new problem function for division that illustrates the connection between division and multiplication and how to use that to help solve problems. I'm not sure how to develop it beyond the very basics but it's a start. Division is tricky for me because I don't really remember any division tricks from school, so I have to relearn them and then find a way to make them intuitive given my limited UI vocabulary.
