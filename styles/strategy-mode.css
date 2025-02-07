@@ -12,7 +12,12 @@
   align-content: start;
 }
 
+#strategy-detail-screen__info {
+  margin-top: auto;
+}
+
 #strategy-detail-screen__strategy-detail {
+  margin: auto;
   color: var(--text-color);
   text-align: center;
   font-size: 1.5rem;
