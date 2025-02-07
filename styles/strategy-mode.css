@@ -1,3 +1,12 @@
+#strategy-groups-screen__info {
+  margin-top: auto;
+  margin-bottom: 2rem;
+}
+
+#strategy-groups-screen__back-button {
+  margin-bottom: auto;
+}
+
 #strategy-detail-screen {
   grid-template-rows: 10% 15% auto auto auto;
   align-content: start;

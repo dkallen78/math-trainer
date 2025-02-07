@@ -1,4 +1,5 @@
 const addition = {
+  name: "Addition",
   fundamentals: [
     //0
     "Fundamentals",
@@ -368,6 +369,7 @@ const addition = {
 }
 
 const subtraction = {
+  name: "Subtraction",
   fundamentals: [
     //0
     "Fundamentals",
@@ -553,6 +555,7 @@ const subtraction = {
 }
 
 const multiplication = {
+  name: "Multiplication",
   fundamentals: [
     //0
     "Fundamentals",
@@ -662,6 +665,7 @@ const multiplication = {
 }
 
 const division = {
+  name: "Division",
   fundamentals: [
     //0
     "Fundamentals",

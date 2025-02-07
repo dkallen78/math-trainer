@@ -106,9 +106,13 @@ async function makeStrategyGroupsScreen(operation) {
     return new Promise((resolve, reject) => {
 
       for (const group in operation) {
-
-        if (operation[group][1].test()) {
+        //
+        //if the first item in the operation object is not a string
+        //  and if that group of strats has been unlocked
+        if (typeof operation[group] !== "string" && operation[group][1].test()) {
           const groupButton = get(`strategy-groups-screen__${operation[group][0]}-button`);
+          //
+          //activate the button
           remove.class(groupButton, "button-inactive");
           groupButton.onclick = async () => {
             groupButton.onclick = null;
@@ -117,8 +121,10 @@ async function makeStrategyGroupsScreen(operation) {
             resolve(false);
           };
         }
+        
       }
-
+      //
+      //Make the Back button
       const backButton = get("strategy-groups-screen__back-button");
       backButton.onclick = async () => {
         backButton.onclick = null;
@@ -133,9 +139,15 @@ async function makeStrategyGroupsScreen(operation) {
 
     const strategyGroupsScreen = make.main("strategy-groups-screen", ["screen", "flex-column"]);
 
+      const strategyGroupsScreenInfo = make.header("strategy-groups-screen__info", "marquee");
+        strategyGroupsScreenInfo.innerHTML = operation.name;
+      strategyGroupsScreen.appendChild(strategyGroupsScreenInfo);
+
       for (const group in operation) {
-        const groupButton = make.button(operation[group][0], `strategy-groups-screen__${operation[group][0]}-button`, ["button-medium", "button-inactive"]);
-        strategyGroupsScreen.appendChild(groupButton);
+        if (typeof operation[group] !== "string") {
+          const groupButton = make.button(operation[group][0], `strategy-groups-screen__${operation[group][0]}-button`, ["button-medium", "button-inactive"]);
+          strategyGroupsScreen.appendChild(groupButton);
+        }
       }
 
       const backButton = make.button("Back", "strategy-groups-screen__back-button", "button-medium");
