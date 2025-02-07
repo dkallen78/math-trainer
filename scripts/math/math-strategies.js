@@ -3,6 +3,9 @@ async function doMathStrategy(strategy) {
   //Builds the math interface screen for strategy       //
   //  problems                                          //
   //----------------------------------------------------//
+  //Called from screen-strategy-mode.js >               //
+  //  makeStrategyDetailScreen() > waitForButton()      //
+  //----------------------------------------------------//
   
   const interface = make.main("math-strategy-interface", ["screen", "grid", "math-interface"]);
 
@@ -68,18 +71,16 @@ async function doMathStrategy(strategy) {
         queue.push(totalTime, digitCount(problem.answer));
         //
         //If the user has demonstrated "mastery" of the strategy
-        if (queue.pass) {
+        //  AND they haven't "mastered" the skill yet
+        if (queue.pass && !user[strategy.id[0]][strategy.id[1]][strategy.id[2]]) {
           playArpeggio(makeChord(chords.I.concat(chords.IV, chords.V), user.activeKey));
-          
-          if (!user[strategy.id[0]][strategy.id[1]][strategy.id[2]]) {
-            //
-            //Mark the strategy as completed in the user variable
-            user[strategy.id[0]][strategy.id[1]][strategy.id[2]] = true;
-            //
-            //Check for notifications and display them if valid
-            if ("notification" in strategy && strategy.notification().test()) {
-              await displayNotification(strategy.notification());
-            }
+          //
+          //Mark the strategy as completed in the user variable
+          user[strategy.id[0]][strategy.id[1]][strategy.id[2]] = true;
+          //
+          //Check for notifications and display them if valid
+          if ("notification" in strategy && strategy.notification().test()) {
+            await displayNotification(strategy.notification());
           }
           quit = true;
         //
