@@ -192,17 +192,17 @@ function addComp(aMin, aMax, aMod, cMin, cMax, cMod) {
   return rnd.index(solutions);
 }
 //
-function addPartCrossing10s(aMin, aMax, aMod, mode) {
+function addPartCrossing10s(crossMin, crossMax, crossMod, mode) {
   //----------------------------------------------------//
   //Creates a crossing 10s problem that can be solved   //
   //  with partitioning                                 //
   //----------------------------------------------------//
-  //aMin(integer): the minimum value of the number to   //
-  //  be crossed/bridged                                //
-  //aMax(integer): the maximum value of the number to   //
-  //  be crossed/bridged                                //
-  //aMod(integer): the multiplicative modifier of the   //
-  //  number to be crossed/bridged                      //
+  //crossMin(integer): the minimum value of the number  //
+  //  to be crossed/bridged                             //
+  //crossMax(integer): the maximum value of the number  //
+  //  to be crossed/bridged                             //
+  //crossMod(integer): the multiplicative modifier of   //
+  //  the number to be crossed/bridged                  //
   //mode(integer):  determines what format the solution //
   //  will take                                         //
   //    1: partition missing-term problem               //
@@ -213,24 +213,39 @@ function addPartCrossing10s(aMin, aMax, aMod, mode) {
   //----------------------------------------------------//
 
 
-  let a = rnd(aMin, aMax) * (10 ** aMod);
-  let b = rnd(1, 8);
-  let c = 0;
+  let cross = rnd(crossMin, crossMax) * (10 ** crossMod);
+  let more = rnd(1, 8);
+  let sum = cross + more;
+  let b = rnd(more + 1, 9);
+  let a = sum - b;
+  if (a < b) {
+    [a, b] = [b, a];
+  }
+  let b1 = cross - a;
+  let b2 = b - b1;
+  
   let solutions = [];
 
   switch(mode) {
     case 1:
-      c = rnd(1, (9 - b));
       solutions = [
-        [b, `${a - b} +&nbsp${stroke(b + c)}&nbsp=&nbsp<span class="span-box">${a - b} +&nbsp${stroke("?")}</span>&nbsp+&nbsp${stroke(c)}`],
-        [b, `<span class="span-box">${a - b} +&nbsp${stroke("?")}</span>&nbsp+&nbsp${stroke(c)}&nbsp= ${a - b} +&nbsp${stroke(b + c)}`]
+        //  a + b = [a + b1] + b2 = ?
+        [sum, `${a} +&nbsp${stroke(b)}&nbsp=&nbsp${box(`${a} + ${stroke(b1)}`)}&nbsp+&nbsp${stroke(b2)}&nbsp= ?`],
+        //  [a + b1] + b2 = a + b = ?
+        [sum, `${box(`${a} + ${stroke(b1)}`)}&nbsp+&nbsp${stroke(b2)}&nbsp= ${a} +&nbsp${stroke(b)}&nbsp= ?`],
+        //  ? = a + b = [a + b1] + b2
+        [sum, `? = ${a} +&nbsp${stroke(b)}&nbsp=&nbsp${box(`${a} + ${stroke(b1)}`)}&nbsp+&nbsp${stroke(b2)}`],
+        //  ? = [a + b1] + b2 = a + b
+        [sum, `? =&nbsp${box(`${a} + ${stroke(b1)}`)}&nbsp+&nbsp${stroke(b2)}&nbsp= ${a} +&nbsp${stroke(b)}`]
       ];
       break;
     case 2:
-      c = rnd((b + 1), 9);
+      //c = rnd((b + 1), 9);
       solutions = [
-        [(a + b), `${(a + b) - c} + ${c} = ?`],
-        [(a + b), `? = ${(a + b) - c} + ${c}`]
+        [sum, `${a} + ${b} = ?`],
+        [sum, `${b} + ${a} = ?`],
+        [sum, `? = ${a} + ${b}`],
+        [sum, `? = ${b} + ${a}`]
       ]
   }
 

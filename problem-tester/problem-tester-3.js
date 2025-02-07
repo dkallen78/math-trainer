@@ -1,6 +1,6 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
-let testFunc = () => decompose(3);
+let testFunc = () => addPartCrossing10s(1, 8, 1, 2);
 //let testFunc = () => circleTest(6);
 
 function testOnce() {
