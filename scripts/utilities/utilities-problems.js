@@ -12,6 +12,20 @@ function stroke(text) {
   return `<span class="span-stroke">${text}</span>`;
 }
 
+function shake(text) {
+  //----------------------------------------------------//
+  //Places the input text into a custom <span>          //
+  //----------------------------------------------------//
+  //text(string): text to be placed in the <span>       //
+  //----------------------------------------------------//
+  //return(string): a pair of <span> tags between which //
+  //  the input text is placed                          //
+  //----------------------------------------------------//
+  
+  if (typeof text === "number") text = text.toString(10);
+  return `<span class="span-shake">${text}</span>`;
+}
+
 function box(text) {
   //----------------------------------------------------//
   //Places the input text into a custom <span>          //

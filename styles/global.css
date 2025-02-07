@@ -128,6 +128,21 @@ button {
   paint-order: stroke fill;
 }
 
+.span-shake {
+  animation-name: numberShake;
+  animation-duration: 0.25s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes numberShake {
+  33% {
+    transform: rotate(5deg);
+  }
+  66% {
+    transform: rotate(-5deg);
+  }
+}
+
 @media screen and (orientation:landscape) {
 
   .screen {

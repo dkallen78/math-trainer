@@ -307,14 +307,30 @@ function broken10s(breakMin, breakMax, breakMod, crackMin, crackMax, cMin, cMax,
   let a = toBreak - b;
   let c = rnd(cMin, cMax);
 
+  let solutions = [];
+
   switch(mode) {
     case 1:
-      return [b, `${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)}&nbsp= (${stroke(a)}&nbsp+&nbsp${stroke("?")}) + ${c}`];
+      solutions = [
+        [b, `${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)}&nbsp= (${stroke(a)}&nbsp+&nbsp${stroke("?")}) + ${c}`],     // a + b + c = (a + ?) + b
+        [b, `(${stroke(a)}&nbsp+&nbsp${stroke("?")}) + ${c} =&nbsp${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)}`],     // (a + ?) + b = a + b + c
+        [b, `${c} + (${stroke(a)}&nbsp+&nbsp${stroke("?")}) =&nbsp${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)}`],     // b + (a + ?) = a + b + c
+        [b, `${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)}&nbsp= ${c} + (${stroke(a)}&nbsp+&nbsp${stroke("?")})`],     // a + b + c = b + (a + ?)
+      ];
       break;
     case 2:
-      return [(a + b + c), `${stroke(a)}&nbsp+ ${c} +&nbsp${stroke(b)} = ?`];
+      solutions = [
+        [(a + b + c), `${shake(a)}&nbsp+ ${c} +&nbsp${shake(b)}&nbsp= ?`],    // a + b + c = ?
+        [(a + b + c), `${shake(a)}&nbsp+&nbsp${shake(b)}&nbsp+ ${c} = ?`],
+        [(a + b + c), `${c} +&nbsp${shake(a)}&nbsp+&nbsp${shake(b)}&nbsp= ?`],
+        [(a + b + c), `? =&nbsp${shake(a)}&nbsp+ ${c} +&nbsp${shake(b)}`],    // ? = a + b + c
+        [(a + b + c), `? =&nbsp${shake(a)}&nbsp+&nbsp${shake(b)}&nbsp+ ${c}`],
+        [(a + b + c), `? = ${c} +&nbsp${shake(a)}&nbsp+&nbsp${shake(b)}`]
+      ];
       break;
   }
+
+  return rnd.index(solutions);
 }
 //
 function brokenDoubles(aLow, aHigh, bLow, bHigh, mode) {
