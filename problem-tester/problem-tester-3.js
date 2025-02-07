@@ -1,6 +1,6 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
-let testFunc = () => upTo(1, 10);
+let testFunc = () => decompose(3);
 //let testFunc = () => circleTest(6);
 
 function testOnce() {

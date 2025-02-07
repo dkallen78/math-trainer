@@ -458,11 +458,13 @@ function decompose(numDigits) {
 
 
   let digits = [];
-  
+  //
+  //Creates the n-digit number that will be decomposed
   for (let i = 0; i < numDigits; i++) {
     digits.push(rnd(1, 9));
   }
-
+  //
+  //Determines which digit will be the answer
   let unknownDigit = rnd(0, digits.length - 1);
   let output = "";
   let number = 0;
@@ -470,11 +472,8 @@ function decompose(numDigits) {
   digits.forEach((digit, index) => {
     let iNumber = digit * (10 ** index);
     number += iNumber;
-    if (index === unknownDigit) {
-      output = ` ? ${output}`;
-    } else {
-      output = ` ${(iNumber).toString(10)} ${output}`;
-    }
+
+    output = (index === unknownDigit) ? ` ? ${output}` : ` ${(iNumber).toString(10)} ${output}`;
     if (index !== digits.length - 1) {
       output = `+ ${output}`;
     }
@@ -482,7 +481,8 @@ function decompose(numDigits) {
 
   let answer = digits[unknownDigit] * (10 ** unknownDigit);
   let solutions = [
-    [answer, `${output} = ${number}`]
+    [answer, `${output} = ${number}`],
+    [answer, `${number} = ${output}`]
   ];
 
   return rnd.index(solutions);
