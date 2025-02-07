@@ -502,6 +502,40 @@ function decompose(numDigits) {
 
   return rnd.index(solutions);
 }
+
+function decompose2(numDigits, unknown = -1) {
+  let digits = [];
+  //
+  //Creates the n-digit number that will be decomposed
+  for (let i = 0; i < numDigits; i++) {
+    digits.push(rnd(1, 9) * (10 ** i));
+  }
+
+  console.log(digits);
+
+  let number = digits.reduce((sum, current) => {
+    return sum + current
+  });
+
+  console.log(number);
+  //
+  //Determines which digit will be the answer
+  let unknownDigit = (unknown < 0) ? rnd(0, digits.length - 1) : unknown;
+  let answer = digits[unknownDigit];
+  digits[unknownDigit] = stroke("?");
+
+  let output = digits.reduce((string, num, index, array) => {
+    return string += (index !== array.length - 1) ? `${num}&nbsp+&nbsp` : `${num}`;
+  }, "");  
+
+  console.log(output);
+  
+  let solutions = [
+    [answer, `${output}&nbsp= ${number}`]
+  ];
+
+  return rnd.index(solutions);
+}
 //
 function doubles(aLow, aHigh, aMod, rLow, rHigh) {
   //----------------------------------------------------//
