@@ -5,7 +5,6 @@ const notifications = {
       acclaim: "Unlocked New Addition Strategy!",
       unlock: "Compensation",
     },
-    //
     fractions: {
       test: () => addition.fractions[1].test(),
       acclaim: "Unlocked New Addition Strategy!",

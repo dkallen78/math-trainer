@@ -32,7 +32,7 @@ const addition = {
       id: ["addition", "fundamentals", 4],
       run: () => upTo(1, 10),
       test: () => user.addition.fundamentals[3],
-      notification: () => notifications.addition.reorder
+      notification: () => notifications.addition.placeValue
     },
     //5 - Doubles I - *
     {
@@ -40,7 +40,7 @@ const addition = {
       id: ["addition", "fundamentals", 5],
       run: () => doubles(1, 5, 1, 0, 0),
       test: () => user.addition.fundamentals[4],
-      notification: () => notifications.addition.placeValue
+      //notification: () => notifications.addition.placeValue
     },
     //6 - Single-Digit Addition II
     {
@@ -73,7 +73,7 @@ const addition = {
       name: "Broken 10 I",
       id: ["addition", "reorder", 1],
       run: () => broken10s(1, 1, 1, 1, 9, 1, 9, 1),
-      test: () => user.addition.fundamentals[4],
+      test: () => user.addition.placeValue[1],
     },
     //2 - Broken 10 II
     {
@@ -134,7 +134,8 @@ const addition = {
       name: "10 + 1s",
       id: ["addition", "placeValue", 1],
       run: () => add(1, 1, 1, 1, 9, 0),
-      test: () => user.addition.fundamentals[5]
+      test: () => user.addition.fundamentals[4],
+      notification: () => notifications.addition.reorder
     },
     //2 - Add 10s
     {
