@@ -461,49 +461,17 @@ function compIntro(mode) {
   return rnd.index(solutions);
 }
 //
-function decompose(numDigits) {
+function decompose(numDigits, unknown = -1) {
   //----------------------------------------------------//
   //Creates a decomposition problem                     //
   //----------------------------------------------------//
   //numDigits(integer): number of terms in the problem  //
+  //unknown(integer): which digit will be the unknown   //
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
   //----------------------------------------------------//
 
-
-  let digits = [];
-  //
-  //Creates the n-digit number that will be decomposed
-  for (let i = 0; i < numDigits; i++) {
-    digits.push(rnd(1, 9));
-  }
-  //
-  //Determines which digit will be the answer
-  let unknownDigit = rnd(0, digits.length - 1);
-  let output = "";
-  let number = 0;
-  
-  digits.forEach((digit, index) => {
-    let iNumber = digit * (10 ** index);
-    number += iNumber;
-
-    output = (index === unknownDigit) ? ` ? ${output}` : ` ${(iNumber).toString(10)} ${output}`;
-    if (index !== digits.length - 1) {
-      output = `+ ${output}`;
-    }
-  });
-
-  let answer = digits[unknownDigit] * (10 ** unknownDigit);
-  let solutions = [
-    [answer, `${output} = ${number}`],
-    [answer, `${number} = ${output}`]
-  ];
-
-  return rnd.index(solutions);
-}
-
-function decompose2(numDigits, unknown = -1) {
   let digits = [];
   //
   //Creates the n-digit number that will be decomposed
@@ -511,13 +479,9 @@ function decompose2(numDigits, unknown = -1) {
     digits.push(rnd(1, 9) * (10 ** i));
   }
 
-  console.log(digits);
-
   let number = digits.reduce((sum, current) => {
     return sum + current
   });
-
-  console.log(number);
   //
   //Determines which digit will be the answer
   let unknownDigit = (unknown < 0) ? rnd(0, digits.length - 1) : unknown;
@@ -528,10 +492,15 @@ function decompose2(numDigits, unknown = -1) {
     return string += (index !== array.length - 1) ? `${num}&nbsp+&nbsp` : `${num}`;
   }, "");  
 
-  console.log(output);
+  let output2 = digits.toReversed().reduce((string, num, index, array) => {
+    return string += (index !== array.length - 1) ? `${num}&nbsp+&nbsp` : `${num}`;
+  }, "");
   
   let solutions = [
-    [answer, `${output}&nbsp= ${number}`]
+    [answer, `${output}&nbsp= ${number}`],
+    [answer, `${number} =&nbsp${output}`],
+    [answer, `${output2}&nbsp= ${number}`],
+    [answer, `${number} =&nbsp${output2}`],
   ];
 
   return rnd.index(solutions);
