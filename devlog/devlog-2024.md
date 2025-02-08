@@ -168,9 +168,9 @@ I've finished the "big update." Except for the notifications at least. I'm think
 
 I've also drastically updated my file structure and file-naming conventions. I have more files now, but they are easier to navigate and it's clearer what they do. Hopefully that means I can be more productive =P 
 
-## Update 2024-02-16
+### Update 2024-02-16
 
-### 22:45
+#### 22:45
 
 I added a challenge that only lasts 60 seconds and the user has to answer as many questions as possible as they slowly get harder. A lot of it was just copy/pasting which makes me think I need to look at how to condense some of my work. I'm not going to worry about it in the short term because it's just a distraction, but I really feel good when I can refactor stuff down to one function. 
 
@@ -178,17 +178,17 @@ I indulged a conceit for a week or two that I've now abandonned. It all started 
 
 I've got a lot of other stuff to do in the upcoming week, but hopefully I can expand the division or multiplication portions of the strategies mode in some spare moments.
 
-## Update 2024-02-18
+### Update 2024-02-18
 
-### 23:00
+#### 23:00
 
 Nothing to brag about today. I rewrote the code that handles how the theme page is built so it's more automatic and I created a new file with theme data so it's easier to make new ones. I did all this after making a Blue theme. I might make a green and black "Matrix" theme before I crash tonight.
 
 I reached out on reddit for feedback on how I'm doing but noone responded. Either I'm missing the mark by a lot or teachers don't have the bandwidth to play with new software. I'm kind of bummed about it but getting ignored on the internet is no big deal. I do need to find a source of feedback though. Maybe I should be looking internationally...
 
-## Update 2024-02-19
+### Update 2024-02-19
 
-### 22:30
+#### 22:30
 
 I did a minor tweak to the notifications system that makes them easier to maintain but I'm still not happy with it. The big improvement it has over what I was doing is that it lets me check for more than one condition before giving a notification. Changing where the notification is, is still kind of a pain in the butt, but I no longer have to do that to change what it says. I'd still rather have a system that can listen for the right changes to take place but that feels complicated and probably not worth it. At least not yet.
 
