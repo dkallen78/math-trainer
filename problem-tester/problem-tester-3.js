@@ -1,6 +1,6 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
-let testFunc = () => partitionNearDoubles(2, 9, 0, 1, 1);
+let testFunc = () => singleDigitAddition2(2, 9);
 //let testFunc = () => circleTest(6);
 
 function testOnce() {

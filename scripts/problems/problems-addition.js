@@ -612,6 +612,32 @@ function singleDigitAddition(minSum, maxSum, mode) {
 
   return rnd.index(solutions);
 }
+
+function singleDigitAddition2(minSum, maxSum, mode) {
+  //----------------------------------------------------//
+  //Creates a single-digit addition problem with a      //
+  //  minimum and maximum sum                           //
+  //----------------------------------------------------//
+  //minSum(integer): smallest possible sum              //
+  //maxSum(integer): largest possible sum               //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+
+  let sum = rnd(minSum, maxSum);
+
+  let a = rnd(1, sum - 1);
+ 
+  
+
+  let solutions = [
+    [sum, `${a} + ${sum - a} = ?`],
+    [sum, `? = ${a} + ${sum - a}`]
+  ];
+
+  return rnd.index(solutions);
+}
 //
 function upTo(aMin, cap) {
   //----------------------------------------------------//
