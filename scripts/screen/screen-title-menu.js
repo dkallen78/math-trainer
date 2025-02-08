@@ -59,7 +59,7 @@ async function makeModeSelectScreen() {
     
     const modeSelectScreen = make.main("mode-select-screen", ["screen", "flex-column"]);
     
-      const challengeButton = make.button("Challenge", "mode-select-screen__challenge-button", "button-big");
+      const challengeButton = make.button("Challenges", "mode-select-screen__challenge-button", "button-big");
       modeSelectScreen.appendChild(challengeButton);
 
       const strategiesButton = make.button("Strategies", "mode-select-screen__strategies-button", "button-big");
