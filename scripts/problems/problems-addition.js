@@ -526,9 +526,11 @@ function doubles(aLow, aHigh, aMod, rLow, rHigh) {
   let a = rnd(aLow, aHigh) * aMod;
   let drift = rnd(rLow, rHigh);
   let answer = a + (a + drift);
-  let equation = `${a} + ${a + drift} = ?`;
-
-  return [answer, equation];
+  let solutions = [
+    [answer, `${a} + ${a + drift} = ?`],  //  a + a = ?
+    [answer, `? = ${a} + ${a + drift}`]   //  ? = a + a
+  ];
+  return rnd.index(solutions);
 }
 //
 function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
@@ -560,8 +562,14 @@ function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
   switch(mode) {
     case 1:
       solutions = [
+        //  a + b = a + ? + c
         [a, `${a} +&nbsp${stroke(a + split)}&nbsp= ${a} +&nbsp${stroke("?")}&nbsp+&nbsp${stroke(split)}`],
-        [a, `${stroke(a + split)}&nbsp+ ${a} =&nbsp${stroke(split)}&nbsp+&nbsp${stroke("?")}&nbsp+ ${a}`]
+        //  b + a = c + ? + a
+        [a, `${stroke(a + split)}&nbsp+ ${a} =&nbsp${stroke(split)}&nbsp+&nbsp${stroke("?")}&nbsp+ ${a}`],
+        //  a + ? + c = a + b
+        [a, `${a} +&nbsp${stroke("?")}&nbsp+&nbsp${stroke(split)}&nbsp= ${a} +&nbsp${stroke(a + split)}`],
+        //  c + ? + a = b + a
+        [a, `${stroke(split)}&nbsp+&nbsp${stroke("?")}&nbsp+ ${a} =&nbsp${stroke(a + split)}&nbsp+ ${a}`]
       ]
       break;
     case 2:
