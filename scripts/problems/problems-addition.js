@@ -625,15 +625,92 @@ function singleDigitAddition2(minSum, maxSum, mode) {
   //  equation and a string representation of it        //
   //----------------------------------------------------//
 
-  let sum = rnd(minSum, maxSum);
+  const sum = rnd(minSum, maxSum);
 
-  let a = rnd(1, sum - 1);
- 
-  
+  const a = rnd(1, sum - 1);
 
-  let solutions = [
-    [sum, `${a} + ${sum - a} = ?`],
-    [sum, `? = ${a} + ${sum - a}`]
+  //let displayBox = get("math-strategy-interface__problem-display");
+  const displayBox = get("equation").getBoundingClientRect();
+
+  const lineStart = 5;
+  const lineEnd = 95;
+  const lineLevel = 70;
+
+  const svg = make.svg("svg-number-line", "svg-number-line", `0 0 ${displayBox.width} ${displayBox.height * 0.45}`);
+    const line = make.line(`${lineStart}%`, `${lineLevel}%`, `${lineEnd}%`, `${lineLevel}%`, "svg-number-line__line");
+    line.setAttribute("stroke", "black");
+  svg.appendChild(line);
+
+  const lineLength = 10;
+
+  for (let i = 0; i < lineLength + 1; i++) {
+    const x = (((i / lineLength) * (lineEnd - lineStart)) + lineStart).toString(10) + "%";
+    const tick = make.line(x, `${lineLevel - 5}%`, x, `${lineLevel + 5}%`, `svg-number-line__tick${i}`, "ticks");
+    tick.setAttribute("stroke", "black");
+
+    svg.appendChild(tick);
+  }
+
+  const aniKeys = [];
+  let aniTimes = [];
+  let keySplines = "";
+
+  for (i = a, j = 0; i <= sum; i++, j++) {
+    const xPos = displayBox.width * ((((i / lineLength) * (lineEnd - lineStart)) + lineStart) / 100);
+    aniKeys.push(xPos);
+    aniTimes.push((j / (sum - a + 1)) / 1);
+    //keySplines += ".5 0 .5 1;";
+    keySplines += (i === sum) ? "0 .75 .25 1" : "0 .75 .25 1;";
+  }
+
+  //keySplines += ".5 0 .5 1";
+  console.log(keySplines);
+
+  let values = aniKeys.reduce((string, elem, i, a) => {
+    return string += `${(elem - a[0]).toString(10)};`;
+  }, "");
+  values += "0";
+  console.log(values);
+
+  let keyTimes = aniTimes.reduce((string, elem) => {
+    return string += `${elem};`;
+  }, "");
+  keyTimes += "1";
+  console.log(keyTimes);
+
+  const circleX = (((a / lineLength) * (lineEnd - lineStart)) + lineStart).toString(10) + "%";
+  const circle = make.circle(circleX, "70%", "2%");
+
+  const anim = make.animateTransform();
+  anim.setAttribute("attributeName", "transform");
+  anim.setAttribute("type", "translate");
+  anim.setAttribute("calcMode", "spline");
+  anim.setAttribute("values", values);
+  anim.setAttribute("keyTimes", keyTimes);
+  anim.setAttribute("keySplines", keySplines);
+  //anim.setAttribute("from", `0`);
+  //anim.setAttribute("to", `${aniKeys[aniKeys.length-1] - aniKeys[0]}`);
+  anim.setAttribute("dur", `${(sum - a) / 1.5}s`);
+  anim.setAttribute("repeatcount", "indefinite");
+  circle.appendChild(anim);
+
+  svg.appendChild(circle);
+
+  const num0 = make.text(`${lineStart - 2}%`, "50%", "0");
+  svg.appendChild(num0);
+
+  const numAx = (((a / lineLength) * (lineEnd - lineStart)) + lineStart - 2).toString(10) + "%";
+  const numa = make.text(numAx, "50%", a.toString(10));
+  svg.appendChild(numa);
+
+  const num10 = make.text(`${lineEnd - 4.5}%`, "50%", "10");
+  svg.appendChild(num10);
+
+
+
+  const solutions = [
+    [sum, `<div>${a} + ${sum - a} = ?<br>${svg.outerHTML}</div>`],
+    //[sum, `? = ${a} + ${sum - a}`]
   ];
 
   return rnd.index(solutions);

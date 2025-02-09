@@ -48,6 +48,11 @@ g {
   fill-opacity: 0;
 }
 
+#svg-number-line {
+  height: 90%;
+  border: 1px solid;
+}
+
 #svg-pie {
   height: 90%;
   margin-right: .5rem;

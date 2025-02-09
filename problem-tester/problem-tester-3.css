@@ -37,6 +37,23 @@ math {
   font-size: 2rem;
 }
 
+div:has(> #svg-number-line) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: space-around;
+}
+
+#svg-number-line {
+  height: 45%;
+  width: 100%;  
+}
+
+.ticks {
+  transform-origin: 0% 70%;
+}
+
 #svg-pie {
   height: 98%;
   margin-right: .5rem;

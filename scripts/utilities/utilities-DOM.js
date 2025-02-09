@@ -140,6 +140,19 @@ make.animate = function() {
   return animate;
 }
 
+make.animateTransform = function() {
+  let animate = document.createElementNS("http://www.w3.org/2000/svg", "animateTransform");
+  return animate;
+}
+
+make.circle = function(x, y, r) {
+  let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  circle.setAttribute("cx", x);
+  circle.setAttribute("cy", y);
+  circle.setAttribute("r", r);
+  return circle;
+}
+
 make.g = function() {
   let g = document.createElementNS("http://www.w3.org/2000/svg", "g");
   return g;
@@ -151,7 +164,7 @@ make.line = function(x1, y1, x2, y2, id, ...classes) {
   line.setAttribute("y1", y1);
   line.setAttribute("x2", x2);
   line.setAttribute("y2", y2);
-  if (typeof id === "string") {this.rect.id = id}
+  if (typeof id === "string") {line.id = id}
   classes.forEach(x => line.classList.add(x));
   return line;
 }
@@ -177,6 +190,17 @@ make.rect = function(x, y, w, h, id, ...classes) {
   if (typeof id === "string") {rect.id = id}
   classes.forEach(x => rect.classList.add(x));
   return rect;
+}
+
+make.text = function(x, y, txt, id, ...classes) {
+  const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  text.setAttribute("x", x);
+  text.setAttribute("y", y);
+  text.setAttribute("font-family", "monospace");
+  if (typeof id === "string") {text.id = id};
+  classes.forEach(x => text.classList.add(x));
+  text.innerHTML = txt;
+  return text;
 }
 
 function remove(...elements) {
