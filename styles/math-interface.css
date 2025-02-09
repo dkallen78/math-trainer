@@ -48,9 +48,17 @@ g {
   fill-opacity: 0;
 }
 
+div:has(> #svg-number-line) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: space-around;
+}
+
 #svg-number-line {
-  height: 90%;
-  border: 1px solid;
+  height: 45%;
+  width: 100%;  
 }
 
 #svg-pie {
