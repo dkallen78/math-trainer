@@ -632,17 +632,21 @@ function singleDigitAddition2(minSum, maxSum, mode) {
   //let displayBox = get("math-strategy-interface__problem-display");
   const displayBox = get("equation").getBoundingClientRect();
 
+  //
+  //Details controlling the position of the number line
   const lineStart = 5;
   const lineEnd = 95;
   const lineLevel = 70;
-
+  //
+  //Makes the horizontal line
   const svg = make.svg("svg-number-line", "svg-number-line", `0 0 ${displayBox.width} ${displayBox.height * 0.45}`);
     const line = make.line(`${lineStart}%`, `${lineLevel}%`, `${lineEnd}%`, `${lineLevel}%`, "svg-number-line__line");
     line.setAttribute("stroke", "black");
   svg.appendChild(line);
 
   const lineLength = 10;
-
+  //
+  //Makes the vertical ticks on the number line
   for (let i = 0; i < lineLength + 1; i++) {
     const x = (((i / lineLength) * (lineEnd - lineStart)) + lineStart).toString(10) + "%";
     const tick = make.line(x, `${lineLevel - 5}%`, x, `${lineLevel + 5}%`, `svg-number-line__tick${i}`, "ticks");
@@ -654,33 +658,46 @@ function singleDigitAddition2(minSum, maxSum, mode) {
   const aniKeys = [];
   let aniTimes = [];
   let keySplines = "";
-
+  //
+  //Makes the data for the  <animateTransform> element
   for (i = a, j = 0; i <= sum; i++, j++) {
+    //
+    //Determines the x position in pixels of the animation key
     const xPos = displayBox.width * ((((i / lineLength) * (lineEnd - lineStart)) + lineStart) / 100);
     aniKeys.push(xPos);
-    aniTimes.push((j / (sum - a + 1)) / 1);
+    //
+    //Determines the timing of the animation as a percentage of total time
+    aniTimes.push((j / (sum - a + 1)) / 2);
+    //
+    //The timing function for each keyframe transition
     //keySplines += ".5 0 .5 1;";
-    keySplines += (i === sum) ? "0 .75 .25 1" : "0 .75 .25 1;";
+    keySplines += (i === sum) ? "0 .75 .25 1;0 0 1 1" : "0 .75 .25 1;";
   }
 
   //keySplines += ".5 0 .5 1";
   console.log(keySplines);
-
+  //
+  //Reduces the x position array into the correct format
+  //  for the <animateTransform> element
   let values = aniKeys.reduce((string, elem, i, a) => {
     return string += `${(elem - a[0]).toString(10)};`;
   }, "");
-  values += "0";
+  values += "0;0";
   console.log(values);
-
+  //
+  //Reduces the time percentages into a string for the 
+  //  <animateTransform> element
   let keyTimes = aniTimes.reduce((string, elem) => {
     return string += `${elem};`;
   }, "");
-  keyTimes += "1";
+  keyTimes += ".6;1";
   console.log(keyTimes);
-
+  //
+  //Makes the  circle that will be animated on the number line
   const circleX = (((a / lineLength) * (lineEnd - lineStart)) + lineStart).toString(10) + "%";
   const circle = make.circle(circleX, "70%", "2%");
-
+  //
+  //The <animateTransform> element and its attributes
   const anim = make.animateTransform();
   anim.setAttribute("attributeName", "transform");
   anim.setAttribute("type", "translate");
@@ -688,9 +705,7 @@ function singleDigitAddition2(minSum, maxSum, mode) {
   anim.setAttribute("values", values);
   anim.setAttribute("keyTimes", keyTimes);
   anim.setAttribute("keySplines", keySplines);
-  //anim.setAttribute("from", `0`);
-  //anim.setAttribute("to", `${aniKeys[aniKeys.length-1] - aniKeys[0]}`);
-  anim.setAttribute("dur", `${(sum - a) / 1.5}s`);
+  anim.setAttribute("dur", `${(sum - a) / 1}s`);
   anim.setAttribute("repeatcount", "indefinite");
   circle.appendChild(anim);
 
