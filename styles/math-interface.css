@@ -7,7 +7,7 @@ path {
   stroke: var(--text-color);
 }
 
-g {
+g.pie-slice {
   fill-opacity: 0;
   stroke: var(--text-color);
 }

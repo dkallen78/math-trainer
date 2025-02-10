@@ -629,30 +629,34 @@ function singleDigitAddition2(minSum, maxSum, mode) {
 
   const a = rnd(1, sum - 1);
 
-  let displayBox = get("math-strategy-interface__problem-display").getBoundingClientRect();
-  //const displayBox = get("equation").getBoundingClientRect();
+  //let displayBox = get("math-strategy-interface__problem-display").getBoundingClientRect();
+  const displayBox = get("equation").getBoundingClientRect();
 
   //
   //Details controlling the position of the number line
   const lineStart = 5;
   const lineEnd = 95;
-  const lineLevel = 70;
+  //const lineLevel = 70;
+  const lineLength = 10;
   //
   //Makes the horizontal line
   const svg = make.svg("svg-number-line", "svg-number-line", `0 0 ${displayBox.width} ${displayBox.height * 0.45}`);
-    const line = make.line(`${lineStart}%`, `${lineLevel}%`, `${lineEnd}%`, `${lineLevel}%`, "svg-number-line__line");
-    line.setAttribute("stroke", "black");
+    /*const line = make.line(`${lineStart}%`, `${lineLevel}%`, `${lineEnd}%`, `${lineLevel}%`, "svg-number-line__line");
+    line.setAttribute("stroke", "black");*/
+    const nLine = numberLine;
+    line = nLine.make(lineLength, 0, 10);
   svg.appendChild(line);
 
-  const lineLength = 10;
+  nLine.placeNum(svg, lineLength, a, a.toString(10));
+
   //
   //Makes the vertical ticks on the number line
-  for (let i = 0; i < lineLength + 1; i++) {
+  /*for (let i = 0; i < lineLength + 1; i++) {
     const x = (((i / lineLength) * (lineEnd - lineStart)) + lineStart).toString(10) + "%";
     const tick = make.line(x, `${lineLevel - 5}%`, x, `${lineLevel + 5}%`, `svg-number-line__tick${i}`, "ticks");
     tick.setAttribute("stroke", "black");
     svg.appendChild(tick);
-  }
+  }*/
   /*
   This is the bible for managing SVG animations
   https://svgwg.org/specs/animations/
@@ -683,9 +687,6 @@ function singleDigitAddition2(minSum, maxSum, mode) {
     keySplines += ".5 0 .5 1;";
   }
 
-  console.log(aniValues);
-  console.log(aniTimes);
-  console.log(keySplines);
   //
   //Reduces the x position array into the correct format
   //  for the <animateTransform> element
@@ -693,7 +694,6 @@ function singleDigitAddition2(minSum, maxSum, mode) {
     return string += `${(elem - a[0]).toString(10)};`;
   }, "");
   values += "0";
-  console.log(values);
   //
   //Reduces the time percentages into a string for the 
   //  <animateTransform> element
@@ -701,7 +701,6 @@ function singleDigitAddition2(minSum, maxSum, mode) {
     return string += `${elem};`;
   }, "");
   keyTimes += "1";
-  console.log(keyTimes);
   //
   //Makes the  circle that will be animated on the number line
   const circleX = (((a / lineLength) * (lineEnd - lineStart)) + lineStart).toString(10) + "%";
@@ -721,15 +720,15 @@ function singleDigitAddition2(minSum, maxSum, mode) {
 
   svg.appendChild(circle);
 
-  const num0 = make.text(`${lineStart - 2}%`, "50%", "0");
-  svg.appendChild(num0);
+  //const num0 = make.text(`${lineStart - 2}%`, "50%", "0");
+  //svg.appendChild(num0);
 
-  const numAx = (((a / lineLength) * (lineEnd - lineStart)) + lineStart - 2).toString(10) + "%";
-  const numa = make.text(numAx, "50%", a.toString(10));
-  svg.appendChild(numa);
+  //const numAx = (((a / lineLength) * (nLine.x2 - nLine.x1)) + nLine.x1 - 2).toString(10) + "%";
+  //const numa = make.text(numAx, "50%", a.toString(10));
+  //svg.appendChild(numa);
 
-  const num10 = make.text(`${lineEnd - 4.5}%`, "50%", "10");
-  svg.appendChild(num10);
+  //const num10 = make.text(`${lineEnd - 4}%`, "50%", "10");
+  //svg.appendChild(num10);
 
 
 

@@ -63,6 +63,44 @@ mathML.mfrac = function(num, denom) {
   return `<mfrac>${num}${denom}</mfrac>`;
 }
 
+const numberLine = {
+  x1: 5,
+  x2: 95,
+  y: 70,
+
+  make: (length, start, end) => {
+    const g = make.g();
+
+      const line = make.line(`${numberLine.x1}%`, `${numberLine.y}%`, `${numberLine.x2}%`, `${numberLine.y}%`);
+      set(line, ["stroke", "var(--text-color)"]);
+      g.appendChild(line);
+
+      for (let i = 0; i < length + 1; i++) {
+        const x = (((i / length) * (numberLine.x2 - numberLine.x1)) + numberLine.x1).toString(10) + "%";
+        const tick = make.line(x, `${numberLine.y - 5}%`, x, `${numberLine.y + 5}%`, `svg-number-line__tick${i}`, "ticks");
+        set(tick, ["stroke", "var(--text-color)"]);
+        g.appendChild(tick);
+      }
+
+      const firstNum = make.text(`${numberLine.x1 - 2}%`, "50%", start.toString(10));
+      set(firstNum, ["fill", "var(--text-color)"]);
+      g.appendChild(firstNum);
+
+      const lastNum = make.text(`${numberLine.x2 - 4}%`, "50%", end.toString(10));
+      set(lastNum, ["fill", "var(--text-color)"]);
+      g.appendChild(lastNum);
+
+    return g;
+  },
+
+  placeNum: (target, len, pos, num) => {
+    const numX = (((pos / len) * (numberLine.x2 - numberLine.x1)) + numberLine.x1 - 2).toString(10) + "%";
+    const text = make.text(numX, "50%", num);
+    target.appendChild(text);
+  }
+
+}
+
 function makeFracCircle(n) {
   //----------------------------------------------------//
   //Creates a number of wedges to form a circle         //
@@ -166,7 +204,7 @@ function groupPaths(svg, n) {
     //creates a new <g> element if the <path> is the 
     //  first in a group
     if ((i % n) === 0) {
-      g = make.g();
+      g = make.g("pie-slice");
     } 
     //
     //adds the <path> to the <g> if it is not the 

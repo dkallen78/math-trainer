@@ -84,7 +84,7 @@ path {
   height: 100%
 }
 
-g {
+g.pie-slice {
   fill-opacity: 0;
   stroke: black;
 }

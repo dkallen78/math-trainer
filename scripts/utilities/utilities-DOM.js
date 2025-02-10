@@ -153,8 +153,11 @@ make.circle = function(x, y, r) {
   return circle;
 }
 
-make.g = function() {
+make.g = function(classes) {
   let g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  if (typeof classes === "string") {
+    g.classList.add(classes);
+  }
   return g;
 }
 
