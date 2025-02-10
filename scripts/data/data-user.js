@@ -6,6 +6,7 @@ let user = {
   get activeKey() {
     return ((this.keyOctave - 2) * 12) + this.keyNote;
   },
+  numPad: 0,
   addition: {
     fundamentals: [],
     placeValue: [],

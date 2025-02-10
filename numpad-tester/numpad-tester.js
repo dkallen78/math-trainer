@@ -1,3 +1,10 @@
+function makePad() {
+  let numPadDiv = get("math-strategy-interface");
+  let numberPad = numPad(1);
+  numPadDiv.appendChild(numberPad);
+
+}
+
 const customPads = [
   //  0
   {
@@ -43,6 +50,7 @@ const customPads = [
     }
   }
 ]
+
 function numPad(layout = 0) {
   //----------------------------------------------------//
   //Makes and returns a div element with a number pad   //
@@ -97,77 +105,4 @@ function numPad(layout = 0) {
     }
   
   return numberPad;
-}
-
-numPad.on = function(display) {
-  //----------------------------------------------------//
-  //Enables the onclick functions of the number pad     //
-  //----------------------------------------------------//
-  
-  get("number-pad__button-1").onclick = () => {inputNumber("1", display)}
-  get("number-pad__button-2").onclick = () => {inputNumber("2", display)}
-  get("number-pad__button-3").onclick = () => {inputNumber("3", display)}
-  get("number-pad__button-4").onclick = () => {inputNumber("4", display)}
-  get("number-pad__button-5").onclick = () => {inputNumber("5", display)}
-  get("number-pad__button-6").onclick = () => {inputNumber("6", display)}
-  get("number-pad__button-7").onclick = () => {inputNumber("7", display)}
-  get("number-pad__button-8").onclick = () => {inputNumber("8", display)}
-  get("number-pad__button-9").onclick = () => {inputNumber("9", display)}
-  get("number-pad__button-0").onclick = () => {inputNumber("0", display)}
-  get("number-pad__button-back").onclick = () => {inputNumber("-1", display)}
-  get("number-pad__button-decimal").onclick = () => {inputNumber(".", display)}
-  
-  return null;
-}
-
-numPad.off = function() {
-  //----------------------------------------------------//
-  //Disables the onclick functions of the number pad    //
-  //----------------------------------------------------//
-  
-  get("number-pad__button-1").onclick = "";
-  get("number-pad__button-2").onclick = "";
-  get("number-pad__button-3").onclick = "";
-  get("number-pad__button-4").onclick = "";
-  get("number-pad__button-5").onclick = "";
-  get("number-pad__button-6").onclick = "";
-  get("number-pad__button-7").onclick = "";
-  get("number-pad__button-8").onclick = "";
-  get("number-pad__button-9").onclick = "";
-  get("number-pad__button-0").onclick = "";
-  get("number-pad__button-back").onclick = "";
-  get("number-pad__button-decimal").onclick = "";
-  get("number-pad__button-submit").onclick = "";
-}
-
-function inputNumber(num, display) {
-  //----------------------------------------------------//
-  //Adds a number to the display element                //
-  //----------------------------------------------------//
-  //num(string): either a number/symbol to display or a //
-  //  numeric code:                                     //
-  //    -1: backspace                                   //
-  //----------------------------------------------------//
-  
-  //let display = document.getElementById("skill-input-screen__solution-display");
-  
-  playTone(randomNote());
-  if (num === "-1") {
-    //----------------------------------------------------//
-    //Removes the last input number. If the last input    //
-    //  number was preceded by a decimal point, the       //
-    //  decimal point is removed as well                  //
-    //----------------------------------------------------//
-  
-    let current = display.innerHTML;
-  
-    if (current[current.length - 2] === ".") {
-      display.innerHTML = current.slice(0, -2);
-    } else {
-      display.innerHTML = current.slice(0, -1);
-    }
-  } else {
-    display.innerHTML += num;
-  }
-  
 }

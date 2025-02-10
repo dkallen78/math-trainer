@@ -98,7 +98,7 @@ div:has(> #svg-number-line) {
   transition: background-color 100ms;
 }
 
-#number-pad__button-1 {
+/*#number-pad__button-1 {
   border-top-left-radius: .8rem !important;
 }
 
@@ -121,4 +121,4 @@ div:has(> #svg-number-line) {
 #number-pad__button-quit {
   border-radius: 0 0 .8rem .8rem !important;
   grid-column: 1 / 5;
-}
+}*/
