@@ -64,24 +64,47 @@ mathML.mfrac = function(num, denom) {
 }
 
 const numberLine = {
+  //----------------------------------------------------//
+  //Object with lots of tools for drawing number lines  //
+  //----------------------------------------------------//
+  //
+  //Starting and ending position of the number line expressed as a
+  //  percentage of the <svg> element width
   x1: 5,
   x2: 95,
+  //
+  //Distance from top of <svg> element expressed as a precentage
   y: 70,
 
   make: (length, start, end) => {
-    const g = make.g();
+    //----------------------------------------------------//
+    //Makes the number line with ticks first and last     //
+    //  numbers                                           //
+    //----------------------------------------------------//
+    //length(integer): the unit length of the number line //
+    //start(integer): the first/left-most number          //
+    //end(integer): the last/right-most number            //
+    //----------------------------------------------------//
+    //return(SVG element): <g> element containing the     //
+    //  number line parts                                 //
+    //----------------------------------------------------//
 
+    const g = make.g();
+      //
+      //Makes the horizontal line
       const line = make.line(`${numberLine.x1}%`, `${numberLine.y}%`, `${numberLine.x2}%`, `${numberLine.y}%`);
       set(line, ["stroke", "var(--text-color)"]);
       g.appendChild(line);
-
+      //
+      //Makes the vertical ticks
       for (let i = 0; i < length + 1; i++) {
         const x = (((i / length) * (numberLine.x2 - numberLine.x1)) + numberLine.x1).toString(10) + "%";
         const tick = make.line(x, `${numberLine.y - 5}%`, x, `${numberLine.y + 5}%`, `svg-number-line__tick${i}`, "ticks");
         set(tick, ["stroke", "var(--text-color)"]);
         g.appendChild(tick);
       }
-
+      //
+      //Makes the first and last numbers of the line
       const firstNum = make.text(`${numberLine.x1 - 2}%`, "50%", start.toString(10));
       set(firstNum, ["fill", "var(--text-color)"]);
       g.appendChild(firstNum);
@@ -94,11 +117,102 @@ const numberLine = {
   },
 
   placeNum: (target, len, pos, num) => {
+    //----------------------------------------------------//
+    //Places a number on an existing number line          //
+    //----------------------------------------------------//
+    //target(string): ID of the <svg> element into which  //
+    //  the number/letter will be placed                  //
+    //len(integer): unit length of the number line        //
+    //pos(integer): unit position of the number to insert //
+    //num(string): number/text to place                   //
+    //----------------------------------------------------//
+
     const numX = (((pos / len) * (numberLine.x2 - numberLine.x1)) + numberLine.x1 - 2).toString(10) + "%";
     const text = make.text(numX, "50%", num);
+    set(text, ["fill", "var(--text-color)"]);
     target.appendChild(text);
-  }
+  },
 
+  animRange: (target, targetBox, len, posA, posZ) => {
+    //----------------------------------------------------//
+    //Creates a circle animated moving over a range on a  //
+    //  number line                                       //
+    //----------------------------------------------------//
+    //target(string): ID of the <svg> element into which  //
+    //  the animated circle will be placed                //
+    //targetBox(string): ID of the <div> element which    //
+    //  displays the problems                             //
+    //len(integer): unit length of the number line        //
+    //posA(integer): initial unit position of the circle  //
+    //posZ(integer): final unit position of the circle    //
+    //----------------------------------------------------//
+
+    /*
+    This is the bible for managing SVG animations
+    https://svgwg.org/specs/animations/
+    */
+
+    //
+    //Makes the <circle> element
+    const circleX = (((posA / len) * (numberLine.x2 - numberLine.x1)) + numberLine.x1).toString(10) + "%";
+    const circle = make.circle(circleX, `${numberLine.y}%`, "2%");
+    set(circle, ["fill", "var(--text-color)"]);
+    //
+    //Holds the values for the animation movement and timing data
+    const aniValues = [];
+    const aniTimes = [];
+    let keySplines = "";
+    //
+    //Width in pixels of the problem display box
+    const width = get(targetBox).getBoundingClientRect().width;
+    //
+    //Creates the data for each keyframe of the animation
+    for (i = posA, j = 0; i <= posZ + 3; i++, j++) {
+      let xPos;
+      //
+      //Assigns the position of the circle in pixels
+      if (i <= posZ) {
+        xPos = width * ((((i / len) * (numberLine.x2 - numberLine.x1)) + numberLine.x1) / 100);
+      } else if (i === posZ + 1) {
+        xPos = width * (((((i - 1) / len) * (numberLine.x2 - numberLine.x1)) + numberLine.x1) / 100);
+      } else {
+        xPos = width * ((((posA / len) * (numberLine.x2 - numberLine.x1)) + numberLine.x1) / 100);
+      }
+      aniValues.push(xPos);
+      //
+      //Sets the timing between each keyframe
+      aniTimes.push((j / (posZ - posA + 4)));
+      //
+      //Sets the interval between each keyframe transition
+      keySplines += ".0 0 .5 1;";
+    }
+    //
+    //Converts the aniValues into a string
+    let values = aniValues.reduce((string, elem, i, a) => {
+      return string += `${(elem - a[0]).toString(10)};`;
+    }, "");
+    values += "0";
+    //
+    //Converts the aniTimes into a string
+    let keyTimes = aniTimes.reduce((string, elem) => {
+      return string += `${elem};`;
+    }, "");
+    keyTimes += "1";
+    //
+    //Creates the <animateTransform> element and sets the attributes
+    const anim = make.animateTransform();
+    anim.setAttribute("attributeName", "transform");
+    anim.setAttribute("type", "translate");
+    anim.setAttribute("calcMode", "spline");
+    anim.setAttribute("values", values);
+    anim.setAttribute("keyTimes", keyTimes);
+    anim.setAttribute("keySplines", keySplines);
+    anim.setAttribute("dur", `${(posZ - posA) * 1.25}s`);
+    anim.setAttribute("repeatcount", "indefinite");
+    circle.appendChild(anim);
+
+    target.appendChild(circle);
+  }
 }
 
 function makeFracCircle(n) {

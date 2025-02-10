@@ -626,115 +626,31 @@ function singleDigitAddition2(minSum, maxSum, mode) {
   //----------------------------------------------------//
 
   const sum = rnd(minSum, maxSum);
-
   const a = rnd(1, sum - 1);
 
-  //let displayBox = get("math-strategy-interface__problem-display").getBoundingClientRect();
-  const displayBox = get("equation").getBoundingClientRect();
+  let displayBox = get("math-strategy-interface__problem-display").getBoundingClientRect();
+  //const displayBox = get("equation").getBoundingClientRect();
 
   //
-  //Details controlling the position of the number line
-  const lineStart = 5;
-  const lineEnd = 95;
-  //const lineLevel = 70;
+  //The unit length of the number line
   const lineLength = 10;
   //
-  //Makes the horizontal line
+  //Makes the number line
   const svg = make.svg("svg-number-line", "svg-number-line", `0 0 ${displayBox.width} ${displayBox.height * 0.45}`);
-    /*const line = make.line(`${lineStart}%`, `${lineLevel}%`, `${lineEnd}%`, `${lineLevel}%`, "svg-number-line__line");
-    line.setAttribute("stroke", "black");*/
     const nLine = numberLine;
     line = nLine.make(lineLength, 0, 10);
   svg.appendChild(line);
-
+  //
+  //Places the addend on the number line
   nLine.placeNum(svg, lineLength, a, a.toString(10));
-
   //
-  //Makes the vertical ticks on the number line
-  /*for (let i = 0; i < lineLength + 1; i++) {
-    const x = (((i / lineLength) * (lineEnd - lineStart)) + lineStart).toString(10) + "%";
-    const tick = make.line(x, `${lineLevel - 5}%`, x, `${lineLevel + 5}%`, `svg-number-line__tick${i}`, "ticks");
-    tick.setAttribute("stroke", "black");
-    svg.appendChild(tick);
-  }*/
-  /*
-  This is the bible for managing SVG animations
-  https://svgwg.org/specs/animations/
-  */
-  const aniValues = [];
-  const aniTimes = [];
-  let keySplines = "";
-  //
-  //Makes the data for the  <animateTransform> element
-  for (i = a, j = 0; i <= sum + 3; i++, j++) {
-    //
-    //This determines the x position of the circle
-    if (i <= sum) {
-      const xPos = displayBox.width * ((((i / lineLength) * (lineEnd - lineStart)) + lineStart) / 100);
-      aniValues.push(xPos);
-    } else if (i === sum + 1) {
-      const xPos = displayBox.width * (((((i - 1) / lineLength) * (lineEnd - lineStart)) + lineStart) / 100);
-      aniValues.push(xPos);
-    } else {
-      const xPos = displayBox.width * ((((a / lineLength) * (lineEnd - lineStart)) + lineStart) / 100);
-      aniValues.push(xPos);
-    }
-    //
-    //This determines the time percentages for the animation keys
-    aniTimes.push((j / (sum - a + 4)));
-    //
-    //This controls the pacing between animation keyframes
-    keySplines += ".5 0 .5 1;";
-  }
-
-  //
-  //Reduces the x position array into the correct format
-  //  for the <animateTransform> element
-  let values = aniValues.reduce((string, elem, i, a) => {
-    return string += `${(elem - a[0]).toString(10)};`;
-  }, "");
-  values += "0";
-  //
-  //Reduces the time percentages into a string for the 
-  //  <animateTransform> element
-  let keyTimes = aniTimes.reduce((string, elem) => {
-    return string += `${elem};`;
-  }, "");
-  keyTimes += "1";
-  //
-  //Makes the  circle that will be animated on the number line
-  const circleX = (((a / lineLength) * (lineEnd - lineStart)) + lineStart).toString(10) + "%";
-  const circle = make.circle(circleX, "70%", "2%");
-  //
-  //The <animateTransform> element and its attributes
-  const anim = make.animateTransform();
-  anim.setAttribute("attributeName", "transform");
-  anim.setAttribute("type", "translate");
-  anim.setAttribute("calcMode", "spline");
-  anim.setAttribute("values", values);
-  anim.setAttribute("keyTimes", keyTimes);
-  anim.setAttribute("keySplines", keySplines);
-  anim.setAttribute("dur", `${(sum - a) * 1.25}s`);
-  anim.setAttribute("repeatcount", "indefinite");
-  circle.appendChild(anim);
-
-  svg.appendChild(circle);
-
-  //const num0 = make.text(`${lineStart - 2}%`, "50%", "0");
-  //svg.appendChild(num0);
-
-  //const numAx = (((a / lineLength) * (nLine.x2 - nLine.x1)) + nLine.x1 - 2).toString(10) + "%";
-  //const numa = make.text(numAx, "50%", a.toString(10));
-  //svg.appendChild(numa);
-
-  //const num10 = make.text(`${lineEnd - 4}%`, "50%", "10");
-  //svg.appendChild(num10);
-
-
+  //Makes the animated circle for the number line
+  //nLine.animRange(svg, "equation", lineLength, a, sum);
+  nLine.animRange(svg, "math-strategy-interface__problem-display", lineLength, a, sum);
 
   const solutions = [
-    [sum, `<div>${a} + ${sum - a} = ?<br>${svg.outerHTML}</div>`],
-    //[sum, `? = ${a} + ${sum - a}`]
+    [sum, `<div>${a} + ${sum - a} = ? ${svg.outerHTML}</div>`],
+    [sum, `<div>? = ${a} + ${sum - a} ${svg.outerHTML}</div>`]
   ];
 
   return rnd.index(solutions);
