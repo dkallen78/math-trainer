@@ -70,8 +70,8 @@ const numberLine = {
   //
   //Starting and ending position of the number line expressed as a
   //  percentage of the <svg> element width
-  x1: 5,
-  x2: 95,
+  x1: 10,
+  x2: 90,
   //
   //Distance from top of <svg> element expressed as a precentage
   y: 70,
@@ -82,8 +82,8 @@ const numberLine = {
     //  numbers                                           //
     //----------------------------------------------------//
     //length(integer): the unit length of the number line //
-    //start(integer): the first/left-most number          //
-    //end(integer): the last/right-most number            //
+    //start(string): the first/left-most number           //
+    //end(string): the last/right-most number             //
     //----------------------------------------------------//
     //return(SVG element): <g> element containing the     //
     //  number line parts                                 //
@@ -105,11 +105,11 @@ const numberLine = {
       }
       //
       //Makes the first and last numbers of the line
-      const firstNum = make.text(`${numberLine.x1 - 2}%`, "50%", start.toString(10));
+      const firstNum = make.text(`${numberLine.x1 - (start.length * 2)}%`, "50%", start);
       set(firstNum, ["fill", "var(--text-color)"]);
       g.appendChild(firstNum);
 
-      const lastNum = make.text(`${numberLine.x2 - 4}%`, "50%", end.toString(10));
+      const lastNum = make.text(`${numberLine.x2 - (end.length * 2)}%`, "50%", end);
       set(lastNum, ["fill", "var(--text-color)"]);
       g.appendChild(lastNum);
 
@@ -127,7 +127,7 @@ const numberLine = {
     //num(string): number/text to place                   //
     //----------------------------------------------------//
 
-    const numX = (((pos / len) * (numberLine.x2 - numberLine.x1)) + numberLine.x1 - 2).toString(10) + "%";
+    const numX = (((pos / len) * (numberLine.x2 - numberLine.x1)) + numberLine.x1 - (num.length * 2)).toString(10) + "%";
     const text = make.text(numX, "50%", num);
     set(text, ["fill", "var(--text-color)"]);
     target.appendChild(text);

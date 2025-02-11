@@ -70,6 +70,10 @@
   color: var(--text-color);
 }
 
+#number-pad-screen__number-pad-changer > button {
+  padding: 0 1rem;
+}
+
 #number-pad-screen__number-pad-section {
   margin-left: auto;
   width: 95%;

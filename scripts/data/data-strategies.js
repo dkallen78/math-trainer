@@ -7,7 +7,7 @@ const addition = {
     {
       name: "Single-Digit Addition I",
       id: ["addition", "fundamentals", 1],
-      run: () => singleDigitAddition2(2, 9),
+      run: () => singleDigitAddition(2, 9),
       test: () => true,
     },
     //2 - Reorder

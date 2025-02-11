@@ -69,7 +69,7 @@ function within(aMin, aMax) {
 
 function add(aMin, aMax, aMod, bMin, bMax, bMod) {
   //----------------------------------------------------//
-  //Creates an addition problem based on the parameters //
+  //Creates an addition problem with two terms          //
   //----------------------------------------------------//
   //aMin(integer): smallest possible value for the      //
   //  first addend                                      //
@@ -87,21 +87,50 @@ function add(aMin, aMax, aMod, bMin, bMax, bMod) {
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
   //----------------------------------------------------//
-  //POTENTIALLY UNBALANCED - TEST IMPLEMENTATION        //
+  //Sum distribution: depends                           //
   //----------------------------------------------------//
   
   
   let a = rnd(aMin, aMax) * (10 ** aMod);
   let b = rnd(bMin, bMax) * (10 ** bMod);
 
+  const displayBox = get("equation").getBoundingClientRect();
+  //const displayBox = get("math-strategy-interface__problem-display").getBoundingClientRect();
+
+
+
   let solutions = [
     [(a + b), `${a} + ${b} = ?`],
-    [(a + b), `${b} + ${a} = ?`],
+    //[(a + b), `${b} + ${a} = ?`],
     [(a + b), `? = ${a} + ${b}`],
-    [(a + b), `? = ${b} + ${a}`]
+    //[(a + b), `? = ${b} + ${a}`]
   ]
 
   return rnd.index(solutions);
+}
+
+function uniformDiceSums(dMin, dMax, dMod) {
+  let sumSeed = rnd(dMin * 2, dMax * 2);
+  let sum = sumSeed * (10 ** dMod);
+  let dSeed = (sumSeed <= dMax + 1) ? rnd(dMin, sumSeed - dMin) : rnd(sumSeed - dMax, dMax);
+  let d = dSeed * (10 ** dMod);
+  let solutions = [
+    [sum, `${d} + ${sum - d} = ?`]
+  ];
+
+  return rnd.index(solutions);
+}
+
+function uglyAdd(aMin, aMax, sumMax) {
+  let a = rnd(aMin, aMax);
+  let b = rnd(aMin, sumMax - a);
+  let sum = a + b;
+  let solutions = [
+    [sum, `${a} + ${b} = ?`]
+  ];
+
+  return rnd.index(solutions);
+
 }
 
 function add2(minSum, maxSum, sumMod, aMin, aMod) {
@@ -111,11 +140,14 @@ function add2(minSum, maxSum, sumMod, aMin, aMod) {
   //minSum(integer): smallest possible sum              //
   //maxSum(integer): largest possible sum               //
   //sumMod(integer): exponential modifier for the sum   //
+  //aMin(integer): minimum value for the addends        //
   //aMod(integer): exponential modifier for the first   //
   //  term                                              //
   //----------------------------------------------------//
   //return(array[float, string]): the answer to the     //
   //  equation and a string representation of it        //
+  //----------------------------------------------------//
+  //Sum distribution: Uniform                           //
   //----------------------------------------------------//
 
 
@@ -124,9 +156,25 @@ function add2(minSum, maxSum, sumMod, aMin, aMod) {
   let aSeed = rnd(aMin, sumSeed - aMin);
   let a = aSeed * (10 ** aMod);
 
+  //const displayBox = get("equation").getBoundingClientRect();
+  const displayBox = get("math-strategy-interface__problem-display").getBoundingClientRect();
+
+  const lineLength = 10;
+
+  const svg = make.svg("svg-number-line", "svg-number-line", `0 0 ${displayBox.width} ${displayBox.height * 0.45}`);
+    const nLine = numberLine;
+    const lineCap = ((maxSum * (10 ** sumMod)) + (aMin * (10 ** aMod))).toString(10);
+    line = nLine.make(lineLength, "0", lineCap);
+  svg.appendChild(line);
+
+  nLine.placeNum(svg, lineLength, aSeed, a.toString(10));
+
+  nLine.animRange(svg, "math-strategy-interface__problem-display", lineLength, aSeed, sumSeed);
+  //nLine.animRange(svg, "equation", lineLength, aSeed, sumSeed);
+
 
   let solutions = [
-    [sum, `${a} + ${sum - a} = ?`]
+    [sum, `<div>${a} + ${sum - a} = ? ${svg.outerHTML}</div>`],
   ];
 
   return rnd.index(solutions);
@@ -583,37 +631,8 @@ function partitionNearDoubles(aMin, aMax, aMod, maxSplit, mode) {
 
   return rnd.index(solutions);
 }
-
-
 //
 function singleDigitAddition(minSum, maxSum, mode) {
-  //----------------------------------------------------//
-  //Creates a single-digit addition problem with a      //
-  //  minimum and maximum sum                           //
-  //----------------------------------------------------//
-  //minSum(integer): smallest possible sum              //
-  //maxSum(integer): largest possible sum               //
-  //----------------------------------------------------//
-  //return(array[float, string]): the answer to the     //
-  //  equation and a string representation of it        //
-  //----------------------------------------------------//
-
-  let sum = rnd(minSum, maxSum);
-  let a = rnd(1, 9);
-
-  while ((sum - a) > 9 || (sum - a) < 0) {
-    a = rnd(1, 9);
-  }
-
-  let solutions = [
-    [sum, `${a} + ${sum - a} = ?`],
-    [sum, `? = ${a} + ${sum - a}`]
-  ];
-
-  return rnd.index(solutions);
-}
-
-function singleDigitAddition2(minSum, maxSum, mode) {
   //----------------------------------------------------//
   //Creates a single-digit addition problem with a      //
   //  minimum and maximum sum                           //
@@ -638,7 +657,7 @@ function singleDigitAddition2(minSum, maxSum, mode) {
   //Makes the number line
   const svg = make.svg("svg-number-line", "svg-number-line", `0 0 ${displayBox.width} ${displayBox.height * 0.45}`);
     const nLine = numberLine;
-    line = nLine.make(lineLength, 0, 10);
+    line = nLine.make(lineLength, "0", "10");
   svg.appendChild(line);
   //
   //Places the addend on the number line

@@ -328,11 +328,15 @@ async function makeScaleScreen() {
 }
 
 async function makeNumpadScreen() {
+  //----------------------------------------------------//
+	//Makes the screen to switch between number pads      //
+	//----------------------------------------------------//
+
 
   async function changeNumberPad(dir) {
 
     playTone(randomNote());
-    
+
     user.numPad += dir;
     if (user.numPad < 0) {
       user.numPad = customPads.length - 1;
@@ -346,7 +350,6 @@ async function makeNumpadScreen() {
     const numberPadSection = get("number-pad-screen__number-pad-section");
     
     await fadeOut(numberPadSection);
-    console.log("fading out...");
     clear(numberPadSection);
     const numberPad = numPad(user.numPad);
     numberPadSection.appendChild(numberPad);
@@ -387,50 +390,4 @@ async function makeNumpadScreen() {
   await fadeTransition(numberPadScreen);
 
   })
-}
-
-async function makeNumpadScreen2() {
-
-  async function waitForButton() {
-    return new Promise ((resolve, reject) => {
-
-
-      const backButton = get("number-pad-screen__back-button");
-      backButton.onclick = async () => {
-        backButton.onclick = null;
-        playTone(randomNote());
-        resolve(true);
-      }
-    })
-  }
-
-  let quit = false;
-  while (!quit) {
-    const numberPadScreen = make.main("number-pad-screen", ["screen", "grid"]);
-
-      const numberPadChanger = make.section("number-pad-screen__number-pad-changer", "flex");
-        const downButton = make.button("←", "number-pad-screen__down-button", "button-big");
-        numberPadChanger.appendChild(downButton);
-
-        const currentNumberPad = make.span("number-pad-screen__current-number-pad");
-          currentNumberPad.innerHTML = user.numPad;
-        numberPadChanger.appendChild(currentNumberPad);
-
-        const upButton = make.button("→", "number-pad-screen__up-button", "button-big");
-        numberPadChanger.appendChild(upButton);
-      numberPadScreen.appendChild(numberPadChanger);
-
-      const numberPadSection = make.section("number-pad-screen__number-pad-section");
-        const numberPad = numPad(user.numPad);
-        numberPadSection.appendChild(numberPad);
-      numberPadScreen.appendChild(numberPadSection);
-
-      const backButton = make.button("Back", "number-pad-screen__back-button", "button-big");
-      numberPadScreen.appendChild(backButton);
-
-    await fadeTransition(numberPadScreen);
-
-    await waitForButton()
-      .then((exit) => {quit = exit});
-  }
 }
