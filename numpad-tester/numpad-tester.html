@@ -6,7 +6,7 @@
     <title>
       Number Pad Tester
     </title>
-    <!--<link rel="stylesheet" href="numpad-tester.css">-->
+    <link rel="stylesheet" href="numpad-tester.css">
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="stylesheet" href="../styles/math-interface.css">
     <script src="../scripts/utilities/utilities-sound.js"></script>
@@ -14,10 +14,14 @@
     <!--<script src="../scripts/utilities/utilities-number-pad.js"></script>-->
     <script src="numpad-tester.js"></script>
   </head>
-  <body onload="makePad()">
+  <body onload="makePad(0)">
     <main id="math-strategy-interface" class="screen grid math-interface">
-      <section id="math-strategy-interface__problem-display" class="problem-display"></section>
-      <section id="math-strategy-interface__input-display" class="input-display"></section>
+      <section id="current-number-pad">
+        <button type="button" id="button-down" onclick="changePad(-1)">←</button>
+        <span id="current-pad-number">0</span>
+        <button type="button" id="button-up" onclick="changePad(1)">→</button>
+      </section>
+      <section></section>
     </main>
   </body>
 </html>

@@ -22,6 +22,14 @@ async function makeSettingsScreen() {
         resolve(false);
       }
 
+      const numpadButton = get("settings-screen__numpad-button");
+      numpadButton.onclick = async () => {
+        numpadButton.onclick = null;
+        playTone(randomNote());
+        await makeNumpadScreen();
+        resolve(false);
+      }
+
       const backButton = get("settings-screen__back-button");
       backButton.onclick = async () => {
         backButton.onclick = null;
@@ -29,7 +37,7 @@ async function makeSettingsScreen() {
         resolve(true);
       }
   })
-  }
+}
 
   let quit = false;
   while (!quit) {
@@ -41,6 +49,9 @@ async function makeSettingsScreen() {
 
       const soundButton = make.button("Sound", "settings-screen__sound-button", "button-big");
       settingsScreen.appendChild(soundButton);
+
+      const numpadButton = make.button("Number Pad", "settings-screen__numpad-button", "button-big");
+      settingsScreen.appendChild(numpadButton);
 
       const backButton = make.button("Back", "settings-screen__back-button", "button-big");
       settingsScreen.appendChild(backButton);
@@ -314,4 +325,35 @@ async function makeScaleScreen() {
 
     await fadeTransition(scaleSelectionScreen);
   })
+}
+
+async function makeNumpadScreen() {
+
+  async function waitForButton() {
+    return new Promise ((resolve, reject) => {
+
+
+      const backButton = get("number-pad-screen__back-button");
+      backButton.onclick = async () => {
+        backButton.onclick = null;
+        playTone(randomNote());
+        resolve(true);
+      }
+    })
+  }
+
+  let quit = false;
+  while (!quit) {
+    const numpadScreen = make.main("number-pad-screen", ["screen", "flex-column"]);
+
+      
+
+      const backButton = make.button("Back", "number-pad-screen__back-button", "button-big");
+      numpadScreen.appendChild(backButton);
+
+    await fadeTransition(numpadScreen);
+
+    await waitForButton()
+      .then((exit) => {quit = exit});
+  }
 }

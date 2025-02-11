@@ -1,0 +1,9 @@
+#math-strategy-interface {
+  transition: all 250ms;
+}
+
+#current-number-pad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

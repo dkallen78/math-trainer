@@ -83,7 +83,9 @@ function numPad(layout = 0) {
         numberPad.children[i].style.backgroundColor = "var(--transparent)";
       });
     }
-
+    //
+    //Iterates over the object with the data for the number pad layout
+    //  and applies it to the correct button
     for (const propID in customPads[layout]) {
       console.log(`Setting ${propID} element`);
 

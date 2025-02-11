@@ -1,8 +1,29 @@
-function makePad() {
-  let numPadDiv = get("math-strategy-interface");
-  let numberPad = numPad(1);
-  numPadDiv.appendChild(numberPad);
+let currentPad = 0;
 
+async function makePad(pad) {
+  let numPadDiv = get("math-strategy-interface");
+
+  if (document.querySelector("#number-pad") !== null) {
+    get("number-pad").remove();
+  }
+
+  let numberPad = numPad(pad);
+
+  //await fadeOut(numberPad);
+  //clear(numberPad);
+  numPadDiv.appendChild(numberPad);
+  //await fadeIn(numberPad);
+}
+
+function changePad(dir) {
+  currentPad += dir;
+  if (currentPad < 0) {
+    currentPad = customPads.length - 1;
+  } else if (currentPad > customPads.length - 1) {
+    currentPad = 0;
+  }
+  get("current-pad-number").innerHTML = currentPad;
+  makePad(currentPad);
 }
 
 const customPads = [
