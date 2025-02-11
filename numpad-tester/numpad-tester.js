@@ -7,6 +7,13 @@ function makePad() {
 
 const customPads = [
   //  0
+  /*
+    | 1 | 2 | 3 | x |
+    | 4 | 5 | 6 | x |
+    | 7 | 8 | 9 | s |
+    |   0   | . | s |
+    |      quit     |
+  */
   {
     "number-pad__button-1": {
       "borderTopLeftRadius": ".8rem"
@@ -30,6 +37,14 @@ const customPads = [
     }
   },
   //  1
+  /*
+    | x | 1 | 2 | 3 |
+    | x | 4 | 5 | 6 |
+    | q | 7 | 8 | 9 |
+    | q |   0   | . |
+    |     submit    |
+  */
+
   {
     "number-pad__button-3": {
       "borderTopRightRadius": ".8rem"
@@ -100,7 +115,7 @@ function numPad(layout = 0) {
       for (const style in customPads[layout][propID]) {
         console.log(`${button.id}.style[${style}] = "${customPads[layout][propID][style]}"`);
 
-        button.style[`${style}`] = `${customPads[layout][propID][style]}`;
+        button.style[style] = customPads[layout][propID][style];
       }
     }
   
