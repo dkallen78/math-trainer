@@ -120,6 +120,11 @@ make.section = function(id, classes) {
   return section;
 }
 
+make.span = function(id, classes) {
+  let div = make("span", id, classes);
+  return div;
+}
+
 
 make.svg = function(id, classes, viewBox) {
   let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");

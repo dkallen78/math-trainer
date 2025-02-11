@@ -87,12 +87,12 @@ function numPad(layout = 0) {
     //Iterates over the object with the data for the number pad layout
     //  and applies it to the correct button
     for (const propID in customPads[layout]) {
-      console.log(`Setting ${propID} element`);
+      //console.log(`Setting ${propID} element`);
 
       const button = numberPad.querySelector(`#${propID}`);
 
       for (const style in customPads[layout][propID]) {
-        console.log(`${button.id}.style[${style}] = "${customPads[layout][propID][style]}"`);
+        //console.log(`${button.id}.style[${style}] = "${customPads[layout][propID][style]}"`);
 
         button.style[`${style}`] = `${customPads[layout][propID][style]}`;
       }

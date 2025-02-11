@@ -329,6 +329,68 @@ async function makeScaleScreen() {
 
 async function makeNumpadScreen() {
 
+  async function changeNumberPad(dir) {
+
+    playTone(randomNote());
+    
+    user.numPad += dir;
+    if (user.numPad < 0) {
+      user.numPad = customPads.length - 1;
+    } else if (user.numPad > customPads.length - 1) {
+      user.numPad = 0;
+    }
+
+    const currentNumberPad = get("number-pad-screen__current-number-pad");
+    currentNumberPad.innerHTML = user.numPad;
+
+    const numberPadSection = get("number-pad-screen__number-pad-section");
+    
+    await fadeOut(numberPadSection);
+    console.log("fading out...");
+    clear(numberPadSection);
+    const numberPad = numPad(user.numPad);
+    numberPadSection.appendChild(numberPad);
+    await fadeIn(numberPadSection);
+  }
+
+  return new Promise (async (resolve, reject) => {
+    const numberPadScreen = make.main("number-pad-screen", ["screen", "grid"]);
+
+    const numberPadChanger = make.section("number-pad-screen__number-pad-changer", "flex");
+      const downButton = make.button("←", "number-pad-screen__down-button", "button-big", () => {
+        changeNumberPad(-1);
+      });
+      numberPadChanger.appendChild(downButton);
+
+      const currentNumberPad = make.span("number-pad-screen__current-number-pad");
+        currentNumberPad.innerHTML = user.numPad;
+      numberPadChanger.appendChild(currentNumberPad);
+
+      const upButton = make.button("→", "number-pad-screen__up-button", "button-big", () => {
+        changeNumberPad(1);
+      });
+      numberPadChanger.appendChild(upButton);
+    numberPadScreen.appendChild(numberPadChanger);
+
+    const numberPadSection = make.section("number-pad-screen__number-pad-section");
+      const numberPad = numPad(user.numPad);
+      numberPadSection.appendChild(numberPad);
+    numberPadScreen.appendChild(numberPadSection);
+
+    let backButton = make.button("Back", "number-pad-screen__back-button", "button-big", () => {
+      backButton.onclick = null;
+      playTone(randomNote());
+      resolve();
+    });
+    numberPadScreen.appendChild(backButton);
+
+  await fadeTransition(numberPadScreen);
+
+  })
+}
+
+async function makeNumpadScreen2() {
+
   async function waitForButton() {
     return new Promise ((resolve, reject) => {
 
@@ -344,14 +406,29 @@ async function makeNumpadScreen() {
 
   let quit = false;
   while (!quit) {
-    const numpadScreen = make.main("number-pad-screen", ["screen", "flex-column"]);
+    const numberPadScreen = make.main("number-pad-screen", ["screen", "grid"]);
 
-      
+      const numberPadChanger = make.section("number-pad-screen__number-pad-changer", "flex");
+        const downButton = make.button("←", "number-pad-screen__down-button", "button-big");
+        numberPadChanger.appendChild(downButton);
+
+        const currentNumberPad = make.span("number-pad-screen__current-number-pad");
+          currentNumberPad.innerHTML = user.numPad;
+        numberPadChanger.appendChild(currentNumberPad);
+
+        const upButton = make.button("→", "number-pad-screen__up-button", "button-big");
+        numberPadChanger.appendChild(upButton);
+      numberPadScreen.appendChild(numberPadChanger);
+
+      const numberPadSection = make.section("number-pad-screen__number-pad-section");
+        const numberPad = numPad(user.numPad);
+        numberPadSection.appendChild(numberPad);
+      numberPadScreen.appendChild(numberPadSection);
 
       const backButton = make.button("Back", "number-pad-screen__back-button", "button-big");
-      numpadScreen.appendChild(backButton);
+      numberPadScreen.appendChild(backButton);
 
-    await fadeTransition(numpadScreen);
+    await fadeTransition(numberPadScreen);
 
     await waitForButton()
       .then((exit) => {quit = exit});

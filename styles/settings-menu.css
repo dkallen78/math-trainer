@@ -52,3 +52,37 @@
 #octave-3 {
   grid-column: 3 / 4;
 }
+
+/*
+  Settings
+    Number Pad
+*/
+
+#number-pad-screen {
+  grid-template-rows: 20% 60% 20%;
+}
+
+#number-pad-screen__number-pad-changer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 2rem;
+  color: var(--text-color);
+}
+
+#number-pad-screen__number-pad-section {
+  margin-left: auto;
+  width: 95%;
+}
+
+#number-pad-screen__number-pad-section {
+  transition: all 100ms;
+}
+
+#number-pad-screen__number-pad-section > #number-pad {
+  height: 100%;
+}
+
+#number-pad-screen__back-button {
+  align-self: center;
+}
