@@ -133,7 +133,7 @@ const addition = {
     {
       name: "10 + 1s",
       id: ["addition", "placeValue", 1],
-      run: () => add(1, 1, 1, 1, 9, 0),
+      run: () => add.twoTerms(1, 1, 1, 1, 9, 0),
       test: () => user.addition.fundamentals[4],
       notification: () => notifications.addition.reorder
     },
@@ -141,14 +141,14 @@ const addition = {
     {
       name: "Add 10s",
       id: ["addition", "placeValue", 2],
-      run: () => add2(1, 9, 1, 1, 1),
+      run: () => add.maxSum(1, 9, 1, 1, 1),
       test: () => user.addition.placeValue[1]
     }, 
     //3 - 10 More I
     {
       name: "10 More I",
       id: ["addition", "placeValue", 3],
-      run: () => add(11, 99, 0, 1, 1, 1),
+      run: () => add.twoTerms(11, 99, 0, 1, 1, 1),
       test: () => user.addition.placeValue[2]
     },
     //4 - Decompose I
@@ -162,7 +162,7 @@ const addition = {
     {
       name: "10s and 1s",
       id: ["addition", "placeValue", 5],
-      run: () => add(1, 9, 1, 1, 9, 0),
+      run: () => add.twoTerms(1, 9, 1, 1, 9, 0),
       test: () => user.addition.placeValue[4]
     },
     //6 - Decompose II

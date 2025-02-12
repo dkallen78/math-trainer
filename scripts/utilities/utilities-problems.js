@@ -99,17 +99,21 @@ const numberLine = {
       //Makes the vertical ticks
       for (let i = 0; i < length + 1; i++) {
         const x = (((i / length) * (numberLine.x2 - numberLine.x1)) + numberLine.x1).toString(10) + "%";
-        const tick = make.line(x, `${numberLine.y - 5}%`, x, `${numberLine.y + 5}%`, `svg-number-line__tick${i}`, "ticks");
+        const offset = (i % 5 === 0) ? 10 : 5;
+        const tick = make.line(x, `${numberLine.y - offset}%`, x, `${numberLine.y + offset}%`, `svg-number-line__tick${i}`, "ticks");
         set(tick, ["stroke", "var(--text-color)"]);
+        if (i % 10 === 0) {
+          set(tick, ["stroke-width", "2"]);
+        }
         g.appendChild(tick);
       }
       //
       //Makes the first and last numbers of the line
-      const firstNum = make.text(`${numberLine.x1 - (start.length * 2)}%`, "50%", start);
+      const firstNum = make.text(`${numberLine.x1 - (start.length * 1.4)}%`, "50%", start);
       set(firstNum, ["fill", "var(--text-color)"]);
       g.appendChild(firstNum);
 
-      const lastNum = make.text(`${numberLine.x2 - (end.length * 2)}%`, "50%", end);
+      const lastNum = make.text(`${numberLine.x2 - (end.length * 1.4)}%`, "50%", end);
       set(lastNum, ["fill", "var(--text-color)"]);
       g.appendChild(lastNum);
 
@@ -127,7 +131,7 @@ const numberLine = {
     //num(string): number/text to place                   //
     //----------------------------------------------------//
 
-    const numX = (((pos / len) * (numberLine.x2 - numberLine.x1)) + numberLine.x1 - (num.length * 2)).toString(10) + "%";
+    const numX = (((pos / len) * (numberLine.x2 - numberLine.x1)) + numberLine.x1 - (num.length * 1.4)).toString(10) + "%";
     const text = make.text(numX, "50%", num);
     set(text, ["fill", "var(--text-color)"]);
     target.appendChild(text);
@@ -184,7 +188,7 @@ const numberLine = {
       aniTimes.push((j / (posZ - posA + 4)));
       //
       //Sets the interval between each keyframe transition
-      keySplines += ".0 0 .5 1;";
+      keySplines += ".5 0 .5 1;";
     }
     //
     //Converts the aniValues into a string

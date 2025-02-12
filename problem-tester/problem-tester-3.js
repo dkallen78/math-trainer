@@ -1,6 +1,6 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
-let testFunc = () => add(1, 1, 1, 1, 9, 0);
+let testFunc = () => add.maxSum(2, 9, 2, 1, 2);
 //let testFunc = () => circleTest(6);
 
 function testOnce() {
@@ -13,7 +13,7 @@ function testOnce() {
   //console.log(problem);
   //let solution = document.getElementById("problem-output");
   let answer = document.getElementById("answer");
-  let equation = document.getElementById("equation");
+  let equation = document.getElementById("math-strategy-interface__problem-display");
   answer.innerHTML = `Answer: ${problem[0]}`;
   equation.innerHTML = `${problem[1]}`;
   console.log(equation.innerText, equation.innerText.length);

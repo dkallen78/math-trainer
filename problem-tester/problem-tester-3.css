@@ -99,7 +99,7 @@ g.pie-slice {
   height: 2rem;
 }
 
-#equation {
+#math-strategy-interface__problem-display {
   display: flex;
   justify-content: center;
   align-items: center;

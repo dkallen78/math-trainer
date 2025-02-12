@@ -1,3 +1,7 @@
+function add() {
+
+}
+
 function toOrFrom(aMin, base) {
   //----------------------------------------------------//
   //Creates a mixed operations problem with a fixed     //
@@ -65,9 +69,55 @@ function within(aMin, aMax) {
   return solutions[rnd(0, solutions.length - 1)];
 }
 
+add.maxSum = function(minSum, maxSum, sumMod, aMin, aMod) {
+  //----------------------------------------------------//
+  //Creates a two-term addition problem with a maximum  //
+  //  sum                                               //
+  //----------------------------------------------------//
+  //minSum(integer): smallest possible sum              //
+  //maxSum(integer): largest possible sum               //
+  //sumMod(integer): exponential modifier for the sum   //
+  //aMin(integer): minimum value for the addends        //
+  //aMod(integer): exponential modifier for the first   //
+  //  term                                              //
+  //----------------------------------------------------//
+  //return(array[float, string]): the answer to the     //
+  //  equation and a string representation of it        //
+  //----------------------------------------------------//
+  //Sum distribution: Uniform                           //
+  //----------------------------------------------------//
 
 
-function add(aMin, aMax, aMod, bMin, bMax, bMod) {
+  let sumSeed = rnd(minSum, maxSum);
+  let sum = sumSeed * (10 ** sumMod);
+  let aSeed = rnd(aMin, sumSeed - aMin);
+  let a = aSeed * (10 ** aMod);
+
+  const displayBox = get("math-strategy-interface__problem-display").getBoundingClientRect();
+
+  const lower = Math.floor(minSum / 10) * 10;
+  const upper = Math.ceil(maxSum / 10) * 10;
+
+  const lineLength = upper - lower;
+
+  const svg = make.svg("svg-number-line", "svg-number-line", `0 0 ${displayBox.width} ${displayBox.height * 0.45}`);
+    const nLine = numberLine;
+    //const lineCap = ((maxSum * (10 ** sumMod)) + (aMin * (10 ** aMod))).toString(10);
+    line = nLine.make(lineLength, lower.toString(10), (upper * (10 ** sumMod)).toString(10));
+  svg.appendChild(line);
+
+  nLine.placeNum(svg, lineLength, aSeed, a.toString(10));
+
+  nLine.animRange(svg, "math-strategy-interface__problem-display", lineLength, aSeed, sumSeed);
+
+  let solutions = [
+    [sum, `<div>${a} + ${sum - a} = ? ${svg.outerHTML}</div>`],
+  ];
+
+  return rnd.index(solutions);
+}
+
+add.twoTerms = function(aMin, aMax, aMod, bMin, bMax, bMod) {
   //----------------------------------------------------//
   //Creates an addition problem with two terms          //
   //----------------------------------------------------//
@@ -94,8 +144,8 @@ function add(aMin, aMax, aMod, bMin, bMax, bMod) {
   let a = rnd(aMin, aMax) * (10 ** aMod);
   let b = rnd(bMin, bMax) * (10 ** bMod);
 
-  const displayBox = get("equation").getBoundingClientRect();
-  //const displayBox = get("math-strategy-interface__problem-display").getBoundingClientRect();
+  //const displayBox = get("equation").getBoundingClientRect();
+  const displayBox = get("math-strategy-interface__problem-display").getBoundingClientRect();
 
 
 
@@ -652,12 +702,14 @@ function singleDigitAddition(minSum, maxSum, mode) {
 
   //
   //The unit length of the number line
-  const lineLength = 10;
+  const upper = Math.ceil(maxSum / 10) * 10;
+  const lineLength = upper;
+
   //
   //Makes the number line
   const svg = make.svg("svg-number-line", "svg-number-line", `0 0 ${displayBox.width} ${displayBox.height * 0.45}`);
     const nLine = numberLine;
-    line = nLine.make(lineLength, "0", "10");
+    line = nLine.make(lineLength, "0", upper.toString(10));
   svg.appendChild(line);
   //
   //Places the addend on the number line

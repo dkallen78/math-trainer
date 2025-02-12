@@ -205,6 +205,8 @@ make.text = function(x, y, txt, id, ...classes) {
   text.setAttribute("x", x);
   text.setAttribute("y", y);
   text.setAttribute("font-family", "monospace");
+  //text.setAttribute("textLength", ".75rem");
+  set(text, ["font-size", "1rem"]);
   if (typeof id === "string") {text.id = id};
   classes.forEach(x => text.classList.add(x));
   text.innerHTML = txt;
