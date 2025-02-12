@@ -102,7 +102,6 @@ add.maxSum = function(minSum, maxSum, sumMod, aMin, aMod) {
 
   const svg = make.svg("svg-number-line", "svg-number-line", `0 0 ${displayBox.width} ${displayBox.height * 0.45}`);
     const nLine = numberLine;
-    //const lineCap = ((maxSum * (10 ** sumMod)) + (aMin * (10 ** aMod))).toString(10);
     line = nLine.make(lineLength, lower.toString(10), (upper * (10 ** sumMod)).toString(10));
   svg.appendChild(line);
 
@@ -183,7 +182,7 @@ function uglyAdd(aMin, aMax, sumMax) {
 
 }
 
-function add2(minSum, maxSum, sumMod, aMin, aMod) {
+function XXadd2(minSum, maxSum, sumMod, aMin, aMod) {
   //----------------------------------------------------//
   //Creates an addition problem with two terms          //
   //----------------------------------------------------//

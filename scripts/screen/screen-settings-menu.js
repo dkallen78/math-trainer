@@ -344,6 +344,12 @@ async function makeNumpadScreen() {
       user.numPad = 0;
     }
 
+    const downButton = get("number-pad-screen__down-button");
+    const upButton = get("number-pad-screen__up-button");
+
+    downButton.onclick = null;
+    upButton.onclick = null;
+
     const currentNumberPad = get("number-pad-screen__current-number-pad");
     currentNumberPad.innerHTML = user.numPad;
 
@@ -354,6 +360,9 @@ async function makeNumpadScreen() {
     const numberPad = numPad(user.numPad);
     numberPadSection.appendChild(numberPad);
     await fadeIn(numberPadSection);
+
+    downButton.onclick = () => changeNumberPad(-1);
+    upButton.onclick = () => changeNumberPad(1);
   }
 
   return new Promise (async (resolve, reject) => {
@@ -365,15 +374,33 @@ async function makeNumpadScreen() {
       });
       numberPadChanger.appendChild(downButton);
 
-      const currentNumberPad = make.span("number-pad-screen__current-number-pad");
+      const numberPadCorner = make.div("number-pad-screen__number-pad-corner", "grid");
+        const topLeftButton = make.button("", "number-pad-screen__top-left-button");
+        numberPadCorner.appendChild(topLeftButton);
+
+        const topRightButton = make.button("", "number-pad-screen__top-right-button");
+        numberPadCorner.appendChild(topRightButton);
+
+        const bottomLeftButton = make.button("", "number-pad-screen__bottom-left-button");
+        numberPadCorner.appendChild(bottomLeftButton);
+
+        const bottomRightButton = make.button("", "number-pad-screen__bottom-right-button");
+        numberPadCorner.appendChild(bottomRightButton);
+      numberPadChanger.appendChild(numberPadCorner);
+
+      /*const currentNumberPad = make.span("number-pad-screen__current-number-pad");
         currentNumberPad.innerHTML = user.numPad;
-      numberPadChanger.appendChild(currentNumberPad);
+      numberPadChanger.appendChild(currentNumberPad);*/
 
       const upButton = make.button("→", "number-pad-screen__up-button", "button-big", () => {
         changeNumberPad(1);
       });
       numberPadChanger.appendChild(upButton);
     numberPadScreen.appendChild(numberPadChanger);
+
+    const currentNumberPad = make.span("number-pad-screen__current-number-pad");
+      currentNumberPad.innerHTML = user.numPad;
+    numberPadScreen.appendChild(currentNumberPad); 
 
     const numberPadSection = make.section("number-pad-screen__number-pad-section");
       const numberPad = numPad(user.numPad);
