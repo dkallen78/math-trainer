@@ -339,8 +339,8 @@ async function makeNumpadScreen() {
 
     user.numPad += dir;
     if (user.numPad < 0) {
-      user.numPad = customPads.length - 1;
-    } else if (user.numPad > customPads.length - 1) {
+      user.numPad = customNumberPads[user.numPadCorner].length - 1;
+    } else if (user.numPad > customNumberPads[user.numPadCorner].length - 1) {
       user.numPad = 0;
     }
 
@@ -377,6 +377,10 @@ async function makeNumpadScreen() {
       const numberPadCorner = make.div("number-pad-screen__number-pad-corner", "grid");
         const topLeftButton = make.button("", "number-pad-screen__top-left-button");
         numberPadCorner.appendChild(topLeftButton);
+        topLeftButton.onclick = () => {
+          [np1, np2] = [np2, np1];
+          changeNumberPad(0);
+        }
 
         const topRightButton = make.button("", "number-pad-screen__top-right-button");
         numberPadCorner.appendChild(topRightButton);
@@ -387,10 +391,6 @@ async function makeNumpadScreen() {
         const bottomRightButton = make.button("", "number-pad-screen__bottom-right-button");
         numberPadCorner.appendChild(bottomRightButton);
       numberPadChanger.appendChild(numberPadCorner);
-
-      /*const currentNumberPad = make.span("number-pad-screen__current-number-pad");
-        currentNumberPad.innerHTML = user.numPad;
-      numberPadChanger.appendChild(currentNumberPad);*/
 
       const upButton = make.button("→", "number-pad-screen__up-button", "button-big", () => {
         changeNumberPad(1);
@@ -403,7 +403,7 @@ async function makeNumpadScreen() {
     numberPadScreen.appendChild(currentNumberPad); 
 
     const numberPadSection = make.section("number-pad-screen__number-pad-section");
-      const numberPad = numPad(user.numPad);
+      const numberPad = numPad(user.numPad, user.numPadCorner);
       numberPadSection.appendChild(numberPad);
     numberPadScreen.appendChild(numberPadSection);
 

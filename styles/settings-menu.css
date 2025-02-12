@@ -66,7 +66,6 @@
 #number-pad-screen__number-pad-changer {
   display: flex;
   justify-content: space-around;
-  /*align-items: center;*/
   font-size: 2rem;
   color: var(--text-color);
 }
@@ -76,14 +75,35 @@
 }
 
 #number-pad-screen__number-pad-corner {
-  grid-template-columns: 45% 45%;
-  justify-content: center;
-  width: 100%
-}
+  --_cell-size: 3rem;
+  --_corner-radius: .5rem;
 
-#number-pad-screen__number-pad-corner > button {
-  margin: 0;
-  border: .1rem solid var(--border-color);
+  grid-template-columns: var(--_cell-size) var(--_cell-size);
+  grid-template-rows: var(--_cell-size) var(--_cell-size);
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+
+  #number-pad-screen__number-pad-corner > button {
+    margin: 0;
+    border: .1rem solid var(--border-color);
+  }
+
+  #number-pad-screen__top-left-button {
+    border-radius: var(--_corner-radius) 0 0 0;
+  }
+  
+  #number-pad-screen__top-right-button {
+    border-radius: 0 var(--_corner-radius) 0 0;
+  }
+  
+  #number-pad-screen__bottom-right-button {
+    border-radius: 0 0 var(--_corner-radius) 0;
+  }
+  
+  #number-pad-screen__bottom-left-button {
+    border-radius: 0 0 0 var(--_corner-radius);
+  }
 }
 
 #number-pad-screen__number-pad-section {

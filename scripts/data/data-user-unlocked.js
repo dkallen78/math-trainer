@@ -7,6 +7,7 @@ let user = {
     return ((this.keyOctave - 2) * 12) + this.keyNote;
   },
   numPad: 0,
+  numPadCorner: "topLeft",
   addition: {
     fundamentals: [true, true, true, true, true, true, true, true, true, true],
     placeValue: [true, true, true, true, true, true, true, true, true, true],

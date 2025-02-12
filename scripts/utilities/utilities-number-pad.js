@@ -1,49 +1,4 @@
-const customPads = [
-  //  0
-  {
-    "number-pad__button-1": {
-      "borderTopLeftRadius": ".8rem"
-    },
-    "number-pad__button-back": {
-      "grid-column": "4 / 5",
-      "grid-row": "1 / 3",
-      "borderTopRightRadius": ".8rem"
-    },
-    "number-pad__button-submit": {
-      "grid-column": "4 / 5",
-      "grid-row": "3 / 5"
-    },
-    "number-pad__button-0": {
-      "grid-column": "1 / 3",
-      "grid-row": "4 / 5"
-    },
-    "number-pad__button-quit": {
-      "border-radius": "0 0 .8rem .8rem",
-      "grid-column": "1 / 5"
-    }
-  },
-  //  1
-  {
-    "number-pad__button-3": {
-      "borderTopRightRadius": ".8rem"
-    },
-    "number-pad__button-back": {
-      "grid-area": "1 / 1 / 3 / 2",
-      "borderTopLeftRadius": ".8rem"
-    },
-    "number-pad__button-submit": {
-      "grid-area": "5 / 1 / 6 / 5",
-      "border-radius": "0 0 .8rem .8rem"
-    },
-    "number-pad__button-0": {
-      "grid-column": "2 / 4"
-    },
-    "number-pad__button-quit": {
-      "grid-area": "3 / 1 / 5 / 2"
-    }
-  }
-]
-function numPad(layout = 0) {
+function numPad(layout = 0, corner = "topLeft") {
   //----------------------------------------------------//
   //Makes and returns a div element with a number pad   //
   //  inside of it. Additionally, it defines the        //
@@ -83,18 +38,23 @@ function numPad(layout = 0) {
         numberPad.children[i].style.backgroundColor = "var(--transparent)";
       });
     }
+
     //
     //Iterates over the object with the data for the number pad layout
     //  and applies it to the correct button
-    for (const propID in customPads[layout]) {
+    for (const propID in customNumberPads[user.numPadCorner][layout]) {
       //console.log(`Setting ${propID} element`);
-
+      if (propID === "number-pad") {
+        console.log("found");
+        numberPad.style["grid-template-areas"] = customNumberPads[user.numPadCorner][layout][propID]();
+        continue;
+      }
       const button = numberPad.querySelector(`#${propID}`);
 
-      for (const style in customPads[layout][propID]) {
+      for (const style in customNumberPads[user.numPadCorner][layout][propID]) {
         //console.log(`${button.id}.style[${style}] = "${customPads[layout][propID][style]}"`);
 
-        button.style[`${style}`] = `${customPads[layout][propID][style]}`;
+        button.style[`${style}`] = customNumberPads[user.numPadCorner][layout][propID][style]();
       }
     }
   
