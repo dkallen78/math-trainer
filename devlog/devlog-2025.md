@@ -18,3 +18,11 @@ I've done a bunch of relatively small changes today.
 I'm pondering a few things at the moment. I currently have my strategies broken up by +, -, *, and /, but I think I need to make a separate category for fractions. I'm also reevaluating how I'm going to do the initial stages of division. I've done some clever tricks with SVGs previously, but I'm not sure if they're in the right place. 
 
 Tomorrow I anticipate more small changes.
+
+### Update 2025-02-07
+
+#### 22:30
+
+Basically the same as yesterday, just a little bit less. I didn't do too many visual changes but I tweaked a few of the problem functions to meet my new standards. 
+
+I need to retool the Challenges section because I don't like it, but I can't tear it down until I have an idea of something that I want to replace it with. 

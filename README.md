@@ -13,13 +13,16 @@ Although the UI is simple by design, users can also change the colors of the lay
 
 The layout is mobile-first because smartphones are the primary technological tool of the modern world.
 
-## Update 2025-02-07
+## Update 2025-02-12
 
-## 22:30
+### 22:00
 
-Basically the same as yesterday, just a little bit less. I didn't do too many visual changes but I tweaked a few of the problem functions to meet my new standards. 
+The two big additions over the past week are an SVG number line that I've snuck into a few problem types and the option to change the number pad configuration.
 
-I need to retool the Challenges section because I don't like it, but I can't tear it down until I have an idea of something that I want to replace it with. 
+As of now, the SVG number line works well for simpler problem types. I don't really need it to work with more complicated problems because I just want it to be a tool for the earlier problems before users transition into exclusively mental math. I spent a few days getting the animations to work properly and then another day or so making it all work for more than one problem type. It looks good on my phone so that makes me happy.
+
+I have the option to change number pad layouts and I'm building a snazzy screen for changing them. In all, there will by 128 unique number pad layouts to choose from. Part of the UI is a toggle switch that I'm very happy with. I still have to make a better system for displaying the current layout. 
+
 
 ### [Previous updates](https://github.com/dkallen78/math-trainer/blob/main/devlog/devlog-2025.md)
 

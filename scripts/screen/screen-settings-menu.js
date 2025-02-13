@@ -431,6 +431,7 @@ async function makeNumpadScreen() {
     //
     //The display for the current number pad selection
     const currentNumberPad = make.span("number-pad-screen__current-number-pad");
+
       currentNumberPad.innerHTML = user.numPad + 1;
     numberPadScreen.appendChild(currentNumberPad); 
     //
