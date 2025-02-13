@@ -186,5 +186,28 @@ let customNumberPads = {
         "border-radius": () => (np2 === "l") ? "0 0 .8rem 0" : "0 .8rem 0 0",
       }
     }
+  ],
+  topRight: [
+    //  0
+    {
+      "number-pad": () => {
+        const area = 
+        ` "${np1} a       b       c"
+          "${np1} d       e       f"
+          "${np1} g       h       i"
+          "${np1} q       j       k"
+          "${np2} ${np2}  ${np2}  ${np2}" `;
+          return area;
+      },
+      "number-pad__button-3": {
+        "border-top-right-radius": () => ".8rem"
+      },
+      "number-pad__button-submit": {
+        "border-radius": () => (np1 === "m") ? ".8rem 0 0 0" : "0 0 .8rem .8rem",
+      },
+      "number-pad__button-back": {
+        "border-radius": () => (np2 === "l") ? "0 0 .8rem .8rem" : ".8rem 0 0 0",
+      }
+    },
   ]
 }

@@ -65,13 +65,29 @@
 
 #number-pad-screen__number-pad-changer {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   font-size: 2rem;
   color: var(--text-color);
-}
 
-#number-pad-screen__number-pad-changer > button {
-  padding: 0 1rem;
+  button {
+    /*padding: 0 1rem;*/
+  }
+
+  #number-pad-screen__q-sub-switch, #number-pad-screen__key-flip-switch {
+    padding: .2rem;
+    height: 5rem;
+
+    div {
+      height: 2rem;
+      width: 2rem;
+      margin-top: -2rem;
+      background-color: var(--text-color);
+      border-radius: .75rem;
+      transition: all 200ms;
+    }
+  }
+
 }
 
 #number-pad-screen__number-pad-corner {
@@ -82,27 +98,30 @@
   grid-template-rows: var(--_cell-size) var(--_cell-size);
   justify-content: center;
   align-content: center;
-  width: 100%;
 
-  #number-pad-screen__number-pad-corner > button {
+  button {
     margin: 0;
     border: .1rem solid var(--border-color);
   }
 
   #number-pad-screen__top-left-button {
     border-radius: var(--_corner-radius) 0 0 0;
+    border-width: .2rem .1rem .1rem .2rem;
   }
   
   #number-pad-screen__top-right-button {
     border-radius: 0 var(--_corner-radius) 0 0;
+    border-width: .2rem .2rem .1rem .1rem;
   }
   
   #number-pad-screen__bottom-right-button {
     border-radius: 0 0 var(--_corner-radius) 0;
+    border-width: .1rem .2rem .2rem .1rem;
   }
   
   #number-pad-screen__bottom-left-button {
     border-radius: 0 0 0 var(--_corner-radius);
+    border-width: .1rem .1rem .2rem .2rem;
   }
 }
 

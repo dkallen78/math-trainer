@@ -351,13 +351,13 @@ async function makeNumpadScreen() {
     upButton.onclick = null;
 
     const currentNumberPad = get("number-pad-screen__current-number-pad");
-    currentNumberPad.innerHTML = user.numPad;
+    currentNumberPad.innerHTML = user.numPad + 1;
 
     const numberPadSection = get("number-pad-screen__number-pad-section");
     
     await fadeOut(numberPadSection);
     clear(numberPadSection);
-    const numberPad = numPad(user.numPad);
+    const numberPad = numPad(user.numPad, user.numPadCorner);
     numberPadSection.appendChild(numberPad);
     await fadeIn(numberPadSection);
 
@@ -367,22 +367,45 @@ async function makeNumpadScreen() {
 
   return new Promise (async (resolve, reject) => {
     const numberPadScreen = make.main("number-pad-screen", ["screen", "grid"]);
-
+    //
+    //The top-most section of the screen where the buttons to change the number pad are
     const numberPadChanger = make.section("number-pad-screen__number-pad-changer", "flex");
+      //
+      //Cycles down through the layout configurations
       const downButton = make.button("←", "number-pad-screen__down-button", "button-big", () => {
         changeNumberPad(-1);
       });
       numberPadChanger.appendChild(downButton);
+      //
+      //Toggles the locations of the Submit and Backspace buttons
+      const qSubSwitch = make.button("", "number-pad-screen__q-sub-switch", "button-big");
+        const qsSwitchDiv = make.div("number-pad-screen__qs-switch-div");
+        qSubSwitch.appendChild(qsSwitchDiv);
 
-      const numberPadCorner = make.div("number-pad-screen__number-pad-corner", "grid");
-        const topLeftButton = make.button("", "number-pad-screen__top-left-button");
-        numberPadCorner.appendChild(topLeftButton);
-        topLeftButton.onclick = () => {
+        if (np1 === "m") {
+          qsSwitchDiv.style["margin-top"] = "2rem";
+        }
+        qSubSwitch.onclick = () => {
+          qsSwitchDiv.style["margin-top"] = (np1 === "l") ? "2rem" : "-2rem";
           [np1, np2] = [np2, np1];
           changeNumberPad(0);
         }
+      numberPadChanger.appendChild(qSubSwitch);
+      //
+      //Buttons to change the corner the numbers are in
+      const numberPadCorner = make.div("number-pad-screen__number-pad-corner", "grid");
+        const topLeftButton = make.button("", "number-pad-screen__top-left-button");
+          topLeftButton.onclick = () => {
+            user.numPadCorner = "topLeft";
+            changeNumberPad(0);
+          }
+        numberPadCorner.appendChild(topLeftButton);
 
         const topRightButton = make.button("", "number-pad-screen__top-right-button");
+          topRightButton.onclick = () => {
+            user.numPadCorner = "topRight";
+            changeNumberPad(0);
+          }
         numberPadCorner.appendChild(topRightButton);
 
         const bottomLeftButton = make.button("", "number-pad-screen__bottom-left-button");
@@ -391,22 +414,33 @@ async function makeNumpadScreen() {
         const bottomRightButton = make.button("", "number-pad-screen__bottom-right-button");
         numberPadCorner.appendChild(bottomRightButton);
       numberPadChanger.appendChild(numberPadCorner);
+      //
+      //Toggles the layout of the numbers
+      const keyFlipSwitch = make.button("", "number-pad-screen__key-flip-switch", "button-big");
+        const kfSwitch = make.div("number-pad-screen__kf-switch-div");
+        keyFlipSwitch.appendChild(kfSwitch);
 
+      numberPadChanger.appendChild(keyFlipSwitch);
+      //
+      //Cycles up through the layout configurations
       const upButton = make.button("→", "number-pad-screen__up-button", "button-big", () => {
         changeNumberPad(1);
       });
       numberPadChanger.appendChild(upButton);
     numberPadScreen.appendChild(numberPadChanger);
-
+    //
+    //The display for the current number pad selection
     const currentNumberPad = make.span("number-pad-screen__current-number-pad");
-      currentNumberPad.innerHTML = user.numPad;
+      currentNumberPad.innerHTML = user.numPad + 1;
     numberPadScreen.appendChild(currentNumberPad); 
-
+    //
+    //The current number pad selected
     const numberPadSection = make.section("number-pad-screen__number-pad-section");
       const numberPad = numPad(user.numPad, user.numPadCorner);
       numberPadSection.appendChild(numberPad);
     numberPadScreen.appendChild(numberPadSection);
-
+    //
+    //The Back button
     let backButton = make.button("Back", "number-pad-screen__back-button", "button-big", () => {
       backButton.onclick = null;
       playTone(randomNote());

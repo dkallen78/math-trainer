@@ -15,7 +15,7 @@ async function doMathStrategy(strategy) {
     const inputDisplay = make.section("math-strategy-interface__input-display", "input-display");
     interface.appendChild(inputDisplay);
 
-    const numberPad = numPad(user.numPad);
+    const numberPad = numPad(user.numPad, user.numPadCorner);
     interface.appendChild(numberPad);
 
   await fadeTransition(interface);
