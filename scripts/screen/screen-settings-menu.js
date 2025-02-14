@@ -407,6 +407,23 @@ async function makeNumpadScreen() {
     upButton.onclick = () => changeNumberPad(1);
   }
 
+  function makeCornerButton(corner) {
+    const button = make.button("", `number-pad-screen__${corner}-button`);
+    button.innerHTML = (user.numPadCorner === corner) ? "#" : "";
+    button.onclick = () => {
+      const prevCorner = document.querySelector(`#number-pad-screen__${user.numPadCorner}-button`);
+      prevCorner.style.color = "var(--bg-color)";
+      setTimeout(() => {
+        prevCorner.innerHTML = "";
+      }, "200");
+      button.innerHTML = "#";
+      button.style.color = "var(--text-color)";
+      user.numPadCorner = corner;
+      changeNumberPad(0);
+    }
+    return button;
+  }
+
   return new Promise (async (resolve, reject) => {
     const numberPadScreen = make.main("number-pad-screen", ["screen", "grid"]);
     //
@@ -436,32 +453,16 @@ async function makeNumpadScreen() {
       //
       //Buttons to change the corner the numbers are in
       const numberPadCorner = make.div("number-pad-screen__number-pad-corner", "grid");
-        const topLeftButton = make.button("", "number-pad-screen__top-left-button");
-          topLeftButton.onclick = () => {
-            user.numPadCorner = "topLeft";
-            changeNumberPad(0);
-          }
+        const topLeftButton = makeCornerButton("topLeft");
         numberPadCorner.appendChild(topLeftButton);
 
-        const topRightButton = make.button("", "number-pad-screen__top-right-button");
-          topRightButton.onclick = () => {
-            user.numPadCorner = "topRight";
-            changeNumberPad(0);
-          }
+        const topRightButton = makeCornerButton("topRight");
         numberPadCorner.appendChild(topRightButton);
 
-        const bottomLeftButton = make.button("", "number-pad-screen__bottom-left-button");
-          bottomLeftButton.onclick = () => {
-            user.numPadCorner = "bottomLeft";
-            changeNumberPad(0);
-          }
+        const bottomLeftButton = makeCornerButton("bottomLeft");
         numberPadCorner.appendChild(bottomLeftButton);
 
-        const bottomRightButton = make.button("", "number-pad-screen__bottom-right-button");
-          bottomRightButton.onclick = () => {
-            user.numPadCorner = "bottomRight";
-            changeNumberPad(0);
-          }
+        const bottomRightButton = makeCornerButton("bottomRight");
         numberPadCorner.appendChild(bottomRightButton);
       numberPadChanger.appendChild(numberPadCorner);
       //

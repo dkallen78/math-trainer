@@ -65,7 +65,7 @@
 
 #number-pad-screen__number-pad-changer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   font-size: 2rem;
   color: var(--text-color);
@@ -91,7 +91,7 @@
 }
 
 #number-pad-screen__number-pad-corner {
-  --_cell-size: 3rem;
+  --_cell-size: 2.5rem;
   --_corner-radius: .5rem;
 
   grid-template-columns: var(--_cell-size) var(--_cell-size);
@@ -102,24 +102,25 @@
   button {
     margin: 0;
     border: .1rem solid var(--border-color);
+    font-size: 2rem;
   }
 
-  #number-pad-screen__top-left-button {
+  #number-pad-screen__topLeft-button {
     border-radius: var(--_corner-radius) 0 0 0;
     border-width: .2rem .1rem .1rem .2rem;
   }
   
-  #number-pad-screen__top-right-button {
+  #number-pad-screen__topRight-button {
     border-radius: 0 var(--_corner-radius) 0 0;
     border-width: .2rem .2rem .1rem .1rem;
   }
   
-  #number-pad-screen__bottom-right-button {
+  #number-pad-screen__bottomRight-button {
     border-radius: 0 0 var(--_corner-radius) 0;
     border-width: .1rem .2rem .2rem .1rem;
   }
   
-  #number-pad-screen__bottom-left-button {
+  #number-pad-screen__bottomLeft-button {
     border-radius: 0 0 0 var(--_corner-radius);
     border-width: .1rem .1rem .2rem .2rem;
   }
@@ -134,6 +135,7 @@
     grid-area: 1 / 1;
     transition: all 200ms;
     font-size: 3rem;
+    color: var(--text-color);
     transform-origin: center center 6rem;
   }
 }

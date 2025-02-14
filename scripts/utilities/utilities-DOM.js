@@ -59,6 +59,21 @@ async function fadeIn(element) {
   })
 }
 
+async function fadeStyle(element, style, target) {
+
+  return new Promise((resolve, reject) => {
+    const event = new AbortController();
+
+    element.style[style] = target;
+
+    element.addEventListener("transitionend", (e) => {
+      e.stopImmediatePropagation();
+      event.abort();
+      resolve();
+    }, {signal: event.signal});
+  })
+}
+
 function get(id) {
   return document.getElementById(id);
 }
