@@ -70,8 +70,8 @@
   font-size: 2rem;
   color: var(--text-color);
 
-  button {
-    /*padding: 0 1rem;*/
+  .button-big {
+    height: 5rem;
   }
 
   #number-pad-screen__q-sub-switch, #number-pad-screen__key-flip-switch {
@@ -125,6 +125,18 @@
   }
 }
 
+#number-pad-screen__current-number-pad {
+
+  display: grid;
+  justify-content: center;
+
+  .current-span {
+    grid-area: 1 / 1;
+    transition: all 200ms;
+    font-size: 3rem;
+    transform-origin: center center 6rem;
+  }
+}
 #number-pad-screen__number-pad-section {
   justify-self: center;
   display: flex;

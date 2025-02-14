@@ -350,8 +350,50 @@ async function makeNumpadScreen() {
     downButton.onclick = null;
     upButton.onclick = null;
 
-    const currentNumberPad = get("number-pad-screen__current-number-pad");
-    currentNumberPad.innerHTML = user.numPad + 1;
+    const transformList = [
+      "rotate3d(0, 1, 0, 90deg)",
+      "rotate3d(0, 1, 0, 60deg)",
+      "rotate3d(0, 1, 0, 30deg)",
+      "rotate3d(0, 1, 0, 0deg)",
+      "rotate3d(0, 1, 0, -30deg)",
+      "rotate3d(0, 1, 0, -60deg)",
+      "rotate3d(0, 1, 0, -90deg)"
+    ]
+
+    const filterList = [
+      "opacity(0%) blur(3px)",
+      "opacity(33%) blur(2px)",
+      "opacity(66%) blur(1px)",
+      "opacity(100%) blur(0px)",
+      "opacity(66%) blur(1px)",
+      "opacity(33%) blur(2px)",
+      "opacity(0%) blur(3px)"
+    ]
+    const currentSpans = document.querySelectorAll(".current-span");
+    currentSpans.forEach((element, i, self) => {
+      if (dir > 0) {
+        element.style.transform = (i < 1) ? transformList[self.length - 1] : transformList[i - 1];
+        element.style.filter = (i < 1) ? filterList[self.length - 1] : filterList[i - 1];
+        if (i < 1) {
+          const newNode = element.cloneNode();
+          newNode.innerHTML = (user.numPad > 4) ? (user.numPad + 4) % customNumberPads[user.numPadCorner].length : user.numPad + 4;
+          element.parentNode.appendChild(newNode);
+          remove(element);
+        }
+
+      } else if (dir < 0) {
+        element.style.transform = (i < self.length - 1) ? transformList[i + 1] : transformList[0];
+        element.style.filter = (i < self.length - 1) ? filterList[i + 1] : filterList[0];
+        if (i === self.length - 1) {
+          const newNode = element.cloneNode();
+          newNode.innerHTML = (user.numPad - 2 < 1) ? user.numPad - 2 + customNumberPads[user.numPadCorner].length : user.numPad - 2;
+          element.parentNode.insertBefore(newNode, self[0]);
+          remove(element);
+        }
+      }
+    })
+    /*const currentNumberPad = get("number-pad-screen__current");
+    currentNumberPad.innerHTML = user.numPad + 1;*/
 
     const numberPadSection = get("number-pad-screen__number-pad-section");
     
@@ -409,16 +451,33 @@ async function makeNumpadScreen() {
         numberPadCorner.appendChild(topRightButton);
 
         const bottomLeftButton = make.button("", "number-pad-screen__bottom-left-button");
+          bottomLeftButton.onclick = () => {
+            user.numPadCorner = "bottomLeft";
+            changeNumberPad(0);
+          }
         numberPadCorner.appendChild(bottomLeftButton);
 
         const bottomRightButton = make.button("", "number-pad-screen__bottom-right-button");
+          bottomRightButton.onclick = () => {
+            user.numPadCorner = "bottomRight";
+            changeNumberPad(0);
+          }
         numberPadCorner.appendChild(bottomRightButton);
       numberPadChanger.appendChild(numberPadCorner);
       //
       //Toggles the layout of the numbers
       const keyFlipSwitch = make.button("", "number-pad-screen__key-flip-switch", "button-big");
-        const kfSwitch = make.div("number-pad-screen__kf-switch-div");
-        keyFlipSwitch.appendChild(kfSwitch);
+        const kfSwitchDiv = make.div("number-pad-screen__kf-switch-div");
+        keyFlipSwitch.appendChild(kfSwitchDiv);
+
+        if (topKeys === "g h i") {
+          kfSwitchDiv.style["margin-top"] = "2rem";
+        }
+        keyFlipSwitch.onclick = () => {
+          kfSwitchDiv.style["margin-top"] = (topKeys === "a b c") ? "2rem" : "-2rem";
+          [topKeys, botKeys] = [botKeys, topKeys];
+          changeNumberPad(0);
+        }
 
       numberPadChanger.appendChild(keyFlipSwitch);
       //
@@ -430,9 +489,50 @@ async function makeNumpadScreen() {
     numberPadScreen.appendChild(numberPadChanger);
     //
     //The display for the current number pad selection
-    const currentNumberPad = make.span("number-pad-screen__current-number-pad");
+    const currentNumberPad = make.section("number-pad-screen__current-number-pad");
 
-      currentNumberPad.innerHTML = user.numPad + 1;
+      const currentLess3 = make.span("number-pad-screen__current-less-3", "current-span");
+        currentLess3.innerHTML = (user.numPad < 3) ? (user.numPad - 2) + customNumberPads[user.numPadCorner].length : user.numPad - 2;
+        currentLess3.style.transform = "rotate3d(0, 1, 0, 90deg)";
+        currentLess3.style.filter = "opacity(0%) blur(3px)";
+      currentNumberPad.appendChild(currentLess3);
+
+      const currentLess2 = make.span("number-pad-screen__current-less-2", "current-span");
+        currentLess2.innerHTML = (user.numPad < 2) ? (user.numPad - 1) + customNumberPads[user.numPadCorner].length : user.numPad - 1;
+        currentLess2.style.transform = "rotate3d(0, 1, 0, 60deg)";
+        currentLess2.style.filter = "opacity(33%) blur(2px)";
+      currentNumberPad.appendChild(currentLess2);
+
+      const currentLess1 = make.span("number-pad-screen__current-less-1", "current-span");
+        currentLess1.innerHTML = (user.numPad < 1) ? (user.numPad) + customNumberPads[user.numPadCorner].length : user.numPad;
+        currentLess1.style.transform = "rotate3d(0, 1, 0, 30deg)";
+        currentLess1.style.filter = "opacity(66%) blur(1px)";
+      currentNumberPad.appendChild(currentLess1);
+
+      const current = make.span("number-pad-screen__current", "current-span");
+        current.innerHTML = user.numPad + 1;
+        current.style.transform = "rotate3d(0, 1, 0, 0deg)";
+        current.style.filter = "opacity(100%) blur(0px)";
+      currentNumberPad.appendChild(current);
+
+      const currentMore1 = make.span("number-pad-screen__current-more-1", "current-span");
+        currentMore1.innerHTML = (user.numPad + 2 > customNumberPads[user.numPadCorner].length) ? (user.numPad + 2) % customNumberPads[user.numPadCorner].length : user.numPad + 2;
+        currentMore1.style.transform = "rotate3d(0, 1, 0, -30deg)";
+        currentMore1.style.filter = "opacity(66%) blur(1px)";
+      currentNumberPad.appendChild(currentMore1);
+
+      const currentMore2 = make.span("number-pad-screen__current-more-2", "current-span");
+        currentMore2.innerHTML = (user.numPad + 3 > customNumberPads[user.numPadCorner].length) ? (user.numPad + 3) % customNumberPads[user.numPadCorner].length : user.numPad + 3;
+        currentMore2.style.transform = "rotate3d(0, 1, 0, -60deg)";
+        currentMore2.style.filter = "opacity(33%) blur(2px)";
+      currentNumberPad.appendChild(currentMore2);
+
+      const currentMore3 = make.span("number-pad-screen__current-more-3", "current-span");
+        currentMore3.innerHTML = (user.numPad + 4 > customNumberPads[user.numPadCorner].length) ? (user.numPad + 4) % customNumberPads[user.numPadCorner].length : user.numPad + 4;
+        currentMore3.style.transform = "rotate3d(0, 1, 0, -90deg)";
+        currentMore3.style.filter = "opacity(0%) blur(3px)";
+      currentNumberPad.appendChild(currentMore3);
+
     numberPadScreen.appendChild(currentNumberPad); 
     //
     //The current number pad selected

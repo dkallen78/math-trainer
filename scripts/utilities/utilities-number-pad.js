@@ -45,7 +45,6 @@ function numPad(layout = 0, corner = "topLeft") {
     for (const propID in customNumberPads[user.numPadCorner][layout]) {
       //console.log(`Setting ${propID} element`);
       if (propID === "number-pad") {
-        console.log("found");
         numberPad.style["grid-template-areas"] = customNumberPads[user.numPadCorner][layout][propID]();
         continue;
       }
