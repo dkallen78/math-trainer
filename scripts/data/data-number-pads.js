@@ -145,7 +145,7 @@ let customNumberPads = {
       "number-pad__button-1": {
         "border-top-left-radius": () => (topKeys === "a b c") ? ".8rem" : "0",
       },
-      "number-pad__button-1": {
+      "number-pad__button-7": {
         "border-top-left-radius": () => (topKeys === "g h i") ? ".8rem" : "0",
       },
       "number-pad__button-quit": {
@@ -790,10 +790,10 @@ let customNumberPads = {
         "border-top-right-radius": () => ".8rem"
       },
       "number-pad__button-submit": {
-        "border-radius": () => (np1 === "m") ? "0 0 0.8rem" : ".8rem 0 0 0",
+        "border-radius": () => (np1 === "m") ? "0 0 0 .8rem" : ".8rem 0 0 0",
       },
       "number-pad__button-back": {
-        "border-radius": () => (np2 === "l") ? ".8rem 0 0 0" : "0 0 0.8rem",
+        "border-radius": () => (np2 === "l") ? ".8rem 0 0 0" : "0 0 0 .8rem",
       }
     }
 
