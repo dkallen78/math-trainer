@@ -15,12 +15,12 @@ const themes = {
     buttonBgColor: "hsla(0, 0%, 0%, 0)",
     inactiveColor: "hsla(0, 0%, 50%, 0.5)"
   },
-  chalkBoard: {
-    name: "Chalk Board",
-    textColor: "hsla(0, 0%, 100%, 1)",
-    bgColor: "hsla(100, 95%, 35%, 1)",
-    borderColor: "hsla(0, 0%, 100%, 1)",
-    buttonBgColor: "hsla(100, 95%, 35%, 1)",
+  lowLight: {
+    name: "Low Light",
+    textColor: "hsl(0.0000 100.0% 25.10%)",
+    bgColor: "hsl(0.0000 0.000% 0.000%)",
+    borderColor: "hsl(0.0000 100.0% 25.10%)",
+    buttonBgColor: "hsla(0, 0%, 0%, 0)",
     inactiveColor: "hsla(0, 0%, 50%, 0.5)"
   },
   cherenkov: {

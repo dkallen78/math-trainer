@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Theme Crafter
+    </title>
+    <link rel="stylesheet" href="theme-crafter.css">
+    <script src="../scripts/utilities/utilities-DOM.js"></script>
+    <script src="theme-crafter.js"></script>
+  </head>
+  <body>
+    <div id="sample-output">
+      <button type="button" id="demo-button">Demo Button</button><br>
+    </div>
+    <div id="color-pickers">
+      <div>
+        <input type="color" id="text-color" name="text-color" value="#000000" autocomplete="off">
+        <label for="text-color">Text Color</label>
+      </div>
+      <div>
+        <input type="color" id="bg-color" name="bg-color" value="#ffffff" autocomplete="off">
+        <label for="bg-color">Background Color</label>
+      </div>
+      <div>
+        <input type="color" id="border-color" name="border-color" value="#000000" autocomplete="off">
+        <label for="border-color">Border Color</label>
+      </div>
+      <div>
+        <input type="color" id="button-bg-color" name="button-bg-color" value="#ffffff" autocomplete="off">
+        <label for="button-bg-color">Button Background Color</label>
+        <br>
+        <input type="range" id="button-bg-alpha" name="button-bg-alpha" min="0" max="100">
+        <label for="button-bg-alpha">α</label>
+      </div>
+    </div>
+    <div id="theme-output">
+      <div id="text-color-out"></div>
+      <div id="bg-color-out"></div>
+      <div id="border-color-out"></div>
+      <div id="button-bg-color-out"></div>
+    </div>
+  </body>
+</html>

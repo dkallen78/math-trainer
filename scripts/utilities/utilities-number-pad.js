@@ -29,13 +29,13 @@ function numPad(layout = 0, corner = "topLeft") {
         numberPad.children[i].style.backgroundColor = "hsla(0, 100%, 0%, .125)";
       });
       numberPad.children[i].addEventListener("touchend", () => {
-        numberPad.children[i].style.backgroundColor = "var(--transparent)";
+        numberPad.children[i].style.backgroundColor = "var(--button-bg-color)";
       });
       numberPad.children[i].addEventListener("mousedown", () => {
         numberPad.children[i].style.backgroundColor = "hsla(0, 100%, 0%, .125)";
       });
       numberPad.children[i].addEventListener("mouseup", () => {
-        numberPad.children[i].style.backgroundColor = "var(--transparent)";
+        numberPad.children[i].style.backgroundColor = "var(--button-bg-color)";
       });
     }
 
