@@ -158,6 +158,20 @@ add.twoTerms = function(aMin, aMax, aMod, bMin, bMax, bMod) {
   return rnd.index(solutions);
 }
 
+add.missingTerm = function(aMin, aMax, aMod, sumMin, sumMax, sumMod) {
+  let sum = rnd(sumMin, sumMax) * (10 ** sumMod);
+  let a;
+  do {
+    a = rnd(aMin, aMax) * (10 ** aMod);
+  } while (a >= sum);
+
+  const solutions = [
+    [sum - a, `${a} + ? = ${sum}`],
+  ];
+  
+  return rnd.index(solutions);
+}
+
 function uniformDiceSums(dMin, dMax, dMod) {
   let sumSeed = rnd(dMin * 2, dMax * 2);
   let sum = sumSeed * (10 ** dMod);
