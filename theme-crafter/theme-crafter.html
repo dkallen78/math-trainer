@@ -28,18 +28,40 @@
         <label for="border-color">Border Color</label>
       </div>
       <div>
-        <input type="color" id="button-bg-color" name="button-bg-color" value="#ffffff" autocomplete="off">
+        <input type="color" id="button-bg-color" name="button-bg-color" value="#ffffff" 
+                 autocomplete="off">
         <label for="button-bg-color">Button Background Color</label>
         <br>
-        <input type="range" id="button-bg-alpha" name="button-bg-alpha" min="0" max="100">
+        <input type="range" id="button-bg-alpha" name="button-bg-alpha"  autocomplete="off"
+                min="0" max="100" value="0">
         <label for="button-bg-alpha">α</label>
       </div>
     </div>
     <div id="theme-output">
-      <div id="text-color-out"></div>
-      <div id="bg-color-out"></div>
-      <div id="border-color-out"></div>
-      <div id="button-bg-color-out"></div>
+      <div>
+        textColor: "hsla(
+        <span id="text-color-out"></span>
+        <span id="text-alpha-out"></span>
+        )",
+      </div>
+      <div>
+        bgColor: "hsla(
+        <span id="bg-color-out"></span>
+        <span id="bg-alpha-out"></span>
+        )",
+      </div>
+      <div>
+        borderColor: "hsla(
+        <span id="border-color-out" data-color="0, 0%, 0%"></span>
+        <span id="border-alpha-out" data-alpha="0"></span>
+        )",
+      </div>
+      <div>
+        buttonBgColor: "hsla(
+        <span id="button-bg-color-out"></span>
+        <span id="button-bg-alpha-out"></span>
+        )",
+      </div>
     </div>
   </body>
 </html>

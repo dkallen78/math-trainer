@@ -7,32 +7,46 @@ function loadThemeControls() {
   const output = document.getElementById("theme-output");
 
   const textColor = document.getElementById("text-color");
-  document.getElementById("text-color-out").innerHTML = `textColor: "${rgb2hsl("#000000")}"`;
+  document.getElementById("text-color-out").innerHTML = `${rgb2hsl("#000000")}`;
+  document.getElementById("text-alpha-out").innerHTML = "1";
   textColor.addEventListener("input", (e) => {
     button.style.color = e.target.value;
-    document.getElementById("text-color-out").innerHTML = `textColor: "${rgb2hsl(e.target.value)}"`;
+    document.getElementById("text-color-out").innerHTML = `${rgb2hsl(e.target.value)}`;
   });
 
   const bgColor = document.getElementById("bg-color");
-  document.getElementById("bg-color-out").innerHTML = `bgColor: "${rgb2hsl("#ffffff")}"`;
+  document.getElementById("bg-color-out").innerHTML = `${rgb2hsl("#ffffff")}`;
+  document.getElementById("bg-alpha-out").innerHTML = "1";
   bgColor.addEventListener("input", (e) => {
     bg.style.backgroundColor = e.target.value;
-    document.getElementById("bg-color-out").innerHTML = `bgColor: "${rgb2hsl(e.target.value)}"`;
+    document.getElementById("bg-color-out").innerHTML = `${rgb2hsl(e.target.value)}`;
   });
 
   const borderColor = document.getElementById("border-color");
-  document.getElementById("border-color-out").innerHTML = `borderColor: "${rgb2hsl("#000000")}"`;
+  document.getElementById("border-color-out").innerHTML = `${rgb2hsl("#000000")}`;
+  document.getElementById("border-alpha-out").innerHTML = "1";
   borderColor.addEventListener("input", (e) => {
-    button.style.borderColor = e.target.value
-    document.getElementById("border-color-out").innerHTML = `borderColor: "${rgb2hsl(e.target.value)}"`;
+    button.style.borderColor = e.target.value;
+    document.getElementById("border-color-out").innerHTML = `${rgb2hsl(e.target.value)}`;
   });
 
   const buttonBgColor = document.getElementById("button-bg-color");
-  document.getElementById("button-bg-color-out").innerHTML = `buttonBgColor: "${rgb2hsl("#ffffff")}"`;
+  const buttonBgAlpha = document.getElementById("button-bg-alpha");
+
+  document.getElementById("button-bg-color-out").innerHTML = `${rgb2hsl("#ffffff")}`;
+  document.getElementById("button-bg-alpha-out").innerHTML = "0";
   buttonBgColor.addEventListener("input", (e) => {
-    button.style.backgroundColor = e.target.value;
-    document.getElementById("button-bg-color-out").innerHTML = `buttonBgColor: "${rgb2hsl(e.target.value)}"`;
+    button.style.backgroundColor = `hsla(${rgb2hsl(e.target.value)} ${buttonBgAlpha.dataset.alpha / 100})`;
+    buttonBgColor.dataset.color = rgb2hsl(e.target.value)
+    document.getElementById("button-bg-color-out").innerHTML = `${rgb2hsl(e.target.value)}`;
   });
+
+  buttonBgAlpha.addEventListener("input", (e) => {
+    buttonBgAlpha.dataset.alpha = e.target.value;
+    console.log(`hsla(${buttonBgColor.dataset.color} ${e.target.value / 100})`);
+    button.style.backgroundColor = `hsla(${buttonBgColor.dataset.color} ${e.target.value / 100})`;
+  });
+
 }
 
 function colorHex2rgb(hexColor) {
@@ -44,9 +58,7 @@ function colorHex2rgb(hexColor) {
 }
 
 function hslVal2String(h, s, l) {
-  //l.toPrecision(4);
-  
-  const hslOut = `hsl(${(h * 360).toPrecision(5)} ${(s * 100).toPrecision(4)}% ${(l * 100).toPrecision(4)}%)`;
+  const hslOut = `${(h * 360).toPrecision(5)}, ${(s * 100).toPrecision(4)}%, ${(l * 100).toPrecision(4)}%, `;
   return hslOut;
 }
 
