@@ -7,24 +7,36 @@ function loadThemeControls() {
   const output = document.getElementById("theme-output");
 
   const textColor = document.getElementById("text-color");
-  document.getElementById("text-color-out").innerHTML = `${rgb2hsl("#000000")}`;
-  document.getElementById("text-alpha-out").innerHTML = "1";
+
+  const textColorOut = document.getElementById("text-color-out");
+  const textAlphaOut = document.getElementById("text-alpha-out");
+
+  /*document.getElementById("text-color-out").innerHTML = `${rgb2hsl("#000000")}`;
+  document.getElementById("text-alpha-out").innerHTML = "1";*/
   textColor.addEventListener("input", (e) => {
     button.style.color = e.target.value;
     document.getElementById("text-color-out").innerHTML = `${rgb2hsl(e.target.value)}`;
   });
 
   const bgColor = document.getElementById("bg-color");
-  document.getElementById("bg-color-out").innerHTML = `${rgb2hsl("#ffffff")}`;
-  document.getElementById("bg-alpha-out").innerHTML = "1";
+
+  const bgColorOut = document.getElementById("bg-color-out");
+  const bgAlphaOut = document.getElementById("bg-alpha-out");
+
+  /*document.getElementById("bg-color-out").innerHTML = `${rgb2hsl("#ffffff")}`;
+  document.getElementById("bg-alpha-out").innerHTML = "1";*/
   bgColor.addEventListener("input", (e) => {
     bg.style.backgroundColor = e.target.value;
     document.getElementById("bg-color-out").innerHTML = `${rgb2hsl(e.target.value)}`;
   });
 
   const borderColor = document.getElementById("border-color");
-  document.getElementById("border-color-out").innerHTML = `${rgb2hsl("#000000")}`;
-  document.getElementById("border-alpha-out").innerHTML = "1";
+
+  const borderColorOut = document.getElementById("border-color-out");
+  const borderAlphaOut = document.getElementById("border-alpha-out");
+
+  /*document.getElementById("border-color-out").innerHTML = `${rgb2hsl("#000000")}`;
+  document.getElementById("border-alpha-out").innerHTML = "1";*/
   borderColor.addEventListener("input", (e) => {
     button.style.borderColor = e.target.value;
     document.getElementById("border-color-out").innerHTML = `${rgb2hsl(e.target.value)}`;
@@ -33,8 +45,11 @@ function loadThemeControls() {
   const buttonBgColor = document.getElementById("button-bg-color");
   const buttonBgAlpha = document.getElementById("button-bg-alpha");
 
-  document.getElementById("button-bg-color-out").innerHTML = `${rgb2hsl("#ffffff")}`;
-  document.getElementById("button-bg-alpha-out").innerHTML = "0";
+  const buttonBgColorOut = document.getElementById("button-bg-color-out");
+  const buttonBgAlphaOut = document.getElementById("button-bg-alpha-out");
+
+  /*document.getElementById("button-bg-color-out").innerHTML = `${rgb2hsl("#ffffff")}`;
+  document.getElementById("button-bg-alpha-out").innerHTML = "0";*/
   buttonBgColor.addEventListener("input", (e) => {
     button.style.backgroundColor = `hsla(${rgb2hsl(e.target.value)} ${buttonBgAlpha.dataset.alpha / 100})`;
     buttonBgColor.dataset.color = rgb2hsl(e.target.value)
@@ -42,9 +57,9 @@ function loadThemeControls() {
   });
 
   buttonBgAlpha.addEventListener("input", (e) => {
-    buttonBgAlpha.dataset.alpha = e.target.value;
-    console.log(`hsla(${buttonBgColor.dataset.color} ${e.target.value / 100})`);
-    button.style.backgroundColor = `hsla(${buttonBgColor.dataset.color} ${e.target.value / 100})`;
+    //console.log(`hsla(${buttonBgColorOut.innerHTML} ${e.target.value / 100})`);
+    button.style.backgroundColor = `hsla(${buttonBgColorOut.innerHTML} ${e.target.value / 100})`;
+    buttonBgAlphaOut.innerHTML = `${e.target.value / 100}`;
   });
 
 }
