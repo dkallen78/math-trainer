@@ -159,14 +159,32 @@ add.twoTerms = function(aMin, aMax, aMod, bMin, bMax, bMod) {
 }
 
 add.missingTerm = function(aMin, aMax, aMod, sumMin, sumMax, sumMod) {
+
   let sum = rnd(sumMin, sumMax) * (10 ** sumMod);
   let a;
   do {
     a = rnd(aMin, aMax) * (10 ** aMod);
   } while (a >= sum);
 
+  const displayBox = get("math-strategy-interface__problem-display").getBoundingClientRect();
+
+  const lower = round.down(aMin, aMod + 1);
+  const upper = round.up(sumMax, sumMod + 1);
+
+  const lineLength = upper - lower;
+
+  const svg = make.svg("svg-number-line", "svg-number-line", `0 0 ${displayBox.width} ${displayBox.height * 0.45}`);
+    const nLine = numberLine;
+    line = nLine.make(lineLength, lower.toString(10), (upper).toString(10));
+  svg.appendChild(line);
+
+  nLine.placeNum(svg, lineLength, (a - lower), a.toString(10));
+  nLine.placeNum(svg, lineLength, (sum - lower), sum.toString(10));
+
+  nLine.animRange(svg, "math-strategy-interface__problem-display", lineLength, (a - lower), (sum - lower));
+
   const solutions = [
-    [sum - a, `${a} + ? = ${sum}`],
+    [sum - a, `<div>${a} + ? = ${sum} ${svg.outerHTML}</div>`],
   ];
   
   return rnd.index(solutions);

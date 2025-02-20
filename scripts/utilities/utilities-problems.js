@@ -495,3 +495,17 @@ function makeProducts(f1Min, f1Max, f2Min, f2Max) {
 
   return answers;
 }
+
+function round(num, place = 0) {
+
+  return (10 ** place) * Math.round(num / (10 ** place));
+}
+
+round.up = function(num, place = 0) {
+  
+  return (10 ** place) * Math.ceil(num / (10 ** place));
+}
+
+round.down = function(num, place = 0) {
+  return (10 ** place) * Math.floor(num / (10 ** place));
+}

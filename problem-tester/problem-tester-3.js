@@ -1,7 +1,7 @@
 //let testFunc = () => add(1, 6, 0, 1, 6, 0);
 //let testFunc = () => add(11, 99, 0, 1, 1, 1);
 let testFunc = () => add.missingTerm(1, 9, 0, 10, 10, 0);
-//let testFunc = () => circleTest(6);
+//let testFunc = () => add.missingTerm(1, 8, 0, 2, 9, 0);
 
 function testOnce() {
   //----------------------------------------------------//
